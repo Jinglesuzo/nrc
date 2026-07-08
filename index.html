@@ -3538,10 +3538,7 @@
     }
 
     // ===== ADMIN COMMANDS =====
-    async function viewAllUsers() {
-        const res = await fetch(API_BASE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'admin_view_users' }) });
-        const data = await res.json();
-        if (data.success) console.table(data.users);
+    ata.success) console.table(data.users);
         else console.error(data.message);
     }
     async function upgradeVIP(phone, vipLevel) {
@@ -3554,9 +3551,7 @@
         const data = await res.json();
         console.log(data.message);
     }
-    window.viewAllUsers = viewAllUsers;
-    window.upgradeVIP = upgradeVIP;
-    window.addBalance = addBalance;
+    window.view
 
     // ===== PLACEHOLDERS =====
     function setRechargeAmount(amt) { document.getElementById('rechargeAmount').value = amt; document.getElementById('rechargeDisplayAmount').textContent = amt; }
