@@ -10,7 +10,8 @@
     <style>
         /* ===== RESET & BASE ===== */
         *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:#f0f2f5;color:#1a1a2e;padding-bottom:70px;overflow-x:hidden}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:#f0f2f5;color:#1a1a2e;padding-bottom:70px;overflow-x:hidden;user-select:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none}
+        input, textarea, [contenteditable]{user-select:text;-webkit-user-select:text}
         .page{display:none}
         .page.active{display:block}
 
@@ -50,7 +51,7 @@
         .login-btn-secondary:active{transform:scale(0.97);opacity:0.9}
         .login-footer{text-align:center;font-size:11px;color:rgba(255,255,255,0.3);padding:20px 0 10px;letter-spacing:0.5px}
 
-        /* ===== ANNOUNCEMENT POPUP ===== */
+        /* ===== ANNOUNCEMENT ===== */
         .announcement-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.75);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px);animation:fadeIn 0.3s ease}
         .announcement-overlay.show{display:flex}
         @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -145,7 +146,7 @@
         .admin-panel .admin-requests .request-item .req-actions .approve{background:#10b981;color:#fff}
         .admin-panel .admin-requests .request-item .req-actions .deny{background:#ef4444;color:#fff}
 
-        /* ===== OTHER PAGE STYLES ===== */
+        /* ===== OTHER PAGES ===== */
         .swipe,.broadcast,.action-grid,.quick-links,.wealth-swipe,.task-container,.vip-container,.profit-container,.my-container,
         .withdrawal-container,.recharge-container,.settings-container,.changepassword-container,.bindbank-container,.realname-container,
         .company-content,.video-content,.helpcenter-content,.profile-content,.tutorial-content,.positions-content,.analytics-content,
@@ -171,7 +172,7 @@
     <span id="toastMessage">Network Error</span>
 </div>
 
-<!-- ===== ANNOUNCEMENT POPUP ===== -->
+<!-- ===== ANNOUNCEMENT ===== -->
 <div class="announcement-overlay" id="announcementPopup">
     <div class="announcement-popup">
         <div class="announcement-header"><span class="announcement-icon">🚨</span> IMPORTANT ANNOUNCEMENT</div>
@@ -506,7 +507,7 @@
     </div>
 </div>
 
-<!-- ===== CHANGE PASSWORD, FUND PASSWORD, REAL NAME, BIND BANK ===== -->
+<!-- ===== CHANGE PASSWORD ===== -->
 <div id="page-changepassword" class="page">
     <div class="changepassword-container">
         <div class="changepassword-nav"><div class="changepassword-nav-content"><div class="changepassword-nav-left" onclick="switchTab('settings')"><i class="fas fa-arrow-left"></i></div><div class="changepassword-nav-title">Change Login Password</div><div class="changepassword-nav-right"></div></div></div>
@@ -520,6 +521,8 @@
         </div>
     </div>
 </div>
+
+<!-- ===== CHANGE FUND PASSWORD ===== -->
 <div id="page-changefundpassword" class="page">
     <div class="changepassword-container">
         <div class="changepassword-nav"><div class="changepassword-nav-content"><div class="changepassword-nav-left" onclick="switchTab('settings')"><i class="fas fa-arrow-left"></i></div><div class="changepassword-nav-title">Change Fund Password</div><div class="changepassword-nav-right"></div></div></div>
@@ -533,6 +536,8 @@
         </div>
     </div>
 </div>
+
+<!-- ===== REAL NAME ===== -->
 <div id="page-realname" class="page">
     <div class="realname-container">
         <div class="realname-nav"><div class="realname-nav-content"><div class="realname-nav-left" onclick="switchTab('settings')"><i class="fas fa-arrow-left"></i></div><div class="realname-nav-title">Real Name</div><div class="realname-nav-right"></div></div></div>
@@ -546,6 +551,8 @@
         </div>
     </div>
 </div>
+
+<!-- ===== BIND BANK ===== -->
 <div id="page-bindbank" class="page">
     <div class="bindbank-container">
         <div class="bindbank-nav"><div class="bindbank-nav-content"><div class="bindbank-nav-left" onclick="switchTab('settings')"><i class="fas fa-arrow-left"></i></div><div class="bindbank-nav-title">Bind bank card</div><div class="bindbank-nav-right"></div></div></div>
@@ -567,19 +574,16 @@
     </div>
 </div>
 
-<!-- ===== OTHER PAGES (Company, Video, Help Center, Profile, Tutorial, Positions, Analytics, Deposit, Task Records, Teams, Daily Statement, Accounting, Wealth Center, Credit Score, Download App, Follow NRC) ===== -->
-<!-- (All included with content) -->
+<!-- ===== ALL OTHER PAGES (Company, Video, Help Center, Profile, Tutorial, Positions, Analytics, Deposit, Task Records, Teams, Daily Statement, Accounting, Wealth Center, Credit Score, Download App, Follow NRC) ===== -->
+<!-- Included below with content -->
 
-<div id="page-company" class="page"><div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Company</div><div class="page-nav-right"></div></div></div><div style="padding:16px 16px 10px;"><div class="page-card"><h3>🏢 About NRC</h3><p>NRC Cooperative Wealth Zone is a premier investment platform dedicated to empowering individuals through collective wealth creation and smart investment opportunities.</p><p style="margin-top:8px;">Founded in 2024, we have helped thousands of members achieve financial freedom.</p></div><div class="page-card"><h3>📋 Our Mission</h3><p style="font-style:italic;">"To create a community of financially empowered individuals through transparent, secure, and profitable investment opportunities."</p></div><div class="page-card"><h3>✅ Why Choose NRC?</h3><div class="grid-2"><div>✓ Secure & Transparent</div><div>✓ Daily Returns</div><div>✓ Multiple VIP Levels</div><div>✓ Referral Rewards</div><div>✓ 24/7 Support</div><div>✓ Regulated Operations</div></div></div></div></div>
+<div id="page-company" class="page"><div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Company</div><div class="page-nav-right"></div></div></div><div style="padding:16px 16px 10px;"><div class="page-card"><h3>🏢 About NRC</h3><p>NRC Cooperative Wealth Zone is a premier investment platform dedicated to empowering individuals through collective wealth creation and smart investment opportunities.</p><p style="margin-top:8px;">Founded in 2024, we have helped thousands of members achieve financial freedom through our innovative investment programs and wealth-building strategies.</p></div><div class="page-card"><h3>📋 Our Mission</h3><p style="font-style:italic;">"To create a community of financially empowered individuals through transparent, secure, and profitable investment opportunities."</p></div><div class="page-card"><h3>✅ Why Choose NRC?</h3><div class="grid-2"><div>✓ Secure & Transparent</div><div>✓ Daily Returns</div><div>✓ Multiple VIP Levels</div><div>✓ Referral Rewards</div><div>✓ 24/7 Support</div><div>✓ Regulated Operations</div></div></div></div></div>
 
 <div id="page-video" class="page"><div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Video</div><div class="page-nav-right"></div></div></div><div style="padding:16px 16px 10px;"><div class="page-card"><h3>🎬 Featured Videos</h3><div onclick="showToast('▶️ Playing: How to Get Started')" style="background:#f8fafc;padding:12px 16px;border-radius:8px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;">📺 How to Get Started on NRC</div><div onclick="showToast('▶️ Playing: VIP Levels Explained')" style="background:#f8fafc;padding:12px 16px;border-radius:8px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;">📺 Understanding VIP Levels</div><div onclick="showToast('▶️ Playing: Task Completion Guide')" style="background:#f8fafc;padding:12px 16px;border-radius:8px;border:1px solid #eef2f6;cursor:pointer;">📺 How to Complete Tasks</div></div></div></div>
 
 <div id="page-helpcenter" class="page"><div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Help Center</div><div class="page-nav-right"></div></div></div><div style="padding:16px 16px 10px;"><div class="page-card"><h3>❓ Frequently Asked Questions</h3><div onclick="showToast('Go to Recharge page')" style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;cursor:pointer;">💰 How do I recharge?</div><div onclick="showToast('Go to Withdrawal page')" style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;cursor:pointer;">📤 How do I withdraw?</div><div onclick="showToast('Go to Task page')" style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;cursor:pointer;">📋 How do I complete tasks?</div><div onclick="showToast('Go to Settings')" style="background:#f8fafc;padding:10px 14px;border-radius:8px;cursor:pointer;">🔒 How do I change password?</div></div></div></div>
 
 <div id="page-profile" class="page"><div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Profile</div><div class="page-nav-right"></div></div></div><div style="padding:16px 16px 10px;"><div class="page-card"><div style="display:flex;align-items:center;gap:14px;"><div style="font-size:60px;color:#065f46;"><i class="fas fa-user-circle"></i></div><div><div style="font-size:18px;font-weight:700;color:#1a1a2e;" id="profileName">User</div><div style="font-size:13px;color:#6b7280;" id="profilePhone">08****3431</div></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;"><div style="background:#f8fafc;padding:10px 14px;border:1px solid #eef2f6;border-radius:8px;"><div style="font-size:10px;color:#6b7280;">VIP Level</div><div style="font-size:14px;font-weight:600;color:#1a1a2e;" id="profileVip">Trial</div></div><div style="background:#f8fafc;padding:10px 14px;border:1px solid #eef2f6;border-radius:8px;"><div style="font-size:10px;color:#6b7280;">Balance</div><div style="font-size:14px;font-weight:600;color:#065f46;" id="profileBalance">₦0</div></div></div></div><div class="page-card"><h3>📊 Account Statistics</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"><div style="background:#f8fafc;padding:10px 14px;border:1px solid #eef2f6;border-radius:8px;"><div style="font-size:10px;color:#6b7280;">Total Revenue</div><div style="font-size:15px;font-weight:700;color:#1a1a2e;" id="profileTotalRevenue">₦0</div></div><div style="background:#f8fafc;padding:10px 14px;border:1px solid #eef2f6;border-radius:8px;"><div style="font-size:10px;color:#6b7280;">Today's Earnings</div><div style="font-size:15px;font-weight:700;color:#1a1a2e;" id="profileTodayEarnings">₦0</div></div></div></div></div></div>
-
-<!-- TUTORIAL, POSITIONS, ANALYTICS, DEPOSIT, TASK RECORDS, TEAMS, DAILY STATEMENT, ACCOUNTING, WEALTH CENTER, CREDIT SCORE, DOWNLOAD APP, FOLLOW NRC -->
-<!-- All included compactly -->
 
 <div id="page-tutorial" class="page"><div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Tutorial</div><div class="page-nav-right"></div></div></div><div style="padding:16px 16px 10px;"><div class="page-card"><h3>📖 Getting Started</h3><div style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;"><strong>Step 1:</strong> Register with phone and password</div><div style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;"><strong>Step 2:</strong> Complete tasks to earn</div><div style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;"><strong>Step 3:</strong> Upgrade VIP for more profits</div><div style="background:#f8fafc;padding:10px 14px;border-radius:8px;"><strong>Step 4:</strong> Recharge & withdraw</div></div></div></div>
 
@@ -668,7 +672,6 @@
             setTimeout(() => popup.classList.add('show'), 500);
         }
     }
-
     function closeAnnouncement() {
         const popup = document.getElementById('announcementPopup');
         if (popup) {
@@ -677,7 +680,7 @@
         }
     }
 
-    // ===== LOAD USER'S BANK FOR WITHDRAWAL =====
+    // ===== LOAD USER'S BANK =====
     function loadUserBank() {
         var container = document.getElementById('withdrawalBankDisplay');
         if (!container) return;
@@ -749,7 +752,7 @@
         }
     }
 
-    // ===== TASK READING SYSTEM =====
+    // ===== TASK READING =====
     let totalEarnings = 0;
     let todayEarnings = 0;
     let completedTasks = [];
@@ -832,7 +835,7 @@
         if (taskRebate) taskRebate.textContent = rebateAmount;
     }
 
-    // ===== VIP UPGRADE PAYMENT SYSTEM =====
+    // ===== VIP PAYMENT =====
     var currentPayment = { vipLevel: 0, amount: 0, newBalance: 0, vipName: '' };
 
     function openPayment(level, topup, newBalance, vipName) {
@@ -944,12 +947,17 @@
         setTimeout(() => switchTab('settings'), 500);
     }
 
+    // ===== PREVENT COPYING =====
+    document.addEventListener('copy', function(e) {
+        e.preventDefault();
+        showToast('📋 Copying is disabled');
+    });
+
     // ===== INIT =====
     document.addEventListener('DOMContentLoaded', function() {
         const loggedIn = localStorage.getItem('nrc_logged_in');
         if (loggedIn === 'true') { switchTab('home'); loadUserBank(); } 
         else { document.querySelector('.tab-bar').style.display = 'none'; switchTab('login'); }
-        // Show announcement on first load if already logged in
         if (loggedIn === 'true') showAnnouncement();
     });
 </script>
