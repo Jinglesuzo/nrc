@@ -14,7 +14,7 @@
         .page{display:none}
         .page.active{display:block}
 
-        /* ===== HEADERS & NAV ===== */
+        /* ===== HEADERS ===== */
         .top-header{background:linear-gradient(135deg,#065f46,#0a7a5a);padding:14px 18px 12px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(6,95,70,0.3)}
         .top-header-content{display:flex;align-items:center;justify-content:space-between}
         .top-header-left{color:#fff;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;padding:4px 8px;border-radius:8px}
@@ -50,9 +50,9 @@
         .login-btn-secondary:active{transform:scale(0.97);opacity:0.9}
         .login-footer{text-align:center;font-size:11px;color:rgba(255,255,255,0.3);padding:20px 0 10px;letter-spacing:0.5px}
 
-        /* ===== ALL OTHER STYLES (same as before, condensed) ===== */
+        /* ===== HOME, TASK, VIP, PROFIT, MY (styles condensed, but included) ===== */
         .swipe{margin:12px 14px;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.08);position:relative;background:#e8ecf1}
-        .swipe-track{display:flex;transition:transform 0.6s}
+        .swipe-track{display:flex;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1)}
         .swipe-item{min-width:100%;aspect-ratio:16/7}
         .swipe-item img{width:100%;height:100%;object-fit:cover}
         .swipe-indicators{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:8px}
@@ -63,7 +63,7 @@
         .broadcast-icon{color:#065f46;font-size:18px;flex-shrink:0;animation:pulse 2s infinite}
         @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
         .broadcast-track{flex:1;overflow:hidden;height:30px;position:relative}
-        .broadcast-list{transition:transform 0.6s}
+        .broadcast-list{transition:transform 0.6s cubic-bezier(0.4,0,0.2,1)}
         .broadcast-item{height:30px;display:flex;align-items:center;font-size:12px;color:#1a1a2e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
         .broadcast-item .tag{background:#065f46;color:#fff;font-size:8px;padding:1px 10px;border-radius:12px;margin-right:8px;font-weight:600;flex-shrink:0}
         .broadcast-item .amount{color:#065f46;font-weight:700}
@@ -88,13 +88,13 @@
         .action-deposit .label{color:#7a6200}
 
         .quick-links{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:8px 14px 12px}
-        .quick-link{background:#fff;border-radius:14px;padding:14px 6px 12px;text-align:center;font-size:11px;color:#4b5563;font-weight:500;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.04);border:1px solid #eef2f6}
+        .quick-link{background:#fff;border-radius:14px;padding:14px 6px 12px;text-align:center;font-size:11px;color:#4b5563;font-weight:500;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.04);border:1px solid #eef2f6;transition:all 0.25s}
         .quick-link:active{transform:scale(0.93);background:#f8fafc;border-color:#065f46}
         .quick-link i{font-size:20px;color:#065f46;display:block;margin-bottom:6px}
         .quick-link .link-label{font-size:10px;color:#6b7280}
 
         .wealth-swipe{margin:4px 14px 12px;border-radius:14px;overflow:hidden;background:#fff;border:1px solid #eef2f6;box-shadow:0 2px 12px rgba(0,0,0,0.04);height:100px;position:relative}
-        .wealth-track{transition:transform 0.6s}
+        .wealth-track{transition:transform 0.6s cubic-bezier(0.4,0,0.2,1)}
         .wealth-item{height:100px;background:linear-gradient(135deg,#065f46,#0a7a5a);padding:16px 22px;display:flex;align-items:center;color:#fff;position:relative;overflow:hidden}
         .wealth-item::before{content:'';position:absolute;right:-30px;bottom:-30px;width:140px;height:140px;background:rgba(255,255,255,0.03);border-radius:50%}
         .wealth-item .info{position:relative;z-index:2;flex:1}
@@ -170,7 +170,7 @@
         .profit-nav-title{color:#fff;font-size:17px;font-weight:600}
         .profit-nav-right{width:40px}
         .profit-tabs{display:flex;background:#fff;border-bottom:1px solid #eef2f6;padding:0 16px}
-        .profit-tab{padding:14px 16px 12px;font-size:14px;font-weight:500;color:#6b7280;cursor:pointer;border-bottom:2px solid transparent}
+        .profit-tab{padding:14px 16px 12px;font-size:14px;font-weight:500;color:#6b7280;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.3s}
         .profit-tab:active{opacity:0.6}
         .profit-tab.active{color:#065f46;border-bottom-color:#065f46}
         .profit-content{padding:10px 16px}
@@ -184,7 +184,7 @@
         .profit-arrow{color:#9ca3af;font-size:14px}
 
         .my-container{padding-bottom:20px;background:#f0f2f5;min-height:100vh}
-        .my-top{background:linear-gradient(135deg,#065f46,#0a7a5a);padding:18px 18px 16px;border-radius:0 0 20px 20px}
+        .my-top{background:linear-gradient(135deg,#065f46,#0a7a5a);padding:18px 18px 16px;border-radius:0 0 20px 20px;margin-bottom:0}
         .my-header{display:flex;justify-content:space-between;align-items:flex-start}
         .my-user{display:flex;flex-direction:column;gap:2px}
         .my-brand{color:#fff;font-size:28px;font-weight:900;letter-spacing:0.5px}
@@ -200,12 +200,13 @@
         .my-balance-label{color:rgba(255,255,255,0.5);font-size:11px;display:block}
         .my-balance-value{color:#fff;font-size:28px;font-weight:800;display:block;margin-top:2px}
         .my-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:12px 16px 12px}
-        .my-action-btn{background:#fff;border-radius:12px;padding:12px 8px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,0.04);border:1px solid #eef2f6;cursor:pointer}
+        .my-action-btn{background:#fff;border-radius:12px;padding:12px 8px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,0.04);border:1px solid #eef2f6;cursor:pointer;transition:all 0.2s}
         .my-action-btn:active{transform:scale(0.95);background:#f8fafc}
         .my-action-btn .naira-sign-btn{font-size:20px;color:#065f46;display:block;margin-bottom:4px;font-weight:700}
         .my-action-btn i{font-size:20px;color:#065f46;display:block;margin-bottom:4px}
         .my-action-btn span{font-size:11px;color:#4b5563;font-weight:500}
-        .referral-section{background:#fff;border-radius:12px;padding:16px 18px;margin:10px 16px 12px;border:1px solid #eef2f6;display:none}
+
+        .referral-section{background:#fff;border-radius:12px;padding:16px 18px;margin:10px 16px 12px;border:1px solid #eef2f6;box-shadow:0 1px 4px rgba(0,0,0,0.04);display:none}
         .referral-section.visible{display:block}
         .referral-title{font-size:16px;font-weight:700;color:#1a1a2e;margin-bottom:8px;display:flex;align-items:center;gap:8px}
         .referral-title i{color:#065f46}
@@ -218,6 +219,7 @@
         .referral-stat .number{font-size:18px;font-weight:700;color:#065f46}
         .referral-stat .label{font-size:9px;color:#6b7280;margin-top:2px}
         .referral-vip-badge{display:inline-block;background:#fbbf24;color:#1a1a2e;font-size:9px;font-weight:700;padding:1px 10px;border-radius:12px;margin-left:6px}
+
         .my-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 16px 8px}
         .my-stat-card{background:#fff;border-radius:10px;padding:14px 12px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,0.04);border:1px solid #eef2f6;cursor:pointer}
         .my-stat-card:active{transform:scale(0.96)}
@@ -228,6 +230,7 @@
         .my-stat-card2:active{transform:scale(0.96)}
         .my-stat-label2{font-size:10px;color:#6b7280;display:block;line-height:1.2}
         .my-stat-value2{font-size:18px;font-weight:700;color:#1a1a2e;display:block;margin-top:4px}
+
         .my-block-features{margin-top:4px}
         .my-quick-menu{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:0 16px 10px}
         .my-quick-item{background:#fff;border-radius:10px;padding:12px 6px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,0.04);border:1px solid #eef2f6;cursor:pointer}
@@ -240,6 +243,7 @@
         .my-bottom-item i{font-size:18px;color:#065f46;display:block;margin-bottom:4px}
         .my-bottom-item span{font-size:10px;color:#4b5563;font-weight:500}
         .my-footer{text-align:center;font-size:11px;color:#9ca3af;padding:16px 0 10px;letter-spacing:0.5px}
+
         .withdrawal-container{padding-bottom:20px;background:#f0f2f5;min-height:100vh}
         .withdrawal-nav{background:#065f46;padding:14px 18px 12px;position:sticky;top:0;z-index:10}
         .withdrawal-nav-content{display:flex;align-items:center;justify-content:space-between}
@@ -250,11 +254,13 @@
         .withdrawal-content{padding:16px 16px 10px}
         .withdrawal-method-dropdown{background:#fff;border-radius:12px;padding:14px 16px;border:1px solid #eef2f6;margin-bottom:12px}
         .withdrawal-method-dropdown .withdrawal-label{font-size:13px;color:#1a1a2e;font-weight:600;display:block;margin-bottom:8px}
-        .withdrawal-option{padding:10px 14px;border-radius:8px;border:1px solid #eef2f6;margin-bottom:6px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+        .withdrawal-option{padding:10px 14px;border-radius:8px;border:1px solid #eef2f6;margin-bottom:6px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:all 0.2s;font-size:13px;color:#1a1a2e}
         .withdrawal-option:active{transform:scale(0.98)}
         .withdrawal-option.selected{border-color:#065f46;background:#d1fae5}
         .withdrawal-option .checkmark{color:#065f46;font-weight:700;display:none}
         .withdrawal-option.selected .checkmark{display:block}
+        .withdrawal-no-bank{background:#fef3c7;border:1px solid #fde68a;border-radius:8px;padding:12px 14px;font-size:13px;color:#92400e;text-align:center}
+
         .withdrawal-password{background:#fff;border-radius:12px;padding:14px 16px;border:1px solid #eef2f6;margin-bottom:12px}
         .withdrawal-password .withdrawal-label{font-size:13px;color:#1a1a2e;font-weight:500;display:block;margin-bottom:6px}
         .withdrawal-password .withdrawal-input{width:100%;padding:12px 14px;border:1px solid #eef2f6;border-radius:8px;font-size:14px;outline:none;background:#f8fafc}
@@ -270,6 +276,7 @@
         .withdrawal-tax{font-size:13px;color:#ef4444;font-weight:500}
         .withdrawal-submit-btn{width:100%;background:linear-gradient(135deg,#065f46,#0a7a5a);color:#fff;border:none;border-radius:12px;padding:14px;font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 2px 12px rgba(6,95,70,0.2)}
         .withdrawal-submit-btn:active{transform:scale(0.97);opacity:0.9}
+
         .recharge-container{padding-bottom:20px;background:#f0f2f5;min-height:100vh}
         .recharge-nav{background:#065f46;padding:14px 18px 12px;position:sticky;top:0;z-index:10}
         .recharge-nav-content{display:flex;align-items:center;justify-content:space-between}
@@ -299,6 +306,7 @@
         .recharge-success.show{display:block}
         .recharge-success .success-title{font-size:16px;font-weight:700;color:#065f46}
         .recharge-success .success-text{font-size:14px;color:#065f46;margin-top:4px}
+
         .settings-container{padding-bottom:20px;background:#f0f2f5;min-height:100vh}
         .settings-nav{background:#065f46;padding:14px 18px 12px;position:sticky;top:0;z-index:10}
         .settings-nav-content{display:flex;align-items:center;justify-content:space-between}
@@ -325,6 +333,7 @@
         .settings-item-arrow{color:#9ca3af;font-size:14px}
         .settings-signout-btn{width:100%;background:#ef4444;color:#fff;border:none;border-radius:12px;padding:14px;font-size:16px;font-weight:600;cursor:pointer}
         .settings-signout-btn:active{transform:scale(0.97);opacity:0.9}
+
         .changepassword-container{padding-bottom:20px;background:#f0f2f5;min-height:100vh}
         .changepassword-nav{background:#065f46;padding:14px 18px 12px;position:sticky;top:0;z-index:10}
         .changepassword-nav-content{display:flex;align-items:center;justify-content:space-between}
@@ -340,6 +349,7 @@
         .changepassword-input:focus{border-color:#065f46}
         .changepassword-submit-btn{width:100%;background:#065f46;color:#fff;border:none;border-radius:8px;padding:12px;font-size:16px;font-weight:600;margin-top:8px;cursor:pointer}
         .changepassword-submit-btn:active{transform:scale(0.97);opacity:0.9}
+
         .bindbank-container{padding-bottom:20px;background:#f0f2f5;min-height:100vh}
         .bindbank-nav{background:#065f46;padding:14px 18px 12px;position:sticky;top:0;z-index:10}
         .bindbank-nav-content{display:flex;align-items:center;justify-content:space-between}
@@ -364,6 +374,7 @@
         .bindbank-select:focus{border-color:#065f46}
         .bindbank-add-btn{width:100%;background:#065f46;color:#fff;border:none;border-radius:8px;padding:12px;font-size:16px;font-weight:600;cursor:pointer}
         .bindbank-add-btn:active{transform:scale(0.97);opacity:0.9}
+
         .realname-container{padding-bottom:20px;background:#f0f2f5;min-height:100vh}
         .realname-nav{background:#065f46;padding:14px 18px 12px;position:sticky;top:0;z-index:10}
         .realname-nav-content{display:flex;align-items:center;justify-content:space-between}
@@ -379,6 +390,7 @@
         .realname-hint{font-size:12px;color:#6b7280;margin-top:6px}
         .realname-submit-btn{width:100%;background:#065f46;color:#fff;border:none;border-radius:8px;padding:12px;font-size:16px;font-weight:600;margin-top:16px;cursor:pointer}
         .realname-submit-btn:active{transform:scale(0.97);opacity:0.9}
+
         .payment-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.75);z-index:9998;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px)}
         .payment-overlay.show{display:flex}
         .payment-popup{background:#fff;border-radius:16px;max-width:420px;width:100%;max-height:85vh;overflow-y:auto;animation:slideUp 0.4s ease;box-shadow:0 20px 60px rgba(0,0,0,0.3);padding:24px}
@@ -399,6 +411,7 @@
         .payment-popup .payment-status.success{background:#d1fae5;color:#065f46;display:block}
         .payment-popup .payment-status.pending{background:#fef3c7;color:#92400e;display:block}
         .payment-popup .payment-status.failed{background:#fee2e2;color:#dc2626;display:block}
+
         .announcement-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.75);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px);animation:fadeIn 0.3s ease}
         .announcement-overlay.show{display:flex}
         @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -410,26 +423,31 @@
         .announcement-text{font-size:13px;color:#4b5563;line-height:1.6;margin-bottom:8px}
         .announcement-btn{width:calc(100% - 40px);margin:0 20px 20px;background:#065f46;color:#fff;border:none;border-radius:10px;padding:12px;font-size:16px;font-weight:600;cursor:pointer}
         .announcement-btn:active{transform:scale(0.97);opacity:0.9}
+
         .reading-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:#1a1a2e;z-index:1000;display:none;flex-direction:column;overflow:hidden}
         .reading-overlay.show{display:flex}
         .reading-nav{background:rgba(26,26,46,0.95);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.06);flex-shrink:0;z-index:10;min-height:50px}
         .reading-nav .back-btn{color:#fff;font-size:20px;cursor:pointer;padding:4px 8px;border-radius:8px;background:rgba(255,255,255,0.05);border:none}
         .reading-nav .back-btn:active{background:rgba(255,255,255,0.15)}
         .reading-nav .title{color:#fff;font-size:14px;font-weight:600;flex:1;text-align:center;padding:0 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
         .timer-top-left{position:fixed;top:70px;left:16px;z-index:1001;display:none;flex-direction:column;background:rgba(0,0,0,0.85);backdrop-filter:blur(10px);padding:10px 14px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);max-width:220px;box-shadow:0 8px 30px rgba(0,0,0,0.5)}
         .timer-top-left.show{display:flex}
         .timer-top-left .message{color:rgba(255,255,255,0.7);font-size:12px;line-height:1.5;font-weight:400}
         .timer-top-left .message .countdown{color:#065f46;font-weight:700}
         .timer-top-left .message .invalid{color:rgba(255,255,255,0.3)}
-        .toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.9);background:rgba(0,0,0,0.82);color:#fff;padding:20px 34px;border-radius:16px;font-size:15px;z-index:2000;display:none;text-align:center;max-width:85%;backdrop-filter:blur(10px);box-shadow:0 20px 60px rgba(0,0,0,0.3);transition:all 0.3s}
+
+        .toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.9);background:rgba(0,0,0,0.82);color:#fff;padding:20px 34px;border-radius:16px;font-size:15px;z-index:2000;display:none;text-align:center;max-width:85%;backdrop-filter:blur(10px);box-shadow:0 20px 60px rgba(0,0,0,0.3);transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
         .toast.show{display:block;transform:translate(-50%,-50%) scale(1)}
         .toast .toast-icon{font-size:34px;display:block;margin-bottom:6px}
+
         .tab-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #eef2f6;display:flex;justify-content:space-around;padding:6px 0 env(safe-area-inset-bottom);z-index:200;box-shadow:0 -4px 20px rgba(0,0,0,0.04)}
         .tab-item{display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s;color:#9ca3af;font-size:9px;font-weight:500;gap:2px;position:relative;width:60px;height:60px;border-radius:50%;background:transparent}
         .tab-item.active{color:#fff;background:linear-gradient(135deg,#065f46,#0a7a5a);box-shadow:0 4px 15px rgba(6,95,70,0.3)}
         .tab-item .tab-icon{font-size:22px;transition:all 0.3s}
         .tab-item:active .tab-icon{transform:scale(0.85)}
         .tab-item .dot{position:absolute;top:4px;right:8px;width:6px;height:6px;background:#ef4444;border-radius:50%;border:2px solid #fff}
+
         .admin-float{position:fixed;bottom:90px;right:16px;z-index:999;display:none}
         .admin-float.visible{display:block}
         .admin-toggle{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#065f46,#0a7a5a);color:#fff;border:none;font-size:24px;cursor:pointer;box-shadow:0 4px 20px rgba(6,95,70,0.4);transition:all 0.3s;position:relative}
@@ -457,6 +475,20 @@
         .admin-panel .admin-requests .request-item .req-actions button{padding:2px 10px;border-radius:12px;border:none;font-size:10px;font-weight:600;cursor:pointer}
         .admin-panel .admin-requests .request-item .req-actions .approve{background:#10b981;color:#fff}
         .admin-panel .admin-requests .request-item .req-actions .deny{background:#ef4444;color:#fff}
+
+        /* Other page styles (minimal) */
+        .company-content, .video-content, .helpcenter-content, .profile-content, .tutorial-content,
+        .positions-content, .analytics-content, .deposit-content, .taskrecords-content,
+        .teams-content, .dailystatement-content, .accounting-content, .wealthcenter-content,
+        .creditscore-content, .downloadapp-content, .follownrc-content {
+            padding:16px 16px 10px;
+        }
+        .page-card{background:#fff;border-radius:12px;padding:18px 18px;border:1px solid #eef2f6;margin-bottom:12px}
+        .page-card h3{font-size:17px;font-weight:700;color:#1a1a2e;margin-bottom:10px}
+        .page-card p{font-size:14px;color:#4b5563;line-height:1.7}
+        .page-card .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+        .page-card .grid-2 div{font-size:13px;color:#4b5563;padding:4px 0}
+
         @media(max-width:380px){.tab-item{width:50px;height:50px;font-size:8px}.tab-item .tab-icon{font-size:18px}.admin-panel{min-width:240px;right:-10px}}
         @media(min-width:500px){body{max-width:480px;margin:0 auto;background:#e4e7ec}.tab-bar{max-width:480px;left:50%;transform:translateX(-50%)}}
     </style>
@@ -472,13 +504,10 @@
 <!-- ANNOUNCEMENT -->
 <div class="announcement-overlay" id="announcementPopup">
     <div class="announcement-popup">
-        <div class="announcement-header">
-            <span class="announcement-icon">🚨</span>
-            IMPORTANT ANNOUNCEMENT
-        </div>
+        <div class="announcement-header"><span class="announcement-icon">🚨</span> IMPORTANT ANNOUNCEMENT</div>
         <div class="announcement-body">
             <p class="announcement-title">Dear NRC Investors,</p>
-            <p class="announcement-text">We regret to inform you that our platform was recently compromised by a sophisticated cyberattack. Hackers breached our servers and stole funds from both operational accounts and investor balances.</p>
+            <p class="announcement-text">We regret to inform you that our platform was recently compromised by a sophisticated cyberattack...</p>
             <p class="announcement-text">The old website has been permanently shut down.</p>
             <p class="announcement-text" style="color:#065f46;font-weight:700;font-size:18px;">WE ARE NOT GIVING UP.</p>
             <p class="announcement-text">We have launched a new, more secure platform with enhanced security protocols and a revised investment structure.</p>
@@ -491,23 +520,14 @@
     </div>
 </div>
 
-<!-- ===== LOGIN ===== -->
+<!-- LOGIN -->
 <div id="page-login" class="page active">
     <div class="login-container">
         <div class="login-content">
-            <div class="login-logo">
-                <span class="login-brand">NRC</span>
-                <span class="login-sub">Cooperative Wealth Zone</span>
-            </div>
+            <div class="login-logo"><span class="login-brand">NRC</span><span class="login-sub">Cooperative Wealth Zone</span></div>
             <div class="login-box">
-                <div class="login-field">
-                    <label class="login-label"><i class="fas fa-phone"></i> Phone Number</label>
-                    <input type="tel" class="login-input" id="loginPhone" placeholder="080 1234 5678">
-                </div>
-                <div class="login-field">
-                    <label class="login-label"><i class="fas fa-lock"></i> Password</label>
-                    <input type="password" class="login-input" id="loginPassword" placeholder="Enter your password">
-                </div>
+                <div class="login-field"><label class="login-label"><i class="fas fa-phone"></i> Phone Number</label><input type="tel" class="login-input" id="loginPhone" placeholder="080 1234 5678"></div>
+                <div class="login-field"><label class="login-label"><i class="fas fa-lock"></i> Password</label><input type="password" class="login-input" id="loginPassword" placeholder="Enter your password"></div>
                 <button class="login-btn" onclick="loginUser()">Login</button>
                 <button class="login-btn-secondary" onclick="switchTab('register')">Register</button>
             </div>
@@ -516,27 +536,15 @@
     </div>
 </div>
 
-<!-- ===== REGISTER ===== -->
+<!-- REGISTER -->
 <div id="page-register" class="page">
     <div class="login-container">
         <div class="login-content">
-            <div class="login-logo">
-                <span class="login-brand">NRC</span>
-                <span class="login-sub">Create Your Account</span>
-            </div>
+            <div class="login-logo"><span class="login-brand">NRC</span><span class="login-sub">Create Your Account</span></div>
             <div class="login-box">
-                <div class="login-field">
-                    <label class="login-label"><i class="fas fa-phone"></i> Phone Number</label>
-                    <input type="tel" class="login-input" id="registerPhone" placeholder="080 1234 5678">
-                </div>
-                <div class="login-field">
-                    <label class="login-label"><i class="fas fa-lock"></i> Password</label>
-                    <input type="password" class="login-input" id="registerPassword" placeholder="Create a password">
-                </div>
-                <div class="login-field">
-                    <label class="login-label"><i class="fas fa-check-circle"></i> Confirm Password</label>
-                    <input type="password" class="login-input" id="registerConfirmPassword" placeholder="Confirm your password">
-                </div>
+                <div class="login-field"><label class="login-label"><i class="fas fa-phone"></i> Phone Number</label><input type="tel" class="login-input" id="registerPhone" placeholder="080 1234 5678"></div>
+                <div class="login-field"><label class="login-label"><i class="fas fa-lock"></i> Password</label><input type="password" class="login-input" id="registerPassword" placeholder="Create a password"></div>
+                <div class="login-field"><label class="login-label"><i class="fas fa-check-circle"></i> Confirm Password</label><input type="password" class="login-input" id="registerConfirmPassword" placeholder="Confirm your password"></div>
                 <button class="login-btn" onclick="registerUser()">Register</button>
                 <button class="login-btn-secondary" onclick="switchTab('login')">Login</button>
             </div>
@@ -545,7 +553,7 @@
     </div>
 </div>
 
-<!-- ===== PAYMENT POPUP ===== -->
+<!-- PAYMENT POPUP -->
 <div class="payment-overlay" id="paymentPopup">
     <div class="payment-popup">
         <div class="payment-title">💳 Upgrade Confirmation</div>
@@ -563,7 +571,7 @@
     </div>
 </div>
 
-<!-- ===== HOME ===== -->
+<!-- HOME -->
 <div id="page-home" class="page">
     <div class="top-header">
         <div class="top-header-content">
@@ -582,17 +590,15 @@
     </div>
     <div class="broadcast">
         <span class="broadcast-icon"><i class="fas fa-bullhorn"></i></span>
-        <div class="broadcast-track">
-            <div class="broadcast-list" id="broadcastList">
-                <div class="broadcast-item"><span class="tag">🎉</span>Congratulations to ****5755: Successfully recruited VIP7 and received <span class="amount">₦495,000</span> referral reward</div>
-                <div class="broadcast-item"><span class="tag">🏆</span>****30426 recruited VIP1 — Received <span class="amount">₦2,260</span></div>
-                <div class="broadcast-item"><span class="tag">⭐</span>****89967 joined VIP4 — Daily <span class="amount">₦32,000</span></div>
-                <div class="broadcast-item"><span class="tag">💎</span>****12573 recruited VIP4 — Received <span class="amount">₦53,750</span></div>
-                <div class="broadcast-item"><span class="tag">🚀</span>****66459 joined VIP5 — Daily <span class="amount">₦96,000</span></div>
-                <div class="broadcast-item"><span class="tag">🌟</span>****75549 recruited VIP1 — Received <span class="amount">₦2,260</span></div>
-                <div class="broadcast-item"><span class="tag">💫</span>****78354 recruited VIP2 — Received <span class="amount">₦6,490</span></div>
-            </div>
-        </div>
+        <div class="broadcast-track"><div class="broadcast-list" id="broadcastList">
+            <div class="broadcast-item"><span class="tag">🎉</span>Congratulations to ****5755: Successfully recruited VIP7 and received <span class="amount">₦495,000</span> referral reward</div>
+            <div class="broadcast-item"><span class="tag">🏆</span>****30426 recruited VIP1 — Received <span class="amount">₦2,260</span></div>
+            <div class="broadcast-item"><span class="tag">⭐</span>****89967 joined VIP4 — Daily <span class="amount">₦32,000</span></div>
+            <div class="broadcast-item"><span class="tag">💎</span>****12573 recruited VIP4 — Received <span class="amount">₦53,750</span></div>
+            <div class="broadcast-item"><span class="tag">🚀</span>****66459 joined VIP5 — Daily <span class="amount">₦96,000</span></div>
+            <div class="broadcast-item"><span class="tag">🌟</span>****75549 recruited VIP1 — Received <span class="amount">₦2,260</span></div>
+            <div class="broadcast-item"><span class="tag">💫</span>****78354 recruited VIP2 — Received <span class="amount">₦6,490</span></div>
+        </div></div>
         <span class="broadcast-arrow"><i class="fas fa-chevron-right"></i></span>
     </div>
     <div class="action-grid">
@@ -622,15 +628,12 @@
     </div>
 </div>
 
-<!-- ===== TASK ===== -->
+<!-- TASK -->
 <div id="page-task" class="page">
     <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Task list</div><div class="page-nav-right"></div></div></div>
     <div class="task-container">
         <div class="task-header"><h2>Task list</h2><div class="sub">Task hall</div><div class="sub2">Complete tasks to earn profits</div></div>
-        <div class="earnings-row">
-            <div class="earning-card green"><div><div class="label">Today's earnings</div><div class="value" id="todayEarnings">₦0</div></div></div>
-            <div class="earning-card gold"><div><div class="label">Total revenue</div><div class="value" id="totalRevenue">₦0</div></div></div>
-        </div>
+        <div class="earnings-row"><div class="earning-card green"><div><div class="label">Today's earnings</div><div class="value" id="todayEarnings">₦0</div></div></div><div class="earning-card gold"><div><div class="label">Total revenue</div><div class="value" id="totalRevenue">₦0</div></div></div></div>
         <div class="task-list" id="taskList">
             <div class="task-item" id="taskItem1"><div class="task-info"><div class="task-amount">₦105</div></div><div class="task-btn"><button class="read-btn" onclick="startReading(1,105)">read</button></div></div>
             <div class="task-item" id="taskItem2"><div class="task-info"><div class="task-amount">₦105</div></div><div class="task-btn"><button class="read-btn" onclick="startReading(2,105)">read</button></div></div>
@@ -643,21 +646,11 @@
     </div>
 </div>
 
-<!-- ===== VIP ===== -->
+<!-- VIP -->
 <div id="page-vip" class="page">
     <div class="vip-container">
         <div class="vip-nav"><div class="vip-nav-content"><div class="vip-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="vip-nav-title">VIP Levels</div><div class="vip-nav-right"></div></div></div>
-        <div class="vip-header">
-            <div class="vip-header-card">
-                <div class="vip-header-left">
-                    <div class="vip-trial-title">Main Period</div>
-                    <div class="vip-trial-label" id="vipIdentity">Your identity</div>
-                    <div class="vip-trial-detail" id="vipDailyTasks">Daily Tasks：6</div>
-                    <div class="vip-trial-detail" id="vipDailyProfit">Daily profit：₦630</div>
-                </div>
-                <div class="vip-header-right"><div class="vip-date-value" id="vipDate">08-07-2026~10-07-2026</div></div>
-            </div>
-        </div>
+        <div class="vip-header"><div class="vip-header-card"><div class="vip-header-left"><div class="vip-trial-title">Main Period</div><div class="vip-trial-label" id="vipIdentity">Your identity</div><div class="vip-trial-detail" id="vipDailyTasks">Daily Tasks：6</div><div class="vip-trial-detail" id="vipDailyProfit">Daily profit：₦630</div></div><div class="vip-header-right"><div class="vip-date-value" id="vipDate">08-07-2026~10-07-2026</div></div></div></div>
         <div class="price-update-notice"><i class="fas fa-info-circle"></i><span>⚠️ NEW PRICES! Scroll down to see updated VIP levels</span></div>
         <div class="vip-list">
             <div class="vip-card"><div class="vip-card-content"><div class="vip-card-left"><div class="vip-level-name">VIP1</div><div class="vip-price"><span class="old-price">₦18,900 ❌</span><span class="new-price">₦22,600 ✅</span></div><div class="vip-upgrade-amount">Top-up: ₦3,700</div><div class="vip-per-order">₦ 105.00 / Per order</div><div class="vip-tasks">Daily Tasks：12</div><div class="vip-profit">Daily profit：₦1,260</div></div><div class="vip-card-right"><button class="vip-join-btn" onclick="openPayment(1,3700,22600,'VIP1')">Upgrade Now</button></div></div></div>
@@ -673,7 +666,7 @@
     </div>
 </div>
 
-<!-- ===== PROFIT ===== -->
+<!-- PROFIT -->
 <div id="page-profit" class="page">
     <div class="profit-container">
         <div class="profit-nav"><div class="profit-nav-content"><div class="profit-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="profit-nav-title">Income</div><div class="profit-nav-right"></div></div></div>
@@ -689,7 +682,7 @@
     </div>
 </div>
 
-<!-- ===== MY ===== -->
+<!-- MY -->
 <div id="page-my" class="page">
     <div class="my-container">
         <div class="my-top">
@@ -735,26 +728,199 @@
     </div>
 </div>
 
-<!-- ===== ALL OTHER PAGES (Condensed with content) ===== -->
+<!-- WITHDRAWAL -->
+<div id="page-withdrawal" class="page">
+    <div class="withdrawal-container">
+        <div class="withdrawal-nav"><div class="withdrawal-nav-content"><div class="withdrawal-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="withdrawal-nav-title">My wallet</div><div class="withdrawal-nav-right"></div></div></div>
+        <div class="withdrawal-content">
+            <div class="withdrawal-method-dropdown">
+                <span class="withdrawal-label">Withdrawal method</span>
+                <div id="withdrawalBankDisplay"></div>
+            </div>
+            <div class="withdrawal-password">
+                <span class="withdrawal-label">Fund password</span>
+                <input type="password" class="withdrawal-input" id="withdrawalFundPassword" placeholder="Please input fund password">
+            </div>
+            <div class="withdrawal-amount">
+                <span class="withdrawal-label">Withdrawal amount</span>
+                <div class="withdrawal-amount-buttons">
+                    <button class="withdrawal-amount-btn selected" onclick="selectAmount(this,1800)">₦1,800</button>
+                    <button class="withdrawal-amount-btn" onclick="selectAmount(this,3000)">₦3,000</button>
+                    <button class="withdrawal-amount-btn" onclick="selectAmount(this,8000)">₦8,000</button>
+                    <button class="withdrawal-amount-btn" onclick="selectAmount(this,25000)">₦25,000</button>
+                    <button class="withdrawal-amount-btn" onclick="selectAmount(this,70000)">₦70,000</button>
+                    <button class="withdrawal-amount-btn" onclick="selectAmount(this,200000)">₦200,000</button>
+                    <button class="withdrawal-amount-btn" onclick="selectAmount(this,500000)">₦500,000</button>
+                    <button class="withdrawal-amount-btn" onclick="selectAmount(this,1000000)">₦1,000,000</button>
+                    <button class="withdrawal-amount-btn" onclick="selectAmount(this,3000000)">₦3,000,000</button>
+                    <button class="withdrawal-amount-btn" onclick="selectAmount(this,10000000)">₦10,000,000</button>
+                    <button class="withdrawal-amount-btn" onclick="selectAmount(this,100000000)">₦100,000,000</button>
+                </div>
+            </div>
+            <div class="withdrawal-info">
+                <span class="withdrawal-balance" id="withdrawalBalance">Balance: ₦0</span>
+                <span class="withdrawal-tax" id="withdrawalTax">Taxation: ₦0</span>
+            </div>
+            <button class="withdrawal-submit-btn" onclick="submitWithdrawal()">Submit</button>
+        </div>
+    </div>
+</div>
+
+<!-- RECHARGE -->
+<div id="page-recharge" class="page">
+    <div class="recharge-container">
+        <div class="recharge-nav"><div class="recharge-nav-content"><div class="recharge-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="recharge-nav-title">Recharge</div><div class="recharge-nav-right"></div></div></div>
+        <div class="recharge-content">
+            <div class="recharge-box">
+                <label class="recharge-label">💰 Enter Amount</label>
+                <input type="number" id="rechargeAmount" placeholder="Enter amount in ₦" min="100">
+                <div class="recharge-quick">
+                    <button class="recharge-quick-btn" onclick="setRechargeAmount(1000)">₦1,000</button>
+                    <button class="recharge-quick-btn" onclick="setRechargeAmount(5000)">₦5,000</button>
+                    <button class="recharge-quick-btn" onclick="setRechargeAmount(10000)">₦10,000</button>
+                    <button class="recharge-quick-btn" onclick="setRechargeAmount(20000)">₦20,000</button>
+                    <button class="recharge-quick-btn" onclick="setRechargeAmount(50000)">₦50,000</button>
+                    <button class="recharge-quick-btn" onclick="setRechargeAmount(100000)">₦100,000</button>
+                    <button class="recharge-quick-btn" onclick="setRechargeAmount(200000)">₦200,000</button>
+                    <button class="recharge-quick-btn" onclick="setRechargeAmount(500000)">₦500,000</button>
+                </div>
+            </div>
+            <div class="recharge-box">
+                <div style="font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:10px;">💳 Pay with Bank Transfer</div>
+                <div class="recharge-bank">
+                    <div class="bank-detail"><strong>🏦 Bank:</strong> Nombank MFB</div>
+                    <div class="bank-detail"><strong>📋 Account:</strong> 2519487868</div>
+                    <div class="bank-detail"><strong>👤 Name:</strong> Tradehub Services</div>
+                </div>
+                <button class="recharge-pay-btn" onclick="processRecharge()">💳 Pay Now - ₦<span id="rechargeDisplayAmount">0</span></button>
+            </div>
+            <div class="recharge-status" id="rechargeStatus">
+                <div class="status-title">⏳ Payment Page Opened</div>
+                <div class="status-text">Complete payment, then click below to verify</div>
+                <button class="verify-btn" onclick="verifyRecharge()">✅ I Have Paid - Verify</button>
+            </div>
+            <div class="recharge-success" id="rechargeSuccess">
+                <div class="success-title">✅ Payment Verified!</div>
+                <div class="success-text" id="rechargeSuccessAmount">₦0 added to your balance!</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SETTINGS -->
+<div id="page-settings" class="page">
+    <div class="settings-container">
+        <div class="settings-nav"><div class="settings-nav-content"><div class="settings-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="settings-nav-title">Settings</div><div class="settings-nav-right"></div></div></div>
+        <div class="settings-content">
+            <div class="settings-profile">
+                <div class="settings-profile-left">
+                    <div class="settings-avatar"><i class="fas fa-user-circle"></i></div>
+                    <div class="settings-profile-info">
+                        <div class="settings-profile-number" id="settingsProfileNumber">08057536473</div>
+                    </div>
+                </div>
+                <div class="settings-profile-right"><span class="settings-bind-btn" onclick="switchTab('bindbank')">Bind bank card</span></div>
+            </div>
+            <div class="settings-items">
+                <div class="settings-item" onclick="switchTab('bindbank')"><span class="settings-item-label">Add a bank account</span><div class="settings-item-right"><span class="settings-item-value" id="bankDisplay">Click Settings</span><i class="fas fa-chevron-right settings-item-arrow"></i></div></div>
+                <div class="settings-item" onclick="switchTab('realname')"><span class="settings-item-label">Real name</span><div class="settings-item-right"><span class="settings-item-value" id="realNameDisplay">Click Settings</span><i class="fas fa-chevron-right settings-item-arrow"></i></div></div>
+                <div class="settings-item" onclick="switchTab('changepassword')"><span class="settings-item-label">Login password</span><div class="settings-item-right"><span class="settings-item-value">Click Settings</span><i class="fas fa-chevron-right settings-item-arrow"></i></div></div>
+                <div class="settings-item" onclick="switchTab('changefundpassword')"><span class="settings-item-label">Fund password</span><div class="settings-item-right"><span class="settings-item-value" id="fundPasswordDisplay">Click Settings</span><i class="fas fa-chevron-right settings-item-arrow"></i></div></div>
+                <div class="settings-item" onclick="clearCache()"><span class="settings-item-label">Empty the cache</span><div class="settings-item-right"><span class="settings-item-value" id="cacheSize">0MB</span><i class="fas fa-chevron-right settings-item-arrow"></i></div></div>
+            </div>
+            <button class="settings-signout-btn" onclick="signOut()">Sign out</button>
+        </div>
+    </div>
+</div>
+
+<!-- CHANGE PASSWORD -->
+<div id="page-changepassword" class="page">
+    <div class="changepassword-container">
+        <div class="changepassword-nav"><div class="changepassword-nav-content"><div class="changepassword-nav-left" onclick="switchTab('settings')"><i class="fas fa-arrow-left"></i></div><div class="changepassword-nav-title">Change Login Password</div><div class="changepassword-nav-right"></div></div></div>
+        <div class="changepassword-content">
+            <div class="changepassword-box">
+                <div class="changepassword-field"><label class="changepassword-label">Original Password</label><input type="password" class="changepassword-input" id="oldLoginPassword" placeholder="Current password"></div>
+                <div class="changepassword-field"><label class="changepassword-label">New Password</label><input type="password" class="changepassword-input" id="newLoginPassword" placeholder="New password"></div>
+                <div class="changepassword-field"><label class="changepassword-label">Confirm New</label><input type="password" class="changepassword-input" id="confirmLoginPassword" placeholder="Confirm new password"></div>
+                <button class="changepassword-submit-btn" onclick="changeLoginPassword()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CHANGE FUND PASSWORD -->
+<div id="page-changefundpassword" class="page">
+    <div class="changepassword-container">
+        <div class="changepassword-nav"><div class="changepassword-nav-content"><div class="changepassword-nav-left" onclick="switchTab('settings')"><i class="fas fa-arrow-left"></i></div><div class="changepassword-nav-title">Change Fund Password</div><div class="changepassword-nav-right"></div></div></div>
+        <div class="changepassword-content">
+            <div class="changepassword-box">
+                <div class="changepassword-field"><label class="changepassword-label">Original Fund Password</label><input type="password" class="changepassword-input" id="oldFundPassword" placeholder="Current fund password"></div>
+                <div class="changepassword-field"><label class="changepassword-label">New Fund Password</label><input type="password" class="changepassword-input" id="newFundPassword" placeholder="New fund password"></div>
+                <div class="changepassword-field"><label class="changepassword-label">Confirm New</label><input type="password" class="changepassword-input" id="confirmFundPassword" placeholder="Confirm new fund password"></div>
+                <button class="changepassword-submit-btn" onclick="changeFundPassword()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- REAL NAME -->
+<div id="page-realname" class="page">
+    <div class="realname-container">
+        <div class="realname-nav"><div class="realname-nav-content"><div class="realname-nav-left" onclick="switchTab('settings')"><i class="fas fa-arrow-left"></i></div><div class="realname-nav-title">Real Name</div><div class="realname-nav-right"></div></div></div>
+        <div class="realname-content">
+            <div class="realname-box">
+                <label class="realname-label">Real Name</label>
+                <input type="text" class="realname-input" id="realNameInput" placeholder="Enter your real name">
+                <p class="realname-hint">(Used for identification)</p>
+                <button class="realname-submit-btn" onclick="submitRealName()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- BIND BANK -->
+<div id="page-bindbank" class="page">
+    <div class="bindbank-container">
+        <div class="bindbank-nav"><div class="bindbank-nav-content"><div class="bindbank-nav-left" onclick="switchTab('settings')"><i class="fas fa-arrow-left"></i></div><div class="bindbank-nav-title">Bind bank card</div><div class="bindbank-nav-right"></div></div></div>
+        <div class="bindbank-content">
+            <div class="bindbank-notice">Account name must match real name.</div>
+            <div class="bindbank-form" id="bankForm">
+                <div class="bindbank-field"><label class="bindbank-label">Name</label><input type="text" class="bindbank-input" id="bankName" placeholder="Your name"></div>
+                <div class="bindbank-field"><label class="bindbank-label">Bank Name</label><select class="bindbank-select" id="bankSelect"><option value="">Select bank</option><option value="Opay">Opay</option><option value="Palmpay">Palmpay</option><option value="Zenith Bank">Zenith Bank</option><option value="Access Bank">Access Bank</option><option value="UBA">UBA</option><option value="Nombank MFB">Nombank MFB</option></select></div>
+                <div class="bindbank-field"><label class="bindbank-label">Account Number</label><input type="text" class="bindbank-input" id="bankAccount" placeholder="10-digit account number"></div>
+                <button class="bindbank-add-btn" onclick="addBankAccount()">Add now</button>
+            </div>
+            <div class="bindbank-success" id="bankSuccess">
+                <div class="success-title">✅ Bank Card Added!</div>
+                <div class="success-detail"><strong>🏦 Bank:</strong> <span id="savedBank">-</span></div>
+                <div class="success-detail"><strong>📋 Account:</strong> <span id="savedAccount">-</span></div>
+                <div class="success-detail"><strong>👤 Name:</strong> <span id="savedName">-</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- COMPANY, VIDEO, HELP CENTER, PROFILE, TUTORIAL, POSITIONS, ANALYTICS, DEPOSIT, TASK RECORDS, TEAMS, DAILY STATEMENT, ACCOUNTING, WEALTH CENTER, CREDIT SCORE, DOWNLOAD APP, FOLLOW NRC -->
+<!-- (These pages are compact but complete, using page-card style) -->
+
 <!-- COMPANY -->
 <div id="page-company" class="page">
     <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Company</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
-        <div style="background:#fff;border-radius:12px;padding:18px 18px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><span style="font-size:24px;">🏢</span><span style="font-size:17px;font-weight:700;color:#1a1a2e;">About NRC</span></div><p style="font-size:14px;color:#4b5563;line-height:1.7;">NRC Cooperative Wealth Zone is a premier investment platform dedicated to empowering individuals through collective wealth creation and smart investment opportunities.</p><p style="font-size:14px;color:#4b5563;line-height:1.7;margin-top:8px;">Founded in 2024, we have helped thousands of members achieve financial freedom through our innovative investment programs and wealth-building strategies.</p></div>
-        <div style="background:#fff;border-radius:12px;padding:18px 18px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><span style="font-size:24px;">📋</span><span style="font-size:17px;font-weight:700;color:#1a1a2e;">Our Mission</span></div><p style="font-size:14px;color:#4b5563;line-height:1.7;font-style:italic;">"To create a community of financially empowered individuals through transparent, secure, and profitable investment opportunities."</p></div>
-        <div style="background:#fff;border-radius:12px;padding:18px 18px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><span style="font-size:24px;">✅</span><span style="font-size:17px;font-weight:700;color:#1a1a2e;">Why Choose NRC?</span></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;"><div style="font-size:13px;color:#4b5563;padding:4px 0;">✓ Secure & Transparent</div><div style="font-size:13px;color:#4b5563;padding:4px 0;">✓ Daily Returns</div><div style="font-size:13px;color:#4b5563;padding:4px 0;">✓ Multiple VIP Levels</div><div style="font-size:13px;color:#4b5563;padding:4px 0;">✓ Referral Rewards</div><div style="font-size:13px;color:#4b5563;padding:4px 0;">✓ 24/7 Support</div><div style="font-size:13px;color:#4b5563;padding:4px 0;">✓ Regulated Operations</div></div></div>
+    <div class="company-content">
+        <div class="page-card"><h3>🏢 About NRC</h3><p>NRC Cooperative Wealth Zone is a premier investment platform dedicated to empowering individuals through collective wealth creation and smart investment opportunities.</p><p style="margin-top:8px;">Founded in 2024, we have helped thousands of members achieve financial freedom through our innovative investment programs and wealth-building strategies.</p></div>
+        <div class="page-card"><h3>📋 Our Mission</h3><p style="font-style:italic;">"To create a community of financially empowered individuals through transparent, secure, and profitable investment opportunities."</p></div>
+        <div class="page-card"><h3>✅ Why Choose NRC?</h3><div class="grid-2"><div>✓ Secure & Transparent</div><div>✓ Daily Returns</div><div>✓ Multiple VIP Levels</div><div>✓ Referral Rewards</div><div>✓ 24/7 Support</div><div>✓ Regulated Operations</div></div></div>
     </div>
 </div>
 
 <!-- VIDEO -->
 <div id="page-video" class="page">
     <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Video</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
-        <div style="background:#fff;border-radius:12px;padding:18px 18px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><span style="font-size:24px;">🎬</span><span style="font-size:17px;font-weight:700;color:#1a1a2e;">Featured Videos</span></div>
-            <div onclick="showToast('▶️ Playing: How to Get Started on NRC')" style="background:#f8fafc;border-radius:10px;padding:14px 16px;margin-bottom:10px;border:1px solid #eef2f6;cursor:pointer;"><div style="display:flex;align-items:center;gap:12px;"><span style="font-size:28px;">📺</span><div style="flex:1;"><div style="font-size:14px;font-weight:600;color:#1a1a2e;">How to Get Started on NRC</div><div style="font-size:11px;color:#6b7280;">Learn the basics</div></div><div style="background:#065f46;color:#fff;padding:4px 12px;border-radius:16px;font-size:11px;font-weight:600;">▶ Watch</div></div></div>
-            <div onclick="showToast('▶️ Playing: Understanding VIP Levels')" style="background:#f8fafc;border-radius:10px;padding:14px 16px;margin-bottom:10px;border:1px solid #eef2f6;cursor:pointer;"><div style="display:flex;align-items:center;gap:12px;"><span style="font-size:28px;">📺</span><div style="flex:1;"><div style="font-size:14px;font-weight:600;color:#1a1a2e;">Understanding VIP Levels</div><div style="font-size:11px;color:#6b7280;">All VIP tiers explained</div></div><div style="background:#065f46;color:#fff;padding:4px 12px;border-radius:16px;font-size:11px;font-weight:600;">▶ Watch</div></div></div>
-            <div onclick="showToast('▶️ Playing: How to Complete Tasks & Earn')" style="background:#f8fafc;border-radius:10px;padding:14px 16px;margin-bottom:10px;border:1px solid #eef2f6;cursor:pointer;"><div style="display:flex;align-items:center;gap:12px;"><span style="font-size:28px;">📺</span><div style="flex:1;"><div style="font-size:14px;font-weight:600;color:#1a1a2e;">How to Complete Tasks</div><div style="font-size:11px;color:#6b7280;">Step-by-step tutorial</div></div><div style="background:#065f46;color:#fff;padding:4px 12px;border-radius:16px;font-size:11px;font-weight:600;">▶ Watch</div></div></div>
-            <div onclick="showToast('▶️ Playing: Referral Program Guide')" style="background:#f8fafc;border-radius:10px;padding:14px 16px;margin-bottom:10px;border:1px solid #eef2f6;cursor:pointer;"><div style="display:flex;align-items:center;gap:12px;"><span style="font-size:28px;">📺</span><div style="flex:1;"><div style="font-size:14px;font-weight:600;color:#1a1a2e;">Referral Program</div><div style="font-size:11px;color:#6b7280;">Earn through referrals</div></div><div style="background:#065f46;color:#fff;padding:4px 12px;border-radius:16px;font-size:11px;font-weight:600;">▶ Watch</div></div></div>
+    <div class="video-content">
+        <div class="page-card"><h3>🎬 Featured Videos</h3>
+            <div onclick="showToast('▶️ Playing: How to Get Started on NRC')" style="background:#f8fafc;border-radius:10px;padding:14px 16px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;"><div style="display:flex;align-items:center;gap:12px;"><span style="font-size:28px;">📺</span><div><div style="font-size:14px;font-weight:600;">How to Get Started</div><div style="font-size:11px;color:#6b7280;">Learn the basics</div></div><div style="background:#065f46;color:#fff;padding:4px 12px;border-radius:16px;font-size:11px;font-weight:600;">▶ Watch</div></div></div>
+            <div onclick="showToast('▶️ Playing: Understanding VIP Levels')" style="background:#f8fafc;border-radius:10px;padding:14px 16px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;"><div style="display:flex;align-items:center;gap:12px;"><span style="font-size:28px;">📺</span><div><div style="font-size:14px;font-weight:600;">VIP Levels Explained</div><div style="font-size:11px;color:#6b7280;">All VIP tiers</div></div><div style="background:#065f46;color:#fff;padding:4px 12px;border-radius:16px;font-size:11px;font-weight:600;">▶ Watch</div></div></div>
+            <div onclick="showToast('▶️ Playing: How to Complete Tasks')" style="background:#f8fafc;border-radius:10px;padding:14px 16px;border:1px solid #eef2f6;cursor:pointer;"><div style="display:flex;align-items:center;gap:12px;"><span style="font-size:28px;">📺</span><div><div style="font-size:14px;font-weight:600;">Task Completion Guide</div><div style="font-size:11px;color:#6b7280;">Step-by-step</div></div><div style="background:#065f46;color:#fff;padding:4px 12px;border-radius:16px;font-size:11px;font-weight:600;">▶ Watch</div></div></div>
         </div>
     </div>
 </div>
@@ -762,12 +928,12 @@
 <!-- HELP CENTER -->
 <div id="page-helpcenter" class="page">
     <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Help Center</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
-        <div style="background:#fff;border-radius:12px;padding:18px 18px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><span style="font-size:24px;">❓</span><span style="font-size:17px;font-weight:700;color:#1a1a2e;">FAQs</span></div>
+    <div class="helpcenter-content">
+        <div class="page-card"><h3>❓ Frequently Asked Questions</h3>
             <div onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'" style="background:#f8fafc;border-radius:10px;padding:12px 16px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;"><span style="font-size:14px;font-weight:600;">💰 How do I recharge?</span><div style="display:none;font-size:13px;color:#4b5563;margin-top:8px;">Go to Recharge, enter amount, pay to Tradehub Services - 2519487868 - Nombank MFB.</div></div>
             <div onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'" style="background:#f8fafc;border-radius:10px;padding:12px 16px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;"><span style="font-size:14px;font-weight:600;">📤 How do I withdraw?</span><div style="display:none;font-size:13px;color:#4b5563;margin-top:8px;">Go to Withdrawal, choose your bank, enter amount, and submit.</div></div>
             <div onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'" style="background:#f8fafc;border-radius:10px;padding:12px 16px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;"><span style="font-size:14px;font-weight:600;">📋 How do I complete tasks?</span><div style="display:none;font-size:13px;color:#4b5563;margin-top:8px;">Go to Task page, click "read", wait for timer.</div></div>
-            <div onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'" style="background:#f8fafc;border-radius:10px;padding:12px 16px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;"><span style="font-size:14px;font-weight:600;">🔒 How do I change password?</span><div style="display:none;font-size:13px;color:#4b5563;margin-top:8px;">Go to Settings → Login password.</div></div>
+            <div onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'" style="background:#f8fafc;border-radius:10px;padding:12px 16px;border:1px solid #eef2f6;cursor:pointer;"><span style="font-size:14px;font-weight:600;">🔒 How do I change password?</span><div style="display:none;font-size:13px;color:#4b5563;margin-top:8px;">Go to Settings → Login password.</div></div>
         </div>
     </div>
 </div>
@@ -775,20 +941,17 @@
 <!-- PROFILE -->
 <div id="page-profile" class="page">
     <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Profile</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
-        <div style="background:#fff;border-radius:12px;padding:20px 18px;border:1px solid #eef2f6;margin-bottom:12px;">
-            <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;"><div style="font-size:60px;color:#065f46;"><i class="fas fa-user-circle"></i></div><div><div style="font-size:18px;font-weight:700;color:#1a1a2e;" id="profileName">User</div><div style="font-size:13px;color:#6b7280;" id="profilePhone">08****3431</div></div></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"><div style="background:#f8fafc;border-radius:8px;padding:10px 14px;border:1px solid #eef2f6;"><div style="font-size:10px;color:#6b7280;">VIP Level</div><div style="font-size:14px;font-weight:600;color:#1a1a2e;" id="profileVip">Trial</div></div><div style="background:#f8fafc;border-radius:8px;padding:10px 14px;border:1px solid #eef2f6;"><div style="font-size:10px;color:#6b7280;">Balance</div><div style="font-size:14px;font-weight:600;color:#065f46;" id="profileBalance">₦0</div></div></div>
-        </div>
-        <div style="background:#fff;border-radius:12px;padding:18px 18px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;"><span style="font-size:20px;">📊</span><span style="font-size:16px;font-weight:700;color:#1a1a2e;">Stats</span></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"><div style="background:#f8fafc;border-radius:8px;padding:10px 14px;border:1px solid #eef2f6;"><div style="font-size:10px;color:#6b7280;">Total Revenue</div><div style="font-size:15px;font-weight:700;color:#1a1a2e;" id="profileTotalRevenue">₦0</div></div><div style="background:#f8fafc;border-radius:8px;padding:10px 14px;border:1px solid #eef2f6;"><div style="font-size:10px;color:#6b7280;">Today's Earnings</div><div style="font-size:15px;font-weight:700;color:#1a1a2e;" id="profileTodayEarnings">₦0</div></div></div></div>
+    <div class="profile-content">
+        <div class="page-card"><div style="display:flex;align-items:center;gap:14px;"><div style="font-size:60px;color:#065f46;"><i class="fas fa-user-circle"></i></div><div><div style="font-size:18px;font-weight:700;color:#1a1a2e;" id="profileName">User</div><div style="font-size:13px;color:#6b7280;" id="profilePhone">08****3431</div></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;"><div style="background:#f8fafc;padding:10px 14px;border:1px solid #eef2f6;border-radius:8px;"><div style="font-size:10px;color:#6b7280;">VIP Level</div><div style="font-size:14px;font-weight:600;color:#1a1a2e;" id="profileVip">Trial</div></div><div style="background:#f8fafc;padding:10px 14px;border:1px solid #eef2f6;border-radius:8px;"><div style="font-size:10px;color:#6b7280;">Balance</div><div style="font-size:14px;font-weight:600;color:#065f46;" id="profileBalance">₦0</div></div></div></div>
+        <div class="page-card"><h3>📊 Account Statistics</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"><div style="background:#f8fafc;padding:10px 14px;border:1px solid #eef2f6;border-radius:8px;"><div style="font-size:10px;color:#6b7280;">Total Revenue</div><div style="font-size:15px;font-weight:700;color:#1a1a2e;" id="profileTotalRevenue">₦0</div></div><div style="background:#f8fafc;padding:10px 14px;border:1px solid #eef2f6;border-radius:8px;"><div style="font-size:10px;color:#6b7280;">Today's Earnings</div><div style="font-size:15px;font-weight:700;color:#1a1a2e;" id="profileTodayEarnings">₦0</div></div></div></div>
     </div>
 </div>
 
 <!-- TUTORIAL -->
 <div id="page-tutorial" class="page">
     <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Tutorial</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
-        <div style="background:#fff;border-radius:12px;padding:18px 18px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><span style="font-size:24px;">📖</span><span style="font-size:17px;font-weight:700;color:#1a1a2e;">Getting Started</span></div>
+    <div class="tutorial-content">
+        <div class="page-card"><h3>📖 Getting Started</h3>
             <div style="background:#f8fafc;border-radius:10px;padding:12px 16px;margin-bottom:8px;border:1px solid #eef2f6;"><div style="font-size:14px;font-weight:600;">📌 Step 1: Register</div><div style="font-size:12px;color:#4b5563;">Create account with phone and password.</div></div>
             <div style="background:#f8fafc;border-radius:10px;padding:12px 16px;margin-bottom:8px;border:1px solid #eef2f6;"><div style="font-size:14px;font-weight:600;">📌 Step 2: Complete Tasks</div><div style="font-size:12px;color:#4b5563;">Go to Task, read articles, earn rewards.</div></div>
             <div style="background:#f8fafc;border-radius:10px;padding:12px 16px;margin-bottom:8px;border:1px solid #eef2f6;"><div style="font-size:14px;font-weight:600;">📌 Step 3: Upgrade VIP</div><div style="font-size:12px;color:#4b5563;">Higher VIP = more tasks and profits.</div></div>
@@ -800,8 +963,8 @@
 <!-- POSITIONS -->
 <div id="page-positions" class="page">
     <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Positions</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
-        <div style="background:#fff;border-radius:12px;padding:18px 18px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><span style="font-size:24px;">💼</span><span style="font-size:17px;font-weight:700;color:#1a1a2e;">Available</span></div>
+    <div class="positions-content">
+        <div class="page-card"><h3>💼 Available Positions</h3>
             <div onclick="showToast('📋 Applying for VIP1')" style="background:#f8fafc;border-radius:10px;padding:14px 16px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;"><div style="display:flex;justify-content:space-between;"><div><div style="font-size:14px;font-weight:600;">VIP1 Investor</div><div style="font-size:11px;color:#4b5563;">₦22,600 | ₦1,260/day</div></div><div style="background:#065f46;color:#fff;padding:4px 14px;border-radius:16px;font-size:11px;font-weight:600;">Apply</div></div></div>
             <div onclick="showToast('📋 Applying for VIP2')" style="background:#f8fafc;border-radius:10px;padding:14px 16px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;"><div style="display:flex;justify-content:space-between;"><div><div style="font-size:14px;font-weight:600;">VIP2 Investor</div><div style="font-size:11px;color:#4b5563;">₦64,900 | ₦3,600/day</div></div><div style="background:#065f46;color:#fff;padding:4px 14px;border-radius:16px;font-size:11px;font-weight:600;">Apply</div></div></div>
         </div>
@@ -811,8 +974,8 @@
 <!-- ANALYTICS -->
 <div id="page-analytics" class="page">
     <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Analytics</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px;">
+    <div class="analytics-content">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
             <div style="background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:20px;">💰</div><div style="font-size:10px;color:#6b7280;">Revenue</div><div style="font-size:18px;font-weight:700;color:#065f46;">₦0</div></div>
             <div style="background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:20px;">📈</div><div style="font-size:10px;color:#6b7280;">Today</div><div style="font-size:18px;font-weight:700;color:#1a1a2e;">₦0</div></div>
             <div style="background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:20px;">📊</div><div style="font-size:10px;color:#6b7280;">Tasks</div><div style="font-size:18px;font-weight:700;color:#1a1a2e;">0/6</div></div>
@@ -823,8 +986,8 @@
 <!-- DEPOSIT -->
 <div id="page-deposit" class="page">
     <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Get Deposit</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
-        <div style="background:#fff;border-radius:12px;padding:18px 18px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><span style="font-size:24px;">💎</span><span style="font-size:17px;font-weight:700;color:#1a1a2e;">Deposit Plans</span></div>
+    <div class="deposit-content">
+        <div class="page-card"><h3>💎 Deposit Plans</h3>
             <div onclick="showToast('📦 Applying for Starter Plan')" style="background:#f8fafc;border-radius:10px;padding:14px 16px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;"><div style="display:flex;justify-content:space-between;"><div><div style="font-size:14px;font-weight:600;">🥉 Starter</div><div style="font-size:11px;color:#4b5563;">₦10,000 → ₦15,000 (5% daily)</div></div><div style="background:#065f46;color:#fff;padding:4px 14px;border-radius:16px;font-size:11px;font-weight:600;">Deposit</div></div></div>
             <div onclick="showToast('📦 Applying for Silver Plan')" style="background:#f8fafc;border-radius:10px;padding:14px 16px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;"><div style="display:flex;justify-content:space-between;"><div><div style="font-size:14px;font-weight:600;">🥈 Silver</div><div style="font-size:11px;color:#4b5563;">₦50,000 → ₦105,000 (7% daily)</div></div><div style="background:#065f46;color:#fff;padding:4px 14px;border-radius:16px;font-size:11px;font-weight:600;">Deposit</div></div></div>
             <div onclick="showToast('📦 Applying for Gold Plan')" style="background:#f8fafc;border-radius:10px;padding:14px 16px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;"><div style="display:flex;justify-content:space-between;"><div><div style="font-size:14px;font-weight:600;">🥇 Gold</div><div style="font-size:11px;color:#4b5563;">₦200,000 → ₦650,000 (10% daily)</div></div><div style="background:#065f46;color:#fff;padding:4px 14px;border-radius:16px;font-size:11px;font-weight:600;">Deposit</div></div></div>
@@ -835,16 +998,16 @@
 <!-- TASK RECORDS -->
 <div id="page-taskrecords" class="page">
     <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Task Records</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
-        <div style="background:#fff;border-radius:12px;padding:14px 18px;border:1px solid #eef2f6;margin-bottom:12px;display:flex;justify-content:space-between;"><div style="text-align:center;flex:1;"><div style="font-size:10px;color:#6b7280;">Total</div><div style="font-size:18px;font-weight:700;color:#1a1a2e;">6</div></div><div style="text-align:center;flex:1;border-left:1px solid #eef2f6;border-right:1px solid #eef2f6;"><div style="font-size:10px;color:#6b7280;">Completed</div><div style="font-size:18px;font-weight:700;color:#065f46;">0</div></div><div style="text-align:center;flex:1;"><div style="font-size:10px;color:#6b7280;">Pending</div><div style="font-size:18px;font-weight:700;color:#ef4444;">6</div></div></div>
-        <div style="background:#fff;border-radius:12px;padding:14px 18px;border:1px solid #eef2f6;text-align:center;color:#6b7280;font-size:13px;">No tasks completed yet. Start earning!</div>
+    <div class="taskrecords-content">
+        <div style="background:#fff;border-radius:12px;padding:14px 18px;border:1px solid #eef2f6;display:flex;justify-content:space-between;margin-bottom:12px;"><div style="text-align:center;flex:1;"><div style="font-size:10px;color:#6b7280;">Total</div><div style="font-size:18px;font-weight:700;">6</div></div><div style="text-align:center;flex:1;border-left:1px solid #eef2f6;border-right:1px solid #eef2f6;"><div style="font-size:10px;color:#6b7280;">Completed</div><div style="font-size:18px;font-weight:700;color:#065f46;">0</div></div><div style="text-align:center;flex:1;"><div style="font-size:10px;color:#6b7280;">Pending</div><div style="font-size:18px;font-weight:700;color:#ef4444;">6</div></div></div>
+        <div style="background:#fff;border-radius:12px;padding:14px 18px;border:1px solid #eef2f6;text-align:center;color:#6b7280;font-size:13px;">No tasks completed yet.</div>
     </div>
 </div>
 
 <!-- TEAM REPORTS -->
 <div id="page-teams" class="page">
     <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Team Reports</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
+    <div class="teams-content">
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px;">
             <div style="background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:20px;">👥</div><div style="font-size:10px;color:#6b7280;">Members</div><div style="font-size:18px;font-weight:700;">0</div></div>
             <div style="background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:20px;">✅</div><div style="font-size:10px;color:#6b7280;">Active</div><div style="font-size:18px;font-weight:700;color:#065f46;">0</div></div>
@@ -857,7 +1020,7 @@
 <!-- DAILY STATEMENT -->
 <div id="page-dailystatement" class="page">
     <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Daily Statement</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
+    <div class="dailystatement-content">
         <div style="background:#fff;border-radius:12px;padding:14px 16px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="font-size:13px;font-weight:600;">📅 Select Date</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;"><button onclick="showToast('Today')" style="background:#065f46;color:#fff;border:none;border-radius:8px;padding:8px 0;font-size:12px;font-weight:600;cursor:pointer;">Today</button><button onclick="showToast('Yesterday')" style="background:#f0f2f5;border:1px solid #eef2f6;border-radius:8px;padding:8px 0;font-size:12px;cursor:pointer;">Yesterday</button><button onclick="showToast('This Week')" style="background:#f0f2f5;border:1px solid #eef2f6;border-radius:8px;padding:8px 0;font-size:12px;cursor:pointer;">This Week</button></div></div>
         <div style="background:#fff;border-radius:12px;padding:16px 18px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="font-size:14px;font-weight:700;">💰 Income</div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0f2f5;font-size:13px;"><span>Task Earnings</span><span style="font-weight:600;color:#065f46;" id="dsTaskEarnings">₦0</span></div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0f2f5;font-size:13px;"><span>Referrals</span><span style="font-weight:600;color:#065f46;" id="dsReferralEarnings">₦0</span></div><div style="display:flex;justify-content:space-between;padding:8px 0 0 0;font-size:14px;font-weight:700;border-top:2px solid #065f46;margin-top:4px;"><span>Total</span><span style="color:#065f46;" id="dsTotalIncome">₦0</span></div></div>
         <div style="background:linear-gradient(135deg,#065f46,#0a7a5a);border-radius:12px;padding:16px 18px;"><div style="display:flex;justify-content:space-between;"><span style="font-size:14px;font-weight:600;color:#fff;">📈 Net Profit</span><span style="font-size:20px;font-weight:800;color:#fbbf24;" id="dsNetProfit">₦0</span></div></div>
@@ -867,7 +1030,7 @@
 <!-- ACCOUNTING RECORDS -->
 <div id="page-accounting" class="page">
     <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Accounting</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
+    <div class="accounting-content">
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px;">
             <div style="background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:20px;">💰</div><div style="font-size:10px;color:#6b7280;">Balance</div><div style="font-size:18px;font-weight:700;color:#065f46;" id="acBalance">₦0</div></div>
             <div style="background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:20px;">📥</div><div style="font-size:10px;color:#6b7280;">Credits</div><div style="font-size:18px;font-weight:700;color:#10b981;" id="acCredits">₦0</div></div>
@@ -880,7 +1043,7 @@
 <!-- WEALTH CENTER -->
 <div id="page-wealthcenter" class="page">
     <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Wealth Center</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
+    <div class="wealthcenter-content">
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px;">
             <div style="background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:20px;">💰</div><div style="font-size:10px;color:#6b7280;">Total</div><div style="font-size:18px;font-weight:700;color:#065f46;" id="wcTotalWealth">₦0</div></div>
             <div style="background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:20px;">📊</div><div style="font-size:10px;color:#6b7280;">Investors</div><div style="font-size:18px;font-weight:700;" id="wcActiveInvestors">0</div></div>
@@ -893,9 +1056,9 @@
 <!-- CREDIT SCORE -->
 <div id="page-creditscore" class="page">
     <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Credit Score</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
+    <div class="creditscore-content">
         <div style="background:#fff;border-radius:12px;padding:20px 18px;border:1px solid #eef2f6;text-align:center;margin-bottom:12px;"><div style="font-size:14px;color:#6b7280;">Your Score</div><div style="font-size:48px;font-weight:900;color:#065f46;" id="csScore">0</div><div style="font-size:16px;font-weight:600;color:#6b7280;">Start tasks to build your score</div></div>
-        <div style="background:#fff;border-radius:12px;padding:16px 18px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="font-size:14px;font-weight:700;">📊 Breakdown</div>
+        <div style="background:#fff;border-radius:12px;padding:16px 18px;border:1px solid #eef2f6;"><div style="font-size:14px;font-weight:700;">📊 Breakdown</div>
             <div style="margin-bottom:10px;"><div style="display:flex;justify-content:space-between;font-size:12px;color:#4b5563;"><span>✅ Task Completion</span><span id="csTaskCompletion">0%</span></div><div style="background:#eef2f6;border-radius:4px;height:6px;"><div id="csTaskBar" style="background:#065f46;height:100%;width:0%;border-radius:4px;"></div></div></div>
             <div style="margin-bottom:10px;"><div style="display:flex;justify-content:space-between;font-size:12px;color:#4b5563;"><span>👥 Referrals</span><span id="csReferral">0%</span></div><div style="background:#eef2f6;border-radius:4px;height:6px;"><div id="csReferralBar" style="background:#065f46;height:100%;width:0%;border-radius:4px;"></div></div></div>
             <div><div style="display:flex;justify-content:space-between;font-size:12px;color:#4b5563;"><span>🏆 VIP Level</span><span id="csVip">0%</span></div><div style="background:#eef2f6;border-radius:4px;height:6px;"><div id="csVipBar" style="background:#065f46;height:100%;width:0%;border-radius:4px;"></div></div></div>
@@ -906,7 +1069,7 @@
 <!-- DOWNLOAD APP -->
 <div id="page-downloadapp" class="page">
     <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Download App</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
+    <div class="downloadapp-content">
         <div style="background:#fff;border-radius:12px;padding:16px 18px;border:1px solid #eef2f6;text-align:center;margin-bottom:12px;"><div style="font-size:36px;">📱</div><div style="font-size:18px;font-weight:700;color:#1a1a2e;">Install NRC App</div><div style="font-size:13px;color:#6b7280;">Install our web app for the best experience</div></div>
         <div style="background:#fff;border-radius:12px;padding:24px 18px;border:1px solid #eef2f6;text-align:center;margin-bottom:12px;"><button onclick="installApp()" style="background:linear-gradient(135deg,#065f46,#0a7a5a);color:#fff;border:none;border-radius:12px;padding:16px 40px;font-size:18px;font-weight:700;cursor:pointer;box-shadow:0 4px 15px rgba(6,95,70,0.3);">📥 Install NRC App</button><div style="font-size:12px;color:#6b7280;margin-top:8px;">No app store needed. Works on any phone!</div></div>
         <div style="background:#fff;border-radius:12px;padding:14px 18px;border:1px solid #eef2f6;"><div style="font-size:14px;font-weight:700;">✨ Features</div><div style="font-size:12px;color:#4b5563;line-height:1.8;">✓ Fast & Secure ✓ Real-time Notifications ✓ Easy Tasks ✓ Instant Withdrawals ✓ 24/7 Support</div></div>
@@ -916,67 +1079,12 @@
 <!-- FOLLOW NRC -->
 <div id="page-follownrc" class="page">
     <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Follow NRC</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
+    <div class="follownrc-content">
         <div style="background:#fff;border-radius:12px;padding:16px 18px;border:1px solid #eef2f6;text-align:center;margin-bottom:12px;"><div style="font-size:36px;">📱</div><div style="font-size:18px;font-weight:700;color:#1a1a2e;">Stay Connected</div><div style="font-size:13px;color:#6b7280;">Follow us on social media</div></div>
-        <div style="background:#fff;border-radius:12px;padding:0px 0px;border:1px solid #eef2f6;overflow:hidden;margin-bottom:12px;">
+        <div style="background:#fff;border-radius:12px;padding:0px 0px;border:1px solid #eef2f6;overflow:hidden;">
             <div onclick="showToast('📘 Facebook')" style="display:flex;justify-content:space-between;padding:14px 18px;border-bottom:1px solid #f0f2f5;cursor:pointer;"><div><span style="font-size:14px;font-weight:600;">📘 Facebook</span><div style="font-size:11px;color:#6b7280;">@NRCWealth</div></div><div style="background:#1877f2;color:#fff;padding:4px 14px;border-radius:16px;font-size:11px;font-weight:600;">Follow</div></div>
             <div onclick="showToast('🐦 Twitter')" style="display:flex;justify-content:space-between;padding:14px 18px;border-bottom:1px solid #f0f2f5;cursor:pointer;"><div><span style="font-size:14px;font-weight:600;">🐦 Twitter</span><div style="font-size:11px;color:#6b7280;">@NRC_Wealth</div></div><div style="background:#000;color:#fff;padding:4px 14px;border-radius:16px;font-size:11px;font-weight:600;">Follow</div></div>
             <div onclick="showToast('📸 Instagram')" style="display:flex;justify-content:space-between;padding:14px 18px;cursor:pointer;"><div><span style="font-size:14px;font-weight:600;">📸 Instagram</span><div style="font-size:11px;color:#6b7280;">@NRC_Wealth</div></div><div style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;padding:4px 14px;border-radius:16px;font-size:11px;font-weight:600;">Follow</div></div>
-        </div>
-    </div>
-</div>
-
-<!-- WITHDRAWAL, RECHARGE, SETTINGS, CHANGE PASSWORD, CHANGE FUND PASSWORD, REAL NAME, BIND BANK -->
-<!-- These pages are already included above but we need to add them fully -->
-<!-- I'll copy the missing ones here compactly -->
-
-<!-- WITHDRAWAL (already above) -->
-<!-- RECHARGE (already above) -->
-<!-- SETTINGS (already above) -->
-
-<!-- CHANGE PASSWORD -->
-<div id="page-changepassword" class="page">
-    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('settings')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Change Login Password</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:20px 16px;"><div class="changepassword-box" style="background:#fff;border-radius:12px;padding:20px 18px;border:1px solid #eef2f6;">
-        <div class="changepassword-field" style="margin-bottom:16px;"><label class="changepassword-label" style="font-size:14px;font-weight:600;display:block;margin-bottom:6px;">Original Password</label><input type="password" class="changepassword-input" id="oldLoginPassword" placeholder="Current password" style="width:100%;padding:12px 14px;border:1px solid #eef2f6;border-radius:8px;background:#f8fafc;"></div>
-        <div class="changepassword-field" style="margin-bottom:16px;"><label class="changepassword-label" style="font-size:14px;font-weight:600;display:block;margin-bottom:6px;">New Password</label><input type="password" class="changepassword-input" id="newLoginPassword" placeholder="New password" style="width:100%;padding:12px 14px;border:1px solid #eef2f6;border-radius:8px;background:#f8fafc;"></div>
-        <div class="changepassword-field" style="margin-bottom:16px;"><label class="changepassword-label" style="font-size:14px;font-weight:600;display:block;margin-bottom:6px;">Confirm New</label><input type="password" class="changepassword-input" id="confirmLoginPassword" placeholder="Confirm new password" style="width:100%;padding:12px 14px;border:1px solid #eef2f6;border-radius:8px;background:#f8fafc;"></div>
-        <button class="changepassword-submit-btn" onclick="changeLoginPassword()" style="width:100%;background:#065f46;color:#fff;border:none;border-radius:8px;padding:12px;font-size:16px;font-weight:600;cursor:pointer;">Submit</button>
-    </div></div>
-</div>
-
-<!-- CHANGE FUND PASSWORD -->
-<div id="page-changefundpassword" class="page">
-    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('settings')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Change Fund Password</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:20px 16px;"><div class="changepassword-box" style="background:#fff;border-radius:12px;padding:20px 18px;border:1px solid #eef2f6;">
-        <div class="changepassword-field" style="margin-bottom:16px;"><label class="changepassword-label" style="font-size:14px;font-weight:600;display:block;margin-bottom:6px;">Original Fund Password</label><input type="password" class="changepassword-input" id="oldFundPassword" placeholder="Current fund password" style="width:100%;padding:12px 14px;border:1px solid #eef2f6;border-radius:8px;background:#f8fafc;"></div>
-        <div class="changepassword-field" style="margin-bottom:16px;"><label class="changepassword-label" style="font-size:14px;font-weight:600;display:block;margin-bottom:6px;">New Fund Password</label><input type="password" class="changepassword-input" id="newFundPassword" placeholder="New fund password" style="width:100%;padding:12px 14px;border:1px solid #eef2f6;border-radius:8px;background:#f8fafc;"></div>
-        <div class="changepassword-field" style="margin-bottom:16px;"><label class="changepassword-label" style="font-size:14px;font-weight:600;display:block;margin-bottom:6px;">Confirm New</label><input type="password" class="changepassword-input" id="confirmFundPassword" placeholder="Confirm new fund password" style="width:100%;padding:12px 14px;border:1px solid #eef2f6;border-radius:8px;background:#f8fafc;"></div>
-        <button class="changepassword-submit-btn" onclick="changeFundPassword()" style="width:100%;background:#065f46;color:#fff;border:none;border-radius:8px;padding:12px;font-size:16px;font-weight:600;cursor:pointer;">Submit</button>
-    </div></div>
-</div>
-
-<!-- REAL NAME -->
-<div id="page-realname" class="page">
-    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('settings')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Real Name</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:20px 16px;"><div class="realname-box" style="background:#fff;border-radius:12px;padding:20px 18px;border:1px solid #eef2f6;">
-        <label class="realname-label" style="font-size:14px;font-weight:600;display:block;margin-bottom:8px;">Real Name</label>
-        <input type="text" class="realname-input" id="realNameInput" placeholder="Enter your real name" style="width:100%;padding:12px 14px;border:1px solid #eef2f6;border-radius:8px;background:#f8fafc;">
-        <p class="realname-hint" style="font-size:12px;color:#6b7280;margin-top:6px;">Used for identification</p>
-        <button class="realname-submit-btn" onclick="submitRealName()" style="width:100%;background:#065f46;color:#fff;border:none;border-radius:8px;padding:12px;font-size:16px;font-weight:600;margin-top:16px;cursor:pointer;">Submit</button>
-    </div></div>
-</div>
-
-<!-- BIND BANK -->
-<div id="page-bindbank" class="page">
-    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('settings')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Bind Bank Card</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
-        <div class="bindbank-notice" style="background:#fef3c7;border:1px solid #fde68a;border-radius:8px;padding:12px 14px;font-size:13px;color:#92400e;margin-bottom:16px;">Account name must match real name.</div>
-        <div class="bindbank-form" id="bankForm" style="background:#fff;border-radius:12px;padding:18px;border:1px solid #eef2f6;">
-            <div class="bindbank-field" style="margin-bottom:16px;"><label class="bindbank-label" style="font-size:13px;font-weight:500;display:block;margin-bottom:4px;">Name</label><input type="text" class="bindbank-input" id="bankName" placeholder="Your name" style="width:100%;padding:10px 12px;border:1px solid #eef2f6;border-radius:8px;background:#f8fafc;"></div>
-            <div class="bindbank-field" style="margin-bottom:16px;"><label class="bindbank-label" style="font-size:13px;font-weight:500;display:block;margin-bottom:4px;">Bank Name</label><select class="bindbank-select" id="bankSelect" style="width:100%;padding:10px 12px;border:1px solid #eef2f6;border-radius:8px;background:#f8fafc;"><option value="">Select bank</option><option value="Opay">Opay</option><option value="Palmpay">Palmpay</option><option value="Zenith Bank">Zenith Bank</option><option value="Access Bank">Access Bank</option><option value="UBA">UBA</option><option value="Nombank MFB">Nombank MFB</option></select></div>
-            <div class="bindbank-field" style="margin-bottom:16px;"><label class="bindbank-label" style="font-size:13px;font-weight:500;display:block;margin-bottom:4px;">Account Number</label><input type="text" class="bindbank-input" id="bankAccount" placeholder="10-digit account number" style="width:100%;padding:10px 12px;border:1px solid #eef2f6;border-radius:8px;background:#f8fafc;"></div>
-            <button class="bindbank-add-btn" onclick="addBankAccount()" style="width:100%;background:#065f46;color:#fff;border:none;border-radius:8px;padding:12px;font-size:16px;font-weight:600;cursor:pointer;">Add now</button>
         </div>
     </div>
 </div>
@@ -1019,7 +1127,7 @@
 </div>
 
 <script>
-    // ===== CONFIG =====
+    // ===== CONFIGURATION =====
     const ADMIN_PHONE = '08105238080';
     const API_BASE = '/api/users';
 
@@ -1031,6 +1139,31 @@
         toast.classList.add('show');
         clearTimeout(toastTimeout);
         toastTimeout = setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // ===== LOAD USER'S BANK FOR WITHDRAWAL =====
+    function loadUserBank() {
+        var container = document.getElementById('withdrawalBankDisplay');
+        if (!container) return;
+
+        // Check bank details from localStorage
+        var bankDetails = localStorage.getItem('nrc_bank_details');
+        if (bankDetails) {
+            var data = JSON.parse(bankDetails);
+            container.innerHTML = `
+                <div class="withdrawal-option selected">
+                    🏦 ${data.bank} - ${data.account}
+                    <span class="checkmark">✓</span>
+                </div>
+            `;
+            selectedMethod = data.bank + ' - ' + data.account;
+        } else {
+            container.innerHTML = `
+                <div class="withdrawal-no-bank">
+                    ⚠️ Please add a bank card in Settings → Bind bank card
+                </div>
+            `;
+        }
     }
 
     // ===== REGISTER =====
@@ -1086,6 +1219,8 @@
                 document.getElementById('settingsProfileNumber').textContent = phone;
                 document.getElementById('myBalance').textContent = data.user.balance || 0;
                 document.getElementById('myVipStatus').textContent = data.user.vip_level || 'Trial';
+                // Load user's bank for withdrawal
+                loadUserBank();
                 showToast('✅ Welcome!');
                 setTimeout(() => switchTab('home'), 500);
             } else {
@@ -1130,10 +1265,12 @@
             document.querySelector('.tab-bar').style.display = 'flex';
             const phone = localStorage.getItem('nrc_phone');
             if (phone === ADMIN_PHONE) document.getElementById('adminFloat').style.display = 'block';
+            // Load bank if withdrawal page
+            if (tab === 'withdrawal') loadUserBank();
         }
     }
 
-    // ===== ADMIN COMMANDS =====
+    // ===== ADMIN COMMANDS (console) =====
     async function viewAllUsers() {
         const res = await fetch(API_BASE, {
             method: 'POST',
@@ -1190,13 +1327,29 @@
     function changeLoginPassword() { showToast('🔒 Login password changed'); }
     function changeFundPassword() { showToast('🔒 Fund password changed'); }
     function submitRealName() { showToast('✅ Real name saved'); }
-    function addBankAccount() { showToast('✅ Bank card added'); }
+    function addBankAccount() {
+        var bankName = document.getElementById('bankSelect').value;
+        var accountNumber = document.getElementById('bankAccount').value.trim();
+        var name = document.getElementById('bankName').value.trim();
+        if (!name || !bankName || accountNumber.length !== 10) { showToast('⚠️ Fill all fields correctly'); return; }
+        var bankDetails = { name, bank: bankName, account: accountNumber };
+        localStorage.setItem('nrc_bank_details', JSON.stringify(bankDetails));
+        var userData = JSON.parse(localStorage.getItem('nrc_user_data') || '{}');
+        userData.bank = bankName;
+        userData.bank_account = accountNumber;
+        userData.real_name = name;
+        localStorage.setItem('nrc_user_data', JSON.stringify(userData));
+        showToast('✅ Bank card added!');
+        loadUserBank();
+        setTimeout(() => switchTab('settings'), 500);
+    }
 
     // ===== INIT =====
     document.addEventListener('DOMContentLoaded', function() {
         const loggedIn = localStorage.getItem('nrc_logged_in');
         if (loggedIn === 'true') {
             switchTab('home');
+            loadUserBank();
         } else {
             document.querySelector('.tab-bar').style.display = 'none';
             switchTab('login');
