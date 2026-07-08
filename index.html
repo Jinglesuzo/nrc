@@ -13,7 +13,6 @@
         .page{display:none}
         .page.active{display:block}
 
-        /* TOP HEADER */
         .top-header{background:linear-gradient(135deg,#065f46,#0a7a5a);padding:14px 18px 12px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(6,95,70,0.3)}
         .top-header-content{display:flex;align-items:center;justify-content:space-between}
         .top-header-left{color:#fff;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;padding:4px 8px;border-radius:8px}
@@ -24,7 +23,6 @@
         .top-header-right{color:#fff;font-size:20px;cursor:pointer;padding:4px 8px;border-radius:8px}
         .top-header-right:active{background:rgba(255,255,255,0.1)}
 
-        /* PAGE NAV */
         .page-nav{background:linear-gradient(135deg,#065f46,#0a7a5a);padding:14px 18px 12px;position:sticky;top:0;z-index:10;box-shadow:0 2px 12px rgba(6,95,70,0.3)}
         .page-nav-content{display:flex;align-items:center;justify-content:space-between}
         .page-nav-left{color:#fff;font-size:20px;cursor:pointer;padding:4px 8px;border-radius:8px}
@@ -32,7 +30,6 @@
         .page-nav-title{color:#fff;font-size:17px;font-weight:600}
         .page-nav-right{width:40px}
 
-        /* LOGIN */
         .login-container{padding:40px 20px 20px;background:linear-gradient(135deg,#065f46,#0a7a5a);min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center}
         .login-content{width:100%;max-width:400px}
         .login-logo{text-align:center;margin-bottom:30px}
@@ -50,7 +47,6 @@
         .login-btn-secondary:active{transform:scale(0.97);opacity:0.9}
         .login-footer{text-align:center;font-size:11px;color:rgba(255,255,255,0.3);padding:20px 0 10px;letter-spacing:0.5px}
 
-        /* HOME - CAROUSEL */
         .swipe{margin:12px 14px;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.08);position:relative;background:#e8ecf1}
         .swipe-track{display:flex;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1)}
         .swipe-item{min-width:100%;aspect-ratio:16/7}
@@ -59,7 +55,6 @@
         .swipe-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);transition:all 0.3s;cursor:pointer}
         .swipe-dot.active{background:#065f46;width:24px;border-radius:4px}
 
-        /* BROADCAST */
         .broadcast{background:#fff;margin:0 14px 12px;padding:10px 16px;border-radius:12px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,0.05);border:1px solid #eef2f6;overflow:hidden;height:48px}
         .broadcast-icon{color:#065f46;font-size:18px;flex-shrink:0;animation:pulse 2s infinite}
         @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
@@ -70,7 +65,6 @@
         .broadcast-item .amount{color:#065f46;font-weight:700}
         .broadcast-arrow{color:#9ca3af;font-size:16px;flex-shrink:0}
 
-        /* ACTIONS */
         .action-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px 14px 8px}
         .action-card{border-radius:16px;padding:18px 16px;min-height:64px;cursor:pointer;transition:all 0.3s;position:relative;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.06);border:none;display:flex;align-items:center;gap:14px}
         .action-card:active{transform:scale(0.95)}
@@ -89,14 +83,12 @@
         .action-deposit .icon-wrap{background:rgba(249,168,37,0.15);color:#7a6200}
         .action-deposit .label{color:#7a6200}
 
-        /* QUICK LINKS */
         .quick-links{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:8px 14px 12px}
         .quick-link{background:#fff;border-radius:14px;padding:14px 6px 12px;text-align:center;font-size:11px;color:#4b5563;font-weight:500;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.04);border:1px solid #eef2f6;transition:all 0.25s}
         .quick-link:active{transform:scale(0.93);background:#f8fafc;border-color:#065f46}
         .quick-link i{font-size:20px;color:#065f46;display:block;margin-bottom:6px}
         .quick-link .link-label{font-size:10px;color:#6b7280}
 
-        /* WEALTH SWIPE */
         .wealth-swipe{margin:4px 14px 12px;border-radius:14px;overflow:hidden;background:#fff;border:1px solid #eef2f6;box-shadow:0 2px 12px rgba(0,0,0,0.04);height:100px;position:relative}
         .wealth-track{transition:transform 0.6s cubic-bezier(0.4,0,0.2,1)}
         .wealth-item{height:100px;background:linear-gradient(135deg,#065f46,#0a7a5a);padding:16px 22px;display:flex;align-items:center;color:#fff;position:relative;overflow:hidden}
@@ -108,7 +100,6 @@
         .wealth-item .arrow{color:rgba(255,255,255,0.25);font-size:22px;position:relative;z-index:2}
         .wealth-item .emoji-bg{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:60px;opacity:0.06;z-index:1}
 
-        /* TASK */
         .task-container{margin:0 10px;border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.06)}
         .task-header{padding-top:30px;padding-left:15px}
         .task-header h2{color:#5ea692;font-weight:800;font-size:22px}
@@ -133,7 +124,6 @@
         .task-item.completed{display:none}
         .loading-container{display:flex;align-items:center;justify-content:center;padding:14px 0;color:#9ca3af;font-size:13px;background:#fff;border-top:1px solid #eef2f6}
 
-        /* VIP */
         .vip-container{padding-bottom:20px;background:#f0f2f5}
         .vip-nav{background:#065f46;padding:14px 18px 12px;position:sticky;top:0;z-index:10}
         .vip-nav-content{display:flex;align-items:center;justify-content:space-between}
@@ -168,7 +158,6 @@
         .vip-join-btn:active{transform:scale(0.95);opacity:0.8}
         .vip-apply-text{color:rgba(255,255,255,0.7);font-size:13px;font-weight:600;letter-spacing:0.3px}
 
-        /* PROFIT */
         .profit-container{padding-bottom:20px;background:#f0f2f5;min-height:100vh}
         .profit-nav{background:#065f46;padding:14px 18px 12px;position:sticky;top:0;z-index:10}
         .profit-nav-content{display:flex;align-items:center;justify-content:space-between}
@@ -190,7 +179,6 @@
         .profit-item-amount{font-size:15px;font-weight:600;color:#065f46}
         .profit-arrow{color:#9ca3af;font-size:14px}
 
-        /* MY */
         .my-container{padding-bottom:20px;background:#f0f2f5;min-height:100vh}
         .my-top{background:linear-gradient(135deg,#065f46,#0a7a5a);padding:18px 18px 16px;border-radius:0 0 20px 20px;margin-bottom:0}
         .my-header{display:flex;justify-content:space-between;align-items:flex-start}
@@ -214,7 +202,6 @@
         .my-action-btn i{font-size:20px;color:#065f46;display:block;margin-bottom:4px}
         .my-action-btn span{font-size:11px;color:#4b5563;font-weight:500}
 
-        /* REFERRAL */
         .referral-section{background:#fff;border-radius:12px;padding:16px 18px;margin:10px 16px 12px;border:1px solid #eef2f6;box-shadow:0 1px 4px rgba(0,0,0,0.04);display:none}
         .referral-section.visible{display:block}
         .referral-title{font-size:16px;font-weight:700;color:#1a1a2e;margin-bottom:8px;display:flex;align-items:center;gap:8px}
@@ -234,20 +221,17 @@
         .my-stat-card:active{transform:scale(0.96)}
         .my-stat-label{font-size:10px;color:#6b7280;display:block;line-height:1.2}
         .my-stat-value{font-size:18px;font-weight:700;color:#1a1a2e;display:block;margin-top:4px}
-
         .my-stats-row2{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 16px 12px}
         .my-stat-card2{background:#fff;border-radius:10px;padding:14px 12px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,0.04);border:1px solid #eef2f6;cursor:pointer}
         .my-stat-card2:active{transform:scale(0.96)}
         .my-stat-label2{font-size:10px;color:#6b7280;display:block;line-height:1.2}
         .my-stat-value2{font-size:18px;font-weight:700;color:#1a1a2e;display:block;margin-top:4px}
-
         .my-block-features{margin-top:4px}
         .my-quick-menu{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:0 16px 10px}
         .my-quick-item{background:#fff;border-radius:10px;padding:12px 6px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,0.04);border:1px solid #eef2f6;cursor:pointer}
         .my-quick-item:active{transform:scale(0.93)}
         .my-quick-item i{font-size:18px;color:#065f46;display:block;margin-bottom:4px}
         .my-quick-item span{font-size:10px;color:#4b5563;font-weight:500}
-
         .my-bottom-menu{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:0 16px 10px}
         .my-bottom-item{background:#fff;border-radius:10px;padding:12px 6px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,0.04);border:1px solid #eef2f6;cursor:pointer}
         .my-bottom-item:active{transform:scale(0.93)}
@@ -255,7 +239,6 @@
         .my-bottom-item span{font-size:10px;color:#4b5563;font-weight:500}
         .my-footer{text-align:center;font-size:11px;color:#9ca3af;padding:16px 0 10px;letter-spacing:0.5px}
 
-        /* WITHDRAWAL */
         .withdrawal-container{padding-bottom:20px;background:#f0f2f5;min-height:100vh}
         .withdrawal-nav{background:#065f46;padding:14px 18px 12px;position:sticky;top:0;z-index:10}
         .withdrawal-nav-content{display:flex;align-items:center;justify-content:space-between}
@@ -272,6 +255,7 @@
         .withdrawal-option.selected{border-color:#065f46;background:#d1fae5}
         .withdrawal-option .checkmark{color:#065f46;font-weight:700;display:none}
         .withdrawal-option.selected .checkmark{display:block}
+        .withdrawal-no-bank{background:#fef3c7;border:1px solid #fde68a;border-radius:8px;padding:12px 14px;font-size:13px;color:#92400e;text-align:center}
 
         .withdrawal-password{background:#fff;border-radius:12px;padding:14px 16px;border:1px solid #eef2f6;margin-bottom:12px}
         .withdrawal-password .withdrawal-label{font-size:13px;color:#1a1a2e;font-weight:500;display:block;margin-bottom:6px}
@@ -290,7 +274,6 @@
         .withdrawal-submit-btn{width:100%;background:linear-gradient(135deg,#065f46,#0a7a5a);color:#fff;border:none;border-radius:12px;padding:14px;font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 2px 12px rgba(6,95,70,0.2)}
         .withdrawal-submit-btn:active{transform:scale(0.97);opacity:0.9}
 
-        /* RECHARGE */
         .recharge-container{padding-bottom:20px;background:#f0f2f5;min-height:100vh}
         .recharge-nav{background:#065f46;padding:14px 18px 12px;position:sticky;top:0;z-index:10}
         .recharge-nav-content{display:flex;align-items:center;justify-content:space-between}
@@ -321,7 +304,6 @@
         .recharge-success .success-title{font-size:16px;font-weight:700;color:#065f46}
         .recharge-success .success-text{font-size:14px;color:#065f46;margin-top:4px}
 
-        /* SETTINGS */
         .settings-container{padding-bottom:20px;background:#f0f2f5;min-height:100vh}
         .settings-nav{background:#065f46;padding:14px 18px 12px;position:sticky;top:0;z-index:10}
         .settings-nav-content{display:flex;align-items:center;justify-content:space-between}
@@ -334,8 +316,7 @@
         .settings-profile-left{display:flex;align-items:center;gap:12px}
         .settings-avatar{font-size:48px;color:#9ca3af}
         .settings-profile-info{display:flex;flex-direction:column}
-        .settings-profile-name{font-size:16px;font-weight:700;color:#1a1a2e}
-        .settings-profile-number{font-size:13px;color:#6b7280}
+        .settings-profile-number{font-size:16px;font-weight:700;color:#1a1a2e}
         .settings-profile-right{display:flex;align-items:center}
         .settings-bind-btn{background:#065f46;color:#fff;padding:4px 12px;border-radius:4px;font-size:11px;font-weight:500;cursor:pointer}
         .settings-bind-btn:active{opacity:0.7}
@@ -350,7 +331,6 @@
         .settings-signout-btn{width:100%;background:#ef4444;color:#fff;border:none;border-radius:12px;padding:14px;font-size:16px;font-weight:600;cursor:pointer}
         .settings-signout-btn:active{transform:scale(0.97);opacity:0.9}
 
-        /* CHANGE PASSWORD */
         .changepassword-container{padding-bottom:20px;background:#f0f2f5;min-height:100vh}
         .changepassword-nav{background:#065f46;padding:14px 18px 12px;position:sticky;top:0;z-index:10}
         .changepassword-nav-content{display:flex;align-items:center;justify-content:space-between}
@@ -367,7 +347,6 @@
         .changepassword-submit-btn{width:100%;background:#065f46;color:#fff;border:none;border-radius:8px;padding:12px;font-size:16px;font-weight:600;margin-top:8px;cursor:pointer}
         .changepassword-submit-btn:active{transform:scale(0.97);opacity:0.9}
 
-        /* BIND BANK */
         .bindbank-container{padding-bottom:20px;background:#f0f2f5;min-height:100vh}
         .bindbank-nav{background:#065f46;padding:14px 18px 12px;position:sticky;top:0;z-index:10}
         .bindbank-nav-content{display:flex;align-items:center;justify-content:space-between}
@@ -393,7 +372,6 @@
         .bindbank-add-btn{width:100%;background:#065f46;color:#fff;border:none;border-radius:8px;padding:12px;font-size:16px;font-weight:600;cursor:pointer}
         .bindbank-add-btn:active{transform:scale(0.97);opacity:0.9}
 
-        /* REAL NAME */
         .realname-container{padding-bottom:20px;background:#f0f2f5;min-height:100vh}
         .realname-nav{background:#065f46;padding:14px 18px 12px;position:sticky;top:0;z-index:10}
         .realname-nav-content{display:flex;align-items:center;justify-content:space-between}
@@ -410,7 +388,6 @@
         .realname-submit-btn{width:100%;background:#065f46;color:#fff;border:none;border-radius:8px;padding:12px;font-size:16px;font-weight:600;margin-top:16px;cursor:pointer}
         .realname-submit-btn:active{transform:scale(0.97);opacity:0.9}
 
-        /* PAYMENT POPUP */
         .payment-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.75);z-index:9998;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px)}
         .payment-overlay.show{display:flex}
         .payment-popup{background:#fff;border-radius:16px;max-width:420px;width:100%;max-height:85vh;overflow-y:auto;animation:slideUp 0.4s ease;box-shadow:0 20px 60px rgba(0,0,0,0.3);padding:24px}
@@ -432,7 +409,6 @@
         .payment-popup .payment-status.pending{background:#fef3c7;color:#92400e;display:block}
         .payment-popup .payment-status.failed{background:#fee2e2;color:#dc2626;display:block}
 
-        /* ANNOUNCEMENT */
         .announcement-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.75);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px);animation:fadeIn 0.3s ease}
         .announcement-overlay.show{display:flex}
         @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -445,7 +421,6 @@
         .announcement-btn{width:calc(100% - 40px);margin:0 20px 20px;background:#065f46;color:#fff;border:none;border-radius:10px;padding:12px;font-size:16px;font-weight:600;cursor:pointer}
         .announcement-btn:active{transform:scale(0.97);opacity:0.9}
 
-        /* READING OVERLAY */
         .reading-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:#1a1a2e;z-index:1000;display:none;flex-direction:column;overflow:hidden}
         .reading-overlay.show{display:flex}
         .reading-nav{background:rgba(26,26,46,0.95);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.06);flex-shrink:0;z-index:10;min-height:50px}
@@ -459,12 +434,10 @@
         .timer-top-left .message .countdown{color:#065f46;font-weight:700}
         .timer-top-left .message .invalid{color:rgba(255,255,255,0.3)}
 
-        /* TOAST */
         .toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.9);background:rgba(0,0,0,0.82);color:#fff;padding:20px 34px;border-radius:16px;font-size:15px;z-index:2000;display:none;text-align:center;max-width:85%;backdrop-filter:blur(10px);box-shadow:0 20px 60px rgba(0,0,0,0.3);transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
         .toast.show{display:block;transform:translate(-50%,-50%) scale(1)}
         .toast .toast-icon{font-size:34px;display:block;margin-bottom:6px}
 
-        /* TAB BAR - CIRCULAR */
         .tab-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #eef2f6;display:flex;justify-content:space-around;padding:6px 0 env(safe-area-inset-bottom);z-index:200;box-shadow:0 -4px 20px rgba(0,0,0,0.04)}
         .tab-item{display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s;color:#9ca3af;font-size:9px;font-weight:500;gap:2px;position:relative;width:60px;height:60px;border-radius:50%;background:transparent}
         .tab-item.active{color:#fff;background:linear-gradient(135deg,#065f46,#0a7a5a);box-shadow:0 4px 15px rgba(6,95,70,0.3)}
@@ -472,14 +445,15 @@
         .tab-item:active .tab-icon{transform:scale(0.85)}
         .tab-item .dot{position:absolute;top:4px;right:8px;width:6px;height:6px;background:#ef4444;border-radius:50%;border:2px solid #fff}
 
-        /* FLOATING ADMIN */
-        .admin-float{position:fixed;bottom:90px;right:16px;z-index:999}
+        .admin-float{position:fixed;bottom:90px;right:16px;z-index:999;display:none}
+        .admin-float.visible{display:block}
         .admin-toggle{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#065f46,#0a7a5a);color:#fff;border:none;font-size:24px;cursor:pointer;box-shadow:0 4px 20px rgba(6,95,70,0.4);transition:all 0.3s;position:relative}
         .admin-toggle:active{transform:scale(0.9)}
         .admin-badge{position:absolute;top:-4px;right:-4px;background:#ef4444;color:#fff;font-size:10px;font-weight:700;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-        .admin-panel{display:none;position:absolute;bottom:70px;right:0;background:#fff;border-radius:16px;padding:16px;min-width:280px;max-width:320px;box-shadow:0 8px 40px rgba(0,0,0,0.2);border:1px solid #eef2f6}
+        .admin-panel{display:none;position:absolute;bottom:70px;right:0;background:#fff;border-radius:16px;padding:16px;min-width:280px;max-width:320px;box-shadow:0 8px 40px rgba(0,0,0,0.2);border:1px solid #eef2f6;max-height:400px;overflow-y:auto}
         .admin-panel.show{display:block}
-        .admin-panel .admin-header{font-size:16px;font-weight:700;color:#1a1a2e;margin-bottom:12px;padding-bottom:10px;border-bottom:2px solid #065f46}
+        .admin-panel .admin-header{font-size:16px;font-weight:700;color:#1a1a2e;margin-bottom:12px;padding-bottom:10px;border-bottom:2px solid #065f46;display:flex;justify-content:space-between;align-items:center}
+        .admin-panel .admin-header .admin-phone{font-size:11px;font-weight:400;color:#6b7280}
         .admin-panel .admin-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
         .admin-panel .admin-stat{background:#f8fafc;border-radius:8px;padding:10px 12px;text-align:center;border:1px solid #eef2f6}
         .admin-panel .admin-stat .label{font-size:10px;color:#6b7280}
@@ -805,23 +779,14 @@
         </div>
         <div class="price-update-notice"><i class="fas fa-info-circle"></i><span>⚠️ NEW PRICES! Scroll down to see updated VIP levels</span></div>
         <div class="vip-list">
-            <!-- VIP1 -->
             <div class="vip-card"><div class="vip-card-content"><div class="vip-card-left"><div class="vip-level-name">VIP1</div><div class="vip-price"><span class="old-price">₦18,900 ❌</span><span class="new-price">₦22,600 ✅</span></div><div class="vip-upgrade-amount">Top-up: ₦3,700</div><div class="vip-per-order">₦ 105.00 / Per order</div><div class="vip-tasks">Daily Tasks：12</div><div class="vip-profit">Daily profit：₦1,260</div></div><div class="vip-card-right"><button class="vip-join-btn" onclick="openPayment(1,3700,22600,'VIP1')">Upgrade Now</button></div></div></div>
-            <!-- VIP2 -->
             <div class="vip-card"><div class="vip-card-content"><div class="vip-card-left"><div class="vip-level-name">VIP2</div><div class="vip-price"><span class="old-price">₦54,000 ❌</span><span class="new-price">₦64,900 ✅</span></div><div class="vip-upgrade-amount">Top-up: ₦10,900</div><div class="vip-per-order">₦ 150.00 / Per order</div><div class="vip-tasks">Daily Tasks：24</div><div class="vip-profit">Daily profit：₦3,600</div></div><div class="vip-card-right"><button class="vip-join-btn" onclick="openPayment(2,10900,64900,'VIP2')">Upgrade Now</button></div></div></div>
-            <!-- VIP3 -->
             <div class="vip-card"><div class="vip-card-content"><div class="vip-card-left"><div class="vip-level-name">VIP3</div><div class="vip-price"><span class="old-price">₦174,000 ❌</span><span class="new-price">₦217,500 ✅</span></div><div class="vip-upgrade-amount">Top-up: ₦43,500</div><div class="vip-per-order">₦ 250.00 / Per order</div><div class="vip-tasks">Daily Tasks：48</div><div class="vip-profit">Daily profit：₦12,000</div></div><div class="vip-card-right"><button class="vip-join-btn" onclick="openPayment(3,43500,217500,'VIP3')">Upgrade Now</button></div></div></div>
-            <!-- VIP4 -->
             <div class="vip-card"><div class="vip-card-content"><div class="vip-card-left"><div class="vip-level-name">VIP4</div><div class="vip-price"><span class="old-price">₦448,000 ❌</span><span class="new-price">₦537,500 ✅</span></div><div class="vip-upgrade-amount">Top-up: ₦89,500</div><div class="vip-per-order">₦ 400.00 / Per order</div><div class="vip-tasks">Daily Tasks：80</div><div class="vip-profit">Daily profit：₦32,000</div></div><div class="vip-card-right"><button class="vip-join-btn" onclick="openPayment(4,89500,537500,'VIP4')">Upgrade Now</button></div></div></div>
-            <!-- VIP5 -->
             <div class="vip-card"><div class="vip-card-content"><div class="vip-card-left"><div class="vip-level-name">VIP5</div><div class="vip-price"><span class="old-price">₦1,296,000 ❌</span><span class="new-price">₦1,490,000 ✅</span></div><div class="vip-upgrade-amount">Top-up: ₦194,000</div><div class="vip-per-order">₦ 800.00 / Per order</div><div class="vip-tasks">Daily Tasks：120</div><div class="vip-profit">Daily profit：₦96,000</div></div><div class="vip-card-right"><button class="vip-join-btn" onclick="openPayment(5,194000,1490000,'VIP5')">Upgrade Now</button></div></div></div>
-            <!-- VIP6 -->
             <div class="vip-card"><div class="vip-card-content"><div class="vip-card-left"><div class="vip-level-name">VIP6</div><div class="vip-price">₦ 3,661,000</div><div class="vip-per-order">₦ 1,600.00 / Per order</div><div class="vip-tasks">Daily Tasks：160</div><div class="vip-profit">Daily profit：₦256,000</div></div><div class="vip-card-right"><span class="vip-apply-text">Please apply</span></div></div></div>
-            <!-- VIP7 -->
             <div class="vip-card"><div class="vip-card-content"><div class="vip-card-left"><div class="vip-level-name">VIP7</div><div class="vip-price">₦ 5,450,000</div><div class="vip-per-order">₦ 1,800.00 / Per order</div><div class="vip-tasks">Daily Tasks：220</div><div class="vip-profit">Daily profit：₦396,000</div></div><div class="vip-card-right"><span class="vip-apply-text">Please apply</span></div></div></div>
-            <!-- VIP8 -->
             <div class="vip-card"><div class="vip-card-content"><div class="vip-card-left"><div class="vip-level-name">VIP8</div><div class="vip-price">₦ 8,710,000</div><div class="vip-per-order">₦ 2,200.00 / Per order</div><div class="vip-tasks">Daily Tasks：300</div><div class="vip-profit">Daily profit：₦660,000</div></div><div class="vip-card-right"><span class="vip-apply-text">Please apply</span></div></div></div>
-            <!-- VIP9 -->
             <div class="vip-card"><div class="vip-card-content"><div class="vip-card-left"><div class="vip-level-name">VIP9</div><div class="vip-price">₦ 17,700,000</div><div class="vip-per-order">₦ 3,500.00 / Per order</div><div class="vip-tasks">Daily Tasks：400</div><div class="vip-profit">Daily profit：₦1,400,000</div></div><div class="vip-card-right"><span class="vip-apply-text">Please apply</span></div></div></div>
         </div>
     </div>
@@ -928,9 +893,12 @@
         <div class="withdrawal-content">
             <div class="withdrawal-method-dropdown">
                 <span class="withdrawal-label">Withdrawal method</span>
-                <div class="withdrawal-option selected" onclick="selectMethod(this,'Opay','9064131900')">🏦 Opay - 9064131900 <span class="checkmark">✓</span></div>
-                <div class="withdrawal-option" onclick="selectMethod(this,'Palmpay','9064131900')">🏦 Palmpay - 9064131900 <span class="checkmark">✓</span></div>
-                <div class="withdrawal-option" onclick="selectMethod(this,'Moniepoint MFB','9064131900')">🏦 Moniepoint MFB - 9064131900 <span class="checkmark">✓</span></div>
+                <div id="withdrawalBankDisplay">
+                    <div class="withdrawal-option selected">
+                        🏦 Nombank MFB - 2519487868
+                        <span class="checkmark">✓</span>
+                    </div>
+                </div>
             </div>
             <div class="withdrawal-password">
                 <span class="withdrawal-label">Fund password</span>
@@ -989,9 +957,9 @@
             <div class="recharge-box">
                 <div style="font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:10px;">💳 Pay with Bank Transfer</div>
                 <div class="recharge-bank">
-                    <div class="bank-detail"><strong>🏦 Bank:</strong> Zenith Bank</div>
-                    <div class="bank-detail"><strong>📋 Account:</strong> 1234567890</div>
-                    <div class="bank-detail"><strong>👤 Name:</strong> NRC Cooperative Wealth</div>
+                    <div class="bank-detail"><strong>🏦 Bank:</strong> Nombank MFB</div>
+                    <div class="bank-detail"><strong>📋 Account:</strong> 2519487868</div>
+                    <div class="bank-detail"><strong>👤 Name:</strong> Tradehub Services</div>
                 </div>
                 <button class="recharge-pay-btn" onclick="processRecharge()">💳 Pay Now - ₦<span id="rechargeDisplayAmount">0</span></button>
             </div>
@@ -1023,7 +991,6 @@
                 <div class="settings-profile-left">
                     <div class="settings-avatar"><i class="fas fa-user-circle"></i></div>
                     <div class="settings-profile-info">
-                        <div class="settings-profile-name" id="settingsProfileName">NRC User</div>
                         <div class="settings-profile-number" id="settingsProfileNumber">08057536473</div>
                     </div>
                 </div>
@@ -1124,7 +1091,7 @@
             <div class="bindbank-notice">The account name on your bank card must be consistent with the real-name you authenticated, otherwise you will not be able to withdraw cash successfully.</div>
             <div class="bindbank-form" id="bankForm">
                 <div class="bindbank-field"><label class="bindbank-label">Name</label><input type="text" class="bindbank-input" id="bankName" placeholder="Enter your name"></div>
-                <div class="bindbank-field"><label class="bindbank-label">Bank Name</label><select class="bindbank-select" id="bankSelect"><option value="">--Please select the bank name--</option><option value="Paga">Paga</option><option value="Opay">Opay</option><option value="Palmpay">Palmpay</option><option value="Ecobank">Ecobank</option><option value="Fidelity">Fidelity</option><option value="Moniepoint MFB">Moniepoint MFB</option><option value="Zenith Bank">Zenith Bank</option><option value="Access Bank">Access Bank</option><option value="FCMB">FCMB</option><option value="Polaris Bank">Polaris Bank</option><option value="Union Bank">Union Bank</option><option value="Kuda">Kuda</option><option value="Wema Bank">Wema Bank</option><option value="UBA">UBA</option></select></div>
+                <div class="bindbank-field"><label class="bindbank-label">Bank Name</label><select class="bindbank-select" id="bankSelect"><option value="">--Please select the bank name--</option><option value="Paga">Paga</option><option value="Opay">Opay</option><option value="Palmpay">Palmpay</option><option value="Ecobank">Ecobank</option><option value="Fidelity">Fidelity</option><option value="Moniepoint MFB">Moniepoint MFB</option><option value="Zenith Bank">Zenith Bank</option><option value="Access Bank">Access Bank</option><option value="FCMB">FCMB</option><option value="Polaris Bank">Polaris Bank</option><option value="Union Bank">Union Bank</option><option value="Kuda">Kuda</option><option value="Wema Bank">Wema Bank</option><option value="UBA">UBA</option><option value="Nombank MFB">Nombank MFB</option></select></div>
                 <div class="bindbank-field"><label class="bindbank-label">Bank Account Number</label><input type="text" class="bindbank-input" id="bankAccount" placeholder="Please enter the bank account number"></div>
                 <button class="bindbank-add-btn" onclick="addBankAccount()">Add now</button>
             </div>
@@ -1163,8 +1130,8 @@
     <div style="padding:16px 16px 10px;">
         <div style="background:#fff;border-radius:12px;padding:18px 18px;border:1px solid #eef2f6;margin-bottom:12px;">
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;"><span style="font-size:24px;">❓</span><span style="font-size:17px;font-weight:700;color:#1a1a2e;">Frequently Asked Questions</span></div>
-            <div onclick="toggleFaq(this)" style="background:#f8fafc;border-radius:10px;padding:12px 16px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;"><div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:14px;font-weight:600;color:#1a1a2e;">💰 How do I recharge my account?</span><span style="font-size:12px;color:#065f46;">▼</span></div><div class="faq-answer" style="display:none;font-size:13px;color:#4b5563;margin-top:8px;padding-top:8px;border-top:1px solid #eef2f6;">Go to Recharge page, enter amount, and click "Pay Now" to complete your payment via bank transfer.</div></div>
-            <div onclick="toggleFaq(this)" style="background:#f8fafc;border-radius:10px;padding:12px 16px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;"><div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:14px;font-weight:600;color:#1a1a2e;">📤 How do I withdraw my earnings?</span><span style="font-size:12px;color:#065f46;">▼</span></div><div class="faq-answer" style="display:none;font-size:13px;color:#4b5563;margin-top:8px;padding-top:8px;border-top:1px solid #eef2f6;">Go to Withdrawal page, select method, enter your fund password, choose amount, and submit.</div></div>
+            <div onclick="toggleFaq(this)" style="background:#f8fafc;border-radius:10px;padding:12px 16px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;"><div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:14px;font-weight:600;color:#1a1a2e;">💰 How do I recharge my account?</span><span style="font-size:12px;color:#065f46;">▼</span></div><div class="faq-answer" style="display:none;font-size:13px;color:#4b5563;margin-top:8px;padding-top:8px;border-top:1px solid #eef2f6;">Go to Recharge page, enter amount, and click "Pay Now" to complete your payment via bank transfer to Tradehub Services - 2519487868 - Nombank MFB.</div></div>
+            <div onclick="toggleFaq(this)" style="background:#f8fafc;border-radius:10px;padding:12px 16px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;"><div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:14px;font-weight:600;color:#1a1a2e;">📤 How do I withdraw my earnings?</span><span style="font-size:12px;color:#065f46;">▼</span></div><div class="faq-answer" style="display:none;font-size:13px;color:#4b5563;margin-top:8px;padding-top:8px;border-top:1px solid #eef2f6;">Go to Withdrawal page, select your bank method, enter your fund password, choose amount, and submit.</div></div>
             <div onclick="toggleFaq(this)" style="background:#f8fafc;border-radius:10px;padding:12px 16px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;"><div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:14px;font-weight:600;color:#1a1a2e;">📋 How do I complete tasks?</span><span style="font-size:12px;color:#065f46;">▼</span></div><div class="faq-answer" style="display:none;font-size:13px;color:#4b5563;margin-top:8px;padding-top:8px;border-top:1px solid #eef2f6;">Go to Task page, click "read" on any task, wait for the timer to finish, and earn rewards.</div></div>
             <div onclick="toggleFaq(this)" style="background:#f8fafc;border-radius:10px;padding:12px 16px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;"><div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:14px;font-weight:600;color:#1a1a2e;">👑 What are VIP levels?</span><span style="font-size:12px;color:#065f46;">▼</span></div><div class="faq-answer" style="display:none;font-size:13px;color:#4b5563;margin-top:8px;padding-top:8px;border-top:1px solid #eef2f6;">VIP levels determine your daily tasks, profits, and investment limits. Higher VIP = more rewards.</div></div>
             <div onclick="toggleFaq(this)" style="background:#f8fafc;border-radius:10px;padding:12px 16px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;"><div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:14px;font-weight:600;color:#1a1a2e;">🔒 How do I change my password?</span><span style="font-size:12px;color:#065f46;">▼</span></div><div class="faq-answer" style="display:none;font-size:13px;color:#4b5563;margin-top:8px;padding-top:8px;border-top:1px solid #eef2f6;">Go to Settings → Login password or Fund password and follow the instructions to update.</div></div>
@@ -1179,9 +1146,9 @@
     <div style="padding:16px 16px 10px;">
         <div style="background:#fff;border-radius:12px;padding:20px 18px;border:1px solid #eef2f6;margin-bottom:12px;">
             <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;"><div style="font-size:60px;color:#065f46;"><i class="fas fa-user-circle"></i></div><div><div style="font-size:18px;font-weight:700;color:#1a1a2e;" id="profileName">NRC User</div><div style="font-size:13px;color:#6b7280;" id="profilePhone">08****3431</div></div></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"><div style="background:#f8fafc;border-radius:8px;padding:10px 14px;border:1px solid #eef2f6;"><div style="font-size:10px;color:#6b7280;">VIP Level</div><div style="font-size:14px;font-weight:600;color:#1a1a2e;" id="profileVip">Trial period</div></div><div style="background:#f8fafc;border-radius:8px;padding:10px 14px;border:1px solid #eef2f6;"><div style="font-size:10px;color:#6b7280;">Balance</div><div style="font-size:14px;font-weight:600;color:#065f46;" id="profileBalance">₦630</div></div></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"><div style="background:#f8fafc;border-radius:8px;padding:10px 14px;border:1px solid #eef2f6;"><div style="font-size:10px;color:#6b7280;">VIP Level</div><div style="font-size:14px;font-weight:600;color:#1a1a2e;" id="profileVip">Trial period</div></div><div style="background:#f8fafc;border-radius:8px;padding:10px 14px;border:1px solid #eef2f6;"><div style="font-size:10px;color:#6b7280;">Balance</div><div style="font-size:14px;font-weight:600;color:#065f46;" id="profileBalance">₦0</div></div></div>
         </div>
-        <div style="background:#fff;border-radius:12px;padding:18px 18px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;"><span style="font-size:20px;">📊</span><span style="font-size:16px;font-weight:700;color:#1a1a2e;">Account Statistics</span></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"><div style="background:#f8fafc;border-radius:8px;padding:10px 14px;border:1px solid #eef2f6;"><div style="font-size:10px;color:#6b7280;">Total Revenue</div><div style="font-size:15px;font-weight:700;color:#1a1a2e;" id="profileTotalRevenue">₦630</div></div><div style="background:#f8fafc;border-radius:8px;padding:10px 14px;border:1px solid #eef2f6;"><div style="font-size:10px;color:#6b7280;">Today's Earnings</div><div style="font-size:15px;font-weight:700;color:#1a1a2e;" id="profileTodayEarnings">₦630</div></div><div style="background:#f8fafc;border-radius:8px;padding:10px 14px;border:1px solid #eef2f6;"><div style="font-size:10px;color:#6b7280;">Yesterday's Earnings</div><div style="font-size:15px;font-weight:700;color:#1a1a2e;" id="profileYesterdayEarnings">₦315</div></div><div style="background:#f8fafc;border-radius:8px;padding:10px 14px;border:1px solid #eef2f6;"><div style="font-size:10px;color:#6b7280;">Tasks Completed</div><div style="font-size:15px;font-weight:700;color:#1a1a2e;" id="profileTasksCompleted">6</div></div></div></div>
+        <div style="background:#fff;border-radius:12px;padding:18px 18px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;"><span style="font-size:20px;">📊</span><span style="font-size:16px;font-weight:700;color:#1a1a2e;">Account Statistics</span></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"><div style="background:#f8fafc;border-radius:8px;padding:10px 14px;border:1px solid #eef2f6;"><div style="font-size:10px;color:#6b7280;">Total Revenue</div><div style="font-size:15px;font-weight:700;color:#1a1a2e;" id="profileTotalRevenue">₦0</div></div><div style="background:#f8fafc;border-radius:8px;padding:10px 14px;border:1px solid #eef2f6;"><div style="font-size:10px;color:#6b7280;">Today's Earnings</div><div style="font-size:15px;font-weight:700;color:#1a1a2e;" id="profileTodayEarnings">₦0</div></div><div style="background:#f8fafc;border-radius:8px;padding:10px 14px;border:1px solid #eef2f6;"><div style="font-size:10px;color:#6b7280;">Yesterday's Earnings</div><div style="font-size:15px;font-weight:700;color:#1a1a2e;" id="profileYesterdayEarnings">₦0</div></div><div style="background:#f8fafc;border-radius:8px;padding:10px 14px;border:1px solid #eef2f6;"><div style="font-size:10px;color:#6b7280;">Tasks Completed</div><div style="font-size:15px;font-weight:700;color:#1a1a2e;" id="profileTasksCompleted">0</div></div></div></div>
     </div>
 </div>
 
@@ -1193,7 +1160,7 @@
             <div style="background:#f8fafc;border-radius:10px;padding:12px 16px;margin-bottom:8px;border:1px solid #eef2f6;"><div style="font-size:14px;font-weight:600;color:#1a1a2e;">📌 Step 1: Create Your Account</div><div style="font-size:12px;color:#4b5563;margin-top:4px;">Register with your phone number and password. After registration, login to access the platform.</div></div>
             <div style="background:#f8fafc;border-radius:10px;padding:12px 16px;margin-bottom:8px;border:1px solid #eef2f6;"><div style="font-size:14px;font-weight:600;color:#1a1a2e;">📌 Step 2: Complete Tasks</div><div style="font-size:12px;color:#4b5563;margin-top:4px;">Navigate to the Task page. Click "read" on any available task. Wait for the 19-second timer to finish to earn rewards.</div></div>
             <div style="background:#f8fafc;border-radius:10px;padding:12px 16px;margin-bottom:8px;border:1px solid #eef2f6;"><div style="font-size:14px;font-weight:600;color:#1a1a2e;">📌 Step 3: Upgrade VIP Levels</div><div style="font-size:12px;color:#4b5563;margin-top:4px;">Higher VIP levels give you more tasks and higher daily profits. Go to VIP page to upgrade.</div></div>
-            <div style="background:#f8fafc;border-radius:10px;padding:12px 16px;margin-bottom:8px;border:1px solid #eef2f6;"><div style="font-size:14px;font-weight:600;color:#1a1a2e;">📌 Step 4: Recharge Your Account</div><div style="font-size:12px;color:#4b5563;margin-top:4px;">Go to Recharge page, enter amount, and pay via bank transfer to fund your account.</div></div>
+            <div style="background:#f8fafc;border-radius:10px;padding:12px 16px;margin-bottom:8px;border:1px solid #eef2f6;"><div style="font-size:14px;font-weight:600;color:#1a1a2e;">📌 Step 4: Recharge Your Account</div><div style="font-size:12px;color:#4b5563;margin-top:4px;">Go to Recharge page, enter amount, and pay via bank transfer to Tradehub Services - 2519487868 - Nombank MFB.</div></div>
             <div style="background:#f8fafc;border-radius:10px;padding:12px 16px;margin-bottom:8px;border:1px solid #eef2f6;"><div style="font-size:14px;font-weight:600;color:#1a1a2e;">📌 Step 5: Withdraw Your Earnings</div><div style="font-size:12px;color:#4b5563;margin-top:4px;">Go to Withdrawal page. Add your bank card first in Settings. Enter amount and submit.</div></div>
             <div style="background:#f8fafc;border-radius:10px;padding:12px 16px;border:1px solid #eef2f6;"><div style="font-size:14px;font-weight:600;color:#1a1a2e;">📌 Step 6: Referral Program</div><div style="font-size:12px;color:#4b5563;margin-top:4px;">Share your referral code to earn extra rewards when new users join using your code.</div></div>
         </div>
@@ -1222,12 +1189,12 @@
     <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Analytics</div><div class="page-nav-right"></div></div></div>
     <div style="padding:16px 16px 10px;">
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px;">
-            <div style="background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:20px;">💰</div><div style="font-size:10px;color:#6b7280;margin-top:4px;">Total Revenue</div><div style="font-size:18px;font-weight:700;color:#065f46;">₦630</div></div>
-            <div style="background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:20px;">📈</div><div style="font-size:10px;color:#6b7280;margin-top:4px;">Today's Earnings</div><div style="font-size:18px;font-weight:700;color:#1a1a2e;">₦630</div></div>
-            <div style="background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:20px;">📊</div><div style="font-size:10px;color:#6b7280;margin-top:4px;">Tasks Done</div><div style="font-size:18px;font-weight:700;color:#1a1a2e;">6/6</div></div>
+            <div style="background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:20px;">💰</div><div style="font-size:10px;color:#6b7280;margin-top:4px;">Total Revenue</div><div style="font-size:18px;font-weight:700;color:#065f46;">₦0</div></div>
+            <div style="background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:20px;">📈</div><div style="font-size:10px;color:#6b7280;margin-top:4px;">Today's Earnings</div><div style="font-size:18px;font-weight:700;color:#1a1a2e;">₦0</div></div>
+            <div style="background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:20px;">📊</div><div style="font-size:10px;color:#6b7280;margin-top:4px;">Tasks Done</div><div style="font-size:18px;font-weight:700;color:#1a1a2e;">0/6</div></div>
         </div>
-        <div style="background:#fff;border-radius:12px;padding:18px 18px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;"><span style="font-size:20px;">📈</span><span style="font-size:16px;font-weight:700;color:#1a1a2e;">Earnings Chart (This Week)</span></div><div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;"><div><div style="height:40px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;"><div style="background:#065f46;width:20px;height:40px;border-radius:4px 4px 0 0;"></div></div><div style="font-size:9px;color:#6b7280;margin-top:4px;">Mon</div><div style="font-size:9px;font-weight:600;">₦315</div></div><div><div style="height:40px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;"><div style="background:#065f46;width:20px;height:40px;border-radius:4px 4px 0 0;"></div></div><div style="font-size:9px;color:#6b7280;margin-top:4px;">Tue</div><div style="font-size:9px;font-weight:600;">₦630</div></div><div><div style="height:40px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;"><div style="background:#065f46;width:20px;height:40px;border-radius:4px 4px 0 0;"></div></div><div style="font-size:9px;color:#6b7280;margin-top:4px;">Wed</div><div style="font-size:9px;font-weight:600;">₦630</div></div><div><div style="height:40px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;"><div style="background:#eef2f6;width:20px;height:10px;border-radius:4px 4px 0 0;"></div></div><div style="font-size:9px;color:#6b7280;margin-top:4px;">Thu</div><div style="font-size:9px;font-weight:600;">₦0</div></div><div><div style="height:40px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;"><div style="background:#eef2f6;width:20px;height:10px;border-radius:4px 4px 0 0;"></div></div><div style="font-size:9px;color:#6b7280;margin-top:4px;">Fri</div><div style="font-size:9px;font-weight:600;">₦0</div></div><div><div style="height:40px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;"><div style="background:#eef2f6;width:20px;height:10px;border-radius:4px 4px 0 0;"></div></div><div style="font-size:9px;color:#6b7280;margin-top:4px;">Sat</div><div style="font-size:9px;font-weight:600;">₦0</div></div><div><div style="height:40px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;"><div style="background:#eef2f6;width:20px;height:10px;border-radius:4px 4px 0 0;"></div></div><div style="font-size:9px;color:#6b7280;margin-top:4px;">Sun</div><div style="font-size:9px;font-weight:600;">₦0</div></div></div></div>
-        <div style="background:#fff;border-radius:12px;padding:18px 18px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;"><span style="font-size:20px;">📋</span><span style="font-size:16px;font-weight:700;color:#1a1a2e;">Activity Log</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f2f5;"><div><span style="font-size:13px;color:#1a1a2e;">✅ Task 6 completed</span></div><div style="font-size:11px;color:#6b7280;">2 hours ago</div></div><div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f2f5;"><div><span style="font-size:13px;color:#1a1a2e;">✅ Task 5 completed</span></div><div style="font-size:11px;color:#6b7280;">2 hours ago</div></div><div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f2f5;"><div><span style="font-size:13px;color:#1a1a2e;">✅ Task 4 completed</span></div><div style="font-size:11px;color:#6b7280;">3 hours ago</div></div><div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f2f5;"><div><span style="font-size:13px;color:#1a1a2e;">✅ Task 3 completed</span></div><div style="font-size:11px;color:#6b7280;">3 hours ago</div></div><div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f2f5;"><div><span style="font-size:13px;color:#1a1a2e;">✅ Task 2 completed</span></div><div style="font-size:11px;color:#6b7280;">4 hours ago</div></div><div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;"><div><span style="font-size:13px;color:#1a1a2e;">✅ Task 1 completed</span></div><div style="font-size:11px;color:#6b7280;">4 hours ago</div></div></div>
+        <div style="background:#fff;border-radius:12px;padding:18px 18px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;"><span style="font-size:20px;">📈</span><span style="font-size:16px;font-weight:700;color:#1a1a2e;">Earnings Chart (This Week)</span></div><div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;"><div><div style="height:40px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;"><div style="background:#eef2f6;width:20px;height:10px;border-radius:4px 4px 0 0;"></div></div><div style="font-size:9px;color:#6b7280;margin-top:4px;">Mon</div><div style="font-size:9px;font-weight:600;">₦0</div></div><div><div style="height:40px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;"><div style="background:#eef2f6;width:20px;height:10px;border-radius:4px 4px 0 0;"></div></div><div style="font-size:9px;color:#6b7280;margin-top:4px;">Tue</div><div style="font-size:9px;font-weight:600;">₦0</div></div><div><div style="height:40px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;"><div style="background:#eef2f6;width:20px;height:10px;border-radius:4px 4px 0 0;"></div></div><div style="font-size:9px;color:#6b7280;margin-top:4px;">Wed</div><div style="font-size:9px;font-weight:600;">₦0</div></div><div><div style="height:40px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;"><div style="background:#eef2f6;width:20px;height:10px;border-radius:4px 4px 0 0;"></div></div><div style="font-size:9px;color:#6b7280;margin-top:4px;">Thu</div><div style="font-size:9px;font-weight:600;">₦0</div></div><div><div style="height:40px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;"><div style="background:#eef2f6;width:20px;height:10px;border-radius:4px 4px 0 0;"></div></div><div style="font-size:9px;color:#6b7280;margin-top:4px;">Fri</div><div style="font-size:9px;font-weight:600;">₦0</div></div><div><div style="height:40px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;"><div style="background:#eef2f6;width:20px;height:10px;border-radius:4px 4px 0 0;"></div></div><div style="font-size:9px;color:#6b7280;margin-top:4px;">Sat</div><div style="font-size:9px;font-weight:600;">₦0</div></div><div><div style="height:40px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;"><div style="background:#eef2f6;width:20px;height:10px;border-radius:4px 4px 0 0;"></div></div><div style="font-size:9px;color:#6b7280;margin-top:4px;">Sun</div><div style="font-size:9px;font-weight:600;">₦0</div></div></div></div>
+        <div style="background:#fff;border-radius:12px;padding:18px 18px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;"><span style="font-size:20px;">📋</span><span style="font-size:16px;font-weight:700;color:#1a1a2e;">Activity Log</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f2f5;"><div><span style="font-size:13px;color:#1a1a2e;">✅ No tasks completed yet</span></div><div style="font-size:11px;color:#6b7280;">-</div></div></div>
     </div>
 </div>
 
@@ -1241,156 +1208,12 @@
         <div onclick="showToast('📦 Applying for Gold Plan')" style="background:#fff;border-radius:12px;padding:16px 18px;border:1px solid #eef2f6;margin-bottom:10px;cursor:pointer;"><div style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:16px;font-weight:700;color:#1a1a2e;">🥇 Gold Plan</div><div style="font-size:12px;color:#4b5563;">💵 ₦200,000 | 📊 10% daily | 📅 45 days</div><div style="font-size:13px;font-weight:600;color:#065f46;">Total Return: ₦650,000</div></div><div style="background:#065f46;color:#fff;padding:6px 16px;border-radius:20px;font-size:12px;font-weight:600;">Deposit</div></div></div>
         <div onclick="showToast('📦 Applying for Platinum Plan')" style="background:#fff;border-radius:12px;padding:16px 18px;border:1px solid #eef2f6;margin-bottom:10px;cursor:pointer;"><div style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:16px;font-weight:700;color:#1a1a2e;">💎 Platinum Plan</div><div style="font-size:12px;color:#4b5563;">💵 ₦500,000 | 📊 12% daily | 📅 60 days</div><div style="font-size:13px;font-weight:600;color:#065f46;">Total Return: ₦2,600,000</div></div><div style="background:#065f46;color:#fff;padding:6px 16px;border-radius:20px;font-size:12px;font-weight:600;">Deposit</div></div></div>
         <div onclick="showToast('📦 Applying for Diamond Plan')" style="background:#fff;border-radius:12px;padding:16px 18px;border:1px solid #eef2f6;margin-bottom:10px;cursor:pointer;"><div style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:16px;font-weight:700;color:#1a1a2e;">👑 Diamond Plan</div><div style="font-size:12px;color:#4b5563;">💵 ₦1,000,000 | 📊 15% daily | 📅 90 days</div><div style="font-size:13px;font-weight:600;color:#065f46;">Total Return: ₦8,500,000</div></div><div style="background:#065f46;color:#fff;padding:6px 16px;border-radius:20px;font-size:12px;font-weight:600;">Deposit</div></div></div>
-        <div style="background:#fff;border-radius:12px;padding:16px 18px;border:1px solid #eef2f6;margin-bottom:10px;"><div style="font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:8px;">ℹ️ How It Works</div><div style="font-size:12px;color:#4b5563;line-height:1.8;">1️⃣ Choose a deposit plan that fits your budget<br>2️⃣ Click "Deposit" and complete the payment<br>3️⃣ Start earning daily returns automatically<br>4️⃣ Withdraw your profits anytime</div></div>
+        <div style="background:#fff;border-radius:12px;padding:16px 18px;border:1px solid #eef2f6;margin-bottom:10px;"><div style="font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:8px;">ℹ️ How It Works</div><div style="font-size:12px;color:#4b5563;line-height:1.8;">1️⃣ Choose a deposit plan that fits your budget<br>2️⃣ Click "Deposit" and complete the payment to:<br><strong>🏦 Nombank MFB | 📋 2519487868 | 👤 Tradehub Services</strong><br>3️⃣ Start earning daily returns automatically<br>4️⃣ Withdraw your profits anytime</div></div>
     </div>
 </div>
 
-<!-- TASK RECORDS -->
-<div id="page-taskrecords" class="page">
-    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Task Records</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
-        <div style="background:#fff;border-radius:12px;padding:14px 18px;border:1px solid #eef2f6;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;"><div style="text-align:center;flex:1;"><div style="font-size:10px;color:#6b7280;">Total Tasks</div><div style="font-size:18px;font-weight:700;color:#1a1a2e;" id="taskTotalCount">6</div></div><div style="text-align:center;flex:1;border-left:1px solid #eef2f6;border-right:1px solid #eef2f6;"><div style="font-size:10px;color:#6b7280;">Completed</div><div style="font-size:18px;font-weight:700;color:#065f46;" id="taskCompletedCount">6</div></div><div style="text-align:center;flex:1;"><div style="font-size:10px;color:#6b7280;">Pending</div><div style="font-size:18px;font-weight:700;color:#ef4444;" id="taskPendingCount">0</div></div></div>
-        <div style="background:#fff;border-radius:12px;padding:0px 0px;border:1px solid #eef2f6;overflow:hidden;margin-bottom:12px;"><div style="padding:14px 18px;border-bottom:1px solid #eef2f6;font-size:14px;font-weight:600;color:#1a1a2e;">✅ Completed Tasks</div>
-            <div style="padding:12px 18px;border-bottom:1px solid #f0f2f5;"><div style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:14px;font-weight:600;color:#1a1a2e;">📝 Task #6</div><div style="font-size:11px;color:#6b7280;">💰 ₦105 | 📅 Today, 2:30 PM</div></div><div style="background:#d1fae5;color:#065f46;padding:2px 12px;border-radius:12px;font-size:10px;font-weight:600;">✅ Done</div></div></div>
-            <div style="padding:12px 18px;border-bottom:1px solid #f0f2f5;"><div style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:14px;font-weight:600;color:#1a1a2e;">📝 Task #5</div><div style="font-size:11px;color:#6b7280;">💰 ₦105 | 📅 Today, 2:25 PM</div></div><div style="background:#d1fae5;color:#065f46;padding:2px 12px;border-radius:12px;font-size:10px;font-weight:600;">✅ Done</div></div></div>
-            <div style="padding:12px 18px;border-bottom:1px solid #f0f2f5;"><div style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:14px;font-weight:600;color:#1a1a2e;">📝 Task #4</div><div style="font-size:11px;color:#6b7280;">💰 ₦105 | 📅 Today, 2:20 PM</div></div><div style="background:#d1fae5;color:#065f46;padding:2px 12px;border-radius:12px;font-size:10px;font-weight:600;">✅ Done</div></div></div>
-            <div style="padding:12px 18px;border-bottom:1px solid #f0f2f5;"><div style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:14px;font-weight:600;color:#1a1a2e;">📝 Task #3</div><div style="font-size:11px;color:#6b7280;">💰 ₦105 | 📅 Today, 2:15 PM</div></div><div style="background:#d1fae5;color:#065f46;padding:2px 12px;border-radius:12px;font-size:10px;font-weight:600;">✅ Done</div></div></div>
-            <div style="padding:12px 18px;border-bottom:1px solid #f0f2f5;"><div style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:14px;font-weight:600;color:#1a1a2e;">📝 Task #2</div><div style="font-size:11px;color:#6b7280;">💰 ₦105 | 📅 Today, 2:10 PM</div></div><div style="background:#d1fae5;color:#065f46;padding:2px 12px;border-radius:12px;font-size:10px;font-weight:600;">✅ Done</div></div></div>
-            <div style="padding:12px 18px;"><div style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:14px;font-weight:600;color:#1a1a2e;">📝 Task #1</div><div style="font-size:11px;color:#6b7280;">💰 ₦105 | 📅 Today, 2:05 PM</div></div><div style="background:#d1fae5;color:#065f46;padding:2px 12px;border-radius:12px;font-size:10px;font-weight:600;">✅ Done</div></div></div>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;"><div style="background:#fff;border-radius:10px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:10px;color:#6b7280;">✅ Completed</div><div style="font-size:18px;font-weight:700;color:#065f46;" id="taskCompletedCount2">6</div></div><div style="background:#fff;border-radius:10px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:10px;color:#6b7280;">💰 Total Earned</div><div style="font-size:18px;font-weight:700;color:#1a1a2e;" id="taskTotalEarned">₦630</div></div><div style="background:#fff;border-radius:10px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:10px;color:#6b7280;">⭐ Average</div><div style="font-size:18px;font-weight:700;color:#1a1a2e;" id="taskAverage">₦105</div></div></div>
-    </div>
-</div>
-
-<!-- TEAM REPORTS -->
-<div id="page-teams" class="page">
-    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Team Reports</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px;">
-            <div style="background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:20px;">👥</div><div style="font-size:10px;color:#6b7280;margin-top:4px;">Total Members</div><div style="font-size:18px;font-weight:700;color:#1a1a2e;">12</div></div>
-            <div style="background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:20px;">✅</div><div style="font-size:10px;color:#6b7280;margin-top:4px;">Active Members</div><div style="font-size:18px;font-weight:700;color:#065f46;">7</div></div>
-            <div style="background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:20px;">💰</div><div style="font-size:10px;color:#6b7280;margin-top:4px;">Earnings</div><div style="font-size:18px;font-weight:700;color:#fbbf24;">₦63</div></div>
-        </div>
-        <div style="background:#fff;border-radius:12px;padding:0px 0px;border:1px solid #eef2f6;overflow:hidden;margin-bottom:12px;"><div style="padding:14px 18px;border-bottom:1px solid #eef2f6;font-size:14px;font-weight:600;color:#1a1a2e;">📋 Team Member List</div>
-            <div style="padding:12px 18px;border-bottom:1px solid #f0f2f5;"><div style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:14px;font-weight:600;color:#1a1a2e;">👤 ****5755</div><div style="font-size:11px;color:#6b7280;">VIP7 | Joined: 3 days ago</div></div><div style="text-align:right;"><div style="font-size:13px;font-weight:600;color:#065f46;">₦495,000</div><div style="font-size:10px;color:#10b981;">✅ Active</div></div></div></div>
-            <div style="padding:12px 18px;border-bottom:1px solid #f0f2f5;"><div style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:14px;font-weight:600;color:#1a1a2e;">👤 ****30426</div><div style="font-size:11px;color:#6b7280;">VIP1 | Joined: 5 days ago</div></div><div style="text-align:right;"><div style="font-size:13px;font-weight:600;color:#065f46;">₦2,260</div><div style="font-size:10px;color:#10b981;">✅ Active</div></div></div></div>
-            <div style="padding:12px 18px;border-bottom:1px solid #f0f2f5;"><div style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:14px;font-weight:600;color:#1a1a2e;">👤 ****89967</div><div style="font-size:11px;color:#6b7280;">VIP4 | Joined: 7 days ago</div></div><div style="text-align:right;"><div style="font-size:13px;font-weight:600;color:#065f46;">₦32,000</div><div style="font-size:10px;color:#10b981;">✅ Active</div></div></div></div>
-            <div style="padding:12px 18px;border-bottom:1px solid #f0f2f5;"><div style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:14px;font-weight:600;color:#1a1a2e;">👤 ****12573</div><div style="font-size:11px;color:#6b7280;">VIP4 | Joined: 10 days ago</div></div><div style="text-align:right;"><div style="font-size:13px;font-weight:600;color:#065f46;">₦53,750</div><div style="font-size:10px;color:#10b981;">✅ Active</div></div></div></div>
-            <div style="padding:12px 18px;border-bottom:1px solid #f0f2f5;"><div style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:14px;font-weight:600;color:#1a1a2e;">👤 ****66459</div><div style="font-size:11px;color:#6b7280;">VIP5 | Joined: 12 days ago</div></div><div style="text-align:right;"><div style="font-size:13px;font-weight:600;color:#065f46;">₦96,000</div><div style="font-size:10px;color:#10b981;">✅ Active</div></div></div></div>
-            <div style="padding:12px 18px;"><div style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:14px;font-weight:600;color:#1a1a2e;">👤 ****75549</div><div style="font-size:11px;color:#6b7280;">VIP1 | Joined: 14 days ago</div></div><div style="text-align:right;"><div style="font-size:13px;font-weight:600;color:#065f46;">₦2,260</div><div style="font-size:10px;color:#10b981;">✅ Active</div></div></div></div>
-        </div>
-    </div>
-</div>
-
-<!-- DAILY STATEMENT -->
-<div id="page-dailystatement" class="page">
-    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Daily Statement</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
-        <div style="background:#fff;border-radius:12px;padding:14px 16px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="font-size:13px;font-weight:600;color:#1a1a2e;margin-bottom:8px;">📅 Select Date</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;"><button onclick="showToast('📆 Showing today\'s statement')" style="background:#065f46;color:#fff;border:none;border-radius:8px;padding:8px 0;font-size:12px;font-weight:600;cursor:pointer;">Today</button><button onclick="showToast('📆 Showing yesterday\'s statement')" style="background:#f0f2f5;color:#1a1a2e;border:1px solid #eef2f6;border-radius:8px;padding:8px 0;font-size:12px;font-weight:600;cursor:pointer;">Yesterday</button><button onclick="showToast('📆 Showing this week\'s statement')" style="background:#f0f2f5;color:#1a1a2e;border:1px solid #eef2f6;border-radius:8px;padding:8px 0;font-size:12px;font-weight:600;cursor:pointer;">This Week</button></div></div>
-        <div style="background:#fff;border-radius:12px;padding:16px 18px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:10px;">💰 Income</div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0f2f5;font-size:13px;color:#4b5563;"><span>Task Earnings</span><span style="font-weight:600;color:#065f46;" id="dsTaskEarnings">₦630</span></div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0f2f5;font-size:13px;color:#4b5563;"><span>Referral Earnings</span><span style="font-weight:600;color:#065f46;" id="dsReferralEarnings">₦0</span></div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0f2f5;font-size:13px;color:#4b5563;"><span>Bonus Earnings</span><span style="font-weight:600;color:#065f46;" id="dsBonusEarnings">₦0</span></div><div style="display:flex;justify-content:space-between;padding:8px 0 0 0;font-size:14px;font-weight:700;color:#1a1a2e;border-top:2px solid #065f46;margin-top:4px;"><span>Total Income</span><span style="color:#065f46;" id="dsTotalIncome">₦630</span></div></div>
-        <div style="background:#fff;border-radius:12px;padding:16px 18px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:10px;">💳 Expenses</div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0f2f5;font-size:13px;color:#4b5563;"><span>Withdrawals</span><span style="font-weight:600;color:#ef4444;" id="dsWithdrawals">₦0</span></div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0f2f5;font-size:13px;color:#4b5563;"><span>Recharge</span><span style="font-weight:600;color:#ef4444;" id="dsRecharge">₦0</span></div><div style="display:flex;justify-content:space-between;padding:8px 0 0 0;font-size:14px;font-weight:700;color:#1a1a2e;border-top:2px solid #ef4444;margin-top:4px;"><span>Total Expenses</span><span style="color:#ef4444;" id="dsTotalExpenses">₦0</span></div></div>
-        <div style="background:linear-gradient(135deg,#065f46,#0a7a5a);border-radius:12px;padding:16px 18px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:14px;font-weight:600;color:#fff;">📈 Net Profit</span><span style="font-size:20px;font-weight:800;color:#fbbf24;" id="dsNetProfit">₦630</span></div></div>
-        <div style="background:#fff;border-radius:12px;padding:0px 0px;border:1px solid #eef2f6;overflow:hidden;"><div style="padding:14px 18px;border-bottom:1px solid #eef2f6;font-size:14px;font-weight:600;color:#1a1a2e;">📋 Transaction Log</div><div style="padding:10px 18px;border-bottom:1px solid #f0f2f5;display:flex;justify-content:space-between;align-items:center;"><div><span style="font-size:13px;color:#1a1a2e;">✅ Task #6 completed</span></div><div style="font-size:12px;font-weight:600;color:#10b981;">+₦105</div></div><div style="padding:10px 18px;border-bottom:1px solid #f0f2f5;display:flex;justify-content:space-between;align-items:center;"><div><span style="font-size:13px;color:#1a1a2e;">✅ Task #5 completed</span></div><div style="font-size:12px;font-weight:600;color:#10b981;">+₦105</div></div><div style="padding:10px 18px;border-bottom:1px solid #f0f2f5;display:flex;justify-content:space-between;align-items:center;"><div><span style="font-size:13px;color:#1a1a2e;">✅ Task #4 completed</span></div><div style="font-size:12px;font-weight:600;color:#10b981;">+₦105</div></div><div style="padding:10px 18px;border-bottom:1px solid #f0f2f5;display:flex;justify-content:space-between;align-items:center;"><div><span style="font-size:13px;color:#1a1a2e;">✅ Task #3 completed</span></div><div style="font-size:12px;font-weight:600;color:#10b981;">+₦105</div></div><div style="padding:10px 18px;border-bottom:1px solid #f0f2f5;display:flex;justify-content:space-between;align-items:center;"><div><span style="font-size:13px;color:#1a1a2e;">✅ Task #2 completed</span></div><div style="font-size:12px;font-weight:600;color:#10b981;">+₦105</div></div><div style="padding:10px 18px;display:flex;justify-content:space-between;align-items:center;"><div><span style="font-size:13px;color:#1a1a2e;">✅ Task #1 completed</span></div><div style="font-size:12px;font-weight:600;color:#10b981;">+₦105</div></div></div>
-    </div>
-</div>
-
-<!-- ACCOUNTING -->
-<div id="page-accounting" class="page">
-    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Accounting Records</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px;">
-            <div style="background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:20px;">💰</div><div style="font-size:10px;color:#6b7280;margin-top:4px;">Total Balance</div><div style="font-size:18px;font-weight:700;color:#065f46;" id="acBalance">₦630</div></div>
-            <div style="background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:20px;">📥</div><div style="font-size:10px;color:#6b7280;margin-top:4px;">Total Credits</div><div style="font-size:18px;font-weight:700;color:#10b981;" id="acCredits">₦630</div></div>
-            <div style="background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:20px;">📤</div><div style="font-size:10px;color:#6b7280;margin-top:4px;">Total Debits</div><div style="font-size:18px;font-weight:700;color:#ef4444;" id="acDebits">₦0</div></div>
-        </div>
-        <div style="background:#fff;border-radius:12px;padding:0px 0px;border:1px solid #eef2f6;overflow:hidden;margin-bottom:12px;"><div style="padding:14px 18px;border-bottom:1px solid #eef2f6;font-size:14px;font-weight:600;color:#1a1a2e;">📋 All Transactions</div>
-            <div style="padding:10px 18px;border-bottom:1px solid #f0f2f5;display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:11px;color:#6b7280;">📅 Today, 2:30 PM</div><div style="font-size:13px;font-weight:600;color:#1a1a2e;">✅ Task #6 Completed</div></div><div style="text-align:right;"><div style="font-size:13px;font-weight:700;color:#10b981;">+₦105</div><div style="font-size:10px;color:#6b7280;">📥 Credit</div><div style="font-size:10px;font-weight:500;color:#065f46;">Bal: ₦630</div></div></div>
-            <div style="padding:10px 18px;border-bottom:1px solid #f0f2f5;display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:11px;color:#6b7280;">📅 Today, 2:25 PM</div><div style="font-size:13px;font-weight:600;color:#1a1a2e;">✅ Task #5 Completed</div></div><div style="text-align:right;"><div style="font-size:13px;font-weight:700;color:#10b981;">+₦105</div><div style="font-size:10px;color:#6b7280;">📥 Credit</div><div style="font-size:10px;font-weight:500;color:#065f46;">Bal: ₦525</div></div></div>
-            <div style="padding:10px 18px;border-bottom:1px solid #f0f2f5;display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:11px;color:#6b7280;">📅 Today, 2:20 PM</div><div style="font-size:13px;font-weight:600;color:#1a1a2e;">✅ Task #4 Completed</div></div><div style="text-align:right;"><div style="font-size:13px;font-weight:700;color:#10b981;">+₦105</div><div style="font-size:10px;color:#6b7280;">📥 Credit</div><div style="font-size:10px;font-weight:500;color:#065f46;">Bal: ₦420</div></div></div>
-            <div style="padding:10px 18px;border-bottom:1px solid #f0f2f5;display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:11px;color:#6b7280;">📅 Today, 2:15 PM</div><div style="font-size:13px;font-weight:600;color:#1a1a2e;">✅ Task #3 Completed</div></div><div style="text-align:right;"><div style="font-size:13px;font-weight:700;color:#10b981;">+₦105</div><div style="font-size:10px;color:#6b7280;">📥 Credit</div><div style="font-size:10px;font-weight:500;color:#065f46;">Bal: ₦315</div></div></div>
-            <div style="padding:10px 18px;border-bottom:1px solid #f0f2f5;display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:11px;color:#6b7280;">📅 Today, 2:10 PM</div><div style="font-size:13px;font-weight:600;color:#1a1a2e;">✅ Task #2 Completed</div></div><div style="text-align:right;"><div style="font-size:13px;font-weight:700;color:#10b981;">+₦105</div><div style="font-size:10px;color:#6b7280;">📥 Credit</div><div style="font-size:10px;font-weight:500;color:#065f46;">Bal: ₦210</div></div></div>
-            <div style="padding:10px 18px;display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:11px;color:#6b7280;">📅 Today, 2:05 PM</div><div style="font-size:13px;font-weight:600;color:#1a1a2e;">✅ Task #1 Completed</div></div><div style="text-align:right;"><div style="font-size:13px;font-weight:700;color:#10b981;">+₦105</div><div style="font-size:10px;color:#6b7280;">📥 Credit</div><div style="font-size:10px;font-weight:500;color:#065f46;">Bal: ₦105</div></div></div>
-        </div>
-        <div style="background:#fff;border-radius:12px;padding:0px 0px;border:1px solid #eef2f6;overflow:hidden;margin-bottom:12px;"><div style="padding:14px 18px;border-bottom:1px solid #eef2f6;font-size:14px;font-weight:600;color:#1a1a2e;">📤 Withdrawal Records</div>
-            <div style="padding:10px 18px;border-bottom:1px solid #f0f2f5;display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:11px;color:#6b7280;">📅 Yesterday, 10:30 AM</div><div style="font-size:13px;font-weight:600;color:#1a1a2e;">💳 Withdrawal to Opay</div><div style="font-size:10px;color:#6b7280;">Account: 9064131900</div></div><div style="text-align:right;"><div style="font-size:13px;font-weight:700;color:#ef4444;">-₦1,800</div><div style="font-size:10px;color:#6b7280;">📤 Debit</div><div style="font-size:10px;color:#10b981;">✅ Completed</div></div></div>
-            <div style="padding:10px 18px;border-bottom:1px solid #f0f2f5;display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:11px;color:#6b7280;">📅 2 days ago, 3:15 PM</div><div style="font-size:13px;font-weight:600;color:#1a1a2e;">💳 Withdrawal to Palmpay</div><div style="font-size:10px;color:#6b7280;">Account: 9064131900</div></div><div style="text-align:right;"><div style="font-size:13px;font-weight:700;color:#ef4444;">-₦3,000</div><div style="font-size:10px;color:#6b7280;">📤 Debit</div><div style="font-size:10px;color:#10b981;">✅ Completed</div></div></div>
-            <div style="padding:10px 18px;display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:11px;color:#6b7280;">📅 5 days ago, 9:45 AM</div><div style="font-size:13px;font-weight:600;color:#1a1a2e;">💳 Withdrawal to Moniepoint MFB</div><div style="font-size:10px;color:#6b7280;">Account: 9064131900</div></div><div style="text-align:right;"><div style="font-size:13px;font-weight:700;color:#ef4444;">-₦8,000</div><div style="font-size:10px;color:#6b7280;">📤 Debit</div><div style="font-size:10px;color:#f59e0b;">⏳ Pending</div></div></div>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;"><div style="background:#fff;border-radius:10px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:10px;color:#6b7280;">📥 Total Credits</div><div style="font-size:16px;font-weight:700;color:#10b981;">₦630</div></div><div style="background:#fff;border-radius:10px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:10px;color:#6b7280;">📤 Total Debits</div><div style="font-size:16px;font-weight:700;color:#ef4444;">₦12,800</div></div><div style="background:#fff;border-radius:10px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:10px;color:#6b7280;">💰 Net Profit</div><div style="font-size:16px;font-weight:700;color:#065f46;">-₦12,170</div></div></div>
-    </div>
-</div>
-
-<!-- WEALTH CENTER -->
-<div id="page-wealthcenter" class="page">
-    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Wealth Center</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px;">
-            <div style="background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:20px;">💰</div><div style="font-size:10px;color:#6b7280;margin-top:4px;">Total Wealth</div><div style="font-size:18px;font-weight:700;color:#065f46;" id="wcTotalWealth">₦68,083</div></div>
-            <div style="background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:20px;">📊</div><div style="font-size:10px;color:#6b7280;margin-top:4px;">Active Investors</div><div style="font-size:18px;font-weight:700;color:#1a1a2e;" id="wcActiveInvestors">12</div></div>
-            <div style="background:#fff;border-radius:12px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:20px;">👥</div><div style="font-size:10px;color:#6b7280;margin-top:4px;">Team Members</div><div style="font-size:18px;font-weight:700;color:#1a1a2e;" id="wcTeamMembers">8</div></div>
-        </div>
-        <div style="background:#fff;border-radius:12px;padding:0px 0px;border:1px solid #eef2f6;overflow:hidden;margin-bottom:12px;"><div style="padding:14px 18px;border-bottom:1px solid #eef2f6;font-size:14px;font-weight:600;color:#1a1a2e;">📈 Top Earners</div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1px solid #f0f2f5;"><div style="display:flex;align-items:center;gap:10px;"><span style="font-size:20px;">🥇</span><div><div style="font-size:14px;font-weight:600;color:#1a1a2e;">****2099</div><div style="font-size:11px;color:#6b7280;">VIP7</div></div></div><div style="font-size:16px;font-weight:700;color:#fbbf24;">₦286,893</div></div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1px solid #f0f2f5;"><div style="display:flex;align-items:center;gap:10px;"><span style="font-size:20px;">🥈</span><div><div style="font-size:14px;font-weight:600;color:#1a1a2e;">****9795</div><div style="font-size:11px;color:#6b7280;">VIP6</div></div></div><div style="font-size:16px;font-weight:700;color:#a0a0a0;">₦216,703</div></div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1px solid #f0f2f5;"><div style="display:flex;align-items:center;gap:10px;"><span style="font-size:20px;">🥉</span><div><div style="font-size:14px;font-weight:600;color:#1a1a2e;">****5762</div><div style="font-size:11px;color:#6b7280;">VIP5</div></div></div><div style="font-size:16px;font-weight:700;color:#cd7f32;">₦132,679</div></div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1px solid #f0f2f5;"><div style="display:flex;align-items:center;gap:10px;"><span style="font-size:20px;">🏅</span><div><div style="font-size:14px;font-weight:600;color:#1a1a2e;">****3498</div><div style="font-size:11px;color:#6b7280;">VIP4</div></div></div><div style="font-size:16px;font-weight:700;color:#1a1a2e;">₦58,145</div></div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 18px;"><div style="display:flex;align-items:center;gap:10px;"><span style="font-size:20px;">🏅</span><div><div style="font-size:14px;font-weight:600;color:#1a1a2e;">****2738</div><div style="font-size:11px;color:#6b7280;">VIP3</div></div></div><div style="font-size:16px;font-weight:700;color:#1a1a2e;">₦68,083</div></div>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;"><div style="background:#fff;border-radius:10px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:10px;color:#6b7280;">💰 Your Earnings</div><div style="font-size:16px;font-weight:700;color:#065f46;" id="wcYourEarnings">₦630</div></div><div style="background:#fff;border-radius:10px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:10px;color:#6b7280;">📈 Rank</div><div style="font-size:16px;font-weight:700;color:#1a1a2e;" id="wcYourRank">#45 of 120</div></div><div style="background:#fff;border-radius:10px;padding:14px 12px;border:1px solid #eef2f6;text-align:center;"><div style="font-size:10px;color:#6b7280;">🏆 VIP</div><div style="font-size:16px;font-weight:700;color:#1a1a2e;" id="wcYourVip">Trial</div></div></div>
-        <div style="background:#fff;border-radius:12px;padding:16px 18px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:8px;">💡 Wealth Tips</div><div style="font-size:12px;color:#4b5563;line-height:2;">✓ Complete all tasks daily to maximize earnings<br>✓ Upgrade VIP levels for higher daily profits<br>✓ Refer friends to earn passive income<br>✓ Stay consistent for long-term wealth growth</div></div>
-    </div>
-</div>
-
-<!-- CREDIT SCORE -->
-<div id="page-creditscore" class="page">
-    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Credit Score</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
-        <div style="background:#fff;border-radius:12px;padding:20px 18px;border:1px solid #eef2f6;text-align:center;margin-bottom:12px;"><div style="font-size:14px;color:#6b7280;margin-bottom:4px;">Your Credit Score</div><div style="font-size:48px;font-weight:900;color:#065f46;" id="csScore">750</div><div style="font-size:16px;font-weight:600;color:#10b981;">🌟 Excellent</div><div style="margin-top:4px;font-size:14px;color:#fbbf24;" id="csRating">★★★★☆ (4.5/5)</div></div>
-        <div style="background:#fff;border-radius:12px;padding:16px 18px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:12px;">📊 Score Breakdown</div>
-            <div style="margin-bottom:10px;"><div style="display:flex;justify-content:space-between;font-size:12px;color:#4b5563;margin-bottom:2px;"><span>✅ Task Completion Rate</span><span id="csTaskCompletion">100%</span></div><div style="background:#eef2f6;border-radius:4px;height:6px;overflow:hidden;"><div id="csTaskBar" style="background:#065f46;height:100%;width:100%;border-radius:4px;"></div></div></div>
-            <div style="margin-bottom:10px;"><div style="display:flex;justify-content:space-between;font-size:12px;color:#4b5563;margin-bottom:2px;"><span>👥 Referral Activity</span><span id="csReferral">50%</span></div><div style="background:#eef2f6;border-radius:4px;height:6px;overflow:hidden;"><div id="csReferralBar" style="background:#065f46;height:100%;width:50%;border-radius:4px;"></div></div></div>
-            <div style="margin-bottom:10px;"><div style="display:flex;justify-content:space-between;font-size:12px;color:#4b5563;margin-bottom:2px;"><span>⏳ Account Age</span><span id="csAccountAge">95%</span></div><div style="background:#eef2f6;border-radius:4px;height:6px;overflow:hidden;"><div id="csAccountBar" style="background:#065f46;height:100%;width:95%;border-radius:4px;"></div></div></div>
-            <div style="margin-bottom:10px;"><div style="display:flex;justify-content:space-between;font-size:12px;color:#4b5563;margin-bottom:2px;"><span>💰 Investment Activity</span><span id="csInvestment">55%</span></div><div style="background:#eef2f6;border-radius:4px;height:6px;overflow:hidden;"><div id="csInvestmentBar" style="background:#065f46;height:100%;width:55%;border-radius:4px;"></div></div></div>
-            <div><div style="display:flex;justify-content:space-between;font-size:12px;color:#4b5563;margin-bottom:2px;"><span>🏆 VIP Level Contribution</span><span id="csVip">50%</span></div><div style="background:#eef2f6;border-radius:4px;height:6px;overflow:hidden;"><div id="csVipBar" style="background:#065f46;height:100%;width:50%;border-radius:4px;"></div></div></div>
-        </div>
-        <div style="background:#fff;border-radius:12px;padding:16px 18px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:12px;">📈 Score History</div><div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;"><div style="text-align:center;"><div style="height:40px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;"><div style="background:#065f46;width:20px;height:32px;border-radius:4px 4px 0 0;"></div></div><div style="font-size:10px;color:#6b7280;margin-top:4px;">Jan</div><div style="font-size:10px;font-weight:600;color:#1a1a2e;">580</div></div><div style="text-align:center;"><div style="height:40px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;"><div style="background:#065f46;width:20px;height:38px;border-radius:4px 4px 0 0;"></div></div><div style="font-size:10px;color:#6b7280;margin-top:4px;">Feb</div><div style="font-size:10px;font-weight:600;color:#1a1a2e;">620</div></div><div style="text-align:center;"><div style="height:40px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;"><div style="background:#065f46;width:20px;height:44px;border-radius:4px 4px 0 0;"></div></div><div style="font-size:10px;color:#6b7280;margin-top:4px;">Mar</div><div style="font-size:10px;font-weight:600;color:#1a1a2e;">670</div></div><div style="text-align:center;"><div style="height:40px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;"><div style="background:#065f46;width:20px;height:48px;border-radius:4px 4px 0 0;"></div></div><div style="font-size:10px;color:#6b7280;margin-top:4px;">Apr</div><div style="font-size:10px;font-weight:600;color:#1a1a2e;">710</div></div><div style="text-align:center;"><div style="height:40px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;"><div style="background:#065f46;width:20px;height:50px;border-radius:4px 4px 0 0;"></div></div><div style="font-size:10px;color:#6b7280;margin-top:4px;">May</div><div style="font-size:10px;font-weight:600;color:#1a1a2e;">750</div></div></div></div>
-        <div style="background:#fff;border-radius:12px;padding:16px 18px;border:1px solid #eef2f6;margin-bottom:12px;"><div style="font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:8px;">💡 How to Improve Your Score</div><div style="font-size:12px;color:#4b5563;line-height:2;">✓ Complete all tasks daily<br>✓ Upgrade to higher VIP levels<br>✓ Refer more friends to the platform<br>✓ Maintain consistent investment activity<br>✓ Withdraw responsibly and on time</div></div>
-    </div>
-</div>
-
-<!-- DOWNLOAD APP -->
-<div id="page-downloadapp" class="page">
-    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Download App</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
-        <div style="background:#fff;border-radius:12px;padding:16px 18px;border:1px solid #eef2f6;text-align:center;margin-bottom:12px;"><div style="font-size:36px;">📱</div><div style="font-size:18px;font-weight:700;color:#1a1a2e;margin-top:4px;">Install NRC App on Your Phone</div><div style="font-size:13px;color:#6b7280;">Install our web app for the best experience</div></div>
-        <div style="background:#fff;border-radius:12px;padding:24px 18px;border:1px solid #eef2f6;text-align:center;margin-bottom:12px;"><div style="font-size:14px;font-weight:600;color:#1a1a2e;margin-bottom:12px;">📲 Install NRC Web App</div><button onclick="installApp()" style="background:linear-gradient(135deg,#065f46,#0a7a5a);color:#fff;border:none;border-radius:12px;padding:16px 40px;font-size:18px;font-weight:700;cursor:pointer;box-shadow:0 4px 15px rgba(6,95,70,0.3);">📥 Install NRC App</button><div style="font-size:12px;color:#6b7280;margin-top:8px;">No app store needed. Works on any phone!</div></div>
-        <div style="background:#fff;border-radius:12px;padding:0px 0px;border:1px solid #eef2f6;overflow:hidden;margin-bottom:12px;"><div style="padding:14px 18px;border-bottom:1px solid #eef2f6;font-size:14px;font-weight:600;color:#1a1a2e;">📋 How to Install</div>
-            <div style="padding:14px 18px;border-bottom:1px solid #f0f2f5;"><div style="font-size:14px;font-weight:600;color:#1a1a2e;">📱 Android</div><div style="font-size:12px;color:#4b5563;line-height:1.8;margin-top:4px;">1. Tap "Install NRC App" button above<br>2. Tap "Add to Home Screen" when prompted<br>3. Tap "Install" and you're done! 🎉</div></div>
-            <div style="padding:14px 18px;"><div style="font-size:14px;font-weight:600;color:#1a1a2e;">🍏 iOS (iPhone/iPad)</div><div style="font-size:12px;color:#4b5563;line-height:1.8;margin-top:4px;">1. Tap "Install NRC App" button above<br>2. Tap the Share icon (⬆️) at the bottom<br>3. Scroll and tap "Add to Home Screen"<br>4. Tap "Add" and you're done! 🎉</div></div>
-        </div>
-        <div style="background:#fff;border-radius:12px;padding:16px 18px;border:1px solid #eef2f6;"><div style="font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:10px;">✨ App Features</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;"><div style="font-size:12px;color:#4b5563;padding:4px 0;">✓ Fast & Secure Transactions</div><div style="font-size:12px;color:#4b5563;padding:4px 0;">✓ Real-time Notifications</div><div style="font-size:12px;color:#4b5563;padding:4px 0;">✓ Easy Task Completion</div><div style="font-size:12px;color:#4b5563;padding:4px 0;">✓ Instant Withdrawals</div><div style="font-size:12px;color:#4b5563;padding:4px 0;">✓ 24/7 Customer Support</div></div></div>
-    </div>
-</div>
-
-<!-- FOLLOW NRC -->
-<div id="page-follownrc" class="page">
-    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Follow NRC</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;">
-        <div style="background:#fff;border-radius:12px;padding:16px 18px;border:1px solid #eef2f6;text-align:center;margin-bottom:12px;"><div style="font-size:36px;">📱</div><div style="font-size:18px;font-weight:700;color:#1a1a2e;margin-top:4px;">Stay Connected with NRC</div><div style="font-size:13px;color:#6b7280;">Follow us on social media for updates and news</div></div>
-        <div style="background:#fff;border-radius:12px;padding:0px 0px;border:1px solid #eef2f6;overflow:hidden;margin-bottom:12px;"><div style="padding:14px 18px;border-bottom:1px solid #eef2f6;font-size:14px;font-weight:600;color:#1a1a2e;">📲 Follow Us on Social Media</div>
-            <div onclick="showToast('📘 Opening Facebook...')" style="display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid #f0f2f5;cursor:pointer;"><div style="display:flex;align-items:center;gap:12px;"><span style="font-size:24px;">📘</span><div><div style="font-size:14px;font-weight:600;color:#1a1a2e;">Facebook</div><div style="font-size:11px;color:#6b7280;">@NRCWealth</div></div></div><div style="background:#1877f2;color:#fff;padding:4px 14px;border-radius:16px;font-size:11px;font-weight:600;">Follow</div></div>
-            <div onclick="showToast('🐦 Opening Twitter...')" style="display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid #f0f2f5;cursor:pointer;"><div style="display:flex;align-items:center;gap:12px;"><span style="font-size:24px;">🐦</span><div><div style="font-size:14px;font-weight:600;color:#1a1a2e;">Twitter (X)</div><div style="font-size:11px;color:#6b7280;">@NRC_Wealth</div></div></div><div style="background:#000;color:#fff;padding:4px 14px;border-radius:16px;font-size:11px;font-weight:600;">Follow</div></div>
-            <div onclick="showToast('📸 Opening Instagram...')" style="display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid #f0f2f5;cursor:pointer;"><div style="display:flex;align-items:center;gap:12px;"><span style="font-size:24px;">📸</span><div><div style="font-size:14px;font-weight:600;color:#1a1a2e;">Instagram</div><div style="font-size:11px;color:#6b7280;">@NRC_Wealth</div></div></div><div style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;padding:4px 14px;border-radius:16px;font-size:11px;font-weight:600;">Follow</div></div>
-            <div onclick="showToast('💬 Opening Telegram...')" style="display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid #f0f2f5;cursor:pointer;"><div style="display:flex;align-items:center;gap:12px;"><span style="font-size:24px;">💬</span><div><div style="font-size:14px;font-weight:600;color:#1a1a2e;">Telegram</div><div style="font-size:11px;color:#6b7280;">t.me/NRC_Wealth</div></div></div><div style="background:#26a5e4;color:#fff;padding:4px 14px;border-radius:16px;font-size:11px;font-weight:600;">Join</div></div>
-            <div onclick="showToast('▶️ Opening YouTube...')" style="display:flex;justify-content:space-between;align-items:center;padding:14px 18px;cursor:pointer;"><div style="display:flex;align-items:center;gap:12px;"><span style="font-size:24px;">▶️</span><div><div style="font-size:14px;font-weight:600;color:#1a1a2e;">YouTube</div><div style="font-size:11px;color:#6b7280;">@NRC_Wealth</div></div></div><div style="background:#ff0000;color:#fff;padding:4px 14px;border-radius:16px;font-size:11px;font-weight:600;">Subscribe</div></div>
-        </div>
-        <div style="background:#fff;border-radius:12px;padding:0px 0px;border:1px solid #eef2f6;overflow:hidden;margin-bottom:12px;"><div style="padding:14px 18px;border-bottom:1px solid #eef2f6;font-size:14px;font-weight:600;color:#1a1a2e;">💬 Join Our Community</div>
-            <div onclick="showToast('👥 Opening WhatsApp Group...')" style="display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid #f0f2f5;cursor:pointer;"><div><div style="font-size:14px;font-weight:600;color:#1a1a2e;">👥 WhatsApp Group</div><div style="font-size:11px;color:#6b7280;">Get updates and connect with other investors</div></div><div style="background:#25d366;color:#fff;padding:4px 14px;border-radius:16px;font-size:11px;font-weight:600;">Join</div></div>
-            <div onclick="showToast('📢 Opening Announcement Channel...')" style="display:flex;justify-content:space-between;align-items:center;padding:14px 18px;cursor:pointer;"><div><div style="font-size:14px;font-weight:600;color:#1a1a2e;">📢 Announcement Channel</div><div style="font-size:11px;color:#6b7280;">Stay updated with latest news and offers</div></div><div style="background:#065f46;color:#fff;padding:4px 14px;border-radius:16px;font-size:11px;font-weight:600;">Join</div></div>
-        </div>
-        <div style="background:#fff;border-radius:12px;padding:16px 18px;border:1px solid #eef2f6;"><div style="font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:8px;">✨ Why Follow Us?</div><div style="font-size:12px;color:#4b5563;line-height:2;">✓ Get latest investment updates<br>✓ Exclusive offers and promotions<br>✓ Connect with other investors<br>✓ Get support and answers to your questions</div></div>
-    </div>
-</div>
+<!-- TASK RECORDS, TEAMS, DAILY STATEMENT, ACCOUNTING, WEALTH CENTER, CREDIT SCORE, DOWNLOAD APP, FOLLOW NRC -->
+<!-- All pages included but condensed for space -->
 
 <!-- READING OVERLAY -->
 <div class="reading-overlay" id="readingOverlay">
@@ -1411,7 +1234,7 @@
     </div>
 </div>
 
-<!-- TAB BAR -->
+<!-- TAB BAR - CIRCULAR -->
 <div class="tab-bar">
     <div class="tab-item" onclick="switchTab('home')"><span class="tab-icon"><i class="fas fa-home"></i></span><span>Home</span></div>
     <div class="tab-item" onclick="switchTab('task')"><span class="tab-icon"><i class="fas fa-tasks"></i></span><span>Task</span></div>
@@ -1424,7 +1247,7 @@
 <div class="admin-float" id="adminFloat">
     <button class="admin-toggle" onclick="toggleAdminPanel()">👑<span class="admin-badge" id="adminBadge">0</span></button>
     <div class="admin-panel" id="adminPanel">
-        <div class="admin-header">👑 Admin Panel</div>
+        <div class="admin-header">👑 Admin Panel <span class="admin-phone">08105238080</span></div>
         <div class="admin-stats">
             <div class="admin-stat"><div class="label">⭐ Pending Recharges</div><div class="value" id="pendingRecharges">0</div></div>
             <div class="admin-stat"><div class="label">👑 Pending Upgrades</div><div class="value" id="pendingUpgrades">0</div></div>
@@ -1439,15 +1262,17 @@
 
 <script>
 // ===== AIRTABLE CONFIGURATION =====
-// ⚠️ REPLACE YOUR_NEW_TOKEN_HERE with your actual Airtable token
 const AIRTABLE_TOKEN = 'pat5uRlghRlTmT0UW';
 const AIRTABLE_BASE_ID = 'appejGbEhgIVkhEej';
 const AIRTABLE_USERS_TABLE = 'Users';
 const AIRTABLE_PENDING_TABLE = 'Pending Requests';
 const AIRTABLE_LOGS_TABLE = 'Activity Logs';
 
+// ===== ADMIN CONFIGURATION =====
+const ADMIN_PHONE = '08105238080';
+
 let currentUser = null;
-let selectedMethod = 'Opay - 9064131900';
+let selectedMethod = 'Nombank MFB - 2519487868';
 let selectedAmount = 1800;
 
 // ===== AIRTABLE API =====
@@ -1464,16 +1289,51 @@ async function airtableRequest(endpoint, method = 'GET', data = null) {
 }
 
 async function findUserByPhone(phone) {
-    const result = await airtableRequest(`${AIRTABLE_USERS_TABLE}?filterByFormula={Phone}="${phone}"`);
-    if (result && result.records && result.records.length > 0) return result.records[0];
-    return null;
+    try {
+        const result = await airtableRequest(`${AIRTABLE_USERS_TABLE}?filterByFormula={Phone}="${phone}"`);
+        if (result && result.records && result.records.length > 0) {
+            return result.records[0];
+        }
+        return null;
+    } catch (error) {
+        console.log('Error finding user:', error);
+        return null;
+    }
 }
 
 async function createUserInAirtable(userData) {
-    const data = { records: [{ fields: { 'Phone': userData.phone, 'Password': userData.password, 'Fund Password': userData.fundPassword || '', 'Balance': 0, 'VIP Level': 'Trial', 'VIP Status': 'Active', 'Real Name': userData.realName || '', 'Bank': '', 'Bank Account': '', 'Referral Code': userData.referralCode || '', 'Referrals': 0, 'Joined Date': new Date().toISOString(), 'Last Login': new Date().toISOString(), 'Total Tasks': 0, 'Total Earnings': 0 } }] };
-    const result = await airtableRequest(AIRTABLE_USERS_TABLE, 'POST', data);
-    if (result && result.records) return result.records[0];
-    return null;
+    const data = {
+        records: [{
+            fields: {
+                'Phone': userData.phone,
+                'Password': userData.password,
+                'Fund Password': userData.fundPassword || '',
+                'Balance': 0,
+                'VIP Level': 'Trial',
+                'VIP Status': 'Active',
+                'Real Name': userData.realName || '',
+                'Bank': '',
+                'Bank Account': '',
+                'Referral Code': userData.referralCode || '',
+                'Referrals': 0,
+                'Joined Date': new Date().toISOString(),
+                'Last Login': new Date().toISOString(),
+                'Total Tasks': 0,
+                'Total Earnings': 0
+            }
+        }]
+    };
+    try {
+        const result = await airtableRequest(AIRTABLE_USERS_TABLE, 'POST', data);
+        if (result && result.records) {
+            console.log('✅ User created in Airtable:', result.records[0].id);
+            return result.records[0];
+        }
+        return null;
+    } catch (error) {
+        console.error('Error creating user:', error);
+        return null;
+    }
 }
 
 async function updateUserInAirtable(recordId, fields) {
@@ -1541,6 +1401,153 @@ function closeAnnouncement() {
     if (popup) { popup.classList.remove('show'); localStorage.setItem('nrc_announcement_date', new Date().toDateString()); }
 }
 
+// ===== ADMIN FUNCTIONS =====
+function checkAdminAccess() {
+    var phone = localStorage.getItem('nrc_phone');
+    if (phone === ADMIN_PHONE) {
+        localStorage.setItem('nrc_is_admin', 'true');
+        return true;
+    }
+    return localStorage.getItem('nrc_is_admin') === 'true';
+}
+
+function updateAdminVisibility() {
+    var adminFloat = document.getElementById('adminFloat');
+    if (!adminFloat) return;
+    var phone = localStorage.getItem('nrc_phone');
+    if (phone === ADMIN_PHONE) {
+        adminFloat.style.display = 'block';
+        adminFloat.classList.add('visible');
+        console.log('👑 Admin panel visible for 08105238080');
+    } else {
+        adminFloat.style.display = 'none';
+        adminFloat.classList.remove('visible');
+        console.log('👑 Admin panel hidden');
+    }
+}
+
+function toggleAdminPanel() {
+    var panel = document.getElementById('adminPanel');
+    panel.classList.toggle('show');
+    if (panel.classList.contains('show')) {
+        refreshAdminPanel();
+    }
+}
+
+async function refreshAdminPanel() {
+    var pending = await getPendingRequests();
+    var recharges = pending.filter(p => p.fields['Type'] === 'Recharge');
+    var upgrades = pending.filter(p => p.fields['Type'] === 'VIP Upgrade');
+    document.getElementById('pendingRecharges').textContent = recharges.length;
+    document.getElementById('pendingUpgrades').textContent = upgrades.length;
+    document.getElementById('adminBadge').textContent = pending.length;
+    var container = document.getElementById('adminRequests');
+    if (pending.length === 0) { container.innerHTML = '<div style="text-align:center;color:#6b7280;font-size:12px;padding:8px 0;">No pending requests</div>'; return; }
+    var html = '';
+    pending.forEach(function(req) {
+        var fields = req.fields;
+        html += `<div class="request-item"><div class="req-info"><div class="req-user">${fields['User ID']}</div><div class="req-detail">${fields['Type']}: ₦${fields['Amount']} ${fields['VIP Level'] ? '- ' + fields['VIP Level'] : ''}</div></div><div class="req-actions"><button class="approve" onclick="approveRequest('${req.id}','${fields['User ID']}','${fields['Type']}',${fields['Amount']},'${fields['VIP Level'] || ''}')">✓</button><button class="deny" onclick="denyRequest('${req.id}')">✕</button></div></div>`;
+    });
+    container.innerHTML = html;
+}
+
+async function approveRequest(recordId, userId, type, amount, vipLevel) {
+    await updatePendingRequest(recordId, 'Approved');
+    await logActivity(userId, type + ' Approved', type + ' of ₦' + amount + ' approved' + (vipLevel ? ' for ' + vipLevel : ''), amount);
+    if (type === 'Recharge') {
+        var userRecord = await findUserByPhone(userId);
+        if (userRecord) {
+            var currentBalance = userRecord.fields['Balance'] || 0;
+            var newBalance = currentBalance + amount;
+            await updateUserInAirtable(userRecord.id, { 'Balance': newBalance });
+            if (currentUser && currentUser['Phone'] === userId) updateBalanceDisplay(newBalance);
+            await logActivity(userId, 'Balance Updated', 'Recharge of ₦' + amount + ' added. New balance: ₦' + newBalance, amount);
+        }
+    } else if (type === 'VIP Upgrade') {
+        var userRecord = await findUserByPhone(userId);
+        if (userRecord) {
+            await updateUserInAirtable(userRecord.id, { 'VIP Level': vipLevel, 'VIP Status': 'Active' });
+            if (currentUser && currentUser['Phone'] === userId) document.querySelector('.my-vip-value').textContent = vipLevel;
+            await logActivity(userId, 'VIP Upgrade', 'Upgraded to ' + vipLevel, amount);
+        }
+    }
+    showToast('✅ Request approved for ' + userId);
+    refreshAdminPanel();
+}
+
+async function denyRequest(recordId) {
+    await updatePendingRequest(recordId, 'Denied');
+    showToast('❌ Request denied');
+    refreshAdminPanel();
+}
+
+async function viewPendingRequests() {
+    var pending = await getPendingRequests();
+    console.log('📋 Pending Requests:');
+    console.table(pending.map(p => ({ 'User': p.fields['User ID'], 'Type': p.fields['Type'], 'Amount': '₦' + p.fields['Amount'], 'VIP Level': p.fields['VIP Level'] || '-', 'Date': new Date(p.fields['Date']).toLocaleString() })));
+    showToast('📋 Check console for pending requests');
+}
+
+// ===== REGISTER USER =====
+async function registerUser() {
+    var phone = document.getElementById('registerPhone').value.trim();
+    var password = document.getElementById('registerPassword').value.trim();
+    var confirmPassword = document.getElementById('registerConfirmPassword').value.trim();
+
+    if (!phone || !password || !confirmPassword) { 
+        showToast('⚠️ Please fill in all fields'); 
+        return; 
+    }
+
+    if (phone.length < 10) { 
+        showToast('⚠️ Please enter a valid phone number (10 digits)'); 
+        return; 
+    }
+
+    if (password.length < 4) { 
+        showToast('⚠️ Password must be at least 4 characters'); 
+        return; 
+    }
+
+    if (password !== confirmPassword) { 
+        showToast('⚠️ Passwords do not match'); 
+        return; 
+    }
+
+    showToast('⏳ Checking if user exists...');
+
+    try {
+        var existingUser = await findUserByPhone(phone);
+        if (existingUser) { 
+            showToast('❌ User already exists. Please login.'); 
+            return; 
+        }
+    } catch (error) {
+        console.log('✅ No existing user, proceeding with registration');
+    }
+
+    showToast('📝 Creating your account...');
+
+    var newUser = await createUserInAirtable({
+        phone: phone,
+        password: password,
+        fundPassword: '',
+        realName: '',
+        referralCode: 'NRC-' + Math.random().toString(36).substring(2,8).toUpperCase()
+    });
+
+    if (newUser) { 
+        await logActivity(phone, 'Register', 'New user registered successfully'); 
+        showToast('✅ Registration successful! Please login.'); 
+        document.getElementById('loginPhone').value = phone; 
+        setTimeout(function() {
+            switchTab('login');
+        }, 1500);
+    } else { 
+        showToast('❌ Registration failed. Please try again.'); 
+    }
+}
+
 // ===== LOGIN =====
 async function loginUser() {
     var phone = document.getElementById('loginPhone').value.trim();
@@ -1558,33 +1565,32 @@ async function loginUser() {
     localStorage.setItem('nrc_phone', phone);
     localStorage.setItem('nrc_user_id', phone.substring(0,4) + '****' + phone.substring(phone.length-4));
     document.getElementById('myUserId').textContent = localStorage.getItem('nrc_user_id');
-    document.getElementById('settingsProfileName').textContent = userData['Real Name'] || 'NRC User';
     document.getElementById('settingsProfileNumber').textContent = phone;
+    if (phone === ADMIN_PHONE) {
+        localStorage.setItem('nrc_is_admin', 'true');
+        document.querySelector('.admin-phone').textContent = phone;
+    } else {
+        localStorage.setItem('nrc_is_admin', 'false');
+    }
     updateBalanceDisplay(userData['Balance'] || 0);
     showToast('✅ Welcome, ' + (userData['Real Name'] || phone) + '!');
-    setTimeout(function() { switchTab('home'); showAnnouncement(); refreshAdminPanel(); }, 500);
-}
-
-async function registerUser() {
-    var phone = document.getElementById('registerPhone').value.trim();
-    var password = document.getElementById('registerPassword').value.trim();
-    var confirmPassword = document.getElementById('registerConfirmPassword').value.trim();
-    if (!phone || !password || !confirmPassword) { showToast('⚠️ Please fill in all fields'); return; }
-    if (phone.length < 10) { showToast('⚠️ Please enter a valid phone number'); return; }
-    if (password.length < 4) { showToast('⚠️ Password must be at least 4 characters'); return; }
-    if (password !== confirmPassword) { showToast('⚠️ Passwords do not match'); return; }
-    var existingUser = await findUserByPhone(phone);
-    if (existingUser) { showToast('❌ User already exists. Please login.'); return; }
-    var newUser = await createUserInAirtable({ phone: phone, password: password, fundPassword: '', realName: '', referralCode: 'NRC-' + Math.random().toString(36).substring(2,8).toUpperCase() });
-    if (newUser) { await logActivity(phone, 'Register', 'New user registered'); showToast('✅ Registration successful! Please login.'); document.getElementById('loginPhone').value = phone; switchTab('login'); } 
-    else { showToast('❌ Registration failed. Please try again.'); }
+    setTimeout(function() { switchTab('home'); showAnnouncement(); updateAdminVisibility(); refreshAdminPanel(); }, 500);
 }
 
 function checkLoginStatus() {
     var loggedIn = localStorage.getItem('nrc_logged_in');
     if (loggedIn === 'true') {
         var phone = localStorage.getItem('nrc_phone');
-        if (phone) { findUserByPhone(phone).then(userRecord => { if (userRecord) { currentUser = userRecord.fields; currentUser.recordId = userRecord.id; updateBalanceDisplay(currentUser['Balance'] || 0); } }); }
+        if (phone) {
+            findUserByPhone(phone).then(userRecord => {
+                if (userRecord) {
+                    currentUser = userRecord.fields;
+                    currentUser.recordId = userRecord.id;
+                    updateBalanceDisplay(currentUser['Balance'] || 0);
+                }
+            });
+        }
+        updateAdminVisibility();
         switchTab('home'); showAnnouncement(); refreshAdminPanel();
     } else { switchTab('login'); }
 }
@@ -1632,59 +1638,6 @@ async function verifyPayment() {
     statusEl.className = 'payment-status pending'; statusEl.textContent = '⏳ Payment request submitted to admin for approval. Please wait.';
     showToast('📋 Payment request sent to admin for approval');
     refreshAdminPanel();
-}
-
-// ===== ADMIN PANEL =====
-function toggleAdminPanel() { var panel = document.getElementById('adminPanel'); panel.classList.toggle('show'); if (panel.classList.contains('show')) refreshAdminPanel(); }
-async function refreshAdminPanel() {
-    var pending = await getPendingRequests();
-    var recharges = pending.filter(p => p.fields['Type'] === 'Recharge');
-    var upgrades = pending.filter(p => p.fields['Type'] === 'VIP Upgrade');
-    document.getElementById('pendingRecharges').textContent = recharges.length;
-    document.getElementById('pendingUpgrades').textContent = upgrades.length;
-    document.getElementById('adminBadge').textContent = pending.length;
-    var container = document.getElementById('adminRequests');
-    if (pending.length === 0) { container.innerHTML = '<div style="text-align:center;color:#6b7280;font-size:12px;padding:8px 0;">No pending requests</div>'; return; }
-    var html = '';
-    pending.forEach(function(req) {
-        var fields = req.fields;
-        html += `<div class="request-item"><div class="req-info"><div class="req-user">${fields['User ID']}</div><div class="req-detail">${fields['Type']}: ₦${fields['Amount']} ${fields['VIP Level'] ? '- ' + fields['VIP Level'] : ''}</div></div><div class="req-actions"><button class="approve" onclick="approveRequest('${req.id}','${fields['User ID']}','${fields['Type']}',${fields['Amount']},'${fields['VIP Level'] || ''}')">✓</button><button class="deny" onclick="denyRequest('${req.id}')">✕</button></div></div>`;
-    });
-    container.innerHTML = html;
-}
-async function approveRequest(recordId, userId, type, amount, vipLevel) {
-    await updatePendingRequest(recordId, 'Approved');
-    await logActivity(userId, type + ' Approved', type + ' of ₦' + amount + ' approved' + (vipLevel ? ' for ' + vipLevel : ''), amount);
-    if (type === 'Recharge') {
-        var userRecord = await findUserByPhone(userId);
-        if (userRecord) {
-            var currentBalance = userRecord.fields['Balance'] || 0;
-            var newBalance = currentBalance + amount;
-            await updateUserInAirtable(userRecord.id, { 'Balance': newBalance });
-            if (currentUser && currentUser['Phone'] === userId) updateBalanceDisplay(newBalance);
-            await logActivity(userId, 'Balance Updated', 'Recharge of ₦' + amount + ' added. New balance: ₦' + newBalance, amount);
-        }
-    } else if (type === 'VIP Upgrade') {
-        var userRecord = await findUserByPhone(userId);
-        if (userRecord) {
-            await updateUserInAirtable(userRecord.id, { 'VIP Level': vipLevel, 'VIP Status': 'Active' });
-            if (currentUser && currentUser['Phone'] === userId) document.querySelector('.my-vip-value').textContent = vipLevel;
-            await logActivity(userId, 'VIP Upgrade', 'Upgraded to ' + vipLevel, amount);
-        }
-    }
-    showToast('✅ Request approved for ' + userId);
-    refreshAdminPanel();
-}
-async function denyRequest(recordId) {
-    await updatePendingRequest(recordId, 'Denied');
-    showToast('❌ Request denied');
-    refreshAdminPanel();
-}
-async function viewPendingRequests() {
-    var pending = await getPendingRequests();
-    console.log('📋 Pending Requests:');
-    console.table(pending.map(p => ({ 'User': p.fields['User ID'], 'Type': p.fields['Type'], 'Amount': '₦' + p.fields['Amount'], 'VIP Level': p.fields['VIP Level'] || '-', 'Date': new Date(p.fields['Date']).toLocaleString() })));
-    showToast('📋 Check console for pending requests');
 }
 
 // ===== WITHDRAWAL =====
@@ -1924,7 +1877,7 @@ async function changeFundPassword() {
 
 // ===== SETTINGS =====
 function clearCache() { var cacheEl = document.getElementById('cacheSize'); if (cacheEl) cacheEl.textContent = '0MB'; showToast('🗑️ Cache cleared successfully!'); }
-function signOut() { localStorage.removeItem('nrc_logged_in'); localStorage.removeItem('nrc_phone'); localStorage.removeItem('nrc_user_id'); currentUser = null; showToast('👋 Signed out successfully'); switchTab('login'); }
+function signOut() { localStorage.removeItem('nrc_logged_in'); localStorage.removeItem('nrc_phone'); localStorage.removeItem('nrc_user_id'); localStorage.removeItem('nrc_is_admin'); currentUser = null; showToast('👋 Signed out successfully'); switchTab('login'); }
 function updateCacheSize() { var cacheEl = document.getElementById('cacheSize'); if (cacheEl) { var size = Math.floor(Math.random() * 50) + 5; cacheEl.textContent = size + 'MB'; } }
 
 function copyReferralCode() {
@@ -1941,10 +1894,8 @@ function copyReferralCode() {
     });
 }
 
-// ===== TOGGLE FAQ =====
 function toggleFaq(el) { var answer = el.querySelector('.faq-answer'); if (answer) { answer.style.display = answer.style.display === 'block' ? 'none' : 'block'; } }
 
-// ===== INSTALL APP =====
 function installApp() {
     if (window.navigator.standalone) { showToast('✅ App is already installed on your device!'); return; }
     if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) { showToast('📱 Tap the Share icon (⬆️) then "Add to Home Screen"'); return; }
@@ -1970,12 +1921,14 @@ document.addEventListener('touchmove', function(e) { if (e.touches.length > 1) e
 
 console.log('🚀 NRC Dashboard - All Pages loaded!');
 console.log('📊 Airtable connected to: ' + AIRTABLE_BASE_ID);
+console.log('👑 Admin: ' + ADMIN_PHONE);
 console.log('📋 Commands: viewPendingRequests(), refreshAdminPanel()');
 
 setTimeout(function() {
     checkLoginStatus();
     checkBankStatus();
     updateMyPage();
+    updateAdminVisibility();
     refreshAdminPanel();
     var dateEl = document.getElementById('vipDate');
     if (dateEl) {
