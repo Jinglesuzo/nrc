@@ -3270,19 +3270,53 @@
 </div>
 
 <!-- ===== ADMIN ===== -->
+<!-- ===== ADMIN FLOAT BUTTON & PANEL ===== -->
 <div class="admin-float" id="adminFloat">
-    <button class="admin-toggle" onclick="toggleAdminPanel()">👑<span class="admin-badge" id="adminBadge">0</span></button>
+    <button class="admin-toggle" onclick="toggleAdminPanel()">
+        👑
+        <span class="admin-badge" id="adminBadge">0</span>
+    </button>
     <div class="admin-panel" id="adminPanel">
-        <div class="admin-header">👑 Admin Panel <span class="admin-phone">08105238080</span></div>
+        <div class="admin-header">
+            👑 Admin Panel
+            <span class="admin-phone">08105238080</span>
+        </div>
+
+        <!-- Stats -->
         <div class="admin-stats">
-            <div class="admin-stat"><div class="label">⭐ Pending Recharges</div><div class="value" id="pendingRecharges">0</div></div>
-            <div class="admin-stat"><div class="label">👑 Pending Upgrades</div><div class="value" id="pendingUpgrades">0</div></div>
+            <div class="admin-stat">
+                <div class="label">👥 Total Users</div>
+                <div class="value" id="totalUsers">0</div>
+            </div>
+            <div class="admin-stat">
+                <div class="label">⏳ Pending Requests</div>
+                <div class="value" id="pendingUpgrades">0</div>
+            </div>
         </div>
+
+        <!-- Action Buttons -->
         <div class="admin-actions">
-            <button class="btn-view" onclick="viewPendingRequests()">📋 View All</button>
-            <button class="btn-refresh" onclick="refreshAdminPanel()">🔄 Refresh</button>
+            <button class="btn-view" onclick="loadAllUsers()">📋 View All Users</button>
+            <button class="btn-refresh" onclick="refreshAdminPanel()">🔄 Refresh All</button>
         </div>
-        <div class="admin-requests" id="adminRequests"><div style="text-align:center;color:#6b7280;font-size:12px;padding:8px 0;">No pending requests</div></div>
+
+        <!-- User List -->
+        <div class="admin-requests" id="adminRequests">
+            <div style="text-align:center;color:#64748b;font-size:12px;padding:8px 0;">
+                Click "View All Users" to load
+            </div>
+        </div>
+
+        <!-- Pending Upgrade Requests -->
+        <div style="margin-top:12px; border-top:2px solid #065f46; padding-top:10px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <span style="font-weight:700; font-size:14px; color:#0f172a;">⏳ Pending Upgrades</span>
+                <button class="btn-refresh" onclick="loadPendingRequests()" style="padding:2px 12px; border-radius:30px; border:1px solid #e2e8f0; background:#fff; font-size:11px; cursor:pointer;">🔄</button>
+            </div>
+            <div id="pendingRequestsContainer" style="max-height:150px; overflow-y:auto;">
+                <div style="text-align:center;color:#94a3b8;font-size:11px;padding:8px 0;">No pending requests</div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -3508,50 +3542,291 @@
         }
     }
 
-    function verifyPayment() {
-        var statusEl = document.getElementById('paymentStatus');
-        statusEl.className = 'payment-status pending';
-        statusEl.style.display = 'block';
-        statusEl.textContent = '⏳ Verifying payment... Please wait.';
-        setTimeout(function() {
-            var success = Math.random() < 0.7;
-            if (success) {
-                statusEl.className = 'payment-status success';
-                statusEl.textContent = '✅ Payment verified! Upgraded to ' + currentPayment.vipName + '!';
-                showToast('🎉 You are now ' + currentPayment.vipName + '!');
-                document.querySelector('.my-vip-value').textContent = currentPayment.vipName;
-                document.getElementById('vipIdentity').textContent = 'Your identity: ' + currentPayment.vipName;
-                var vipData = { 1: { tasks: 12, profit: 1260 }, 2: { tasks: 24, profit: 3600 }, 3: { tasks: 48, profit: 12000 }, 4: { tasks: 80, profit: 32000 }, 5: { tasks: 120, profit: 96000 } };
-                if (vipData[currentPayment.vipLevel]) {
-                    document.getElementById('vipDailyTasks').textContent = 'Daily Tasks：' + vipData[currentPayment.vipLevel].tasks;
-                    document.getElementById('vipDailyProfit').textContent = 'Daily profit：₦' + vipData[currentPayment.vipLevel].profit;
-                }
-                localStorage.setItem('nrc_vip_level', currentPayment.vipLevel);
-                localStorage.setItem('nrc_vip_name', currentPayment.vipName);
-                localStorage.setItem('nrc_vip_upgraded', 'true');
-                setTimeout(function() { closePaymentPopup(); }, 3000);
-            } else {
-                statusEl.className = 'payment-status failed';
-                statusEl.innerHTML = '❌ Payment not found. <a href="https://pay.nomba.com/pay/1607485047" target="_blank" style="color:#065f46;font-weight:700;text-decoration:underline;">Pay here</a><br><br><button onclick="verifyPayment()" style="background:#f59e0b;color:#1a1a2e;border:none;padding:10px 20px;border-radius:8px;font-weight:600;cursor:pointer;">🔄 Retry</button>';
-            }
-        }, 3000);
+    async function verifyPayment() {
+    const statusEl = document.getElementById('paymentStatus');
+    const phone = localStorage.getItem('nrc_phone');
+
+    if (!phone) {
+        showToast('⚠️ Please login first');
+        return;
     }
 
+    statusEl.className = 'payment-status pending';
+    statusEl.style.display = 'block';
+    statusEl.textContent = '⏳ Submitting your upgrade request...';
+
+    try {
+        const res = await fetch(API_BASE, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                action: 'request_upgrade',
+                phone: phone,
+                vipLevel: currentPayment.vipName,
+                amount: currentPayment.amount
+            })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+            statusEl.className = 'payment-status success';
+            statusEl.innerHTML = `
+                ✅ Request submitted!<br>
+                <span style="font-size:13px;font-weight:400;">
+                    Admin will verify your payment and upgrade you shortly.
+                </span>
+            `;
+            setTimeout(() => closePaymentPopup(), 5000);
+        } else {
+            statusEl.className = 'payment-status failed';
+            statusEl.textContent = '❌ ' + data.message;
+        }
+    } catch (e) {
+        statusEl.className = 'payment-status failed';
+        statusEl.textContent = '❌ Network error: ' + e.message;
+    }
+}
+
     // ===== ADMIN COMMANDS =====
-    ata.success) console.table(data.users);
-        else console.error(data.message);
-    }
-    async function upgradeVIP(phone, vipLevel) {
-        const res = await fetch(API_BASE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'admin_upgrade_vip', phone, vipLevel }) });
+    // ============================================================
+// =================== ADMIN PANEL SCRIPTS =====================
+// ============================================================
+
+// ---- 1. FETCH ALL USERS (Admin) ----
+async function fetchAllUsers() {
+    try {
+        const phone = localStorage.getItem('nrc_phone');
+        const res = await fetch(API_BASE, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'admin_view_users', phone })
+        });
         const data = await res.json();
-        console.log(data.message);
+        if (data.success) {
+            return data.users || [];
+        } else {
+            showToast('❌ ' + data.message);
+            return [];
+        }
+    } catch (e) {
+        showToast('❌ Network error: ' + e.message);
+        return [];
     }
-    async function addBalance(phone, amount) {
-        const res = await fetch(API_BASE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'admin_add_balance', phone, amount }) });
+}
+
+// ---- 2. LOAD & RENDER USER LIST ----
+async function loadAllUsers() {
+    const container = document.getElementById('adminRequests');
+    if (!container) return;
+
+    container.innerHTML = '<div style="text-align:center;color:#64748b;font-size:12px;padding:8px 0;">⏳ Loading...</div>';
+
+    const users = await fetchAllUsers();
+
+    if (!users || users.length === 0) {
+        container.innerHTML = '<div style="text-align:center;color:#64748b;font-size:12px;padding:8px 0;">No users found</div>';
+        document.getElementById('totalUsers').textContent = '0';
+        return;
+    }
+
+    document.getElementById('totalUsers').textContent = users.length;
+
+    let html = '';
+    users.forEach((user) => {
+        const phoneDisplay = user.phone.substring(0, 4) + '****' + user.phone.substring(user.phone.length - 4);
+        html += `
+            <div class="request-item" data-phone="${user.phone}">
+                <div class="req-info">
+                    <div class="req-user">${phoneDisplay}</div>
+                    <div class="req-detail">VIP: ${user.vip_level || 'Trial'} | Balance: ₦${user.balance || 0}</div>
+                </div>
+                <div class="req-actions">
+                    <button class="approve" onclick="upgradeVIP('${user.phone}', 'VIP1')">⬆ VIP1</button>
+                    <button class="approve" onclick="upgradeVIP('${user.phone}', 'VIP2')">⬆ VIP2</button>
+                    <button class="approve" onclick="upgradeVIP('${user.phone}', 'VIP3')">⬆ VIP3</button>
+                    <button class="deny" onclick="addBalance('${user.phone}', 1000)">+₦1k</button>
+                    <button class="deny" onclick="addBalance('${user.phone}', 5000)">+₦5k</button>
+                </div>
+            </div>
+        `;
+    });
+    container.innerHTML = html;
+}
+
+// ---- 3. ADMIN: UPGRADE VIP ----
+async function upgradeVIP(phone, vipLevel) {
+    try {
+        const adminPhone = localStorage.getItem('nrc_phone');
+        const res = await fetch(API_BASE, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'admin_upgrade_vip', phone: adminPhone, vipLevel, targetPhone: phone })
+        });
         const data = await res.json();
-        console.log(data.message);
+        if (data.success) {
+            showToast(`✅ ${phone} upgraded to ${vipLevel}`);
+            // Update current user UI if applicable
+            const currentPhone = localStorage.getItem('nrc_phone');
+            if (currentPhone === phone) {
+                document.getElementById('myVipStatus').textContent = vipLevel;
+                document.getElementById('vipIdentity').textContent = 'Your identity: ' + vipLevel;
+                let userData = JSON.parse(localStorage.getItem('nrc_user_data') || '{}');
+                userData.vip_level = vipLevel;
+                userData.vip_name = vipLevel;
+                localStorage.setItem('nrc_user_data', JSON.stringify(userData));
+            }
+            loadAllUsers(); // refresh list
+        } else {
+            showToast('❌ ' + data.message);
+        }
+    } catch (e) {
+        showToast('❌ Network error: ' + e.message);
     }
-    window.view
+}
+
+// ---- 4. ADMIN: ADD BALANCE ----
+async function addBalance(phone, amount) {
+    try {
+        const adminPhone = localStorage.getItem('nrc_phone');
+        const res = await fetch(API_BASE, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'admin_add_balance', phone: adminPhone, targetPhone: phone, amount })
+        });
+        const data = await res.json();
+        if (data.success) {
+            showToast(`✅ ₦${amount} added to ${phone}`);
+            const currentPhone = localStorage.getItem('nrc_phone');
+            if (currentPhone === phone) {
+                let userData = JSON.parse(localStorage.getItem('nrc_user_data') || '{}');
+                userData.balance = (userData.balance || 0) + amount;
+                localStorage.setItem('nrc_user_data', JSON.stringify(userData));
+                document.getElementById('myBalance').textContent = userData.balance;
+            }
+            loadAllUsers();
+        } else {
+            showToast('❌ ' + data.message);
+        }
+    } catch (e) {
+        showToast('❌ Network error: ' + e.message);
+    }
+}
+
+// ---- 5. LOAD PENDING UPGRADE REQUESTS ----
+async function loadPendingRequests() {
+    const container = document.getElementById('pendingRequestsContainer');
+    if (!container) return;
+
+    const phone = localStorage.getItem('nrc_phone');
+    if (phone !== '08105238080') {
+        container.innerHTML = '<div style="text-align:center;color:#ef4444;font-size:11px;padding:8px 0;">Admin only</div>';
+        return;
+    }
+
+    try {
+        const res = await fetch(API_BASE, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'admin_pending_requests', phone })
+        });
+        const data = await res.json();
+        if (data.success && data.requests.length > 0) {
+            let html = '';
+            data.requests.forEach(req => {
+                html += `
+                    <div class="request-item" style="border-bottom:1px solid #f1f5f9; padding:6px 0;">
+                        <div class="req-info">
+                            <div class="req-user">${req.phone}</div>
+                            <div class="req-detail">${req.requested_vip} | ₦${req.amount}</div>
+                        </div>
+                        <div class="req-actions">
+                            <button class="approve" onclick="approveUpgrade(${req.id}, '${req.phone}', '${req.requested_vip}')">✅ Approve</button>
+                            <button class="deny" onclick="denyUpgrade(${req.id})">❌ Deny</button>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        } else {
+            container.innerHTML = '<div style="text-align:center;color:#94a3b8;font-size:11px;padding:8px 0;">No pending requests</div>';
+        }
+    } catch (e) {
+        container.innerHTML = '<div style="text-align:center;color:#ef4444;font-size:11px;padding:8px 0;">Error loading requests</div>';
+        showToast('❌ Network error: ' + e.message);
+    }
+}
+
+// ---- 6. ADMIN: APPROVE UPGRADE REQUEST ----
+async function approveUpgrade(requestId, phone, vipLevel) {
+    if (!confirm(`Approve VIP upgrade for ${phone} to ${vipLevel}?`)) return;
+    try {
+        const adminPhone = localStorage.getItem('nrc_phone');
+        const res = await fetch(API_BASE, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'admin_approve_upgrade', phone: adminPhone, requestId, vipLevel })
+        });
+        const data = await res.json();
+        if (data.success) {
+            showToast(`✅ ${phone} upgraded to ${vipLevel}`);
+            loadPendingRequests();
+            loadAllUsers();
+        } else {
+            showToast('❌ ' + data.message);
+        }
+    } catch (e) {
+        showToast('❌ Network error: ' + e.message);
+    }
+}
+
+// ---- 7. ADMIN: DENY UPGRADE REQUEST ----
+async function denyUpgrade(requestId) {
+    if (!confirm('Deny this upgrade request?')) return;
+    try {
+        const adminPhone = localStorage.getItem('nrc_phone');
+        const res = await fetch(API_BASE, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'admin_deny_upgrade', phone: adminPhone, requestId })
+        });
+        const data = await res.json();
+        if (data.success) {
+            showToast('✅ Request denied');
+            loadPendingRequests();
+        } else {
+            showToast('❌ ' + data.message);
+        }
+    } catch (e) {
+        showToast('❌ Network error: ' + e.message);
+    }
+}
+
+// ---- 8. TOGGLE ADMIN PANEL ----
+function toggleAdminPanel() {
+    const panel = document.getElementById('adminPanel');
+    panel.classList.toggle('show');
+    if (panel.classList.contains('show')) {
+        loadAllUsers();
+        loadPendingRequests();
+    }
+}
+
+// ---- 9. REFRESH (alias for loadAllUsers) ----
+function refreshAdminPanel() {
+    loadAllUsers();
+    loadPendingRequests();
+}
+
+// ---- 10. EXPOSE FUNCTIONS TO GLOBAL SCOPE ----
+window.viewAllUsers = loadAllUsers;
+window.upgradeVIP = upgradeVIP;
+window.addBalance = addBalance;
+window.loadAllUsers = loadAllUsers;
+window.loadPendingRequests = loadPendingRequests;
+window.approveUpgrade = approveUpgrade;
+window.denyUpgrade = denyUpgrade;
+window.toggleAdminPanel = toggleAdminPanel;
+window.refreshAdminPanel = refreshAdminPanel;
 
     // ===== PLACEHOLDERS =====
     function setRechargeAmount(amt) { document.getElementById('rechargeAmount').value = amt; document.getElementById('rechargeDisplayAmount').textContent = amt; }
