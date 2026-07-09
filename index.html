@@ -1271,7 +1271,6 @@
             </div>
         </div>
         <div class="task-list" id="taskList">
-            <!-- Tasks will be generated dynamically -->
             <div style="text-align:center;padding:20px;color:#94a3b8;">Loading tasks...</div>
         </div>
     </div>
@@ -1703,9 +1702,9 @@
                 localStorage.setItem('nrc_phone', phone);
                 localStorage.setItem('nrc_user_data', JSON.stringify(data.user));
                 if (phone === ADMIN_PHONE) localStorage.setItem('nrc_is_admin', 'true');
-                // Update UI
                 updateUserUI(data.user);
                 loadUserBank();
+                await refreshMyPage();
                 showToast('✅ Welcome!');
                 setTimeout(() => switchTab('home'), 500);
             } else { showToast('❌ ' + data.message); }
@@ -1721,11 +1720,10 @@
         document.getElementById('vipIdentity').textContent = 'Your identity: ' + (user.vip_level || 'Trial');
         document.getElementById('profileVip').textContent = user.vip_level || 'Trial';
         document.getElementById('profileBalance').textContent = '₦' + (user.balance || 0);
-        // Also update VIP page details (daily tasks/profit)
         updateVIPDetails(user.vip_level);
     }
 
-    // ===== UPDATE VIP DETAILS BASED ON LEVEL =====
+    // ===== UPDATE VIP DETAILS =====
     function updateVIPDetails(vipLevel) {
         const vipData = {
             'Trial': { tasks: 6, profit: 630 },
@@ -1762,6 +1760,41 @@
         }
     }
 
+    // ===== REFRESH MY PAGE WITH SERVER DATA =====
+    async function refreshMyPage() {
+        const phone = localStorage.getItem('nrc_phone');
+        if (!phone) return;
+        
+        try {
+            const res = await fetch(API_BASE, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'get_user_stats', phone })
+            });
+            const data = await res.json();
+            if (data.success) {
+                const stats = data.data;
+                document.getElementById('myBalance').textContent = stats.balance;
+                document.getElementById('myVipStatus').textContent = stats.vip_level || 'Trial';
+                document.getElementById('myTotalRevenue').textContent = stats.total_revenue;
+                document.getElementById('myYesterdayEarnings').textContent = stats.yesterday_earnings;
+                document.getElementById('myTodayEarnings').textContent = stats.today_earnings;
+                document.getElementById('myTaskCommission').textContent = stats.task_commission;
+                document.getElementById('myReferralRebate').textContent = stats.referral_rebate;
+                document.getElementById('myTaskRebate').textContent = stats.task_rebate;
+                
+                document.getElementById('profileVip').textContent = stats.vip_level || 'Trial';
+                document.getElementById('profileBalance').textContent = '₦' + stats.balance;
+                document.getElementById('profileTotalRevenue').textContent = '₦' + stats.total_revenue;
+                document.getElementById('profileTodayEarnings').textContent = '₦' + stats.today_earnings;
+                
+                updateVIPDetails(stats.vip_level);
+            }
+        } catch (e) {
+            console.error('Failed to refresh My page:', e);
+        }
+    }
+
     // ===== SWITCH TAB =====
     function switchTab(tab) {
         const loggedIn = localStorage.getItem('nrc_logged_in');
@@ -1778,8 +1811,8 @@
             if (tab === 'withdrawal') loadUserBank();
             if (tab === 'home') showAnnouncement();
             if (tab === 'task') renderTasks();
-            if (tab === 'vip') {
-                // Refresh VIP data from server
+            if (tab === 'my') refreshMyPage();
+            if (tab === 'vip' || tab === 'profile') {
                 const phone = localStorage.getItem('nrc_phone');
                 if (phone) fetchAndUpdateUserData(phone);
             }
@@ -1790,7 +1823,6 @@
     // =================== TASK SYSTEM =============================
     // ============================================================
 
-    // ---- FETCH TASK STATUS ----
     async function fetchTaskStatus() {
         const phone = localStorage.getItem('nrc_phone');
         if (!phone) return null;
@@ -1813,7 +1845,6 @@
         }
     }
 
-    // ---- RENDER TASKS ----
     async function renderTasks() {
         const container = document.getElementById('taskList');
         if (!container) return;
@@ -1826,7 +1857,6 @@
             return;
         }
 
-        // Update today's earnings
         document.getElementById('todayEarnings').textContent = '₦' + (taskData.earned_today || 0);
 
         const remaining = taskData.remaining_tasks;
@@ -1859,7 +1889,6 @@
         container.innerHTML = html;
     }
 
-    // ---- START READING ----
     let isReading = false;
     let timerInterval = null;
     let remainingTime = 19;
@@ -1894,7 +1923,6 @@
 
     function updateTimerDisplay(seconds) { document.getElementById('timerDisplay').textContent = seconds; }
 
-    // ---- COMPLETE TASK (CALLS BACKEND) ----
     async function completeTask(taskId, reward) {
         const phone = localStorage.getItem('nrc_phone');
         if (!phone) {
@@ -1910,16 +1938,13 @@
             });
             const data = await res.json();
             if (data.success) {
-                // Hide the task item
                 const taskItem = document.getElementById('taskItem_' + taskId);
                 if (taskItem) taskItem.style.display = 'none';
 
-                // Update today's earnings
                 document.getElementById('todayEarnings').textContent = '₦' + data.completed_today * (data.reward || 0);
-                // Update balance on My page
                 document.getElementById('myBalance').textContent = data.new_balance;
 
-                // Also update total revenue (optional)
+                await refreshMyPage();
                 showToast('✅ +₦' + data.reward + ' earned!');
             } else {
                 showToast('❌ ' + data.message);
@@ -1940,6 +1965,7 @@
     // ============================================================
     // =================== VIP PAYMENT =============================
     // ============================================================
+
     var currentPayment = { vipLevel: 0, amount: 0, newBalance: 0, vipName: '' };
 
     function openPayment(level, topup, newBalance, vipName) {
@@ -2095,6 +2121,7 @@
                 const currentPhone = localStorage.getItem('nrc_phone');
                 if (currentPhone === phone) {
                     await fetchAndUpdateUserData(phone);
+                    await refreshMyPage();
                 }
                 loadAllUsers();
             } else {
@@ -2120,6 +2147,7 @@
                 const currentPhone = localStorage.getItem('nrc_phone');
                 if (currentPhone === phone) {
                     await fetchAndUpdateUserData(phone);
+                    await refreshMyPage();
                 }
                 loadAllUsers();
             } else {
@@ -2195,6 +2223,7 @@
                 const currentPhone = localStorage.getItem('nrc_phone');
                 if (currentPhone === phone) {
                     await fetchAndUpdateUserData(phone);
+                    await refreshMyPage();
                 }
                 loadPendingRequests();
                 loadAllUsers();
@@ -2228,7 +2257,6 @@
         }
     }
 
-    // ---- TOGGLE ADMIN ----
     function toggleAdminPanel() {
         const panel = document.getElementById('adminPanel');
         panel.classList.toggle('show');
@@ -2243,7 +2271,6 @@
         loadPendingRequests();
     }
 
-    // ---- EXPOSE ADMIN FUNCTIONS ----
     window.viewAllUsers = loadAllUsers;
     window.upgradeVIP = upgradeVIP;
     window.addBalance = addBalance;
@@ -2301,8 +2328,8 @@
         if (loggedIn === 'true') {
             const phone = localStorage.getItem('nrc_phone');
             if (phone) {
-                // Fetch fresh user data from server
                 fetchAndUpdateUserData(phone);
+                refreshMyPage();
             }
             switchTab('home');
             loadUserBank();
