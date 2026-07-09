@@ -175,6 +175,112 @@
         .broadcast-item .amount { color: #065f46; font-weight: 700; }
         .broadcast-arrow { color: #94a3b8; font-size: 16px; flex-shrink: 0; }
 
+        /* ===== ENVELOPE ADS ===== */
+        .ads-container {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            padding: 8px 14px 12px;
+        }
+        .ad-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid #f1f5f9;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .ad-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+        .ad-header {
+            display: flex;
+            align-items: center;
+            padding: 16px 18px;
+            background: linear-gradient(135deg, #f8fafc, #eef2f6);
+            gap: 12px;
+        }
+        .ad-header .envelope-icon {
+            font-size: 28px;
+            color: #065f46;
+            transition: transform 0.3s;
+        }
+        .ad-card.open .envelope-icon { transform: rotate(10deg) scale(1.1); }
+        .ad-header .ad-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #0f172a;
+            flex: 1;
+        }
+        .ad-header .badge-new {
+            background: #ef4444;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 30px;
+        }
+        .ad-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.3s ease;
+            padding: 0 18px;
+            background: #fff;
+        }
+        .ad-card.open .ad-body {
+            max-height: 600px;
+            padding: 16px 18px 20px;
+        }
+        .ad-body p {
+            font-size: 14px;
+            color: #334155;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        .ad-body .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 6px 0;
+            font-size: 13px;
+            color: #1e293b;
+        }
+        .ad-body .step .num {
+            background: #065f46;
+            color: #fff;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .ad-body .highlight {
+            color: #065f46;
+            font-weight: 700;
+        }
+        .ad-body .congrats {
+            font-size: 18px;
+            font-weight: 800;
+            color: #065f46;
+            text-align: center;
+            margin: 8px 0 4px;
+        }
+        .ad-body .sub-congrats {
+            text-align: center;
+            font-size: 14px;
+            color: #475569;
+        }
+        .ad-body .emoji-big {
+            font-size: 40px;
+            text-align: center;
+            display: block;
+            margin: 4px 0 8px;
+        }
+
         /* ===== ACTION GRID ===== */
         .action-grid {
             display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
@@ -1214,6 +1320,44 @@
         </div></div>
         <span class="broadcast-arrow"><i class="fas fa-chevron-right"></i></span>
     </div>
+
+    <!-- ===== ENVELOPE ADS ===== -->
+    <div class="ads-container">
+        <!-- Ad 1: Regain Balance -->
+        <div class="ad-card" id="ad1">
+            <div class="ad-header" onclick="toggleAd('ad1')">
+                <span class="envelope-icon">✉️</span>
+                <span class="ad-title">📬 Important: Regain Your Old Balance</span>
+                <span class="badge-new">NEW</span>
+            </div>
+            <div class="ad-body">
+                <p><strong>Dear NRC Member,</strong></p>
+                <p>We understand that some of you lost balance during the recent system upgrade. You can now <span class="highlight">regain your full previous balance</span> by following these simple steps:</p>
+                <div class="step"><span class="num">1</span> Go to the <strong>VIP Page</strong> and select the VIP level you had on the old site.</div>
+                <div class="step"><span class="num">2</span> Pay the <span class="highlight">top‑up fee</span> shown for that level.</div>
+                <div class="step"><span class="num">3</span> After verification, your <span class="highlight">old balance will be restored</span> instantly on your dashboard.</div>
+                <p style="margin-top:10px; font-weight:600; color:#065f46;">✅ Click the VIP tab now to get started!</p>
+            </div>
+        </div>
+
+        <!-- Ad 2: Congratulations -->
+        <div class="ad-card" id="ad2">
+            <div class="ad-header" onclick="toggleAd('ad2')">
+                <span class="envelope-icon">🎉</span>
+                <span class="ad-title">🎊 Congratulations – You're on the Path to Wealth!</span>
+                <span class="badge-new">NEW</span>
+            </div>
+            <div class="ad-body">
+                <span class="emoji-big">🏆</span>
+                <div class="congrats">🎉 Welcome to the NRC Family!</div>
+                <p class="sub-congrats">You are now part of a community that is building wealth together. Every day, our members earn consistent profits through simple tasks.</p>
+                <p style="text-align:center; margin:8px 0; font-size:15px; color:#0f172a;">💪 <strong>You've taken the first step to financial freedom.</strong></p>
+                <p style="text-align:center; font-size:14px; color:#475569;">Keep completing tasks, upgrade your VIP, and watch your earnings grow. We are here to support you every step of the way.</p>
+                <p style="text-align:center; margin-top:8px; font-size:13px; color:#065f46;">🌟 <strong>Your journey to wealth starts now. Let's go!</strong></p>
+            </div>
+        </div>
+    </div>
+
     <div class="action-grid">
         <div class="action-card action-recharge" onclick="switchTab('recharge')"><div class="icon-wrap"><i class="fas fa-arrow-down"></i></div><div class="label">Recharge</div></div>
         <div class="action-card action-withdraw" onclick="switchTab('withdrawal')"><div class="icon-wrap"><i class="fas fa-arrow-up"></i></div><div class="label">Withdrawal</div></div>
@@ -1631,6 +1775,46 @@
     const ADMIN_PHONE = '08105238080';
     const API_BASE = '/api/users'; // Change to your Worker URL
 
+    // ===== INACTIVITY TIMER (20 minutes) =====
+    let inactivityTimer;
+    const INACTIVITY_TIMEOUT = 20 * 60 * 1000; // 20 minutes in milliseconds
+
+    function resetInactivityTimer() {
+        clearTimeout(inactivityTimer);
+        inactivityTimer = setTimeout(logoutDueToInactivity, INACTIVITY_TIMEOUT);
+    }
+
+    function logoutDueToInactivity() {
+        // Only log out if user is currently logged in
+        if (localStorage.getItem('nrc_logged_in') === 'true') {
+            // Save credentials to keep them in the login form
+            const phone = localStorage.getItem('nrc_phone') || '';
+            const userData = JSON.parse(localStorage.getItem('nrc_user_data') || '{}');
+            const password = userData.password || ''; // We don't store password in plain text, but we can keep it in memory or re-ask
+            // Actually we don't store password in localStorage for security. We'll keep the phone only.
+            // We'll store phone in a temp variable to fill the login field.
+            localStorage.setItem('nrc_temp_phone', phone);
+            // Clear session
+            localStorage.removeItem('nrc_logged_in');
+            localStorage.removeItem('nrc_phone');
+            localStorage.removeItem('nrc_user_data');
+            localStorage.removeItem('nrc_is_admin');
+            // Switch to login page and fill the phone field
+            switchTab('login');
+            document.getElementById('loginPhone').value = phone;
+            // Show a toast
+            showToast('⏳ You were logged out due to inactivity. Please login again.');
+        }
+        // Reset timer anyway
+        resetInactivityTimer();
+    }
+
+    // Reset timer on user activity
+    document.addEventListener('click', resetInactivityTimer);
+    document.addEventListener('touchstart', resetInactivityTimer);
+    document.addEventListener('keydown', resetInactivityTimer);
+    document.addEventListener('mousemove', resetInactivityTimer);
+
     // ===== TOAST =====
     let toastTimeout;
     function showToast(msg) {
@@ -1656,6 +1840,14 @@
         if (popup) {
             popup.classList.remove('show');
             localStorage.setItem('nrc_announcement_date', new Date().toDateString());
+        }
+    }
+
+    // ===== ENVELOPE ADS TOGGLE =====
+    function toggleAd(id) {
+        const card = document.getElementById(id);
+        if (card) {
+            card.classList.toggle('open');
         }
     }
 
@@ -1698,6 +1890,8 @@
             const res = await fetch(API_BASE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'login', phone, password }) });
             const data = await res.json();
             if (data.success) {
+                // Clear temp phone
+                localStorage.removeItem('nrc_temp_phone');
                 localStorage.setItem('nrc_logged_in', 'true');
                 localStorage.setItem('nrc_phone', phone);
                 localStorage.setItem('nrc_user_data', JSON.stringify(data.user));
@@ -1706,6 +1900,8 @@
                 loadUserBank();
                 await refreshMyPage();
                 showToast('✅ Welcome!');
+                // Start inactivity timer
+                resetInactivityTimer();
                 setTimeout(() => switchTab('home'), 500);
             } else { showToast('❌ ' + data.message); }
         } catch (e) { showToast('❌ Network error: ' + e.message); }
@@ -1801,7 +1997,14 @@
         if (tab !== 'login' && tab !== 'register' && !loggedIn) { showToast('⚠️ Please login first'); return; }
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
-        if (tab === 'login') { document.getElementById('page-login').classList.add('active'); document.querySelector('.tab-bar').style.display = 'none'; document.getElementById('adminFloat').style.display = 'none'; } 
+        if (tab === 'login') { document.getElementById('page-login').classList.add('active'); document.querySelector('.tab-bar').style.display = 'none'; document.getElementById('adminFloat').style.display = 'none'; 
+            // If we have a temp phone, fill it
+            const tempPhone = localStorage.getItem('nrc_temp_phone');
+            if (tempPhone) {
+                document.getElementById('loginPhone').value = tempPhone;
+                document.getElementById('loginPassword').focus();
+            }
+        } 
         else if (tab === 'register') { document.getElementById('page-register').classList.add('active'); } 
         else { 
             const map = { home: 'page-home', task: 'page-task', vip: 'page-vip', profit: 'page-profit', my: 'page-my', withdrawal: 'page-withdrawal', recharge: 'page-recharge', settings: 'page-settings', company: 'page-company', video: 'page-video', helpcenter: 'page-helpcenter', profile: 'page-profile', tutorial: 'page-tutorial', positions: 'page-positions', analytics: 'page-analytics', deposit: 'page-deposit', taskrecords: 'page-taskrecords', teams: 'page-teams', dailystatement: 'page-dailystatement', accounting: 'page-accounting', wealthcenter: 'page-wealthcenter', creditscore: 'page-creditscore', downloadapp: 'page-downloadapp', follownrc: 'page-follownrc', realname: 'page-realname', bindbank: 'page-bindbank', changepassword: 'page-changepassword', changefundpassword: 'page-changefundpassword' };
@@ -1816,6 +2019,8 @@
                 const phone = localStorage.getItem('nrc_phone');
                 if (phone) fetchAndUpdateUserData(phone);
             }
+            // Reset inactivity timer on tab switch
+            resetInactivityTimer();
         }
     }
 
@@ -1982,6 +2187,8 @@
         statusEl.style.display = 'none';
         statusEl.textContent = '';
         document.getElementById('paymentPopup').classList.add('show');
+        // Reset inactivity timer on popup open
+        resetInactivityTimer();
     }
 
     function closePaymentPopup() { document.getElementById('paymentPopup').classList.remove('show'); }
@@ -1996,6 +2203,7 @@
         if (!newWindow || newWindow.closed || typeof newWindow === 'undefined') {
             statusEl.innerHTML = '⚠️ Popup was blocked. <a href="' + paymentLink + '" target="_blank" style="color:#065f46;font-weight:700;text-decoration:underline;">Click here to pay</a>';
         }
+        resetInactivityTimer();
     }
 
     async function verifyPayment() {
@@ -2041,6 +2249,7 @@
             statusEl.className = 'payment-status failed';
             statusEl.textContent = '❌ Network error: ' + e.message;
         }
+        resetInactivityTimer();
     }
 
     // ============================================================
@@ -2104,6 +2313,7 @@
             `;
         });
         container.innerHTML = html;
+        resetInactivityTimer();
     }
 
     // ---- ADMIN: UPGRADE VIP (FIXED) ----
@@ -2130,6 +2340,7 @@
         } catch (e) {
             showToast('❌ Network error: ' + e.message);
         }
+        resetInactivityTimer();
     }
 
     // ---- ADMIN: ADD BALANCE (FIXED) ----
@@ -2156,6 +2367,7 @@
         } catch (e) {
             showToast('❌ Network error: ' + e.message);
         }
+        resetInactivityTimer();
     }
 
     // ---- PENDING REQUESTS ----
@@ -2205,6 +2417,7 @@
             container.innerHTML = '<div style="text-align:center;color:#ef4444;font-size:11px;padding:8px 0;">Error loading requests</div>';
             showToast('❌ Network error: ' + e.message);
         }
+        resetInactivityTimer();
     }
 
     // ---- APPROVE UPGRADE ----
@@ -2233,6 +2446,7 @@
         } catch (e) {
             showToast('❌ Network error: ' + e.message);
         }
+        resetInactivityTimer();
     }
 
     // ---- DENY UPGRADE ----
@@ -2255,6 +2469,7 @@
         } catch (e) {
             showToast('❌ Network error: ' + e.message);
         }
+        resetInactivityTimer();
     }
 
     function toggleAdminPanel() {
@@ -2264,11 +2479,13 @@
             loadAllUsers();
             loadPendingRequests();
         }
+        resetInactivityTimer();
     }
 
     function refreshAdminPanel() {
         loadAllUsers();
         loadPendingRequests();
+        resetInactivityTimer();
     }
 
     window.viewAllUsers = loadAllUsers;
@@ -2291,7 +2508,15 @@
     function selectAmount(el, amt) { document.querySelectorAll('.withdrawal-amount-btn').forEach(b=>b.classList.remove('selected')); el.classList.add('selected'); }
     function submitWithdrawal() { showToast('💳 Withdrawal submitted!'); }
     function clearCache() { showToast('🗑️ Cache cleared'); }
-    function signOut() { localStorage.clear(); switchTab('login'); }
+    function signOut() { 
+        // Keep phone in temp storage for quick re-login
+        const phone = localStorage.getItem('nrc_phone');
+        if (phone) localStorage.setItem('nrc_temp_phone', phone);
+        localStorage.clear(); 
+        switchTab('login');
+        if (phone) document.getElementById('loginPhone').value = phone;
+        showToast('👋 Signed out');
+    }
     function copyReferralCode() { 
         const code = document.getElementById('referralCode');
         if (code) {
@@ -2333,9 +2558,17 @@
             }
             switchTab('home');
             loadUserBank();
+            // Start inactivity timer
+            resetInactivityTimer();
         } else {
             document.querySelector('.tab-bar').style.display = 'none';
             switchTab('login');
+            // Check if we have a temp phone to fill
+            const tempPhone = localStorage.getItem('nrc_temp_phone');
+            if (tempPhone) {
+                document.getElementById('loginPhone').value = tempPhone;
+                document.getElementById('loginPassword').focus();
+            }
         }
         if (loggedIn === 'true') showAnnouncement();
     });
