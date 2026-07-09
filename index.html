@@ -1315,16 +1315,65 @@
         .install-btn i { font-size: 24px; }
         .install-btn .sub-text { font-size: 12px; font-weight: 400; opacity: 0.8; }
 
+        /* ===== FLOATING WHATSAPP BUTTON ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 160px;
+            right: 16px;
+            z-index: 999;
+            background: #25D366;
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            animation: pulse-wa 2s infinite;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
+        }
+        .whatsapp-float:active { transform: scale(0.9); }
+        @keyframes pulse-wa {
+            0% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 4px 40px rgba(37, 211, 102, 0.7); }
+            100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+        }
+        .whatsapp-float .tooltip {
+            position: absolute;
+            right: 70px;
+            background: #1e293b;
+            color: #fff;
+            font-size: 12px;
+            padding: 6px 14px;
+            border-radius: 30px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        .whatsapp-float:hover .tooltip { opacity: 1; }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 380px) {
             .tab-item { width: 50px; height: 50px; font-size: 8px; }
             .tab-item .tab-icon { font-size: 18px; }
             .admin-panel { min-width: 240px; right: -10px; }
             .detail-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+            .whatsapp-float { width: 50px; height: 50px; font-size: 26px; bottom: 150px; right: 12px; }
         }
         @media (min-width: 500px) {
             body { max-width: 480px; margin: 0 auto; background: #e8ecf1; }
             .tab-bar { max-width: 480px; left: 50%; transform: translateX(-50%); }
+            .whatsapp-float { right: calc(50% - 224px); }
         }
     </style>
 </head>
@@ -1354,6 +1403,12 @@
         <button class="announcement-btn" onclick="closeAnnouncement()">I Understand</button>
     </div>
 </div>
+
+<!-- ===== FLOATING WHATSAPP GROUP BUTTON ===== -->
+<a href="https://chat.whatsapp.com/CSxASJC9pSj7emtix8G0H9?mode=gi_t" target="_blank" class="whatsapp-float" id="whatsappFloat" aria-label="Join NRC WhatsApp Group">
+    <i class="fab fa-whatsapp"></i>
+    <span class="tooltip">Join WhatsApp Group</span>
+</a>
 
 <!-- ===== LOGIN ===== -->
 <div id="page-login" class="page active">
@@ -1399,7 +1454,25 @@
             <div class="row"><span class="label">Top-up Amount</span><span class="value" id="paymentTopup">₦0</span></div>
             <div class="row"><span class="label">New Balance</span><span class="value" id="paymentNewBalance">₦0</span></div>
         </div>
-        <button class="payment-btn" onclick="processPayment()">💳 Pay Now</button>
+
+        <!-- Bank Transfer Details -->
+        <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:12px 14px;margin-bottom:12px;">
+            <p style="font-size:12px;font-weight:700;color:#065f46;">🏦 Transfer to this account:</p>
+            <p style="font-size:13px;color:#1e293b;"><strong>Bank:</strong> Nombank MFB</p>
+            <p style="font-size:13px;color:#1e293b;"><strong>Account:</strong> 2519487868</p>
+            <p style="font-size:13px;color:#1e293b;"><strong>Name:</strong> Tradehub Services</p>
+            <p style="font-size:11px;color:#64748b;margin-top:4px;">💡 Copy the account details and make your transfer via your banking app.</p>
+        </div>
+
+        <button class="payment-btn" onclick="processPayment()">📋 Copy Account Details</button>
+
+        <!-- Transaction Reference Input -->
+        <div style="margin-top:12px;">
+            <label style="font-size:13px;font-weight:600;color:#0f172a;display:block;margin-bottom:4px;">📋 Transaction Reference</label>
+            <input type="text" id="transactionRef" placeholder="Enter the reference from your bank transfer" style="width:100%;padding:10px 14px;border:1px solid #e2e8f0;border-radius:10px;font-size:14px;outline:none;background:#f8fafc;">
+            <p style="font-size:11px;color:#94a3b8;margin-top:4px;">e.g., NMB123456789</p>
+        </div>
+
         <button class="payment-verify-btn" onclick="verifyPayment()">✅ I Have Paid - Verify</button>
         <div class="payment-status" id="paymentStatus"></div>
         <button class="payment-close-btn" onclick="closePaymentPopup()">Cancel</button>
@@ -2492,13 +2565,21 @@
 
     function processPayment() {
         var statusEl = document.getElementById('paymentStatus');
+        var bankDetails = "🏦 Nombank MFB\n📋 2519487868\n👤 Tradehub Services";
         var paymentLink = 'https://pay.nomba.com/pay/1607485047';
+
+        navigator.clipboard?.writeText(bankDetails).then(() => {
+            showToast('✅ Account details copied to clipboard!');
+        }).catch(() => {
+            showToast('📋 Bank: Nombank MFB | Account: 2519487868 | Name: Tradehub Services');
+        });
+
         var newWindow = window.open(paymentLink, '_blank');
         statusEl.className = 'payment-status pending';
         statusEl.style.display = 'block';
-        statusEl.textContent = '⏳ Payment page opened. Complete payment then click "I Have Paid".';
+        statusEl.textContent = '📋 Account details copied! Complete your transfer, then enter the reference and click "I Have Paid".';
         if (!newWindow || newWindow.closed || typeof newWindow === 'undefined') {
-            statusEl.innerHTML = '⚠️ Popup was blocked. <a href="' + paymentLink + '" target="_blank" style="color:#065f46;font-weight:700;text-decoration:underline;">Click here to pay</a>';
+            statusEl.innerHTML = '📋 Account details copied! Complete your transfer, then enter the reference and click "I Have Paid".';
         }
         resetInactivityTimer();
     }
@@ -2506,19 +2587,58 @@
     async function verifyPayment() {
         const statusEl = document.getElementById('paymentStatus');
         const phone = localStorage.getItem('nrc_phone');
-        if (!phone) { showToast('⚠️ Please login first'); return; }
+        const ref = document.getElementById('transactionRef').value.trim();
+
+        if (!phone) {
+            showToast('⚠️ Please login first');
+            return;
+        }
+
+        if (!ref) {
+            showToast('⚠️ Please enter your transaction reference');
+            statusEl.className = 'payment-status pending';
+            statusEl.style.display = 'block';
+            statusEl.textContent = '📋 Please enter the transaction reference from your bank transfer.';
+            return;
+        }
+
         statusEl.className = 'payment-status pending';
         statusEl.style.display = 'block';
         statusEl.textContent = '⏳ Submitting your upgrade request...';
+
         try {
-            const res = await fetch(API_BASE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'request_upgrade', phone: phone, vipLevel: currentPayment.vipName, amount: currentPayment.amount }) });
+            const res = await fetch(API_BASE, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    action: 'request_upgrade',
+                    phone: phone,
+                    vipLevel: currentPayment.vipName,
+                    amount: currentPayment.amount,
+                    reference: ref
+                })
+            });
             const data = await res.json();
+
             if (data.success) {
                 statusEl.className = 'payment-status success';
-                statusEl.innerHTML = `✅ Request submitted!<br><span style="font-size:13px;font-weight:400;">Admin will verify your payment and upgrade you shortly.</span>`;
+                statusEl.innerHTML = `
+                    ✅ Request submitted successfully!<br>
+                    <span style="font-size:13px;font-weight:400;">
+                        Your payment reference <strong>${ref}</strong> has been recorded.<br>
+                        Admin will verify your payment and upgrade you shortly.
+                    </span>
+                `;
+                document.getElementById('transactionRef').value = '';
                 setTimeout(() => closePaymentPopup(), 5000);
-            } else { statusEl.className = 'payment-status failed'; statusEl.textContent = '❌ ' + data.message; }
-        } catch (e) { statusEl.className = 'payment-status failed'; statusEl.textContent = '❌ Network error: ' + e.message; }
+            } else {
+                statusEl.className = 'payment-status failed';
+                statusEl.textContent = '❌ ' + data.message;
+            }
+        } catch (e) {
+            statusEl.className = 'payment-status failed';
+            statusEl.textContent = '❌ Network error: ' + e.message;
+        }
         resetInactivityTimer();
     }
 
@@ -2623,9 +2743,10 @@
             if (data.success && data.requests.length > 0) {
                 let html = '';
                 data.requests.forEach(req => {
+                    const refDisplay = req.reference ? `Ref: ${req.reference}` : 'No reference';
                     html += `<div class="request-item" style="border-bottom:1px solid #f1f5f9; padding:6px 0;">
                         <div class="req-info" style="flex:1;"><div class="req-user" style="font-weight:600;color:#0f172a;font-size:12px;">${req.phone}</div>
-                        <div class="req-detail" style="font-size:10px;color:#64748b;">${req.requested_vip} | ₦${req.amount} | ${req.created_at ? new Date(req.created_at).toLocaleDateString() : ''}</div></div>
+                        <div class="req-detail" style="font-size:10px;color:#64748b;">${req.requested_vip} | ₦${req.amount} | ${refDisplay} | ${req.created_at ? new Date(req.created_at).toLocaleDateString() : ''}</div></div>
                         <div class="req-actions" style="display:flex;gap:4px;">
                             <button class="approve" onclick="approveUpgrade(${req.id}, '${req.phone}', '${req.requested_vip}')" style="padding:2px 12px;border-radius:30px;border:none;font-size:10px;font-weight:600;cursor:pointer;background:#10b981;color:#fff;">✅ Approve</button>
                             <button class="deny" onclick="denyUpgrade(${req.id})" style="padding:2px 12px;border-radius:30px;border:none;font-size:10px;font-weight:600;cursor:pointer;background:#ef4444;color:#fff;">❌ Deny</button>
