@@ -1,2812 +1,1114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>NRC Cooperative Wealth Zone</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
-    /* ===== FONT & RESET ===== */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap');
+        /* ===== FONT & RESET ===== */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap');
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    body {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-        background: #f5f7fb;
-        color: #0f172a;
-        padding-bottom: 70px;
-        overflow-x: hidden;
-    }
-
-    .page {
-        display: none;
-        animation: fadeUp 0.3s ease;
-    }
-    .page.active {
-        display: block;
-    }
-
-    @keyframes fadeUp {
-        from {
-            opacity: 0;
-            transform: translateY(12px);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
-        to {
-            opacity: 1;
-            transform: translateY(0);
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f7fb;
+            color: #0f172a;
+            padding-bottom: 70px;
+            overflow-x: hidden;
         }
-    }
 
-    /* ===== HEADERS ===== */
-    .top-header {
-        background: linear-gradient(135deg, #065f46, #0a7a5a);
-        padding: 14px 18px 12px;
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        box-shadow: 0 2px 16px rgba(6, 95, 70, 0.25);
-    }
-    .top-header-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .top-header-left {
-        color: #fff;
-        font-size: 16px;
-        font-weight: 700;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        padding: 4px 8px;
-        border-radius: 8px;
-        transition: background 0.2s;
-    }
-    .top-header-left:active {
-        background: rgba(255, 255, 255, 0.15);
-    }
-    .top-header-center {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-    .top-header-center .book-icon {
-        color: #fbbf24;
-        font-size: 20px;
-    }
-    .top-header-center .nrc-logo {
-        color: #fff;
-        font-family: 'Times New Roman', 'Georgia', serif;
-        font-size: 26px;
-        font-weight: 900;
-        font-style: italic;
-        letter-spacing: 3px;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        text-transform: uppercase;
-    }
-    .top-header-right {
-        color: #fff;
-        font-size: 20px;
-        cursor: pointer;
-        padding: 4px 8px;
-        border-radius: 8px;
-        transition: background 0.2s;
-    }
-    .top-header-right:active {
-        background: rgba(255, 255, 255, 0.15);
-    }
+        .page { display: none; animation: fadeUp 0.3s ease; }
+        .page.active { display: block; }
 
-    .page-nav {
-        background: linear-gradient(135deg, #065f46, #0a7a5a);
-        padding: 14px 18px 12px;
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        box-shadow: 0 2px 16px rgba(6, 95, 70, 0.25);
-    }
-    .page-nav-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .page-nav-left {
-        color: #fff;
-        font-size: 20px;
-        cursor: pointer;
-        padding: 4px 8px;
-        border-radius: 8px;
-        transition: background 0.2s;
-    }
-    .page-nav-left:active {
-        background: rgba(255, 255, 255, 0.15);
-    }
-    .page-nav-title {
-        color: #fff;
-        font-size: 17px;
-        font-weight: 600;
-    }
-    .page-nav-right {
-        width: 40px;
-    }
-
-    /* ===== LOGIN / REGISTER ===== */
-    .login-container {
-        padding: 40px 20px 20px;
-        background: linear-gradient(135deg, #065f46, #0a7a5a);
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .login-content {
-        width: 100%;
-        max-width: 400px;
-    }
-    .login-logo {
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    .login-brand {
-        color: #fff;
-        font-size: 42px;
-        font-weight: 900;
-        letter-spacing: 1px;
-        display: block;
-    }
-    .login-sub {
-        color: rgba(255, 255, 255, 0.6);
-        font-size: 14px;
-        display: block;
-        margin-top: 4px;
-    }
-    .login-box {
-        background: #fff;
-        border-radius: 24px;
-        padding: 30px 24px;
-        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
-    }
-    .login-field {
-        margin-bottom: 16px;
-    }
-    .login-label {
-        font-size: 14px;
-        font-weight: 600;
-        color: #0f172a;
-        display: block;
-        margin-bottom: 6px;
-    }
-    .login-label i {
-        color: #065f46;
-        margin-right: 6px;
-    }
-    .login-input {
-        width: 100%;
-        padding: 14px 16px;
-        border: 1px solid #e2e8f0;
-        border-radius: 12px;
-        font-size: 15px;
-        outline: none;
-        background: #f8fafc;
-        transition: border 0.2s, box-shadow 0.2s;
-    }
-    .login-input:focus {
-        border-color: #065f46;
-        box-shadow: 0 0 0 3px rgba(6, 95, 70, 0.1);
-        background: #fff;
-    }
-    .login-btn {
-        width: 100%;
-        background: linear-gradient(135deg, #065f46, #0a7a5a);
-        color: #fff;
-        border: none;
-        border-radius: 30px;
-        padding: 14px;
-        font-size: 16px;
-        font-weight: 700;
-        cursor: pointer;
-        margin-top: 8px;
-        box-shadow: 0 4px 16px rgba(6, 95, 70, 0.25);
-        transition: transform 0.15s, opacity 0.15s;
-    }
-    .login-btn:active {
-        transform: scale(0.96);
-        opacity: 0.9;
-    }
-    .login-btn-secondary {
-        width: 100%;
-        background: #eef2f6;
-        color: #0f172a;
-        border: 1px solid #d1d5db;
-        border-radius: 30px;
-        padding: 14px;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        margin-top: 10px;
-        transition: transform 0.15s, background 0.2s;
-    }
-    .login-btn-secondary:active {
-        transform: scale(0.96);
-        background: #dce2ea;
-    }
-    .login-footer {
-        text-align: center;
-        font-size: 11px;
-        color: rgba(255, 255, 255, 0.3);
-        padding: 20px 0 10px;
-        letter-spacing: 0.5px;
-    }
-
-    /* ===== CAROUSEL ===== */
-    .swipe {
-        margin: 12px 14px;
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-        position: relative;
-        background: #e8ecf1;
-    }
-    .swipe-track {
-        display: flex;
-        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .swipe-item {
-        min-width: 100%;
-        aspect-ratio: 16/7;
-    }
-    .swipe-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    .swipe-indicators {
-        position: absolute;
-        bottom: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 8px;
-    }
-    .swipe-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.4);
-        transition: all 0.3s;
-        cursor: pointer;
-    }
-    .swipe-dot.active {
-        background: #065f46;
-        width: 24px;
-        border-radius: 4px;
-    }
-
-    /* ===== BROADCAST ===== */
-    .broadcast {
-        background: #fff;
-        margin: 0 14px 12px;
-        padding: 10px 16px;
-        border-radius: 14px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
-        border: 1px solid #f1f5f9;
-        overflow: hidden;
-        height: 48px;
-    }
-    .broadcast-icon {
-        color: #065f46;
-        font-size: 18px;
-        flex-shrink: 0;
-        animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-        0%,
-        100% {
-            opacity: 1;
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        50% {
-            opacity: 0.4;
+
+        /* ===== HEADERS ===== */
+        .top-header {
+            background: linear-gradient(135deg, #065f46, #0a7a5a);
+            padding: 14px 18px 12px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 16px rgba(6, 95, 70, 0.25);
         }
-    }
-    .broadcast-track {
-        flex: 1;
-        overflow: hidden;
-        height: 30px;
-        position: relative;
-    }
-    .broadcast-list {
-        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .broadcast-item {
-        height: 30px;
-        display: flex;
-        align-items: center;
-        font-size: 12px;
-        color: #0f172a;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        font-weight: 500;
-    }
-    .broadcast-item .tag {
-        background: #065f46;
-        color: #fff;
-        font-size: 8px;
-        padding: 1px 10px;
-        border-radius: 12px;
-        margin-right: 8px;
-        font-weight: 600;
-        flex-shrink: 0;
-    }
-    .broadcast-item .amount {
-        color: #065f46;
-        font-weight: 700;
-    }
-    .broadcast-arrow {
-        color: #94a3b8;
-        font-size: 16px;
-        flex-shrink: 0;
-    }
-
-    /* ===== ACTION GRID ===== */
-    .action-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-        padding: 10px 14px 8px;
-    }
-    .action-card {
-        border-radius: 16px;
-        padding: 18px 16px;
-        min-height: 64px;
-        cursor: pointer;
-        transition: all 0.25s;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-        border: none;
-        display: flex;
-        align-items: center;
-        gap: 14px;
-    }
-    .action-card:active {
-        transform: scale(0.95);
-    }
-    .action-card .icon-wrap {
-        width: 44px;
-        height: 44px;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 20px;
-        flex-shrink: 0;
-    }
-    .action-card .label {
-        font-size: 17px;
-        font-weight: 700;
-        line-height: 1.2;
-    }
-    .action-recharge {
-        background: linear-gradient(135deg, #f7ede4, #ecdac9);
-        border: 1px solid #dcc4ae;
-    }
-    .action-recharge .icon-wrap {
-        background: rgba(184, 134, 11, 0.15);
-        color: #b8860b;
-    }
-    .action-recharge .label {
-        color: #7a5a2e;
-    }
-    .action-withdraw {
-        background: linear-gradient(135deg, #fce8ed, #f5d0d8);
-        border: 1px solid #ecc0c8;
-    }
-    .action-withdraw .icon-wrap {
-        background: rgba(233, 30, 99, 0.12);
-        color: #c62828;
-    }
-    .action-withdraw .label {
-        color: #9e3a4a;
-    }
-    .action-ai {
-        background: linear-gradient(135deg, #e8f0fe, #d0e0f8);
-        border: 1px solid #b8cce8;
-    }
-    .action-ai .icon-wrap {
-        background: rgba(33, 150, 243, 0.12);
-        color: #1565c0;
-    }
-    .action-ai .label {
-        color: #0d47a1;
-    }
-    .action-deposit {
-        background: linear-gradient(135deg, #fdf6e3, #fce8b8);
-        border: 1px solid #f0d88a;
-    }
-    .action-deposit .icon-wrap {
-        background: rgba(249, 168, 37, 0.15);
-        color: #7a6200;
-    }
-    .action-deposit .label {
-        color: #7a6200;
-    }
-
-    /* ===== QUICK LINKS ===== */
-    .quick-links {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 8px;
-        padding: 8px 14px 12px;
-    }
-    .quick-link {
-        background: #fff;
-        border-radius: 16px;
-        padding: 14px 6px 12px;
-        text-align: center;
-        font-size: 11px;
-        color: #475569;
-        font-weight: 500;
-        cursor: pointer;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-        border: 1px solid #f1f5f9;
-        transition: all 0.25s;
-    }
-    .quick-link:active {
-        transform: scale(0.93);
-        background: #f8fafc;
-        border-color: #065f46;
-    }
-    .quick-link i {
-        font-size: 20px;
-        color: #065f46;
-        display: block;
-        margin-bottom: 6px;
-    }
-    .quick-link .link-label {
-        font-size: 10px;
-        color: #64748b;
-    }
-
-    /* ===== WEALTH SWIPE ===== */
-    .wealth-swipe {
-        margin: 4px 14px 12px;
-        border-radius: 14px;
-        overflow: hidden;
-        background: #fff;
-        border: 1px solid #f1f5f9;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
-        height: 100px;
-        position: relative;
-    }
-    .wealth-track {
-        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .wealth-item {
-        height: 100px;
-        background: linear-gradient(135deg, #065f46, #0a7a5a);
-        padding: 16px 22px;
-        display: flex;
-        align-items: center;
-        color: #fff;
-        position: relative;
-        overflow: hidden;
-    }
-    .wealth-item::before {
-        content: '';
-        position: absolute;
-        right: -30px;
-        bottom: -30px;
-        width: 140px;
-        height: 140px;
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: 50%;
-    }
-    .wealth-item .info {
-        position: relative;
-        z-index: 2;
-        flex: 1;
-    }
-    .wealth-item .info .text {
-        font-size: 13px;
-        font-weight: 400;
-        opacity: 0.85;
-    }
-    .wealth-item .info .amount {
-        font-size: 20px;
-        font-weight: 800;
-        color: #fbbf24;
-        margin-top: 2px;
-    }
-    .wealth-item .info .amount .currency {
-        font-size: 14px;
-        opacity: 0.6;
-    }
-    .wealth-item .arrow {
-        color: rgba(255, 255, 255, 0.25);
-        font-size: 22px;
-        position: relative;
-        z-index: 2;
-    }
-    .wealth-item .emoji-bg {
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 60px;
-        opacity: 0.06;
-        z-index: 1;
-    }
-
-    /* ===== TASK ===== */
-    .task-container {
-        margin: 0 10px;
-        border-radius: 14px;
-        overflow: hidden;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-    }
-    .task-header {
-        padding-top: 30px;
-        padding-left: 15px;
-    }
-    .task-header h2 {
-        color: #5ea692;
-        font-weight: 800;
-        font-size: 22px;
-    }
-    .task-header .sub {
-        padding-top: 2px;
-        padding-left: 15px;
-        color: #065f46;
-        font-weight: 700;
-        font-size: 14px;
-    }
-    .task-header .sub2 {
-        padding-top: 2px;
-        padding-left: 15px;
-        color: #6b8e44;
-        font-weight: 500;
-        font-size: 12px;
-    }
-    .earnings-row {
-        padding: 20px 0px 20px 15px;
-        color: #fff;
-        display: flex;
-        gap: 10px;
-    }
-    .earning-card {
-        flex: 1;
-        border-radius: 12px;
-        height: 71px;
-        display: flex;
-        align-items: center;
-        padding: 0 14px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    }
-    .earning-card .label {
-        font-size: 11px;
-        font-weight: 500;
-    }
-    .earning-card .value {
-        font-size: 18px;
-        font-weight: 700;
-        margin-top: 2px;
-    }
-    .earning-card.green {
-        background: #cbe3b0;
-        flex: 1.1;
-        margin-right: 5px;
-    }
-    .earning-card.green .label {
-        color: #6b8e44;
-    }
-    .earning-card.green .value {
-        color: #6b8e44;
-    }
-    .earning-card.gold {
-        background: #efe4ce;
-        flex: 1.1;
-        margin-left: 5px;
-    }
-    .earning-card.gold .label {
-        color: #bc9f64;
-    }
-    .earning-card.gold .value {
-        color: #bc9f64;
-    }
-    .task-list {
-        margin: 0;
-        padding: 0;
-        background: #fff;
-    }
-    .task-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 14px 18px;
-        border-bottom: 1px solid #f1f5f9;
-        background: #fff;
-        transition: all 0.3s;
-        cursor: pointer;
-    }
-    .task-item:active {
-        background: #f5f6fa;
-    }
-    .task-item .task-info .task-amount {
-        font-size: 15px;
-        font-weight: 600;
-        color: #0f172a;
-    }
-    .task-item .task-btn button {
-        background: #065f46;
-        border: none;
-        color: #fff;
-        padding: 4px 24px;
-        border-radius: 30px;
-        font-size: 12px;
-        font-weight: 600;
-        cursor: pointer;
-        height: 30px;
-        transition: transform 0.15s, box-shadow 0.2s;
-        box-shadow: 0 2px 8px rgba(6, 95, 70, 0.15);
-    }
-    .task-item .task-btn button:active {
-        transform: scale(0.92);
-        box-shadow: none;
-    }
-    .task-item.completed {
-        display: none;
-    }
-    .loading-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 14px 0;
-        color: #94a3b8;
-        font-size: 13px;
-        background: #fff;
-        border-top: 1px solid #f1f5f9;
-    }
-
-    /* ===== VIP ===== */
-    .vip-container {
-        padding-bottom: 20px;
-        background: #f5f7fb;
-    }
-    .vip-nav {
-        background: #065f46;
-        padding: 14px 18px 12px;
-        position: sticky;
-        top: 0;
-        z-index: 10;
-    }
-    .vip-nav-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .vip-nav-left {
-        color: #fff;
-        font-size: 20px;
-        cursor: pointer;
-        padding: 4px 8px;
-        transition: opacity 0.2s;
-    }
-    .vip-nav-left:active {
-        opacity: 0.6;
-    }
-    .vip-nav-title {
-        color: #fff;
-        font-size: 17px;
-        font-weight: 600;
-    }
-    .vip-nav-right {
-        width: 40px;
-    }
-    .vip-header {
-        height: 180px;
-        padding: 10px 15px 0;
-    }
-    .vip-header-card {
-        background: #fff;
-        border-radius: 16px;
-        padding: 16px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-        border: 1px solid #f1f5f9;
-    }
-    .vip-header-left {
-        flex: 1;
-    }
-    .vip-trial-title {
-        color: #0f172a;
-        font-size: 22px;
-        font-weight: 700;
-    }
-    .vip-trial-label {
-        color: #64748b;
-        font-size: 13px;
-        padding-top: 4px;
-    }
-    .vip-trial-detail {
-        color: #0f172a;
-        font-size: 13px;
-        padding-top: 2px;
-    }
-    .vip-header-right {
-        text-align: right;
-    }
-    .vip-date-value {
-        color: #64748b;
-        font-size: 13px;
-        font-weight: 500;
-    }
-    .price-update-notice {
-        background: #fef3c7;
-        border: 1px solid #fde68a;
-        border-radius: 12px;
-        padding: 10px 14px;
-        margin: 0 15px 10px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 13px;
-        color: #92400e;
-    }
-    .price-update-notice i {
-        color: #d4a017;
-        font-size: 18px;
-    }
-    .vip-list {
-        padding: 0 15px 10px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-    .vip-card {
-        border-radius: 16px;
-        padding: 16px 18px;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-        position: relative;
-        overflow: hidden;
-        min-height: 80px;
-        background: #065f46;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        transition: transform 0.2s;
-    }
-    .vip-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(6, 95, 70, 0.12);
-    }
-    .vip-card-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .vip-card-left {
-        flex: 1;
-    }
-    .vip-level-name {
-        color: #fff;
-        font-size: 22px;
-        font-weight: 900;
-        margin-bottom: 4px;
-        letter-spacing: 0.5px;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    }
-    .vip-price {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        flex-wrap: wrap;
-    }
-    .old-price {
-        color: #ef4444;
-        font-size: 14px;
-        text-decoration: line-through;
-        font-weight: 400;
-    }
-    .new-price {
-        color: #10b981;
-        font-size: 18px;
-        font-weight: 700;
-    }
-    .vip-upgrade-amount {
-        color: #fbbf24;
-        font-size: 12px;
-        font-weight: 600;
-        margin-top: 2px;
-    }
-    .vip-per-order,
-    .vip-tasks,
-    .vip-profit {
-        color: rgba(255, 255, 255, 0.85);
-        font-size: 13px;
-        font-weight: 500;
-    }
-    .vip-card-right {
-        min-width: 80px;
-        text-align: center;
-    }
-    .vip-join-btn {
-        background: #fbbf24;
-        border: none;
-        border-radius: 30px;
-        color: #0f172a;
-        font-size: 13px;
-        font-weight: 700;
-        padding: 8px 20px;
-        cursor: pointer;
-        box-shadow: 0 2px 12px rgba(251, 191, 36, 0.3);
-        transition: transform 0.15s, box-shadow 0.2s;
-    }
-    .vip-join-btn:active {
-        transform: scale(0.95);
-        box-shadow: none;
-    }
-    .vip-apply-text {
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 13px;
-        font-weight: 600;
-        letter-spacing: 0.3px;
-    }
-
-    /* ===== PROFIT ===== */
-    .profit-container {
-        padding-bottom: 20px;
-        background: #f5f7fb;
-        min-height: 100vh;
-    }
-    .profit-nav {
-        background: #065f46;
-        padding: 14px 18px 12px;
-        position: sticky;
-        top: 0;
-        z-index: 10;
-    }
-    .profit-nav-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .profit-nav-left {
-        color: #fff;
-        font-size: 20px;
-        cursor: pointer;
-        padding: 4px 8px;
-        transition: opacity 0.2s;
-    }
-    .profit-nav-left:active {
-        opacity: 0.6;
-    }
-    .profit-nav-title {
-        color: #fff;
-        font-size: 17px;
-        font-weight: 600;
-    }
-    .profit-nav-right {
-        width: 40px;
-    }
-    .profit-tabs {
-        display: flex;
-        background: #fff;
-        border-bottom: 1px solid #f1f5f9;
-        padding: 0 16px;
-        gap: 4px;
-    }
-    .profit-tab {
-        padding: 14px 16px 12px;
-        font-size: 14px;
-        font-weight: 500;
-        color: #64748b;
-        cursor: pointer;
-        border-bottom: 2px solid transparent;
-        transition: all 0.3s;
-    }
-    .profit-tab:active {
-        opacity: 0.6;
-    }
-    .profit-tab.active {
-        color: #065f46;
-        border-bottom-color: #065f46;
-        font-weight: 600;
-    }
-    .profit-content {
-        padding: 10px 16px;
-    }
-    .profit-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: #fff;
-        border-radius: 14px;
-        padding: 16px 18px;
-        margin-bottom: 10px;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
-        border: 1px solid #f1f5f9;
-        cursor: pointer;
-        transition: all 0.2s;
-    }
-    .profit-item:active {
-        transform: scale(0.98);
-        background: #f8fafc;
-    }
-    .profit-item-left {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-    .profit-icon {
-        color: #065f46;
-        font-size: 16px;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        background: #d1fae5;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .profit-item-label {
-        font-size: 15px;
-        font-weight: 500;
-        color: #0f172a;
-    }
-    .profit-item-right {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-    .profit-item-amount {
-        font-size: 15px;
-        font-weight: 600;
-        color: #065f46;
-    }
-    .profit-arrow {
-        color: #94a3b8;
-        font-size: 14px;
-    }
-
-    /* ===== MY ===== */
-    .my-container {
-        padding-bottom: 20px;
-        background: #f5f7fb;
-        min-height: 100vh;
-    }
-    .my-top {
-        background: linear-gradient(135deg, #065f46, #0a7a5a);
-        padding: 18px 18px 16px;
-        border-radius: 0 0 24px 24px;
-        margin-bottom: 0;
-        box-shadow: 0 4px 20px rgba(6, 95, 70, 0.15);
-    }
-    .my-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-    }
-    .my-user {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-    }
-    .my-brand {
-        color: #fff;
-        font-size: 28px;
-        font-weight: 900;
-        letter-spacing: 0.5px;
-    }
-    .my-id {
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 12px;
-        font-weight: 500;
-    }
-    .my-right-icons {
-        display: flex;
-        align-items: center;
-    }
-    .my-settings {
-        color: #fff;
-        font-size: 22px;
-        cursor: pointer;
-        transition: all 0.3s;
-        background: rgba(255, 255, 255, 0.15);
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .my-settings:active {
-        transform: scale(0.9);
-        background: rgba(255, 255, 255, 0.3);
-    }
-    .my-vip-row {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        margin-top: 10px;
-        padding-top: 10px;
-        border-top: 1px solid rgba(255, 255, 255, 0.06);
-        cursor: pointer;
-        justify-content: flex-end;
-        transition: opacity 0.2s;
-    }
-    .my-vip-row:active {
-        opacity: 0.7;
-    }
-    .my-vip-label {
-        color: rgba(255, 255, 255, 0.5);
-        font-size: 12px;
-    }
-    .my-vip-value {
-        color: #fbbf24;
-        font-size: 13px;
-        font-weight: 600;
-    }
-    .my-vip-arrow {
-        color: rgba(255, 255, 255, 0.2);
-        font-size: 12px;
-    }
-    .my-balance-section {
-        margin-top: 12px;
-        padding-top: 10px;
-        border-top: 1px solid rgba(255, 255, 255, 0.06);
-    }
-    .my-balance-label {
-        color: rgba(255, 255, 255, 0.5);
-        font-size: 11px;
-        display: block;
-    }
-    .my-balance-value {
-        color: #fff;
-        font-size: 28px;
-        font-weight: 800;
-        display: block;
-        margin-top: 2px;
-    }
-    .my-actions {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-        padding: 12px 16px 12px;
-    }
-    .my-action-btn {
-        background: #fff;
-        border-radius: 14px;
-        padding: 12px 8px;
-        text-align: center;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-        border: 1px solid #f1f5f9;
-        cursor: pointer;
-        transition: all 0.2s;
-    }
-    .my-action-btn:active {
-        transform: scale(0.95);
-        background: #f8fafc;
-    }
-    .my-action-btn .naira-sign-btn {
-        font-size: 20px;
-        color: #065f46;
-        display: block;
-        margin-bottom: 4px;
-        font-weight: 700;
-    }
-    .my-action-btn i {
-        font-size: 20px;
-        color: #065f46;
-        display: block;
-        margin-bottom: 4px;
-    }
-    .my-action-btn span {
-        font-size: 11px;
-        color: #475569;
-        font-weight: 500;
-    }
-    .referral-section {
-        background: #fff;
-        border-radius: 14px;
-        padding: 16px 18px;
-        margin: 10px 16px 12px;
-        border: 1px solid #f1f5f9;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-        display: none;
-    }
-    .referral-section.visible {
-        display: block;
-    }
-    .referral-title {
-        font-size: 16px;
-        font-weight: 700;
-        color: #0f172a;
-        margin-bottom: 8px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-    .referral-title i {
-        color: #065f46;
-    }
-    .referral-code {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background: #f1f5f9;
-        border-radius: 10px;
-        padding: 10px 14px;
-        margin-top: 6px;
-    }
-    .referral-code span {
-        font-size: 18px;
-        font-weight: 700;
-        color: #065f46;
-        letter-spacing: 2px;
-    }
-    .referral-code button {
-        background: #065f46;
-        color: #fff;
-        border: none;
-        border-radius: 30px;
-        padding: 6px 16px;
-        font-size: 12px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: transform 0.15s;
-    }
-    .referral-code button:active {
-        transform: scale(0.92);
-    }
-    .referral-stats {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-        margin-top: 10px;
-    }
-    .referral-stat {
-        text-align: center;
-        background: #f8fafc;
-        border-radius: 10px;
-        padding: 8px 6px;
-        border: 1px solid #f1f5f9;
-    }
-    .referral-stat .number {
-        font-size: 18px;
-        font-weight: 700;
-        color: #065f46;
-    }
-    .referral-stat .label {
-        font-size: 9px;
-        color: #64748b;
-        margin-top: 2px;
-    }
-    .referral-vip-badge {
-        display: inline-block;
-        background: #fbbf24;
-        color: #0f172a;
-        font-size: 9px;
-        font-weight: 700;
-        padding: 1px 10px;
-        border-radius: 12px;
-        margin-left: 6px;
-    }
-    .my-stats {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-        padding: 0 16px 8px;
-    }
-    .my-stat-card {
-        background: #fff;
-        border-radius: 14px;
-        padding: 14px 12px;
-        text-align: center;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-        border: 1px solid #f1f5f9;
-        cursor: pointer;
-        transition: all 0.2s;
-    }
-    .my-stat-card:active {
-        transform: scale(0.96);
-    }
-    .my-stat-label {
-        font-size: 10px;
-        color: #64748b;
-        display: block;
-        line-height: 1.2;
-    }
-    .my-stat-value {
-        font-size: 18px;
-        font-weight: 700;
-        color: #0f172a;
-        display: block;
-        margin-top: 4px;
-    }
-    .my-stats-row2 {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-        padding: 0 16px 12px;
-    }
-    .my-stat-card2 {
-        background: #fff;
-        border-radius: 14px;
-        padding: 14px 12px;
-        text-align: center;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-        border: 1px solid #f1f5f9;
-        cursor: pointer;
-        transition: all 0.2s;
-    }
-    .my-stat-card2:active {
-        transform: scale(0.96);
-    }
-    .my-stat-label2 {
-        font-size: 10px;
-        color: #64748b;
-        display: block;
-        line-height: 1.2;
-    }
-    .my-stat-value2 {
-        font-size: 18px;
-        font-weight: 700;
-        color: #0f172a;
-        display: block;
-        margin-top: 4px;
-    }
-    .my-block-features {
-        margin-top: 4px;
-    }
-    .my-quick-menu {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 6px;
-        padding: 0 16px 10px;
-    }
-    .my-quick-item {
-        background: #fff;
-        border-radius: 14px;
-        padding: 12px 6px;
-        text-align: center;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-        border: 1px solid #f1f5f9;
-        cursor: pointer;
-        transition: all 0.2s;
-    }
-    .my-quick-item:active {
-        transform: scale(0.93);
-    }
-    .my-quick-item i {
-        font-size: 18px;
-        color: #065f46;
-        display: block;
-        margin-bottom: 4px;
-    }
-    .my-quick-item span {
-        font-size: 10px;
-        color: #475569;
-        font-weight: 500;
-    }
-    .my-bottom-menu {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 6px;
-        padding: 0 16px 10px;
-    }
-    .my-bottom-item {
-        background: #fff;
-        border-radius: 14px;
-        padding: 12px 6px;
-        text-align: center;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-        border: 1px solid #f1f5f9;
-        cursor: pointer;
-        transition: all 0.2s;
-    }
-    .my-bottom-item:active {
-        transform: scale(0.93);
-    }
-    .my-bottom-item i {
-        font-size: 18px;
-        color: #065f46;
-        display: block;
-        margin-bottom: 4px;
-    }
-    .my-bottom-item span {
-        font-size: 10px;
-        color: #475569;
-        font-weight: 500;
-    }
-    .my-footer {
-        text-align: center;
-        font-size: 11px;
-        color: #94a3b8;
-        padding: 16px 0 10px;
-        letter-spacing: 0.5px;
-    }
-
-    /* ===== WITHDRAWAL ===== */
-    .withdrawal-container {
-        padding-bottom: 20px;
-        background: #f5f7fb;
-        min-height: 100vh;
-    }
-    .withdrawal-nav {
-        background: #065f46;
-        padding: 14px 18px 12px;
-        position: sticky;
-        top: 0;
-        z-index: 10;
-    }
-    .withdrawal-nav-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .withdrawal-nav-left {
-        color: #fff;
-        font-size: 20px;
-        cursor: pointer;
-        padding: 4px 8px;
-        transition: opacity 0.2s;
-    }
-    .withdrawal-nav-left:active {
-        opacity: 0.6;
-    }
-    .withdrawal-nav-title {
-        color: #fff;
-        font-size: 17px;
-        font-weight: 600;
-    }
-    .withdrawal-nav-right {
-        width: 40px;
-    }
-    .withdrawal-content {
-        padding: 16px 16px 10px;
-    }
-    .withdrawal-method-dropdown {
-        background: #fff;
-        border-radius: 14px;
-        padding: 14px 16px;
-        border: 1px solid #f1f5f9;
-        margin-bottom: 12px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-    }
-    .withdrawal-method-dropdown .withdrawal-label {
-        font-size: 13px;
-        color: #0f172a;
-        font-weight: 600;
-        display: block;
-        margin-bottom: 8px;
-    }
-    .withdrawal-option {
-        padding: 10px 14px;
-        border-radius: 10px;
-        border: 1px solid #f1f5f9;
-        margin-bottom: 6px;
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        transition: all 0.2s;
-        font-size: 13px;
-        color: #0f172a;
-    }
-    .withdrawal-option:active {
-        transform: scale(0.98);
-    }
-    .withdrawal-option.selected {
-        border-color: #065f46;
-        background: #d1fae5;
-    }
-    .withdrawal-option .checkmark {
-        color: #065f46;
-        font-weight: 700;
-        display: none;
-    }
-    .withdrawal-option.selected .checkmark {
-        display: block;
-    }
-    .withdrawal-no-bank {
-        background: #fef3c7;
-        border: 1px solid #fde68a;
-        border-radius: 10px;
-        padding: 12px 14px;
-        font-size: 13px;
-        color: #92400e;
-        text-align: center;
-    }
-    .withdrawal-password {
-        background: #fff;
-        border-radius: 14px;
-        padding: 14px 16px;
-        border: 1px solid #f1f5f9;
-        margin-bottom: 12px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-    }
-    .withdrawal-password .withdrawal-label {
-        font-size: 13px;
-        color: #0f172a;
-        font-weight: 500;
-        display: block;
-        margin-bottom: 6px;
-    }
-    .withdrawal-password .withdrawal-input {
-        width: 100%;
-        padding: 12px 14px;
-        border: 1px solid #e2e8f0;
-        border-radius: 10px;
-        font-size: 14px;
-        outline: none;
-        background: #f8fafc;
-        transition: border 0.2s, box-shadow 0.2s;
-    }
-    .withdrawal-password .withdrawal-input:focus {
-        border-color: #065f46;
-        box-shadow: 0 0 0 3px rgba(6, 95, 70, 0.1);
-        background: #fff;
-    }
-    .withdrawal-amount {
-        background: #fff;
-        border-radius: 14px;
-        padding: 14px 16px;
-        border: 1px solid #f1f5f9;
-        margin-bottom: 12px;
-        text-align: center;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-    }
-    .withdrawal-amount .withdrawal-label {
-        font-size: 13px;
-        color: #0f172a;
-        font-weight: 500;
-        display: block;
-        margin-bottom: 8px;
-        text-align: left;
-    }
-    .withdrawal-amount-buttons {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-        margin-bottom: 16px;
-    }
-    .withdrawal-amount-btn {
-        background: #fff;
-        border: 1px solid #e2e8f0;
-        border-radius: 10px;
-        padding: 10px 6px;
-        font-size: 13px;
-        font-weight: 600;
-        color: #0f172a;
-        cursor: pointer;
-        text-align: center;
-        transition: all 0.2s;
-    }
-    .withdrawal-amount-btn:active {
-        transform: scale(0.95);
-        background: #f0f2f5;
-        border-color: #065f46;
-    }
-    .withdrawal-amount-btn.selected {
-        background: #065f46;
-        color: #fff;
-        border-color: #065f46;
-        box-shadow: 0 2px 8px rgba(6, 95, 70, 0.2);
-    }
-    .withdrawal-info {
-        display: flex;
-        justify-content: space-between;
-        padding: 0 4px 12px;
-    }
-    .withdrawal-balance {
-        font-size: 13px;
-        color: #065f46;
-        font-weight: 600;
-    }
-    .withdrawal-tax {
-        font-size: 13px;
-        color: #ef4444;
-        font-weight: 500;
-    }
-    .withdrawal-submit-btn {
-        width: 100%;
-        background: linear-gradient(135deg, #065f46, #0a7a5a);
-        color: #fff;
-        border: none;
-        border-radius: 30px;
-        padding: 14px;
-        font-size: 16px;
-        font-weight: 700;
-        cursor: pointer;
-        box-shadow: 0 4px 16px rgba(6, 95, 70, 0.2);
-        transition: transform 0.15s, box-shadow 0.2s;
-    }
-    .withdrawal-submit-btn:active {
-        transform: scale(0.96);
-        box-shadow: none;
-    }
-
-    /* ===== RECHARGE ===== */
-    .recharge-container {
-        padding-bottom: 20px;
-        background: #f5f7fb;
-        min-height: 100vh;
-    }
-    .recharge-nav {
-        background: #065f46;
-        padding: 14px 18px 12px;
-        position: sticky;
-        top: 0;
-        z-index: 10;
-    }
-    .recharge-nav-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .recharge-nav-left {
-        color: #fff;
-        font-size: 20px;
-        cursor: pointer;
-        padding: 4px 8px;
-        transition: opacity 0.2s;
-    }
-    .recharge-nav-left:active {
-        opacity: 0.6;
-    }
-    .recharge-nav-title {
-        color: #fff;
-        font-size: 17px;
-        font-weight: 600;
-    }
-    .recharge-nav-right {
-        width: 40px;
-    }
-    .recharge-content {
-        padding: 16px 16px 10px;
-    }
-    .recharge-box {
-        background: #fff;
-        border-radius: 16px;
-        padding: 20px 18px;
-        border: 1px solid #f1f5f9;
-        margin-bottom: 12px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-    }
-    .recharge-label {
-        font-size: 14px;
-        font-weight: 600;
-        color: #0f172a;
-        display: block;
-        margin-bottom: 8px;
-    }
-    .recharge-input {
-        width: 100%;
-        padding: 14px 16px;
-        border: 1px solid #e2e8f0;
-        border-radius: 12px;
-        font-size: 16px;
-        outline: none;
-        background: #f8fafc;
-        transition: border 0.2s, box-shadow 0.2s;
-    }
-    .recharge-input:focus {
-        border-color: #065f46;
-        box-shadow: 0 0 0 3px rgba(6, 95, 70, 0.1);
-        background: #fff;
-    }
-    .recharge-quick {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 8px;
-        margin-top: 10px;
-    }
-    .recharge-quick-btn {
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
-        border-radius: 10px;
-        padding: 10px 6px;
-        font-size: 12px;
-        font-weight: 600;
-        color: #0f172a;
-        cursor: pointer;
-        text-align: center;
-        transition: all 0.2s;
-    }
-    .recharge-quick-btn:active {
-        transform: scale(0.95);
-        background: #065f46;
-        color: #fff;
-        border-color: #065f46;
-    }
-    .recharge-bank {
-        background: #f8fafc;
-        border-radius: 12px;
-        padding: 12px 14px;
-        border: 1px solid #f1f5f9;
-        margin-bottom: 14px;
-    }
-    .recharge-bank .bank-detail {
-        font-size: 13px;
-        color: #475569;
-        padding: 2px 0;
-    }
-    .recharge-bank .bank-detail strong {
-        color: #0f172a;
-    }
-    .recharge-pay-btn {
-        width: 100%;
-        background: linear-gradient(135deg, #065f46, #0a7a5a);
-        color: #fff;
-        border: none;
-        border-radius: 30px;
-        padding: 14px;
-        font-size: 16px;
-        font-weight: 700;
-        cursor: pointer;
-        box-shadow: 0 4px 16px rgba(6, 95, 70, 0.2);
-        transition: transform 0.15s, box-shadow 0.2s;
-    }
-    .recharge-pay-btn:active {
-        transform: scale(0.96);
-        box-shadow: none;
-    }
-    .recharge-status {
-        display: none;
-        background: #fef3c7;
-        border: 1px solid #fde68a;
-        border-radius: 12px;
-        padding: 14px 18px;
-        margin-top: 12px;
-        text-align: center;
-    }
-    .recharge-status.show {
-        display: block;
-    }
-    .recharge-status .status-title {
-        font-size: 14px;
-        font-weight: 600;
-        color: #92400e;
-    }
-    .recharge-status .status-text {
-        font-size: 13px;
-        color: #92400e;
-        margin-top: 4px;
-    }
-    .recharge-status .verify-btn {
-        margin-top: 10px;
-        background: #f59e0b;
-        color: #0f172a;
-        border: none;
-        border-radius: 30px;
-        padding: 10px 20px;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: transform 0.15s;
-    }
-    .recharge-status .verify-btn:active {
-        transform: scale(0.94);
-    }
-    .recharge-success {
-        display: none;
-        background: #d1fae5;
-        border: 1px solid #10b981;
-        border-radius: 12px;
-        padding: 14px 18px;
-        margin-top: 12px;
-        text-align: center;
-    }
-    .recharge-success.show {
-        display: block;
-    }
-    .recharge-success .success-title {
-        font-size: 16px;
-        font-weight: 700;
-        color: #065f46;
-    }
-    .recharge-success .success-text {
-        font-size: 14px;
-        color: #065f46;
-        margin-top: 4px;
-    }
-
-    /* ===== SETTINGS ===== */
-    .settings-container {
-        padding-bottom: 20px;
-        background: #f5f7fb;
-        min-height: 100vh;
-    }
-    .settings-nav {
-        background: #065f46;
-        padding: 14px 18px 12px;
-        position: sticky;
-        top: 0;
-        z-index: 10;
-    }
-    .settings-nav-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .settings-nav-left {
-        color: #fff;
-        font-size: 20px;
-        cursor: pointer;
-        padding: 4px 8px;
-        transition: opacity 0.2s;
-    }
-    .settings-nav-left:active {
-        opacity: 0.6;
-    }
-    .settings-nav-title {
-        color: #fff;
-        font-size: 17px;
-        font-weight: 600;
-    }
-    .settings-nav-right {
-        width: 40px;
-    }
-    .settings-content {
-        padding: 16px 16px 10px;
-    }
-    .settings-profile {
-        background: #fff;
-        border-radius: 16px;
-        padding: 16px 18px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border: 1px solid #f1f5f9;
-        margin-bottom: 12px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-    }
-    .settings-profile-left {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-    .settings-avatar {
-        font-size: 48px;
-        color: #94a3b8;
-    }
-    .settings-profile-info {
-        display: flex;
-        flex-direction: column;
-    }
-    .settings-profile-number {
-        font-size: 16px;
-        font-weight: 700;
-        color: #0f172a;
-    }
-    .settings-profile-right {
-        display: flex;
-        align-items: center;
-    }
-    .settings-bind-btn {
-        background: #065f46;
-        color: #fff;
-        padding: 4px 16px;
-        border-radius: 30px;
-        font-size: 11px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: transform 0.15s;
-    }
-    .settings-bind-btn:active {
-        transform: scale(0.92);
-    }
-    .settings-items {
-        background: #fff;
-        border-radius: 16px;
-        border: 1px solid #f1f5f9;
-        overflow: hidden;
-        margin-bottom: 16px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-    }
-    .settings-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 14px 18px;
-        border-bottom: 1px solid #f1f5f9;
-        cursor: pointer;
-        transition: background 0.2s;
-    }
-    .settings-item:last-child {
-        border-bottom: none;
-    }
-    .settings-item:active {
-        background: #f8fafc;
-    }
-    .settings-item-label {
-        font-size: 14px;
-        color: #0f172a;
-        font-weight: 500;
-    }
-    .settings-item-right {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-    .settings-item-value {
-        font-size: 13px;
-        color: #64748b;
-    }
-    .settings-item-arrow {
-        color: #94a3b8;
-        font-size: 14px;
-    }
-    .settings-signout-btn {
-        width: 100%;
-        background: #ef4444;
-        color: #fff;
-        border: none;
-        border-radius: 30px;
-        padding: 14px;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: transform 0.15s, box-shadow 0.2s;
-        box-shadow: 0 4px 16px rgba(239, 68, 68, 0.2);
-    }
-    .settings-signout-btn:active {
-        transform: scale(0.96);
-        box-shadow: none;
-    }
-
-    /* ===== CHANGE PASSWORD / FUND PASSWORD ===== */
-    .changepassword-container {
-        padding-bottom: 20px;
-        background: #f5f7fb;
-        min-height: 100vh;
-    }
-    .changepassword-nav {
-        background: #065f46;
-        padding: 14px 18px 12px;
-        position: sticky;
-        top: 0;
-        z-index: 10;
-    }
-    .changepassword-nav-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .changepassword-nav-left {
-        color: #fff;
-        font-size: 20px;
-        cursor: pointer;
-        padding: 4px 8px;
-        transition: opacity 0.2s;
-    }
-    .changepassword-nav-left:active {
-        opacity: 0.6;
-    }
-    .changepassword-nav-title {
-        color: #fff;
-        font-size: 17px;
-        font-weight: 600;
-    }
-    .changepassword-nav-right {
-        width: 40px;
-    }
-    .changepassword-content {
-        padding: 20px 16px;
-    }
-    .changepassword-box {
-        background: #fff;
-        border-radius: 16px;
-        padding: 20px 18px;
-        border: 1px solid #f1f5f9;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-    }
-    .changepassword-field {
-        margin-bottom: 16px;
-    }
-    .changepassword-label {
-        font-size: 14px;
-        font-weight: 600;
-        color: #0f172a;
-        display: block;
-        margin-bottom: 6px;
-    }
-    .changepassword-input {
-        width: 100%;
-        padding: 12px 14px;
-        border: 1px solid #e2e8f0;
-        border-radius: 10px;
-        font-size: 14px;
-        outline: none;
-        background: #f8fafc;
-        transition: border 0.2s, box-shadow 0.2s;
-    }
-    .changepassword-input:focus {
-        border-color: #065f46;
-        box-shadow: 0 0 0 3px rgba(6, 95, 70, 0.1);
-        background: #fff;
-    }
-    .changepassword-submit-btn {
-        width: 100%;
-        background: #065f46;
-        color: #fff;
-        border: none;
-        border-radius: 30px;
-        padding: 12px;
-        font-size: 16px;
-        font-weight: 600;
-        margin-top: 8px;
-        cursor: pointer;
-        transition: transform 0.15s, box-shadow 0.2s;
-        box-shadow: 0 4px 16px rgba(6, 95, 70, 0.2);
-    }
-    .changepassword-submit-btn:active {
-        transform: scale(0.96);
-        box-shadow: none;
-    }
-
-    /* ===== BIND BANK ===== */
-    .bindbank-container {
-        padding-bottom: 20px;
-        background: #f5f7fb;
-        min-height: 100vh;
-    }
-    .bindbank-nav {
-        background: #065f46;
-        padding: 14px 18px 12px;
-        position: sticky;
-        top: 0;
-        z-index: 10;
-    }
-    .bindbank-nav-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .bindbank-nav-left {
-        color: #fff;
-        font-size: 20px;
-        cursor: pointer;
-        padding: 4px 8px;
-        transition: opacity 0.2s;
-    }
-    .bindbank-nav-left:active {
-        opacity: 0.6;
-    }
-    .bindbank-nav-title {
-        color: #fff;
-        font-size: 17px;
-        font-weight: 600;
-    }
-    .bindbank-nav-right {
-        width: 40px;
-    }
-    .bindbank-content {
-        padding: 16px 16px 10px;
-    }
-    .bindbank-notice {
-        background: #fef3c7;
-        border: 1px solid #fde68a;
-        border-radius: 12px;
-        padding: 12px 14px;
-        font-size: 13px;
-        color: #92400e;
-        margin-bottom: 16px;
-        line-height: 1.5;
-    }
-    .bindbank-success {
-        background: #d1fae5;
-        border: 1px solid #10b981;
-        border-radius: 12px;
-        padding: 16px;
-        margin-bottom: 16px;
-        display: none;
-    }
-    .bindbank-success.show {
-        display: block;
-    }
-    .bindbank-success .success-title {
-        font-size: 16px;
-        font-weight: 700;
-        color: #065f46;
-        margin-bottom: 8px;
-    }
-    .bindbank-success .success-detail {
-        font-size: 13px;
-        color: #0f172a;
-        padding: 2px 0;
-    }
-    .bindbank-success .success-detail strong {
-        color: #065f46;
-    }
-    .bindbank-form {
-        background: #fff;
-        border-radius: 16px;
-        padding: 18px;
-        border: 1px solid #f1f5f9;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-    }
-    .bindbank-form.hidden {
-        display: none;
-    }
-    .bindbank-field {
-        margin-bottom: 16px;
-    }
-    .bindbank-label {
-        font-size: 13px;
-        font-weight: 500;
-        color: #0f172a;
-        display: block;
-        margin-bottom: 4px;
-    }
-    .bindbank-input {
-        width: 100%;
-        padding: 10px 12px;
-        border: 1px solid #e2e8f0;
-        border-radius: 10px;
-        font-size: 14px;
-        outline: none;
-        background: #f8fafc;
-        transition: border 0.2s, box-shadow 0.2s;
-    }
-    .bindbank-input:focus {
-        border-color: #065f46;
-        box-shadow: 0 0 0 3px rgba(6, 95, 70, 0.1);
-        background: #fff;
-    }
-    .bindbank-select {
-        width: 100%;
-        padding: 10px 12px;
-        border: 1px solid #e2e8f0;
-        border-radius: 10px;
-        font-size: 14px;
-        outline: none;
-        background: #f8fafc;
-        color: #0f172a;
-        appearance: auto;
-        cursor: pointer;
-        transition: border 0.2s, box-shadow 0.2s;
-    }
-    .bindbank-select:focus {
-        border-color: #065f46;
-        box-shadow: 0 0 0 3px rgba(6, 95, 70, 0.1);
-        background: #fff;
-    }
-    .bindbank-add-btn {
-        width: 100%;
-        background: #065f46;
-        color: #fff;
-        border: none;
-        border-radius: 30px;
-        padding: 12px;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: transform 0.15s, box-shadow 0.2s;
-        box-shadow: 0 4px 16px rgba(6, 95, 70, 0.2);
-    }
-    .bindbank-add-btn:active {
-        transform: scale(0.96);
-        box-shadow: none;
-    }
-
-    /* ===== REAL NAME ===== */
-    .realname-container {
-        padding-bottom: 20px;
-        background: #f5f7fb;
-        min-height: 100vh;
-    }
-    .realname-nav {
-        background: #065f46;
-        padding: 14px 18px 12px;
-        position: sticky;
-        top: 0;
-        z-index: 10;
-    }
-    .realname-nav-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .realname-nav-left {
-        color: #fff;
-        font-size: 20px;
-        cursor: pointer;
-        padding: 4px 8px;
-        transition: opacity 0.2s;
-    }
-    .realname-nav-left:active {
-        opacity: 0.6;
-    }
-    .realname-nav-title {
-        color: #fff;
-        font-size: 17px;
-        font-weight: 600;
-    }
-    .realname-nav-right {
-        width: 40px;
-    }
-    .realname-content {
-        padding: 20px 16px;
-    }
-    .realname-box {
-        background: #fff;
-        border-radius: 16px;
-        padding: 20px 18px;
-        border: 1px solid #f1f5f9;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-    }
-    .realname-label {
-        font-size: 14px;
-        font-weight: 600;
-        color: #0f172a;
-        display: block;
-        margin-bottom: 8px;
-    }
-    .realname-input {
-        width: 100%;
-        padding: 12px 14px;
-        border: 1px solid #e2e8f0;
-        border-radius: 10px;
-        font-size: 14px;
-        outline: none;
-        background: #f8fafc;
-        transition: border 0.2s, box-shadow 0.2s;
-    }
-    .realname-input:focus {
-        border-color: #065f46;
-        box-shadow: 0 0 0 3px rgba(6, 95, 70, 0.1);
-        background: #fff;
-    }
-    .realname-hint {
-        font-size: 12px;
-        color: #64748b;
-        margin-top: 6px;
-    }
-    .realname-submit-btn {
-        width: 100%;
-        background: #065f46;
-        color: #fff;
-        border: none;
-        border-radius: 30px;
-        padding: 12px;
-        font-size: 16px;
-        font-weight: 600;
-        margin-top: 16px;
-        cursor: pointer;
-        transition: transform 0.15s, box-shadow 0.2s;
-        box-shadow: 0 4px 16px rgba(6, 95, 70, 0.2);
-    }
-    .realname-submit-btn:active {
-        transform: scale(0.96);
-        box-shadow: none;
-    }
-
-    /* ===== PAYMENT POPUP ===== */
-    .payment-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.75);
-        z-index: 9998;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-        backdrop-filter: blur(6px);
-    }
-    .payment-overlay.show {
-        display: flex;
-    }
-    .payment-popup {
-        background: #fff;
-        border-radius: 24px;
-        max-width: 420px;
-        width: 100%;
-        max-height: 85vh;
-        overflow-y: auto;
-        animation: slideUp 0.4s ease;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-        padding: 24px;
-    }
-    @keyframes slideUp {
-        from {
-            transform: translateY(30px);
-            opacity: 0;
+        .top-header-content { display: flex; align-items: center; justify-content: space-between; }
+        .top-header-left {
+            color: #fff; font-size: 16px; font-weight: 700; cursor: pointer;
+            display: flex; align-items: center; gap: 6px; padding: 4px 8px; border-radius: 8px;
+            transition: background 0.2s;
         }
-        to {
-            transform: translateY(0);
-            opacity: 1;
+        .top-header-left:active { background: rgba(255,255,255,0.15); }
+        .top-header-center { display: flex; align-items: center; gap: 8px; }
+        .top-header-center .book-icon { color: #fbbf24; font-size: 20px; }
+        .top-header-center .nrc-logo {
+            color: #fff; font-family: 'Times New Roman', 'Georgia', serif; font-size: 26px;
+            font-weight: 900; font-style: italic; letter-spacing: 3px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3); text-transform: uppercase;
         }
-    }
-    .payment-popup .payment-title {
-        font-size: 20px;
-        font-weight: 700;
-        color: #0f172a;
-        text-align: center;
-        margin-bottom: 4px;
-    }
-    .payment-popup .payment-subtitle {
-        text-align: center;
-        color: #64748b;
-        font-size: 14px;
-        margin-bottom: 16px;
-    }
-    .payment-popup .payment-amount {
-        text-align: center;
-        font-size: 32px;
-        font-weight: 800;
-        color: #065f46;
-        margin: 8px 0 16px;
-    }
-    .payment-popup .payment-details {
-        background: #f8fafc;
-        border-radius: 12px;
-        padding: 14px 16px;
-        margin-bottom: 16px;
-        border: 1px solid #f1f5f9;
-    }
-    .payment-popup .payment-details .row {
-        display: flex;
-        justify-content: space-between;
-        padding: 4px 0;
-        font-size: 13px;
-    }
-    .payment-popup .payment-details .row .label {
-        color: #64748b;
-    }
-    .payment-popup .payment-details .row .value {
-        color: #0f172a;
-        font-weight: 600;
-    }
-    .payment-popup .payment-btn {
-        width: 100%;
-        background: #065f46;
-        color: #fff;
-        border: none;
-        border-radius: 30px;
-        padding: 14px;
-        font-size: 16px;
-        font-weight: 700;
-        cursor: pointer;
-        margin-top: 8px;
-        transition: transform 0.15s, box-shadow 0.2s;
-        box-shadow: 0 4px 16px rgba(6, 95, 70, 0.2);
-    }
-    .payment-popup .payment-btn:active {
-        transform: scale(0.96);
-        box-shadow: none;
-    }
-    .payment-popup .payment-verify-btn {
-        width: 100%;
-        background: #f59e0b;
-        color: #0f172a;
-        border: none;
-        border-radius: 30px;
-        padding: 14px;
-        font-size: 16px;
-        font-weight: 700;
-        cursor: pointer;
-        margin-top: 8px;
-        transition: transform 0.15s, box-shadow 0.2s;
-        box-shadow: 0 4px 16px rgba(245, 158, 11, 0.25);
-    }
-    .payment-popup .payment-verify-btn:active {
-        transform: scale(0.96);
-        box-shadow: none;
-    }
-    .payment-popup .payment-close-btn {
-        width: 100%;
-        background: transparent;
-        color: #94a3b8;
-        border: none;
-        padding: 10px;
-        font-size: 14px;
-        cursor: pointer;
-        margin-top: 4px;
-        transition: color 0.2s;
-    }
-    .payment-popup .payment-close-btn:active {
-        color: #0f172a;
-    }
-    .payment-popup .payment-status {
-        text-align: center;
-        padding: 10px;
-        border-radius: 12px;
-        margin-top: 12px;
-        font-weight: 600;
-        display: none;
-    }
-    .payment-popup .payment-status.success {
-        background: #d1fae5;
-        color: #065f46;
-        display: block;
-    }
-    .payment-popup .payment-status.pending {
-        background: #fef3c7;
-        color: #92400e;
-        display: block;
-    }
-    .payment-popup .payment-status.failed {
-        background: #fee2e2;
-        color: #dc2626;
-        display: block;
-    }
-
-    /* ===== ANNOUNCEMENT ===== */
-    .announcement-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.75);
-        z-index: 9999;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-        backdrop-filter: blur(6px);
-        animation: fadeIn 0.3s ease;
-    }
-    .announcement-overlay.show {
-        display: flex;
-    }
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
+        .top-header-right {
+            color: #fff; font-size: 20px; cursor: pointer; padding: 4px 8px;
+            border-radius: 8px; transition: background 0.2s;
         }
-        to {
-            opacity: 1;
+        .top-header-right:active { background: rgba(255,255,255,0.15); }
+
+        .page-nav {
+            background: linear-gradient(135deg, #065f46, #0a7a5a);
+            padding: 14px 18px 12px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 2px 16px rgba(6, 95, 70, 0.25);
         }
-    }
-    .announcement-popup {
-        background: #fff;
-        border-radius: 24px;
-        max-width: 450px;
-        width: 100%;
-        max-height: 85vh;
-        overflow-y: auto;
-        animation: slideUp 0.4s ease;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-    }
-    .announcement-header {
-        background: linear-gradient(135deg, #065f46, #0a7a5a);
-        color: #fff;
-        padding: 16px 20px;
-        border-radius: 24px 24px 0 0;
-        font-size: 16px;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    .announcement-icon {
-        font-size: 24px;
-    }
-    .announcement-body {
-        padding: 20px;
-    }
-    .announcement-title {
-        font-size: 18px;
-        font-weight: 700;
-        color: #0f172a;
-        margin-bottom: 8px;
-    }
-    .announcement-text {
-        font-size: 13px;
-        color: #475569;
-        line-height: 1.6;
-        margin-bottom: 8px;
-    }
-    .announcement-btn {
-        width: calc(100% - 40px);
-        margin: 0 20px 20px;
-        background: #065f46;
-        color: #fff;
-        border: none;
-        border-radius: 30px;
-        padding: 12px;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: transform 0.15s, box-shadow 0.2s;
-        box-shadow: 0 4px 16px rgba(6, 95, 70, 0.2);
-    }
-    .announcement-btn:active {
-        transform: scale(0.96);
-        box-shadow: none;
-    }
+        .page-nav-content { display: flex; align-items: center; justify-content: space-between; }
+        .page-nav-left {
+            color: #fff; font-size: 20px; cursor: pointer; padding: 4px 8px;
+            border-radius: 8px; transition: background 0.2s;
+        }
+        .page-nav-left:active { background: rgba(255,255,255,0.15); }
+        .page-nav-title { color: #fff; font-size: 17px; font-weight: 600; }
+        .page-nav-right { width: 40px; }
 
-    /* ===== READING OVERLAY ===== */
-    .reading-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: #0f172a;
-        z-index: 1000;
-        display: none;
-        flex-direction: column;
-        overflow: hidden;
-    }
-    .reading-overlay.show {
-        display: flex;
-    }
-    .reading-nav {
-        background: rgba(15, 23, 42, 0.95);
-        padding: 12px 16px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        flex-shrink: 0;
-        z-index: 10;
-        min-height: 50px;
-    }
-    .reading-nav .back-btn {
-        color: #fff;
-        font-size: 20px;
-        cursor: pointer;
-        padding: 4px 8px;
-        border-radius: 8px;
-        background: rgba(255, 255, 255, 0.05);
-        border: none;
-        transition: background 0.2s;
-    }
-    .reading-nav .back-btn:active {
-        background: rgba(255, 255, 255, 0.15);
-    }
-    .reading-nav .title {
-        color: #fff;
-        font-size: 14px;
-        font-weight: 600;
-        flex: 1;
-        text-align: center;
-        padding: 0 10px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+        /* ===== LOGIN / REGISTER ===== */
+        .login-container {
+            padding: 40px 20px 20px;
+            background: linear-gradient(135deg, #065f46, #0a7a5a);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .login-content { width: 100%; max-width: 400px; }
+        .login-logo { text-align: center; margin-bottom: 30px; }
+        .login-brand { color: #fff; font-size: 42px; font-weight: 900; letter-spacing: 1px; display: block; }
+        .login-sub { color: rgba(255,255,255,0.6); font-size: 14px; display: block; margin-top: 4px; }
+        .login-box {
+            background: #fff; border-radius: 24px; padding: 30px 24px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+        }
+        .login-field { margin-bottom: 16px; }
+        .login-label {
+            font-size: 14px; font-weight: 600; color: #0f172a;
+            display: block; margin-bottom: 6px;
+        }
+        .login-label i { color: #065f46; margin-right: 6px; }
+        .login-input {
+            width: 100%; padding: 14px 16px; border: 1px solid #e2e8f0; border-radius: 12px;
+            font-size: 15px; outline: none; background: #f8fafc;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        .login-input:focus {
+            border-color: #065f46;
+            box-shadow: 0 0 0 3px rgba(6,95,70,0.1);
+            background: #fff;
+        }
+        .login-btn {
+            width: 100%; background: linear-gradient(135deg, #065f46, #0a7a5a);
+            color: #fff; border: none; border-radius: 30px; padding: 14px;
+            font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 8px;
+            box-shadow: 0 4px 16px rgba(6,95,70,0.25);
+            transition: transform 0.15s, opacity 0.15s;
+        }
+        .login-btn:active { transform: scale(0.96); opacity: 0.9; }
+        .login-btn-secondary {
+            width: 100%; background: #eef2f6; color: #0f172a;
+            border: 1px solid #d1d5db; border-radius: 30px; padding: 14px;
+            font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 10px;
+            transition: transform 0.15s, background 0.2s;
+        }
+        .login-btn-secondary:active { transform: scale(0.96); background: #dce2ea; }
+        .login-footer {
+            text-align: center; font-size: 11px; color: rgba(255,255,255,0.3);
+            padding: 20px 0 10px; letter-spacing: 0.5px;
+        }
 
-    /* ===== TIMER ===== */
-    .timer-top-left {
-        position: fixed;
-        top: 70px;
-        left: 16px;
-        z-index: 1001;
-        display: none;
-        flex-direction: column;
-        background: rgba(0, 0, 0, 0.85);
-        backdrop-filter: blur(10px);
-        padding: 10px 14px;
-        border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        max-width: 220px;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-    }
-    .timer-top-left.show {
-        display: flex;
-    }
-    .timer-top-left .message {
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 12px;
-        line-height: 1.5;
-        font-weight: 400;
-    }
-    .timer-top-left .message .countdown {
-        color: #10b981;
-        font-weight: 700;
-    }
-    .timer-top-left .message .invalid {
-        color: rgba(255, 255, 255, 0.3);
-    }
+        /* ===== CAROUSEL ===== */
+        .swipe {
+            margin: 12px 14px; border-radius: 16px; overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            position: relative; background: #e8ecf1;
+        }
+        .swipe-track { display: flex; transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); }
+        .swipe-item { min-width: 100%; aspect-ratio: 16/7; }
+        .swipe-item img { width: 100%; height: 100%; object-fit: cover; }
+        .swipe-indicators {
+            position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 8px;
+        }
+        .swipe-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: rgba(255,255,255,0.4); transition: all 0.3s; cursor: pointer;
+        }
+        .swipe-dot.active { background: #065f46; width: 24px; border-radius: 4px; }
 
-    /* ===== TOAST ===== */
-    .toast {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(0.9);
-        background: rgba(0, 0, 0, 0.82);
-        color: #fff;
-        padding: 20px 34px;
-        border-radius: 20px;
-        font-size: 15px;
-        z-index: 2000;
-        display: none;
-        text-align: center;
-        max-width: 85%;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .toast.show {
-        display: block;
-        transform: translate(-50%, -50%) scale(1);
-    }
-    .toast .toast-icon {
-        font-size: 34px;
-        display: block;
-        margin-bottom: 6px;
-    }
+        /* ===== BROADCAST ===== */
+        .broadcast {
+            background: #fff; margin: 0 14px 12px; padding: 10px 16px; border-radius: 14px;
+            display: flex; align-items: center; gap: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+            border: 1px solid #f1f5f9; overflow: hidden; height: 48px;
+        }
+        .broadcast-icon { color: #065f46; font-size: 18px; flex-shrink: 0; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .broadcast-track { flex: 1; overflow: hidden; height: 30px; position: relative; }
+        .broadcast-list { transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); }
+        .broadcast-item {
+            height: 30px; display: flex; align-items: center; font-size: 12px; color: #0f172a;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 500;
+        }
+        .broadcast-item .tag {
+            background: #065f46; color: #fff; font-size: 8px; padding: 1px 10px;
+            border-radius: 12px; margin-right: 8px; font-weight: 600; flex-shrink: 0;
+        }
+        .broadcast-item .amount { color: #065f46; font-weight: 700; }
+        .broadcast-arrow { color: #94a3b8; font-size: 16px; flex-shrink: 0; }
 
-    /* ===== TAB BAR ===== */
-    .tab-bar {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border-top: 1px solid rgba(226, 232, 240, 0.5);
-        display: flex;
-        justify-content: space-around;
-        padding: 6px 0 env(safe-area-inset-bottom);
-        z-index: 200;
-        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.04);
-    }
-    .tab-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.3s;
-        color: #94a3b8;
-        font-size: 9px;
-        font-weight: 500;
-        gap: 2px;
-        position: relative;
-        width: 60px;
-        height: 56px;
-        border-radius: 30px;
-        background: transparent;
-    }
-    .tab-item.active {
-        color: #fff;
-        background: linear-gradient(135deg, #065f46, #0a7a5a);
-        box-shadow: 0 4px 20px rgba(6, 95, 70, 0.2);
-    }
-    .tab-item .tab-icon {
-        font-size: 20px;
-        transition: all 0.3s;
-    }
-    .tab-item:active .tab-icon {
-        transform: scale(0.85);
-    }
-    .tab-item .dot {
-        position: absolute;
-        top: 4px;
-        right: 8px;
-        width: 6px;
-        height: 6px;
-        background: #ef4444;
-        border-radius: 50%;
-        border: 2px solid #fff;
-    }
+        /* ===== ACTION GRID ===== */
+        .action-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+            padding: 10px 14px 8px;
+        }
+        .action-card {
+            border-radius: 16px; padding: 18px 16px; min-height: 64px; cursor: pointer;
+            transition: all 0.25s; position: relative; overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04); border: none;
+            display: flex; align-items: center; gap: 14px;
+        }
+        .action-card:active { transform: scale(0.95); }
+        .action-card .icon-wrap {
+            width: 44px; height: 44px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; flex-shrink: 0;
+        }
+        .action-card .label { font-size: 17px; font-weight: 700; line-height: 1.2; }
+        .action-recharge {
+            background: linear-gradient(135deg, #f7ede4, #ecdac9);
+            border: 1px solid #dcc4ae;
+        }
+        .action-recharge .icon-wrap { background: rgba(184,134,11,0.15); color: #b8860b; }
+        .action-recharge .label { color: #7a5a2e; }
+        .action-withdraw {
+            background: linear-gradient(135deg, #fce8ed, #f5d0d8);
+            border: 1px solid #ecc0c8;
+        }
+        .action-withdraw .icon-wrap { background: rgba(233,30,99,0.12); color: #c62828; }
+        .action-withdraw .label { color: #9e3a4a; }
+        .action-ai {
+            background: linear-gradient(135deg, #e8f0fe, #d0e0f8);
+            border: 1px solid #b8cce8;
+        }
+        .action-ai .icon-wrap { background: rgba(33,150,243,0.12); color: #1565c0; }
+        .action-ai .label { color: #0d47a1; }
+        .action-deposit {
+            background: linear-gradient(135deg, #fdf6e3, #fce8b8);
+            border: 1px solid #f0d88a;
+        }
+        .action-deposit .icon-wrap { background: rgba(249,168,37,0.15); color: #7a6200; }
+        .action-deposit .label { color: #7a6200; }
 
-    /* ===== ADMIN ===== */
-    .admin-float {
-        position: fixed;
-        bottom: 90px;
-        right: 16px;
-        z-index: 999;
-        display: none;
-    }
-    .admin-float.visible {
-        display: block;
-    }
-    .admin-toggle {
-        width: 56px;
-        height: 56px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #065f46, #0a7a5a);
-        color: #fff;
-        border: none;
-        font-size: 24px;
-        cursor: pointer;
-        box-shadow: 0 4px 20px rgba(6, 95, 70, 0.3);
-        transition: all 0.3s;
-        position: relative;
-    }
-    .admin-toggle:active {
-        transform: scale(0.9);
-    }
-    .admin-badge {
-        position: absolute;
-        top: -4px;
-        right: -4px;
-        background: #ef4444;
-        color: #fff;
-        font-size: 10px;
-        font-weight: 700;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .admin-panel {
-        display: none;
-        position: absolute;
-        bottom: 70px;
-        right: 0;
-        background: #fff;
-        border-radius: 16px;
-        padding: 16px;
-        min-width: 280px;
-        max-width: 320px;
-        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
-        border: 1px solid #f1f5f9;
-        max-height: 400px;
-        overflow-y: auto;
-    }
-    .admin-panel.show {
-        display: block;
-    }
-    .admin-panel .admin-header {
-        font-size: 16px;
-        font-weight: 700;
-        color: #0f172a;
-        margin-bottom: 12px;
-        padding-bottom: 10px;
-        border-bottom: 2px solid #065f46;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .admin-panel .admin-header .admin-phone {
-        font-size: 11px;
-        font-weight: 400;
-        color: #64748b;
-    }
-    .admin-panel .admin-stats {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-        margin-bottom: 12px;
-    }
-    .admin-panel .admin-stat {
-        background: #f8fafc;
-        border-radius: 10px;
-        padding: 10px 12px;
-        text-align: center;
-        border: 1px solid #f1f5f9;
-    }
-    .admin-panel .admin-stat .label {
-        font-size: 10px;
-        color: #64748b;
-    }
-    .admin-panel .admin-stat .value {
-        font-size: 18px;
-        font-weight: 700;
-        color: #065f46;
-    }
-    .admin-panel .admin-actions {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 6px;
-        margin-bottom: 12px;
-    }
-    .admin-panel .admin-actions button {
-        padding: 8px 12px;
-        border-radius: 30px;
-        border: none;
-        font-size: 12px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: transform 0.15s, box-shadow 0.2s;
-    }
-    .admin-panel .admin-actions button:active {
-        transform: scale(0.95);
-    }
-    .admin-panel .admin-actions .btn-view {
-        background: #065f46;
-        color: #fff;
-        box-shadow: 0 2px 8px rgba(6, 95, 70, 0.15);
-    }
-    .admin-panel .admin-actions .btn-refresh {
-        background: #eef2f6;
-        color: #0f172a;
-    }
-    .admin-panel .admin-requests {
-        max-height: 200px;
-        overflow-y: auto;
-        border-top: 1px solid #f1f5f9;
-        padding-top: 10px;
-    }
-    .admin-panel .admin-requests .request-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 8px 0;
-        border-bottom: 1px solid #f0f2f5;
-        font-size: 12px;
-    }
-    .admin-panel .admin-requests .request-item .req-info {
-        flex: 1;
-    }
-    .admin-panel .admin-requests .request-item .req-info .req-user {
-        font-weight: 600;
-        color: #0f172a;
-    }
-    .admin-panel .admin-requests .request-item .req-info .req-detail {
-        font-size: 10px;
-        color: #64748b;
-    }
-    .admin-panel .admin-requests .request-item .req-actions {
-        display: flex;
-        gap: 4px;
-    }
-    .admin-panel .admin-requests .request-item .req-actions button {
-        padding: 2px 12px;
-        border-radius: 30px;
-        border: none;
-        font-size: 10px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: transform 0.15s;
-    }
-    .admin-panel .admin-requests .request-item .req-actions button:active {
-        transform: scale(0.92);
-    }
-    .admin-panel .admin-requests .request-item .req-actions .approve {
-        background: #10b981;
-        color: #fff;
-    }
-    .admin-panel .admin-requests .request-item .req-actions .deny {
-        background: #ef4444;
-        color: #fff;
-    }
+        /* ===== QUICK LINKS ===== */
+        .quick-links {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+            padding: 8px 14px 12px;
+        }
+        .quick-link {
+            background: #fff; border-radius: 16px; padding: 14px 6px 12px; text-align: center;
+            font-size: 11px; color: #475569; font-weight: 500; cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            border: 1px solid #f1f5f9; transition: all 0.25s;
+        }
+        .quick-link:active { transform: scale(0.93); background: #f8fafc; border-color: #065f46; }
+        .quick-link i { font-size: 20px; color: #065f46; display: block; margin-bottom: 6px; }
+        .quick-link .link-label { font-size: 10px; color: #64748b; }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 380px) {
+        /* ===== WEALTH SWIPE ===== */
+        .wealth-swipe {
+            margin: 4px 14px 12px; border-radius: 14px; overflow: hidden;
+            background: #fff; border: 1px solid #f1f5f9;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03); height: 100px; position: relative;
+        }
+        .wealth-track { transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); }
+        .wealth-item {
+            height: 100px; background: linear-gradient(135deg, #065f46, #0a7a5a);
+            padding: 16px 22px; display: flex; align-items: center; color: #fff;
+            position: relative; overflow: hidden;
+        }
+        .wealth-item::before {
+            content: ''; position: absolute; right: -30px; bottom: -30px;
+            width: 140px; height: 140px; background: rgba(255,255,255,0.03); border-radius: 50%;
+        }
+        .wealth-item .info { position: relative; z-index: 2; flex: 1; }
+        .wealth-item .info .text { font-size: 13px; font-weight: 400; opacity: 0.85; }
+        .wealth-item .info .amount { font-size: 20px; font-weight: 800; color: #fbbf24; margin-top: 2px; }
+        .wealth-item .info .amount .currency { font-size: 14px; opacity: 0.6; }
+        .wealth-item .arrow { color: rgba(255,255,255,0.25); font-size: 22px; position: relative; z-index: 2; }
+        .wealth-item .emoji-bg {
+            position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+            font-size: 60px; opacity: 0.06; z-index: 1;
+        }
+
+        /* ===== TASK ===== */
+        .task-container { margin: 0 10px; border-radius: 14px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+        .task-header { padding-top: 30px; padding-left: 15px; }
+        .task-header h2 { color: #5ea692; font-weight: 800; font-size: 22px; }
+        .task-header .sub { padding-top: 2px; padding-left: 15px; color: #065f46; font-weight: 700; font-size: 14px; }
+        .task-header .sub2 { padding-top: 2px; padding-left: 15px; color: #6b8e44; font-weight: 500; font-size: 12px; }
+        .earnings-row { padding: 20px 0px 20px 15px; color: #fff; display: flex; gap: 10px; }
+        .earning-card {
+            flex: 1; border-radius: 12px; height: 71px; display: flex; align-items: center; padding: 0 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .earning-card .label { font-size: 11px; font-weight: 500; }
+        .earning-card .value { font-size: 18px; font-weight: 700; margin-top: 2px; }
+        .earning-card.green { background: #cbe3b0; flex: 1.1; margin-right: 5px; }
+        .earning-card.green .label { color: #6b8e44; }
+        .earning-card.green .value { color: #6b8e44; }
+        .earning-card.gold { background: #efe4ce; flex: 1.1; margin-left: 5px; }
+        .earning-card.gold .label { color: #bc9f64; }
+        .earning-card.gold .value { color: #bc9f64; }
+        .task-list { margin: 0; padding: 0; background: #fff; }
+        .task-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 14px 18px; border-bottom: 1px solid #f1f5f9; background: #fff;
+            transition: all 0.3s; cursor: pointer;
+        }
+        .task-item:active { background: #f5f6fa; }
+        .task-item .task-info .task-amount { font-size: 15px; font-weight: 600; color: #0f172a; }
+        .task-item .task-btn button {
+            background: #065f46; border: none; color: #fff; padding: 4px 24px;
+            border-radius: 30px; font-size: 12px; font-weight: 600; cursor: pointer;
+            height: 30px; transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px rgba(6,95,70,0.15);
+        }
+        .task-item .task-btn button:active { transform: scale(0.92); box-shadow: none; }
+        .task-item.completed { display: none; }
+        .loading-container {
+            display: flex; align-items: center; justify-content: center; padding: 14px 0;
+            color: #94a3b8; font-size: 13px; background: #fff; border-top: 1px solid #f1f5f9;
+        }
+
+        /* ===== VIP ===== */
+        .vip-container { padding-bottom: 20px; background: #f5f7fb; }
+        .vip-nav {
+            background: #065f46; padding: 14px 18px 12px;
+            position: sticky; top: 0; z-index: 10;
+        }
+        .vip-nav-content { display: flex; align-items: center; justify-content: space-between; }
+        .vip-nav-left { color: #fff; font-size: 20px; cursor: pointer; padding: 4px 8px; transition: opacity 0.2s; }
+        .vip-nav-left:active { opacity: 0.6; }
+        .vip-nav-title { color: #fff; font-size: 17px; font-weight: 600; }
+        .vip-nav-right { width: 40px; }
+        .vip-header { height: 180px; padding: 10px 15px 0; }
+        .vip-header-card {
+            background: #fff; border-radius: 16px; padding: 16px 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04); border: 1px solid #f1f5f9;
+        }
+        .vip-header-left { flex: 1; }
+        .vip-trial-title { color: #0f172a; font-size: 22px; font-weight: 700; }
+        .vip-trial-label { color: #64748b; font-size: 13px; padding-top: 4px; }
+        .vip-trial-detail { color: #0f172a; font-size: 13px; padding-top: 2px; }
+        .vip-header-right { text-align: right; }
+        .vip-date-value { color: #64748b; font-size: 13px; font-weight: 500; }
+        .price-update-notice {
+            background: #fef3c7; border: 1px solid #fde68a; border-radius: 12px;
+            padding: 10px 14px; margin: 0 15px 10px;
+            display: flex; align-items: center; gap: 8px; font-size: 13px; color: #92400e;
+        }
+        .price-update-notice i { color: #d4a017; font-size: 18px; }
+        .vip-list { padding: 0 15px 10px; display: flex; flex-direction: column; gap: 12px; }
+        .vip-card {
+            border-radius: 16px; padding: 16px 18px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            position: relative; overflow: hidden; min-height: 80px;
+            background: #065f46; border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.2s;
+        }
+        .vip-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(6,95,70,0.12); }
+        .vip-card-content { display: flex; justify-content: space-between; align-items: center; }
+        .vip-card-left { flex: 1; }
+        .vip-level-name {
+            color: #fff; font-size: 22px; font-weight: 900; margin-bottom: 4px;
+            letter-spacing: 0.5px; text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .vip-price { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .old-price { color: #ef4444; font-size: 14px; text-decoration: line-through; font-weight: 400; }
+        .new-price { color: #10b981; font-size: 18px; font-weight: 700; }
+        .vip-upgrade-amount { color: #fbbf24; font-size: 12px; font-weight: 600; margin-top: 2px; }
+        .vip-per-order, .vip-tasks, .vip-profit { color: rgba(255,255,255,0.85); font-size: 13px; font-weight: 500; }
+        .vip-card-right { min-width: 80px; text-align: center; }
+        .vip-join-btn {
+            background: #fbbf24; border: none; border-radius: 30px; color: #0f172a;
+            font-size: 13px; font-weight: 700; padding: 8px 20px; cursor: pointer;
+            box-shadow: 0 2px 12px rgba(251,191,36,0.3);
+            transition: transform 0.15s, box-shadow 0.2s;
+        }
+        .vip-join-btn:active { transform: scale(0.95); box-shadow: none; }
+        .vip-apply-text { color: rgba(255,255,255,0.7); font-size: 13px; font-weight: 600; letter-spacing: 0.3px; }
+
+        /* ===== PROFIT ===== */
+        .profit-container { padding-bottom: 20px; background: #f5f7fb; min-height: 100vh; }
+        .profit-nav {
+            background: #065f46; padding: 14px 18px 12px;
+            position: sticky; top: 0; z-index: 10;
+        }
+        .profit-nav-content { display: flex; align-items: center; justify-content: space-between; }
+        .profit-nav-left { color: #fff; font-size: 20px; cursor: pointer; padding: 4px 8px; transition: opacity 0.2s; }
+        .profit-nav-left:active { opacity: 0.6; }
+        .profit-nav-title { color: #fff; font-size: 17px; font-weight: 600; }
+        .profit-nav-right { width: 40px; }
+        .profit-tabs {
+            display: flex; background: #fff; border-bottom: 1px solid #f1f5f9;
+            padding: 0 16px; gap: 4px;
+        }
+        .profit-tab {
+            padding: 14px 16px 12px; font-size: 14px; font-weight: 500;
+            color: #64748b; cursor: pointer; border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        .profit-tab:active { opacity: 0.6; }
+        .profit-tab.active { color: #065f46; border-bottom-color: #065f46; font-weight: 600; }
+        .profit-content { padding: 10px 16px; }
+        .profit-item {
+            display: flex; justify-content: space-between; align-items: center;
+            background: #fff; border-radius: 14px; padding: 16px 18px; margin-bottom: 10px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.02); border: 1px solid #f1f5f9; cursor: pointer;
+            transition: all 0.2s;
+        }
+        .profit-item:active { transform: scale(0.98); background: #f8fafc; }
+        .profit-item-left { display: flex; align-items: center; gap: 12px; }
+        .profit-icon {
+            color: #065f46; font-size: 16px; width: 36px; height: 36px; border-radius: 50%;
+            background: #d1fae5; display: flex; align-items: center; justify-content: center;
+        }
+        .profit-item-label { font-size: 15px; font-weight: 500; color: #0f172a; }
+        .profit-item-right { display: flex; align-items: center; gap: 8px; }
+        .profit-item-amount { font-size: 15px; font-weight: 600; color: #065f46; }
+        .profit-arrow { color: #94a3b8; font-size: 14px; }
+
+        /* ===== MY ===== */
+        .my-container { padding-bottom: 20px; background: #f5f7fb; min-height: 100vh; }
+        .my-top {
+            background: linear-gradient(135deg, #065f46, #0a7a5a);
+            padding: 18px 18px 16px; border-radius: 0 0 24px 24px;
+            box-shadow: 0 4px 20px rgba(6,95,70,0.15);
+        }
+        .my-header { display: flex; justify-content: space-between; align-items: flex-start; }
+        .my-user { display: flex; flex-direction: column; gap: 2px; }
+        .my-brand { color: #fff; font-size: 28px; font-weight: 900; letter-spacing: 0.5px; }
+        .my-id { color: rgba(255,255,255,0.7); font-size: 12px; font-weight: 500; }
+        .my-right-icons { display: flex; align-items: center; }
+        .my-settings {
+            color: #fff; font-size: 22px; cursor: pointer; transition: all 0.3s;
+            background: rgba(255,255,255,0.15); width: 36px; height: 36px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .my-settings:active { transform: scale(0.9); background: rgba(255,255,255,0.3); }
+        .my-vip-row {
+            display: flex; align-items: center; gap: 6px; margin-top: 10px;
+            padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.06);
+            cursor: pointer; justify-content: flex-end; transition: opacity 0.2s;
+        }
+        .my-vip-row:active { opacity: 0.7; }
+        .my-vip-label { color: rgba(255,255,255,0.5); font-size: 12px; }
+        .my-vip-value { color: #fbbf24; font-size: 13px; font-weight: 600; }
+        .my-vip-arrow { color: rgba(255,255,255,0.2); font-size: 12px; }
+        .my-balance-section { margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .my-balance-label { color: rgba(255,255,255,0.5); font-size: 11px; display: block; }
+        .my-balance-value { color: #fff; font-size: 28px; font-weight: 800; display: block; margin-top: 2px; }
+        .my-actions {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+            padding: 12px 16px 12px;
+        }
+        .my-action-btn {
+            background: #fff; border-radius: 14px; padding: 12px 8px; text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02); border: 1px solid #f1f5f9; cursor: pointer;
+            transition: all 0.2s;
+        }
+        .my-action-btn:active { transform: scale(0.95); background: #f8fafc; }
+        .my-action-btn .naira-sign-btn { font-size: 20px; color: #065f46; display: block; margin-bottom: 4px; font-weight: 700; }
+        .my-action-btn i { font-size: 20px; color: #065f46; display: block; margin-bottom: 4px; }
+        .my-action-btn span { font-size: 11px; color: #475569; font-weight: 500; }
+        .referral-section {
+            background: #fff; border-radius: 14px; padding: 16px 18px;
+            margin: 10px 16px 12px; border: 1px solid #f1f5f9;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02); display: none;
+        }
+        .referral-section.visible { display: block; }
+        .referral-title {
+            font-size: 16px; font-weight: 700; color: #0f172a; margin-bottom: 8px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .referral-title i { color: #065f46; }
+        .referral-code {
+            display: flex; align-items: center; justify-content: space-between;
+            background: #f1f5f9; border-radius: 10px; padding: 10px 14px; margin-top: 6px;
+        }
+        .referral-code span { font-size: 18px; font-weight: 700; color: #065f46; letter-spacing: 2px; }
+        .referral-code button {
+            background: #065f46; color: #fff; border: none; border-radius: 30px;
+            padding: 6px 16px; font-size: 12px; font-weight: 600; cursor: pointer;
+            transition: transform 0.15s;
+        }
+        .referral-code button:active { transform: scale(0.92); }
+        .referral-stats {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px;
+        }
+        .referral-stat {
+            text-align: center; background: #f8fafc; border-radius: 10px;
+            padding: 8px 6px; border: 1px solid #f1f5f9;
+        }
+        .referral-stat .number { font-size: 18px; font-weight: 700; color: #065f46; }
+        .referral-stat .label { font-size: 9px; color: #64748b; margin-top: 2px; }
+        .referral-vip-badge {
+            display: inline-block; background: #fbbf24; color: #0f172a;
+            font-size: 9px; font-weight: 700; padding: 1px 10px; border-radius: 12px; margin-left: 6px;
+        }
+        .my-stats {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 16px 8px;
+        }
+        .my-stat-card {
+            background: #fff; border-radius: 14px; padding: 14px 12px; text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02); border: 1px solid #f1f5f9; cursor: pointer;
+            transition: all 0.2s;
+        }
+        .my-stat-card:active { transform: scale(0.96); }
+        .my-stat-label { font-size: 10px; color: #64748b; display: block; line-height: 1.2; }
+        .my-stat-value { font-size: 18px; font-weight: 700; color: #0f172a; display: block; margin-top: 4px; }
+        .my-stats-row2 {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 16px 12px;
+        }
+        .my-stat-card2 {
+            background: #fff; border-radius: 14px; padding: 14px 12px; text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02); border: 1px solid #f1f5f9; cursor: pointer;
+            transition: all 0.2s;
+        }
+        .my-stat-card2:active { transform: scale(0.96); }
+        .my-stat-label2 { font-size: 10px; color: #64748b; display: block; line-height: 1.2; }
+        .my-stat-value2 { font-size: 18px; font-weight: 700; color: #0f172a; display: block; margin-top: 4px; }
+        .my-block-features { margin-top: 4px; }
+        .my-quick-menu {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; padding: 0 16px 10px;
+        }
+        .my-quick-item {
+            background: #fff; border-radius: 14px; padding: 12px 6px; text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02); border: 1px solid #f1f5f9; cursor: pointer;
+            transition: all 0.2s;
+        }
+        .my-quick-item:active { transform: scale(0.93); }
+        .my-quick-item i { font-size: 18px; color: #065f46; display: block; margin-bottom: 4px; }
+        .my-quick-item span { font-size: 10px; color: #475569; font-weight: 500; }
+        .my-bottom-menu {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; padding: 0 16px 10px;
+        }
+        .my-bottom-item {
+            background: #fff; border-radius: 14px; padding: 12px 6px; text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02); border: 1px solid #f1f5f9; cursor: pointer;
+            transition: all 0.2s;
+        }
+        .my-bottom-item:active { transform: scale(0.93); }
+        .my-bottom-item i { font-size: 18px; color: #065f46; display: block; margin-bottom: 4px; }
+        .my-bottom-item span { font-size: 10px; color: #475569; font-weight: 500; }
+        .my-footer { text-align: center; font-size: 11px; color: #94a3b8; padding: 16px 0 10px; letter-spacing: 0.5px; }
+
+        /* ===== WITHDRAWAL ===== */
+        .withdrawal-container { padding-bottom: 20px; background: #f5f7fb; min-height: 100vh; }
+        .withdrawal-nav {
+            background: #065f46; padding: 14px 18px 12px;
+            position: sticky; top: 0; z-index: 10;
+        }
+        .withdrawal-nav-content { display: flex; align-items: center; justify-content: space-between; }
+        .withdrawal-nav-left { color: #fff; font-size: 20px; cursor: pointer; padding: 4px 8px; transition: opacity 0.2s; }
+        .withdrawal-nav-left:active { opacity: 0.6; }
+        .withdrawal-nav-title { color: #fff; font-size: 17px; font-weight: 600; }
+        .withdrawal-nav-right { width: 40px; }
+        .withdrawal-content { padding: 16px 16px 10px; }
+        .withdrawal-method-dropdown {
+            background: #fff; border-radius: 14px; padding: 14px 16px;
+            border: 1px solid #f1f5f9; margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .withdrawal-method-dropdown .withdrawal-label {
+            font-size: 13px; color: #0f172a; font-weight: 600; display: block; margin-bottom: 8px;
+        }
+        .withdrawal-option {
+            padding: 10px 14px; border-radius: 10px; border: 1px solid #f1f5f9;
+            margin-bottom: 6px; cursor: pointer; display: flex; justify-content: space-between;
+            align-items: center; transition: all 0.2s; font-size: 13px; color: #0f172a;
+        }
+        .withdrawal-option:active { transform: scale(0.98); }
+        .withdrawal-option.selected { border-color: #065f46; background: #d1fae5; }
+        .withdrawal-option .checkmark { color: #065f46; font-weight: 700; display: none; }
+        .withdrawal-option.selected .checkmark { display: block; }
+        .withdrawal-no-bank {
+            background: #fef3c7; border: 1px solid #fde68a; border-radius: 10px;
+            padding: 12px 14px; font-size: 13px; color: #92400e; text-align: center;
+        }
+        .withdrawal-password {
+            background: #fff; border-radius: 14px; padding: 14px 16px;
+            border: 1px solid #f1f5f9; margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .withdrawal-password .withdrawal-label {
+            font-size: 13px; color: #0f172a; font-weight: 500; display: block; margin-bottom: 6px;
+        }
+        .withdrawal-password .withdrawal-input {
+            width: 100%; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 10px;
+            font-size: 14px; outline: none; background: #f8fafc;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        .withdrawal-password .withdrawal-input:focus {
+            border-color: #065f46; box-shadow: 0 0 0 3px rgba(6,95,70,0.1); background: #fff;
+        }
+        .withdrawal-amount {
+            background: #fff; border-radius: 14px; padding: 14px 16px;
+            border: 1px solid #f1f5f9; margin-bottom: 12px; text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .withdrawal-amount .withdrawal-label {
+            font-size: 13px; color: #0f172a; font-weight: 500; display: block; margin-bottom: 8px; text-align: left;
+        }
+        .withdrawal-amount-buttons {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px;
+        }
+        .withdrawal-amount-btn {
+            background: #fff; border: 1px solid #e2e8f0; border-radius: 10px;
+            padding: 10px 6px; font-size: 13px; font-weight: 600; color: #0f172a;
+            cursor: pointer; text-align: center; transition: all 0.2s;
+        }
+        .withdrawal-amount-btn:active { transform: scale(0.95); background: #f0f2f5; border-color: #065f46; }
+        .withdrawal-amount-btn.selected { background: #065f46; color: #fff; border-color: #065f46; box-shadow: 0 2px 8px rgba(6,95,70,0.2); }
+        .withdrawal-info { display: flex; justify-content: space-between; padding: 0 4px 12px; }
+        .withdrawal-balance { font-size: 13px; color: #065f46; font-weight: 600; }
+        .withdrawal-tax { font-size: 13px; color: #ef4444; font-weight: 500; }
+        .withdrawal-submit-btn {
+            width: 100%; background: linear-gradient(135deg, #065f46, #0a7a5a);
+            color: #fff; border: none; border-radius: 30px; padding: 14px;
+            font-size: 16px; font-weight: 700; cursor: pointer;
+            box-shadow: 0 4px 16px rgba(6,95,70,0.2);
+            transition: transform 0.15s, box-shadow 0.2s;
+        }
+        .withdrawal-submit-btn:active { transform: scale(0.96); box-shadow: none; }
+
+        /* ===== RECHARGE ===== */
+        .recharge-container { padding-bottom: 20px; background: #f5f7fb; min-height: 100vh; }
+        .recharge-nav {
+            background: #065f46; padding: 14px 18px 12px;
+            position: sticky; top: 0; z-index: 10;
+        }
+        .recharge-nav-content { display: flex; align-items: center; justify-content: space-between; }
+        .recharge-nav-left { color: #fff; font-size: 20px; cursor: pointer; padding: 4px 8px; transition: opacity 0.2s; }
+        .recharge-nav-left:active { opacity: 0.6; }
+        .recharge-nav-title { color: #fff; font-size: 17px; font-weight: 600; }
+        .recharge-nav-right { width: 40px; }
+        .recharge-content { padding: 16px 16px 10px; }
+        .recharge-box {
+            background: #fff; border-radius: 16px; padding: 20px 18px;
+            border: 1px solid #f1f5f9; margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .recharge-label {
+            font-size: 14px; font-weight: 600; color: #0f172a; display: block; margin-bottom: 8px;
+        }
+        .recharge-input {
+            width: 100%; padding: 14px 16px; border: 1px solid #e2e8f0; border-radius: 12px;
+            font-size: 16px; outline: none; background: #f8fafc;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        .recharge-input:focus {
+            border-color: #065f46; box-shadow: 0 0 0 3px rgba(6,95,70,0.1); background: #fff;
+        }
+        .recharge-quick {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 10px;
+        }
+        .recharge-quick-btn {
+            background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px;
+            padding: 10px 6px; font-size: 12px; font-weight: 600; color: #0f172a;
+            cursor: pointer; text-align: center; transition: all 0.2s;
+        }
+        .recharge-quick-btn:active { transform: scale(0.95); background: #065f46; color: #fff; border-color: #065f46; }
+        .recharge-bank {
+            background: #f8fafc; border-radius: 12px; padding: 12px 14px;
+            border: 1px solid #f1f5f9; margin-bottom: 14px;
+        }
+        .recharge-bank .bank-detail { font-size: 13px; color: #475569; padding: 2px 0; }
+        .recharge-bank .bank-detail strong { color: #0f172a; }
+        .recharge-pay-btn {
+            width: 100%; background: linear-gradient(135deg, #065f46, #0a7a5a);
+            color: #fff; border: none; border-radius: 30px; padding: 14px;
+            font-size: 16px; font-weight: 700; cursor: pointer;
+            box-shadow: 0 4px 16px rgba(6,95,70,0.2);
+            transition: transform 0.15s, box-shadow 0.2s;
+        }
+        .recharge-pay-btn:active { transform: scale(0.96); box-shadow: none; }
+        .recharge-status {
+            display: none; background: #fef3c7; border: 1px solid #fde68a;
+            border-radius: 12px; padding: 14px 18px; margin-top: 12px; text-align: center;
+        }
+        .recharge-status.show { display: block; }
+        .recharge-status .status-title { font-size: 14px; font-weight: 600; color: #92400e; }
+        .recharge-status .status-text { font-size: 13px; color: #92400e; margin-top: 4px; }
+        .recharge-status .verify-btn {
+            margin-top: 10px; background: #f59e0b; color: #0f172a; border: none;
+            border-radius: 30px; padding: 10px 20px; font-size: 14px; font-weight: 600;
+            cursor: pointer; transition: transform 0.15s;
+        }
+        .recharge-status .verify-btn:active { transform: scale(0.94); }
+        .recharge-success {
+            display: none; background: #d1fae5; border: 1px solid #10b981;
+            border-radius: 12px; padding: 14px 18px; margin-top: 12px; text-align: center;
+        }
+        .recharge-success.show { display: block; }
+        .recharge-success .success-title { font-size: 16px; font-weight: 700; color: #065f46; }
+        .recharge-success .success-text { font-size: 14px; color: #065f46; margin-top: 4px; }
+
+        /* ===== SETTINGS ===== */
+        .settings-container { padding-bottom: 20px; background: #f5f7fb; min-height: 100vh; }
+        .settings-nav {
+            background: #065f46; padding: 14px 18px 12px;
+            position: sticky; top: 0; z-index: 10;
+        }
+        .settings-nav-content { display: flex; align-items: center; justify-content: space-between; }
+        .settings-nav-left { color: #fff; font-size: 20px; cursor: pointer; padding: 4px 8px; transition: opacity 0.2s; }
+        .settings-nav-left:active { opacity: 0.6; }
+        .settings-nav-title { color: #fff; font-size: 17px; font-weight: 600; }
+        .settings-nav-right { width: 40px; }
+        .settings-content { padding: 16px 16px 10px; }
+        .settings-profile {
+            background: #fff; border-radius: 16px; padding: 16px 18px;
+            display: flex; align-items: center; justify-content: space-between;
+            border: 1px solid #f1f5f9; margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .settings-profile-left { display: flex; align-items: center; gap: 12px; }
+        .settings-avatar { font-size: 48px; color: #94a3b8; }
+        .settings-profile-info { display: flex; flex-direction: column; }
+        .settings-profile-number { font-size: 16px; font-weight: 700; color: #0f172a; }
+        .settings-profile-right { display: flex; align-items: center; }
+        .settings-bind-btn {
+            background: #065f46; color: #fff; padding: 4px 16px; border-radius: 30px;
+            font-size: 11px; font-weight: 500; cursor: pointer; transition: transform 0.15s;
+        }
+        .settings-bind-btn:active { transform: scale(0.92); }
+        .settings-items {
+            background: #fff; border-radius: 16px; border: 1px solid #f1f5f9;
+            overflow: hidden; margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .settings-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 18px; border-bottom: 1px solid #f1f5f9; cursor: pointer;
+            transition: background 0.2s;
+        }
+        .settings-item:last-child { border-bottom: none; }
+        .settings-item:active { background: #f8fafc; }
+        .settings-item-label { font-size: 14px; color: #0f172a; font-weight: 500; }
+        .settings-item-right { display: flex; align-items: center; gap: 8px; }
+        .settings-item-value { font-size: 13px; color: #64748b; }
+        .settings-item-arrow { color: #94a3b8; font-size: 14px; }
+        .settings-signout-btn {
+            width: 100%; background: #ef4444; color: #fff; border: none; border-radius: 30px;
+            padding: 14px; font-size: 16px; font-weight: 600; cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 16px rgba(239,68,68,0.2);
+        }
+        .settings-signout-btn:active { transform: scale(0.96); box-shadow: none; }
+
+        /* ===== CHANGE PASSWORD / FUND PASSWORD ===== */
+        .changepassword-container { padding-bottom: 20px; background: #f5f7fb; min-height: 100vh; }
+        .changepassword-nav {
+            background: #065f46; padding: 14px 18px 12px;
+            position: sticky; top: 0; z-index: 10;
+        }
+        .changepassword-nav-content { display: flex; align-items: center; justify-content: space-between; }
+        .changepassword-nav-left { color: #fff; font-size: 20px; cursor: pointer; padding: 4px 8px; transition: opacity 0.2s; }
+        .changepassword-nav-left:active { opacity: 0.6; }
+        .changepassword-nav-title { color: #fff; font-size: 17px; font-weight: 600; }
+        .changepassword-nav-right { width: 40px; }
+        .changepassword-content { padding: 20px 16px; }
+        .changepassword-box {
+            background: #fff; border-radius: 16px; padding: 20px 18px;
+            border: 1px solid #f1f5f9; box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .changepassword-field { margin-bottom: 16px; }
+        .changepassword-label {
+            font-size: 14px; font-weight: 600; color: #0f172a; display: block; margin-bottom: 6px;
+        }
+        .changepassword-input {
+            width: 100%; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 10px;
+            font-size: 14px; outline: none; background: #f8fafc;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        .changepassword-input:focus {
+            border-color: #065f46; box-shadow: 0 0 0 3px rgba(6,95,70,0.1); background: #fff;
+        }
+        .changepassword-submit-btn {
+            width: 100%; background: #065f46; color: #fff; border: none; border-radius: 30px;
+            padding: 12px; font-size: 16px; font-weight: 600; margin-top: 8px;
+            cursor: pointer; transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 16px rgba(6,95,70,0.2);
+        }
+        .changepassword-submit-btn:active { transform: scale(0.96); box-shadow: none; }
+
+        /* ===== BIND BANK ===== */
+        .bindbank-container { padding-bottom: 20px; background: #f5f7fb; min-height: 100vh; }
+        .bindbank-nav {
+            background: #065f46; padding: 14px 18px 12px;
+            position: sticky; top: 0; z-index: 10;
+        }
+        .bindbank-nav-content { display: flex; align-items: center; justify-content: space-between; }
+        .bindbank-nav-left { color: #fff; font-size: 20px; cursor: pointer; padding: 4px 8px; transition: opacity 0.2s; }
+        .bindbank-nav-left:active { opacity: 0.6; }
+        .bindbank-nav-title { color: #fff; font-size: 17px; font-weight: 600; }
+        .bindbank-nav-right { width: 40px; }
+        .bindbank-content { padding: 16px 16px 10px; }
+        .bindbank-notice {
+            background: #fef3c7; border: 1px solid #fde68a; border-radius: 12px;
+            padding: 12px 14px; font-size: 13px; color: #92400e; margin-bottom: 16px; line-height: 1.5;
+        }
+        .bindbank-success {
+            background: #d1fae5; border: 1px solid #10b981; border-radius: 12px;
+            padding: 16px; margin-bottom: 16px; display: none;
+        }
+        .bindbank-success.show { display: block; }
+        .bindbank-success .success-title { font-size: 16px; font-weight: 700; color: #065f46; margin-bottom: 8px; }
+        .bindbank-success .success-detail { font-size: 13px; color: #0f172a; padding: 2px 0; }
+        .bindbank-success .success-detail strong { color: #065f46; }
+        .bindbank-form {
+            background: #fff; border-radius: 16px; padding: 18px;
+            border: 1px solid #f1f5f9; box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .bindbank-form.hidden { display: none; }
+        .bindbank-field { margin-bottom: 16px; }
+        .bindbank-label {
+            font-size: 13px; font-weight: 500; color: #0f172a; display: block; margin-bottom: 4px;
+        }
+        .bindbank-input {
+            width: 100%; padding: 10px 12px; border: 1px solid #e2e8f0; border-radius: 10px;
+            font-size: 14px; outline: none; background: #f8fafc;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        .bindbank-input:focus {
+            border-color: #065f46; box-shadow: 0 0 0 3px rgba(6,95,70,0.1); background: #fff;
+        }
+        .bindbank-select {
+            width: 100%; padding: 10px 12px; border: 1px solid #e2e8f0; border-radius: 10px;
+            font-size: 14px; outline: none; background: #f8fafc; color: #0f172a;
+            appearance: auto; cursor: pointer; transition: border 0.2s, box-shadow 0.2s;
+        }
+        .bindbank-select:focus {
+            border-color: #065f46; box-shadow: 0 0 0 3px rgba(6,95,70,0.1); background: #fff;
+        }
+        .bindbank-add-btn {
+            width: 100%; background: #065f46; color: #fff; border: none; border-radius: 30px;
+            padding: 12px; font-size: 16px; font-weight: 600; cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 16px rgba(6,95,70,0.2);
+        }
+        .bindbank-add-btn:active { transform: scale(0.96); box-shadow: none; }
+
+        /* ===== REAL NAME ===== */
+        .realname-container { padding-bottom: 20px; background: #f5f7fb; min-height: 100vh; }
+        .realname-nav {
+            background: #065f46; padding: 14px 18px 12px;
+            position: sticky; top: 0; z-index: 10;
+        }
+        .realname-nav-content { display: flex; align-items: center; justify-content: space-between; }
+        .realname-nav-left { color: #fff; font-size: 20px; cursor: pointer; padding: 4px 8px; transition: opacity 0.2s; }
+        .realname-nav-left:active { opacity: 0.6; }
+        .realname-nav-title { color: #fff; font-size: 17px; font-weight: 600; }
+        .realname-nav-right { width: 40px; }
+        .realname-content { padding: 20px 16px; }
+        .realname-box {
+            background: #fff; border-radius: 16px; padding: 20px 18px;
+            border: 1px solid #f1f5f9; box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .realname-label {
+            font-size: 14px; font-weight: 600; color: #0f172a; display: block; margin-bottom: 8px;
+        }
+        .realname-input {
+            width: 100%; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 10px;
+            font-size: 14px; outline: none; background: #f8fafc;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        .realname-input:focus {
+            border-color: #065f46; box-shadow: 0 0 0 3px rgba(6,95,70,0.1); background: #fff;
+        }
+        .realname-hint { font-size: 12px; color: #64748b; margin-top: 6px; }
+        .realname-submit-btn {
+            width: 100%; background: #065f46; color: #fff; border: none; border-radius: 30px;
+            padding: 12px; font-size: 16px; font-weight: 600; margin-top: 16px;
+            cursor: pointer; transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 16px rgba(6,95,70,0.2);
+        }
+        .realname-submit-btn:active { transform: scale(0.96); box-shadow: none; }
+
+        /* ===== PAYMENT POPUP ===== */
+        .payment-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.75); z-index: 9998; display: none;
+            align-items: center; justify-content: center; padding: 20px;
+            backdrop-filter: blur(6px);
+        }
+        .payment-overlay.show { display: flex; }
+        .payment-popup {
+            background: #fff; border-radius: 24px; max-width: 420px; width: 100%;
+            max-height: 85vh; overflow-y: auto; animation: slideUp 0.4s ease;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2); padding: 24px;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .payment-popup .payment-title { font-size: 20px; font-weight: 700; color: #0f172a; text-align: center; margin-bottom: 4px; }
+        .payment-popup .payment-subtitle { text-align: center; color: #64748b; font-size: 14px; margin-bottom: 16px; }
+        .payment-popup .payment-amount { text-align: center; font-size: 32px; font-weight: 800; color: #065f46; margin: 8px 0 16px; }
+        .payment-popup .payment-details {
+            background: #f8fafc; border-radius: 12px; padding: 14px 16px;
+            margin-bottom: 16px; border: 1px solid #f1f5f9;
+        }
+        .payment-popup .payment-details .row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 13px; }
+        .payment-popup .payment-details .row .label { color: #64748b; }
+        .payment-popup .payment-details .row .value { color: #0f172a; font-weight: 600; }
+        .payment-popup .payment-btn {
+            width: 100%; background: #065f46; color: #fff; border: none; border-radius: 30px;
+            padding: 14px; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 8px;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 16px rgba(6,95,70,0.2);
+        }
+        .payment-popup .payment-btn:active { transform: scale(0.96); box-shadow: none; }
+        .payment-popup .payment-verify-btn {
+            width: 100%; background: #f59e0b; color: #0f172a; border: none; border-radius: 30px;
+            padding: 14px; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 8px;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 16px rgba(245,158,11,0.25);
+        }
+        .payment-popup .payment-verify-btn:active { transform: scale(0.96); box-shadow: none; }
+        .payment-popup .payment-close-btn {
+            width: 100%; background: transparent; color: #94a3b8; border: none;
+            padding: 10px; font-size: 14px; cursor: pointer; margin-top: 4px;
+            transition: color 0.2s;
+        }
+        .payment-popup .payment-close-btn:active { color: #0f172a; }
+        .payment-popup .payment-status {
+            text-align: center; padding: 10px; border-radius: 12px; margin-top: 12px;
+            font-weight: 600; display: none;
+        }
+        .payment-popup .payment-status.success { background: #d1fae5; color: #065f46; display: block; }
+        .payment-popup .payment-status.pending { background: #fef3c7; color: #92400e; display: block; }
+        .payment-popup .payment-status.failed { background: #fee2e2; color: #dc2626; display: block; }
+
+        /* ===== ANNOUNCEMENT ===== */
+        .announcement-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.75); z-index: 9999; display: none;
+            align-items: center; justify-content: center; padding: 20px;
+            backdrop-filter: blur(6px); animation: fadeIn 0.3s ease;
+        }
+        .announcement-overlay.show { display: flex; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .announcement-popup {
+            background: #fff; border-radius: 24px; max-width: 450px; width: 100%;
+            max-height: 85vh; overflow-y: auto; animation: slideUp 0.4s ease;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+        .announcement-header {
+            background: linear-gradient(135deg, #065f46, #0a7a5a); color: #fff;
+            padding: 16px 20px; border-radius: 24px 24px 0 0;
+            font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 10px;
+        }
+        .announcement-icon { font-size: 24px; }
+        .announcement-body { padding: 20px; }
+        .announcement-title { font-size: 18px; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
+        .announcement-text { font-size: 13px; color: #475569; line-height: 1.6; margin-bottom: 8px; }
+        .announcement-btn {
+            width: calc(100% - 40px); margin: 0 20px 20px; background: #065f46;
+            color: #fff; border: none; border-radius: 30px; padding: 12px;
+            font-size: 16px; font-weight: 600; cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 16px rgba(6,95,70,0.2);
+        }
+        .announcement-btn:active { transform: scale(0.96); box-shadow: none; }
+
+        /* ===== READING OVERLAY ===== */
+        .reading-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: #0f172a; z-index: 1000; display: none; flex-direction: column;
+            overflow: hidden;
+        }
+        .reading-overlay.show { display: flex; }
+        .reading-nav {
+            background: rgba(15,23,42,0.95); padding: 12px 16px;
+            display: flex; align-items: center; justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            flex-shrink: 0; z-index: 10; min-height: 50px;
+        }
+        .reading-nav .back-btn {
+            color: #fff; font-size: 20px; cursor: pointer; padding: 4px 8px;
+            border-radius: 8px; background: rgba(255,255,255,0.05); border: none;
+            transition: background 0.2s;
+        }
+        .reading-nav .back-btn:active { background: rgba(255,255,255,0.15); }
+        .reading-nav .title {
+            color: #fff; font-size: 14px; font-weight: 600; flex: 1;
+            text-align: center; padding: 0 10px; white-space: nowrap;
+            overflow: hidden; text-overflow: ellipsis;
+        }
+
+        /* ===== TIMER ===== */
+        .timer-top-left {
+            position: fixed; top: 70px; left: 16px; z-index: 1001;
+            display: none; flex-direction: column;
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
+            padding: 10px 14px; border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.08); max-width: 220px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+        }
+        .timer-top-left.show { display: flex; }
+        .timer-top-left .message {
+            color: rgba(255,255,255,0.7); font-size: 12px; line-height: 1.5; font-weight: 400;
+        }
+        .timer-top-left .message .countdown { color: #10b981; font-weight: 700; }
+        .timer-top-left .message .invalid { color: rgba(255,255,255,0.3); }
+
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) scale(0.9);
+            background: rgba(0,0,0,0.82); color: #fff; padding: 20px 34px;
+            border-radius: 20px; font-size: 15px; z-index: 2000; display: none;
+            text-align: center; max-width: 85%; backdrop-filter: blur(10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+        .toast.show { display: block; transform: translate(-50%,-50%) scale(1); }
+        .toast .toast-icon { font-size: 34px; display: block; margin-bottom: 6px; }
+
+        /* ===== TAB BAR ===== */
+        .tab-bar {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(226,232,240,0.5);
+            display: flex; justify-content: space-around;
+            padding: 6px 0 env(safe-area-inset-bottom); z-index: 200;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.04);
+        }
         .tab-item {
-            width: 50px;
-            height: 50px;
-            font-size: 8px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.3s; color: #94a3b8;
+            font-size: 9px; font-weight: 500; gap: 2px;
+            position: relative; width: 60px; height: 56px; border-radius: 30px;
+            background: transparent;
         }
-        .tab-item .tab-icon {
-            font-size: 18px;
+        .tab-item.active {
+            color: #fff; background: linear-gradient(135deg, #065f46, #0a7a5a);
+            box-shadow: 0 4px 20px rgba(6,95,70,0.2);
+        }
+        .tab-item .tab-icon { font-size: 20px; transition: all 0.3s; }
+        .tab-item:active .tab-icon { transform: scale(0.85); }
+        .tab-item .dot {
+            position: absolute; top: 4px; right: 8px; width: 6px; height: 6px;
+            background: #ef4444; border-radius: 50%; border: 2px solid #fff;
+        }
+
+        /* ===== ADMIN ===== */
+        .admin-float {
+            position: fixed; bottom: 90px; right: 16px; z-index: 999; display: none;
+        }
+        .admin-float.visible { display: block; }
+        .admin-toggle {
+            width: 56px; height: 56px; border-radius: 50%;
+            background: linear-gradient(135deg, #065f46, #0a7a5a); color: #fff;
+            border: none; font-size: 24px; cursor: pointer;
+            box-shadow: 0 4px 20px rgba(6,95,70,0.3);
+            transition: all 0.3s; position: relative;
+        }
+        .admin-toggle:active { transform: scale(0.9); }
+        .admin-badge {
+            position: absolute; top: -4px; right: -4px; background: #ef4444;
+            color: #fff; font-size: 10px; font-weight: 700; width: 20px; height: 20px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
         }
         .admin-panel {
-            min-width: 240px;
-            right: -10px;
+            display: none; position: absolute; bottom: 70px; right: 0;
+            background: #fff; border-radius: 16px; padding: 16px;
+            min-width: 280px; max-width: 320px; box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+            border: 1px solid #f1f5f9; max-height: 400px; overflow-y: auto;
         }
-    }
-    @media (min-width: 500px) {
-        body {
-            max-width: 480px;
-            margin: 0 auto;
-            background: #e8ecf1;
+        .admin-panel.show { display: block; }
+        .admin-panel .admin-header {
+            font-size: 16px; font-weight: 700; color: #0f172a; margin-bottom: 12px;
+            padding-bottom: 10px; border-bottom: 2px solid #065f46;
+            display: flex; justify-content: space-between; align-items: center;
         }
-        .tab-bar {
-            max-width: 480px;
-            left: 50%;
-            transform: translateX(-50%);
+        .admin-panel .admin-header .admin-phone { font-size: 11px; font-weight: 400; color: #64748b; }
+        .admin-panel .admin-stats {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;
         }
-    }
-</style>
-<!-- TOAST -->
+        .admin-panel .admin-stat {
+            background: #f8fafc; border-radius: 10px; padding: 10px 12px;
+            text-align: center; border: 1px solid #f1f5f9;
+        }
+        .admin-panel .admin-stat .label { font-size: 10px; color: #64748b; }
+        .admin-panel .admin-stat .value { font-size: 18px; font-weight: 700; color: #065f46; }
+        .admin-panel .admin-actions {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 12px;
+        }
+        .admin-panel .admin-actions button {
+            padding: 8px 12px; border-radius: 30px; border: none; font-size: 12px;
+            font-weight: 600; cursor: pointer; transition: transform 0.15s, box-shadow 0.2s;
+        }
+        .admin-panel .admin-actions button:active { transform: scale(0.95); }
+        .admin-panel .admin-actions .btn-view {
+            background: #065f46; color: #fff; box-shadow: 0 2px 8px rgba(6,95,70,0.15);
+        }
+        .admin-panel .admin-actions .btn-refresh { background: #eef2f6; color: #0f172a; }
+        .admin-panel .admin-requests {
+            max-height: 200px; overflow-y: auto; border-top: 1px solid #f1f5f9; padding-top: 10px;
+        }
+        .admin-panel .admin-requests .request-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 8px 0; border-bottom: 1px solid #f0f2f5; font-size: 12px;
+        }
+        .admin-panel .admin-requests .request-item .req-info { flex: 1; }
+        .admin-panel .admin-requests .request-item .req-info .req-user { font-weight: 600; color: #0f172a; }
+        .admin-panel .admin-requests .request-item .req-info .req-detail { font-size: 10px; color: #64748b; }
+        .admin-panel .admin-requests .request-item .req-actions { display: flex; gap: 4px; }
+        .admin-panel .admin-requests .request-item .req-actions button {
+            padding: 2px 12px; border-radius: 30px; border: none; font-size: 10px;
+            font-weight: 600; cursor: pointer; transition: transform 0.15s;
+        }
+        .admin-panel .admin-requests .request-item .req-actions button:active { transform: scale(0.92); }
+        .admin-panel .admin-requests .request-item .req-actions .approve { background: #10b981; color: #fff; }
+        .admin-panel .admin-requests .request-item .req-actions .deny { background: #ef4444; color: #fff; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 380px) {
+            .tab-item { width: 50px; height: 50px; font-size: 8px; }
+            .tab-item .tab-icon { font-size: 18px; }
+            .admin-panel { min-width: 240px; right: -10px; }
+        }
+        @media (min-width: 500px) {
+            body { max-width: 480px; margin: 0 auto; background: #e8ecf1; }
+            .tab-bar { max-width: 480px; left: 50%; transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== TOAST ===== -->
 <div class="toast" id="toast">
     <span class="toast-icon">📢</span>
     <span id="toastMessage">Network Error</span>
@@ -2941,21 +1243,36 @@
 
 <!-- ===== TASK ===== -->
 <div id="page-task" class="page">
-    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Task list</div><div class="page-nav-right"></div></div></div>
+    <div class="page-nav">
+        <div class="page-nav-content">
+            <div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div>
+            <div class="page-nav-title">Task list</div>
+            <div class="page-nav-right"></div>
+        </div>
+    </div>
     <div class="task-container">
-        <div class="task-header"><h2>Task list</h2><div class="sub">Task hall</div><div class="sub2">Complete tasks to earn profits</div></div>
+        <div class="task-header">
+            <h2>Task list</h2>
+            <div class="sub">Task hall</div>
+            <div class="sub2">Complete tasks to earn profits</div>
+        </div>
         <div class="earnings-row">
-            <div class="earning-card green"><div><div class="label">Today's earnings</div><div class="value" id="todayEarnings">₦0</div></div></div>
-            <div class="earning-card gold"><div><div class="label">Total revenue</div><div class="value" id="totalRevenue">₦0</div></div></div>
+            <div class="earning-card green">
+                <div>
+                    <div class="label">Today's earnings</div>
+                    <div class="value" id="todayEarnings">₦0</div>
+                </div>
+            </div>
+            <div class="earning-card gold">
+                <div>
+                    <div class="label">Total revenue</div>
+                    <div class="value" id="totalRevenue">₦0</div>
+                </div>
+            </div>
         </div>
         <div class="task-list" id="taskList">
-            <div class="task-item" id="taskItem1"><div class="task-info"><div class="task-amount">₦105</div></div><div class="task-btn"><button class="read-btn" onclick="startReading(1,105)">read</button></div></div>
-            <div class="task-item" id="taskItem2"><div class="task-info"><div class="task-amount">₦105</div></div><div class="task-btn"><button class="read-btn" onclick="startReading(2,105)">read</button></div></div>
-            <div class="task-item" id="taskItem3"><div class="task-info"><div class="task-amount">₦105</div></div><div class="task-btn"><button class="read-btn" onclick="startReading(3,105)">read</button></div></div>
-            <div class="task-item" id="taskItem4"><div class="task-info"><div class="task-amount">₦105</div></div><div class="task-btn"><button class="read-btn" onclick="startReading(4,105)">read</button></div></div>
-            <div class="task-item" id="taskItem5"><div class="task-info"><div class="task-amount">₦105</div></div><div class="task-btn"><button class="read-btn" onclick="startReading(5,105)">read</button></div></div>
-            <div class="task-item" id="taskItem6"><div class="task-info"><div class="task-amount">₦105</div></div><div class="task-btn"><button class="read-btn" onclick="startReading(6,105)">read</button></div></div>
-            <div class="loading-container"><span>No more data</span></div>
+            <!-- Tasks will be generated dynamically -->
+            <div style="text-align:center;padding:20px;color:#94a3b8;">Loading tasks...</div>
         </div>
     </div>
 </div>
@@ -3214,9 +1531,7 @@
     </div>
 </div>
 
-<!-- ===== ALL OTHER PAGES (Company, Video, Help Center, Profile, Tutorial, Positions, Analytics, Deposit, Task Records, Teams, Daily Statement, Accounting, Wealth Center, Credit Score, Download App, Follow NRC) ===== -->
-<!-- Included below with content -->
-
+<!-- ===== ALL OTHER PAGES ===== -->
 <div id="page-company" class="page"><div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Company</div><div class="page-nav-right"></div></div></div><div style="padding:16px 16px 10px;"><div class="page-card"><h3>🏢 About NRC</h3><p>NRC Cooperative Wealth Zone is a premier investment platform dedicated to empowering individuals through collective wealth creation and smart investment opportunities.</p><p style="margin-top:8px;">Founded in 2024, we have helped thousands of members achieve financial freedom through our innovative investment programs and wealth-building strategies.</p></div><div class="page-card"><h3>📋 Our Mission</h3><p style="font-style:italic;">"To create a community of financially empowered individuals through transparent, secure, and profitable investment opportunities."</p></div><div class="page-card"><h3>✅ Why Choose NRC?</h3><div class="grid-2"><div>✓ Secure & Transparent</div><div>✓ Daily Returns</div><div>✓ Multiple VIP Levels</div><div>✓ Referral Rewards</div><div>✓ 24/7 Support</div><div>✓ Regulated Operations</div></div></div></div></div>
 
 <div id="page-video" class="page"><div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Video</div><div class="page-nav-right"></div></div></div><div style="padding:16px 16px 10px;"><div class="page-card"><h3>🎬 Featured Videos</h3><div onclick="showToast('▶️ Playing: How to Get Started')" style="background:#f8fafc;padding:12px 16px;border-radius:8px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;">📺 How to Get Started on NRC</div><div onclick="showToast('▶️ Playing: VIP Levels Explained')" style="background:#f8fafc;padding:12px 16px;border-radius:8px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;">📺 Understanding VIP Levels</div><div onclick="showToast('▶️ Playing: Task Completion Guide')" style="background:#f8fafc;padding:12px 16px;border-radius:8px;border:1px solid #eef2f6;cursor:pointer;">📺 How to Complete Tasks</div></div></div></div>
@@ -3270,7 +1585,6 @@
 </div>
 
 <!-- ===== ADMIN ===== -->
-<!-- ===== ADMIN FLOAT BUTTON & PANEL ===== -->
 <div class="admin-float" id="adminFloat">
     <button class="admin-toggle" onclick="toggleAdminPanel()">
         👑
@@ -3281,8 +1595,6 @@
             👑 Admin Panel
             <span class="admin-phone">08105238080</span>
         </div>
-
-        <!-- Stats -->
         <div class="admin-stats">
             <div class="admin-stat">
                 <div class="label">👥 Total Users</div>
@@ -3293,21 +1605,15 @@
                 <div class="value" id="pendingUpgrades">0</div>
             </div>
         </div>
-
-        <!-- Action Buttons -->
         <div class="admin-actions">
             <button class="btn-view" onclick="loadAllUsers()">📋 View All Users</button>
             <button class="btn-refresh" onclick="refreshAdminPanel()">🔄 Refresh All</button>
         </div>
-
-        <!-- User List -->
         <div class="admin-requests" id="adminRequests">
             <div style="text-align:center;color:#64748b;font-size:12px;padding:8px 0;">
                 Click "View All Users" to load
             </div>
         </div>
-
-        <!-- Pending Upgrade Requests -->
         <div style="margin-top:12px; border-top:2px solid #065f46; padding-top:10px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                 <span style="font-weight:700; font-size:14px; color:#0f172a;">⏳ Pending Upgrades</span>
@@ -3324,7 +1630,7 @@
 <script>
     // ===== CONFIGURATION =====
     const ADMIN_PHONE = '08105238080';
-    const API_BASE = '/api/users';
+    const API_BASE = '/api/users'; // Change to your Worker URL
 
     // ===== TOAST =====
     let toastTimeout;
@@ -3397,15 +1703,63 @@
                 localStorage.setItem('nrc_phone', phone);
                 localStorage.setItem('nrc_user_data', JSON.stringify(data.user));
                 if (phone === ADMIN_PHONE) localStorage.setItem('nrc_is_admin', 'true');
-                document.getElementById('myUserId').textContent = phone.substring(0,4) + '****' + phone.substring(phone.length-4);
-                document.getElementById('settingsProfileNumber').textContent = phone;
-                document.getElementById('myBalance').textContent = data.user.balance || 0;
-                document.getElementById('myVipStatus').textContent = data.user.vip_level || 'Trial';
+                // Update UI
+                updateUserUI(data.user);
                 loadUserBank();
                 showToast('✅ Welcome!');
                 setTimeout(() => switchTab('home'), 500);
             } else { showToast('❌ ' + data.message); }
         } catch (e) { showToast('❌ Network error: ' + e.message); }
+    }
+
+    // ===== UPDATE UI AFTER LOGIN / REFRESH =====
+    function updateUserUI(user) {
+        document.getElementById('myUserId').textContent = user.phone.substring(0,4) + '****' + user.phone.substring(user.phone.length-4);
+        document.getElementById('settingsProfileNumber').textContent = user.phone;
+        document.getElementById('myBalance').textContent = user.balance || 0;
+        document.getElementById('myVipStatus').textContent = user.vip_level || 'Trial';
+        document.getElementById('vipIdentity').textContent = 'Your identity: ' + (user.vip_level || 'Trial');
+        document.getElementById('profileVip').textContent = user.vip_level || 'Trial';
+        document.getElementById('profileBalance').textContent = '₦' + (user.balance || 0);
+        // Also update VIP page details (daily tasks/profit)
+        updateVIPDetails(user.vip_level);
+    }
+
+    // ===== UPDATE VIP DETAILS BASED ON LEVEL =====
+    function updateVIPDetails(vipLevel) {
+        const vipData = {
+            'Trial': { tasks: 6, profit: 630 },
+            'VIP1': { tasks: 12, profit: 1260 },
+            'VIP2': { tasks: 24, profit: 3600 },
+            'VIP3': { tasks: 48, profit: 12000 },
+            'VIP4': { tasks: 80, profit: 32000 },
+            'VIP5': { tasks: 120, profit: 96000 },
+            'VIP6': { tasks: 160, profit: 256000 },
+            'VIP7': { tasks: 220, profit: 396000 },
+            'VIP8': { tasks: 300, profit: 660000 },
+            'VIP9': { tasks: 400, profit: 1400000 }
+        };
+        const data = vipData[vipLevel] || vipData['Trial'];
+        document.getElementById('vipDailyTasks').textContent = 'Daily Tasks：' + data.tasks;
+        document.getElementById('vipDailyProfit').textContent = 'Daily profit：₦' + data.profit;
+    }
+
+    // ===== FETCH USER DATA FROM SERVER =====
+    async function fetchAndUpdateUserData(phone) {
+        try {
+            const res = await fetch(API_BASE, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'get_user', phone })
+            });
+            const data = await res.json();
+            if (data.success) {
+                localStorage.setItem('nrc_user_data', JSON.stringify(data.user));
+                updateUserUI(data.user);
+            }
+        } catch (e) {
+            console.error('Failed to refresh user data:', e);
+        }
     }
 
     // ===== SWITCH TAB =====
@@ -3423,53 +1777,156 @@
             if (localStorage.getItem('nrc_phone') === ADMIN_PHONE) document.getElementById('adminFloat').style.display = 'block';
             if (tab === 'withdrawal') loadUserBank();
             if (tab === 'home') showAnnouncement();
+            if (tab === 'task') renderTasks();
+            if (tab === 'vip') {
+                // Refresh VIP data from server
+                const phone = localStorage.getItem('nrc_phone');
+                if (phone) fetchAndUpdateUserData(phone);
+            }
         }
     }
 
-    // ===== TASK READING =====
-    let totalEarnings = 0;
-    let todayEarnings = 0;
-    let completedTasks = [];
+    // ============================================================
+    // =================== TASK SYSTEM =============================
+    // ============================================================
+
+    // ---- FETCH TASK STATUS ----
+    async function fetchTaskStatus() {
+        const phone = localStorage.getItem('nrc_phone');
+        if (!phone) return null;
+        try {
+            const res = await fetch(API_BASE, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'get_user_tasks', phone })
+            });
+            const data = await res.json();
+            if (data.success) {
+                return data.data;
+            } else {
+                showToast('❌ ' + data.message);
+                return null;
+            }
+        } catch (e) {
+            showToast('❌ Network error: ' + e.message);
+            return null;
+        }
+    }
+
+    // ---- RENDER TASKS ----
+    async function renderTasks() {
+        const container = document.getElementById('taskList');
+        if (!container) return;
+
+        container.innerHTML = '<div style="text-align:center;padding:20px;color:#94a3b8;">Loading tasks...</div>';
+
+        const taskData = await fetchTaskStatus();
+        if (!taskData) {
+            container.innerHTML = '<div style="text-align:center;padding:20px;color:#ef4444;">Failed to load tasks</div>';
+            return;
+        }
+
+        // Update today's earnings
+        document.getElementById('todayEarnings').textContent = '₦' + (taskData.earned_today || 0);
+
+        const remaining = taskData.remaining_tasks;
+        const reward = taskData.reward_per_task;
+
+        if (remaining <= 0) {
+            container.innerHTML = `
+                <div style="text-align:center;padding:20px;color:#065f46;">
+                    ✅ All tasks completed for today!<br>
+                    <span style="font-size:13px;color:#64748b;">Come back tomorrow for more.</span>
+                </div>
+            `;
+            return;
+        }
+
+        let html = '';
+        for (let i = 1; i <= remaining; i++) {
+            html += `
+                <div class="task-item" id="taskItem_${i}">
+                    <div class="task-info">
+                        <div class="task-amount">₦${reward}</div>
+                    </div>
+                    <div class="task-btn">
+                        <button class="read-btn" onclick="startReading(${i}, ${reward})">read</button>
+                    </div>
+                </div>
+            `;
+        }
+        html += `<div class="loading-container"><span>No more data</span></div>`;
+        container.innerHTML = html;
+    }
+
+    // ---- START READING ----
     let isReading = false;
     let timerInterval = null;
     let remainingTime = 19;
     let currentTaskId = null;
 
-    function startReading(taskId, reward) {
-        if (completedTasks.includes(taskId)) { showToast('✅ Task already completed!'); return; }
+    async function startReading(taskId, reward) {
         if (isReading) { showToast('⚠️ Please finish your current reading task first!'); return; }
         isReading = true;
         currentTaskId = taskId;
         remainingTime = 19;
+
         const overlay = document.getElementById('readingOverlay');
         overlay.classList.add('show');
         document.getElementById('novelIframe').src = 'https://m.hinovel.com/story/Alphas-Claimed-Mate_7265676d336165';
         document.getElementById('timerTopLeft').classList.add('show');
         updateTimerDisplay(19);
-        timerInterval = setInterval(function() {
+
+        timerInterval = setInterval(async function() {
             remainingTime--;
             updateTimerDisplay(remainingTime);
             if (remainingTime <= 0) {
                 clearInterval(timerInterval);
                 timerInterval = null;
-                completeTask(taskId, reward);
+                await completeTask(taskId, reward);
+                document.getElementById('readingOverlay').classList.remove('show');
+                document.getElementById('timerTopLeft').classList.remove('show');
+                document.getElementById('novelIframe').src = 'about:blank';
+                isReading = false;
             }
         }, 1000);
     }
 
     function updateTimerDisplay(seconds) { document.getElementById('timerDisplay').textContent = seconds; }
 
-    function completeTask(taskId, reward) {
-        isReading = false;
-        completedTasks.push(taskId);
-        totalEarnings += reward;
-        todayEarnings += reward;
-        updateEarningsDisplay();
-        updateMyPage();
-        const taskItem = document.getElementById('taskItem' + taskId);
-        if (taskItem) taskItem.classList.add('completed');
-        document.getElementById('timerTopLeft').classList.remove('show');
-        setTimeout(function() { closeReading(); showToast('✅ +₦' + reward + ' earned!'); }, 1500);
+    // ---- COMPLETE TASK (CALLS BACKEND) ----
+    async function completeTask(taskId, reward) {
+        const phone = localStorage.getItem('nrc_phone');
+        if (!phone) {
+            showToast('⚠️ Please login');
+            return;
+        }
+
+        try {
+            const res = await fetch(API_BASE, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'complete_task', phone, taskId })
+            });
+            const data = await res.json();
+            if (data.success) {
+                // Hide the task item
+                const taskItem = document.getElementById('taskItem_' + taskId);
+                if (taskItem) taskItem.style.display = 'none';
+
+                // Update today's earnings
+                document.getElementById('todayEarnings').textContent = '₦' + data.completed_today * (data.reward || 0);
+                // Update balance on My page
+                document.getElementById('myBalance').textContent = data.new_balance;
+
+                // Also update total revenue (optional)
+                showToast('✅ +₦' + data.reward + ' earned!');
+            } else {
+                showToast('❌ ' + data.message);
+            }
+        } catch (e) {
+            showToast('❌ Network error: ' + e.message);
+        }
     }
 
     function closeReading() {
@@ -3480,36 +1937,9 @@
         if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
     }
 
-    function updateEarningsDisplay() {
-        const todayEl = document.getElementById('todayEarnings');
-        const totalEl = document.getElementById('totalRevenue');
-        if (todayEl) todayEl.textContent = '₦' + todayEarnings;
-        if (totalEl) totalEl.textContent = '₦' + totalEarnings;
-    }
-
-    function updateMyPage() {
-        var balance = document.getElementById('myBalance');
-        var totalRevenue = document.getElementById('myTotalRevenue');
-        var todayEarningsEl = document.getElementById('myTodayEarnings');
-        var taskCommission = document.getElementById('myTaskCommission');
-        var yesterdayEarnings = document.getElementById('myYesterdayEarnings');
-        var referralRebate = document.getElementById('myReferralRebate');
-        var taskRebate = document.getElementById('myTaskRebate');
-        var savedBalance = parseInt(localStorage.getItem('nrc_balance') || '0');
-        var total = totalEarnings + savedBalance;
-        if (balance) balance.textContent = total;
-        if (totalRevenue) totalRevenue.textContent = total;
-        if (todayEarningsEl) todayEarningsEl.textContent = todayEarnings;
-        if (taskCommission) taskCommission.textContent = totalEarnings;
-        var yesterdayAmount = Math.floor(todayEarnings / 2);
-        if (yesterdayEarnings) yesterdayEarnings.textContent = yesterdayAmount;
-        var referralAmount = Math.floor(todayEarnings * 0.1);
-        if (referralRebate) referralRebate.textContent = referralAmount;
-        var rebateAmount = Math.floor(todayEarnings * 0.05);
-        if (taskRebate) taskRebate.textContent = rebateAmount;
-    }
-
-    // ===== VIP PAYMENT =====
+    // ============================================================
+    // =================== VIP PAYMENT =============================
+    // ============================================================
     var currentPayment = { vipLevel: 0, amount: 0, newBalance: 0, vipName: '' };
 
     function openPayment(level, topup, newBalance, vipName) {
@@ -3543,292 +1973,291 @@
     }
 
     async function verifyPayment() {
-    const statusEl = document.getElementById('paymentStatus');
-    const phone = localStorage.getItem('nrc_phone');
-
-    if (!phone) {
-        showToast('⚠️ Please login first');
-        return;
-    }
-
-    statusEl.className = 'payment-status pending';
-    statusEl.style.display = 'block';
-    statusEl.textContent = '⏳ Submitting your upgrade request...';
-
-    try {
-        const res = await fetch(API_BASE, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                action: 'request_upgrade',
-                phone: phone,
-                vipLevel: currentPayment.vipName,
-                amount: currentPayment.amount
-            })
-        });
-        const data = await res.json();
-
-        if (data.success) {
-            statusEl.className = 'payment-status success';
-            statusEl.innerHTML = `
-                ✅ Request submitted!<br>
-                <span style="font-size:13px;font-weight:400;">
-                    Admin will verify your payment and upgrade you shortly.
-                </span>
-            `;
-            setTimeout(() => closePaymentPopup(), 5000);
-        } else {
-            statusEl.className = 'payment-status failed';
-            statusEl.textContent = '❌ ' + data.message;
-        }
-    } catch (e) {
-        statusEl.className = 'payment-status failed';
-        statusEl.textContent = '❌ Network error: ' + e.message;
-    }
-}
-
-    // ===== ADMIN COMMANDS =====
-    // ============================================================
-// =================== ADMIN PANEL SCRIPTS =====================
-// ============================================================
-
-// ---- 1. FETCH ALL USERS (Admin) ----
-async function fetchAllUsers() {
-    try {
+        const statusEl = document.getElementById('paymentStatus');
         const phone = localStorage.getItem('nrc_phone');
-        const res = await fetch(API_BASE, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'admin_view_users', phone })
-        });
-        const data = await res.json();
-        if (data.success) {
-            return data.users || [];
-        } else {
-            showToast('❌ ' + data.message);
+
+        if (!phone) {
+            showToast('⚠️ Please login first');
+            return;
+        }
+
+        statusEl.className = 'payment-status pending';
+        statusEl.style.display = 'block';
+        statusEl.textContent = '⏳ Submitting your upgrade request...';
+
+        try {
+            const res = await fetch(API_BASE, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    action: 'request_upgrade',
+                    phone: phone,
+                    vipLevel: currentPayment.vipName,
+                    amount: currentPayment.amount
+                })
+            });
+            const data = await res.json();
+
+            if (data.success) {
+                statusEl.className = 'payment-status success';
+                statusEl.innerHTML = `
+                    ✅ Request submitted!<br>
+                    <span style="font-size:13px;font-weight:400;">
+                        Admin will verify your payment and upgrade you shortly.
+                    </span>
+                `;
+                setTimeout(() => closePaymentPopup(), 5000);
+            } else {
+                statusEl.className = 'payment-status failed';
+                statusEl.textContent = '❌ ' + data.message;
+            }
+        } catch (e) {
+            statusEl.className = 'payment-status failed';
+            statusEl.textContent = '❌ Network error: ' + e.message;
+        }
+    }
+
+    // ============================================================
+    // =================== ADMIN PANEL =============================
+    // ============================================================
+
+    async function fetchAllUsers() {
+        try {
+            const phone = localStorage.getItem('nrc_phone');
+            const res = await fetch(API_BASE, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'admin_view_users', phone })
+            });
+            const data = await res.json();
+            if (data.success) {
+                return data.users || [];
+            } else {
+                showToast('❌ ' + data.message);
+                return [];
+            }
+        } catch (e) {
+            showToast('❌ Network error: ' + e.message);
             return [];
         }
-    } catch (e) {
-        showToast('❌ Network error: ' + e.message);
-        return [];
-    }
-}
-
-// ---- 2. LOAD & RENDER USER LIST ----
-async function loadAllUsers() {
-    const container = document.getElementById('adminRequests');
-    if (!container) return;
-
-    container.innerHTML = '<div style="text-align:center;color:#64748b;font-size:12px;padding:8px 0;">⏳ Loading...</div>';
-
-    const users = await fetchAllUsers();
-
-    if (!users || users.length === 0) {
-        container.innerHTML = '<div style="text-align:center;color:#64748b;font-size:12px;padding:8px 0;">No users found</div>';
-        document.getElementById('totalUsers').textContent = '0';
-        return;
     }
 
-    document.getElementById('totalUsers').textContent = users.length;
+    async function loadAllUsers() {
+        const container = document.getElementById('adminRequests');
+        if (!container) return;
 
-    let html = '';
-    users.forEach((user) => {
-        const phoneDisplay = user.phone.substring(0, 4) + '****' + user.phone.substring(user.phone.length - 4);
-        html += `
-            <div class="request-item" data-phone="${user.phone}">
-                <div class="req-info">
-                    <div class="req-user">${phoneDisplay}</div>
-                    <div class="req-detail">VIP: ${user.vip_level || 'Trial'} | Balance: ₦${user.balance || 0}</div>
-                </div>
-                <div class="req-actions">
-                    <button class="approve" onclick="upgradeVIP('${user.phone}', 'VIP1')">⬆ VIP1</button>
-                    <button class="approve" onclick="upgradeVIP('${user.phone}', 'VIP2')">⬆ VIP2</button>
-                    <button class="approve" onclick="upgradeVIP('${user.phone}', 'VIP3')">⬆ VIP3</button>
-                    <button class="deny" onclick="addBalance('${user.phone}', 1000)">+₦1k</button>
-                    <button class="deny" onclick="addBalance('${user.phone}', 5000)">+₦5k</button>
-                </div>
-            </div>
-        `;
-    });
-    container.innerHTML = html;
-}
+        container.innerHTML = '<div style="text-align:center;color:#64748b;font-size:12px;padding:8px 0;">⏳ Loading...</div>';
 
-// ---- 3. ADMIN: UPGRADE VIP ----
-async function upgradeVIP(phone, vipLevel) {
-    try {
-        const adminPhone = localStorage.getItem('nrc_phone');
-        const res = await fetch(API_BASE, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'admin_upgrade_vip', phone: adminPhone, vipLevel, targetPhone: phone })
-        });
-        const data = await res.json();
-        if (data.success) {
-            showToast(`✅ ${phone} upgraded to ${vipLevel}`);
-            // Update current user UI if applicable
-            const currentPhone = localStorage.getItem('nrc_phone');
-            if (currentPhone === phone) {
-                document.getElementById('myVipStatus').textContent = vipLevel;
-                document.getElementById('vipIdentity').textContent = 'Your identity: ' + vipLevel;
-                let userData = JSON.parse(localStorage.getItem('nrc_user_data') || '{}');
-                userData.vip_level = vipLevel;
-                userData.vip_name = vipLevel;
-                localStorage.setItem('nrc_user_data', JSON.stringify(userData));
-            }
-            loadAllUsers(); // refresh list
-        } else {
-            showToast('❌ ' + data.message);
+        const users = await fetchAllUsers();
+
+        if (!users || users.length === 0) {
+            container.innerHTML = '<div style="text-align:center;color:#64748b;font-size:12px;padding:8px 0;">No users found</div>';
+            document.getElementById('totalUsers').textContent = '0';
+            return;
         }
-    } catch (e) {
-        showToast('❌ Network error: ' + e.message);
-    }
-}
 
-// ---- 4. ADMIN: ADD BALANCE ----
-async function addBalance(phone, amount) {
-    try {
-        const adminPhone = localStorage.getItem('nrc_phone');
-        const res = await fetch(API_BASE, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'admin_add_balance', phone: adminPhone, targetPhone: phone, amount })
-        });
-        const data = await res.json();
-        if (data.success) {
-            showToast(`✅ ₦${amount} added to ${phone}`);
-            const currentPhone = localStorage.getItem('nrc_phone');
-            if (currentPhone === phone) {
-                let userData = JSON.parse(localStorage.getItem('nrc_user_data') || '{}');
-                userData.balance = (userData.balance || 0) + amount;
-                localStorage.setItem('nrc_user_data', JSON.stringify(userData));
-                document.getElementById('myBalance').textContent = userData.balance;
-            }
-            loadAllUsers();
-        } else {
-            showToast('❌ ' + data.message);
-        }
-    } catch (e) {
-        showToast('❌ Network error: ' + e.message);
-    }
-}
+        document.getElementById('totalUsers').textContent = users.length;
 
-// ---- 5. LOAD PENDING UPGRADE REQUESTS ----
-async function loadPendingRequests() {
-    const container = document.getElementById('pendingRequestsContainer');
-    if (!container) return;
-
-    const phone = localStorage.getItem('nrc_phone');
-    if (phone !== '08105238080') {
-        container.innerHTML = '<div style="text-align:center;color:#ef4444;font-size:11px;padding:8px 0;">Admin only</div>';
-        return;
-    }
-
-    try {
-        const res = await fetch(API_BASE, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'admin_pending_requests', phone })
-        });
-        const data = await res.json();
-        if (data.success && data.requests.length > 0) {
-            let html = '';
-            data.requests.forEach(req => {
-                html += `
-                    <div class="request-item" style="border-bottom:1px solid #f1f5f9; padding:6px 0;">
-                        <div class="req-info">
-                            <div class="req-user">${req.phone}</div>
-                            <div class="req-detail">${req.requested_vip} | ₦${req.amount}</div>
-                        </div>
-                        <div class="req-actions">
-                            <button class="approve" onclick="approveUpgrade(${req.id}, '${req.phone}', '${req.requested_vip}')">✅ Approve</button>
-                            <button class="deny" onclick="denyUpgrade(${req.id})">❌ Deny</button>
-                        </div>
+        let html = '';
+        users.forEach((user) => {
+            const phoneDisplay = user.phone.substring(0, 4) + '****' + user.phone.substring(user.phone.length - 4);
+            html += `
+                <div class="request-item" data-phone="${user.phone}">
+                    <div class="req-info">
+                        <div class="req-user">${phoneDisplay}</div>
+                        <div class="req-detail">VIP: ${user.vip_level || 'Trial'} | Balance: ₦${user.balance || 0}</div>
                     </div>
-                `;
+                    <div class="req-actions">
+                        <button class="approve" onclick="upgradeVIP('${user.phone}', 'VIP1')">⬆ VIP1</button>
+                        <button class="approve" onclick="upgradeVIP('${user.phone}', 'VIP2')">⬆ VIP2</button>
+                        <button class="approve" onclick="upgradeVIP('${user.phone}', 'VIP3')">⬆ VIP3</button>
+                        <button class="deny" onclick="addBalance('${user.phone}', 1000)">+₦1k</button>
+                        <button class="deny" onclick="addBalance('${user.phone}', 5000)">+₦5k</button>
+                    </div>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+    }
+
+    // ---- ADMIN: UPGRADE VIP (FIXED) ----
+    async function upgradeVIP(phone, vipLevel) {
+        try {
+            const adminPhone = localStorage.getItem('nrc_phone');
+            const res = await fetch(API_BASE, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'admin_upgrade_vip', phone: adminPhone, targetPhone: phone, vipLevel })
             });
-            container.innerHTML = html;
-        } else {
-            container.innerHTML = '<div style="text-align:center;color:#94a3b8;font-size:11px;padding:8px 0;">No pending requests</div>';
+            const data = await res.json();
+            if (data.success) {
+                showToast(`✅ ${phone} upgraded to ${vipLevel}`);
+                const currentPhone = localStorage.getItem('nrc_phone');
+                if (currentPhone === phone) {
+                    await fetchAndUpdateUserData(phone);
+                }
+                loadAllUsers();
+            } else {
+                showToast('❌ ' + data.message);
+            }
+        } catch (e) {
+            showToast('❌ Network error: ' + e.message);
         }
-    } catch (e) {
-        container.innerHTML = '<div style="text-align:center;color:#ef4444;font-size:11px;padding:8px 0;">Error loading requests</div>';
-        showToast('❌ Network error: ' + e.message);
     }
-}
 
-// ---- 6. ADMIN: APPROVE UPGRADE REQUEST ----
-async function approveUpgrade(requestId, phone, vipLevel) {
-    if (!confirm(`Approve VIP upgrade for ${phone} to ${vipLevel}?`)) return;
-    try {
-        const adminPhone = localStorage.getItem('nrc_phone');
-        const res = await fetch(API_BASE, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'admin_approve_upgrade', phone: adminPhone, requestId, vipLevel })
-        });
-        const data = await res.json();
-        if (data.success) {
-            showToast(`✅ ${phone} upgraded to ${vipLevel}`);
-            loadPendingRequests();
+    // ---- ADMIN: ADD BALANCE (FIXED) ----
+    async function addBalance(phone, amount) {
+        try {
+            const adminPhone = localStorage.getItem('nrc_phone');
+            const res = await fetch(API_BASE, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'admin_add_balance', phone: adminPhone, targetPhone: phone, amount })
+            });
+            const data = await res.json();
+            if (data.success) {
+                showToast(`✅ ₦${amount} added to ${phone}`);
+                const currentPhone = localStorage.getItem('nrc_phone');
+                if (currentPhone === phone) {
+                    await fetchAndUpdateUserData(phone);
+                }
+                loadAllUsers();
+            } else {
+                showToast('❌ ' + data.message);
+            }
+        } catch (e) {
+            showToast('❌ Network error: ' + e.message);
+        }
+    }
+
+    // ---- PENDING REQUESTS ----
+    async function loadPendingRequests() {
+        const container = document.getElementById('pendingRequestsContainer');
+        if (!container) return;
+
+        const phone = localStorage.getItem('nrc_phone');
+        if (phone !== ADMIN_PHONE) {
+            container.innerHTML = '<div style="text-align:center;color:#ef4444;font-size:11px;padding:8px 0;">Admin only</div>';
+            return;
+        }
+
+        try {
+            const res = await fetch(API_BASE, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'admin_pending_requests', phone })
+            });
+            const data = await res.json();
+            
+            const count = data.requests ? data.requests.length : 0;
+            document.getElementById('adminBadge').textContent = count;
+            document.getElementById('pendingUpgrades').textContent = count;
+
+            if (data.success && data.requests.length > 0) {
+                let html = '';
+                data.requests.forEach(req => {
+                    html += `
+                        <div class="request-item" style="border-bottom:1px solid #f1f5f9; padding:6px 0;">
+                            <div class="req-info">
+                                <div class="req-user">${req.phone}</div>
+                                <div class="req-detail">${req.requested_vip} | ₦${req.amount}</div>
+                            </div>
+                            <div class="req-actions">
+                                <button class="approve" onclick="approveUpgrade(${req.id}, '${req.phone}', '${req.requested_vip}')">✅ Approve</button>
+                                <button class="deny" onclick="denyUpgrade(${req.id})">❌ Deny</button>
+                            </div>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+            } else {
+                container.innerHTML = '<div style="text-align:center;color:#94a3b8;font-size:11px;padding:8px 0;">No pending requests</div>';
+            }
+        } catch (e) {
+            container.innerHTML = '<div style="text-align:center;color:#ef4444;font-size:11px;padding:8px 0;">Error loading requests</div>';
+            showToast('❌ Network error: ' + e.message);
+        }
+    }
+
+    // ---- APPROVE UPGRADE ----
+    async function approveUpgrade(requestId, phone, vipLevel) {
+        if (!confirm(`Approve VIP upgrade for ${phone} to ${vipLevel}?`)) return;
+        try {
+            const adminPhone = localStorage.getItem('nrc_phone');
+            const res = await fetch(API_BASE, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'admin_approve_upgrade', phone: adminPhone, requestId, vipLevel })
+            });
+            const data = await res.json();
+            if (data.success) {
+                showToast(`✅ ${phone} upgraded to ${vipLevel}`);
+                const currentPhone = localStorage.getItem('nrc_phone');
+                if (currentPhone === phone) {
+                    await fetchAndUpdateUserData(phone);
+                }
+                loadPendingRequests();
+                loadAllUsers();
+            } else {
+                showToast('❌ ' + data.message);
+            }
+        } catch (e) {
+            showToast('❌ Network error: ' + e.message);
+        }
+    }
+
+    // ---- DENY UPGRADE ----
+    async function denyUpgrade(requestId) {
+        if (!confirm('Deny this upgrade request?')) return;
+        try {
+            const adminPhone = localStorage.getItem('nrc_phone');
+            const res = await fetch(API_BASE, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'admin_deny_upgrade', phone: adminPhone, requestId })
+            });
+            const data = await res.json();
+            if (data.success) {
+                showToast('✅ Request denied');
+                loadPendingRequests();
+            } else {
+                showToast('❌ ' + data.message);
+            }
+        } catch (e) {
+            showToast('❌ Network error: ' + e.message);
+        }
+    }
+
+    // ---- TOGGLE ADMIN ----
+    function toggleAdminPanel() {
+        const panel = document.getElementById('adminPanel');
+        panel.classList.toggle('show');
+        if (panel.classList.contains('show')) {
             loadAllUsers();
-        } else {
-            showToast('❌ ' + data.message);
-        }
-    } catch (e) {
-        showToast('❌ Network error: ' + e.message);
-    }
-}
-
-// ---- 7. ADMIN: DENY UPGRADE REQUEST ----
-async function denyUpgrade(requestId) {
-    if (!confirm('Deny this upgrade request?')) return;
-    try {
-        const adminPhone = localStorage.getItem('nrc_phone');
-        const res = await fetch(API_BASE, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'admin_deny_upgrade', phone: adminPhone, requestId })
-        });
-        const data = await res.json();
-        if (data.success) {
-            showToast('✅ Request denied');
             loadPendingRequests();
-        } else {
-            showToast('❌ ' + data.message);
         }
-    } catch (e) {
-        showToast('❌ Network error: ' + e.message);
     }
-}
 
-// ---- 8. TOGGLE ADMIN PANEL ----
-function toggleAdminPanel() {
-    const panel = document.getElementById('adminPanel');
-    panel.classList.toggle('show');
-    if (panel.classList.contains('show')) {
+    function refreshAdminPanel() {
         loadAllUsers();
         loadPendingRequests();
     }
-}
 
-// ---- 9. REFRESH (alias for loadAllUsers) ----
-function refreshAdminPanel() {
-    loadAllUsers();
-    loadPendingRequests();
-}
+    // ---- EXPOSE ADMIN FUNCTIONS ----
+    window.viewAllUsers = loadAllUsers;
+    window.upgradeVIP = upgradeVIP;
+    window.addBalance = addBalance;
+    window.loadAllUsers = loadAllUsers;
+    window.loadPendingRequests = loadPendingRequests;
+    window.approveUpgrade = approveUpgrade;
+    window.denyUpgrade = denyUpgrade;
+    window.toggleAdminPanel = toggleAdminPanel;
+    window.refreshAdminPanel = refreshAdminPanel;
 
-// ---- 10. EXPOSE FUNCTIONS TO GLOBAL SCOPE ----
-window.viewAllUsers = loadAllUsers;
-window.upgradeVIP = upgradeVIP;
-window.addBalance = addBalance;
-window.loadAllUsers = loadAllUsers;
-window.loadPendingRequests = loadPendingRequests;
-window.approveUpgrade = approveUpgrade;
-window.denyUpgrade = denyUpgrade;
-window.toggleAdminPanel = toggleAdminPanel;
-window.refreshAdminPanel = refreshAdminPanel;
+    // ============================================================
+    // =================== OTHER FUNCTIONS =========================
+    // ============================================================
 
-    // ===== PLACEHOLDERS =====
     function setRechargeAmount(amt) { document.getElementById('rechargeAmount').value = amt; document.getElementById('rechargeDisplayAmount').textContent = amt; }
     function processRecharge() { showToast('💳 Payment page coming soon'); }
     function verifyRecharge() { showToast('✅ Verification coming soon'); }
@@ -3836,10 +2265,13 @@ window.refreshAdminPanel = refreshAdminPanel;
     function submitWithdrawal() { showToast('💳 Withdrawal submitted!'); }
     function clearCache() { showToast('🗑️ Cache cleared'); }
     function signOut() { localStorage.clear(); switchTab('login'); }
-    function copyReferralCode() { }
-    function toggleAdminPanel() { document.getElementById('adminPanel').classList.toggle('show'); }
-    function refreshAdminPanel() { }
-    function viewPendingRequests() { showToast('📋 Check console'); }
+    function copyReferralCode() { 
+        const code = document.getElementById('referralCode');
+        if (code) {
+            const text = code.textContent;
+            navigator.clipboard?.writeText(text).then(() => showToast('✅ Copied!')).catch(() => showToast('📋 ' + text));
+        }
+    }
     function switchProfitTab(el, type) { document.querySelectorAll('.profit-tab').forEach(t=>t.classList.remove('active')); el.classList.add('active'); }
     function installApp() { showToast('📱 Install app'); }
     function changeLoginPassword() { showToast('🔒 Login password changed'); }
@@ -3866,8 +2298,18 @@ window.refreshAdminPanel = refreshAdminPanel;
     // ===== INIT =====
     document.addEventListener('DOMContentLoaded', function() {
         const loggedIn = localStorage.getItem('nrc_logged_in');
-        if (loggedIn === 'true') { switchTab('home'); loadUserBank(); } 
-        else { document.querySelector('.tab-bar').style.display = 'none'; switchTab('login'); }
+        if (loggedIn === 'true') {
+            const phone = localStorage.getItem('nrc_phone');
+            if (phone) {
+                // Fetch fresh user data from server
+                fetchAndUpdateUserData(phone);
+            }
+            switchTab('home');
+            loadUserBank();
+        } else {
+            document.querySelector('.tab-bar').style.display = 'none';
+            switchTab('login');
+        }
         if (loggedIn === 'true') showAnnouncement();
     });
 </script>
