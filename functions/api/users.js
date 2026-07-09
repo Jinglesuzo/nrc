@@ -51,6 +51,49 @@ export async function onRequest(context) {
             return new Response(JSON.stringify({ success: true, user }), { headers: { 'Content-Type': 'application/json' } });
         }
 
+        // ===== GET USER STATS (for My page) =====
+        if (action === 'get_user_stats') {
+            const user = await db.prepare('SELECT phone, balance, vip_level, real_name FROM users WHERE phone = ?').bind(phone).first();
+            if (!user) {
+                return new Response(JSON.stringify({ success: false, message: 'User not found' }), { headers: { 'Content-Type': 'application/json' } });
+            }
+            // Today
+            const todayRecord = await db.prepare('SELECT earned_today FROM user_tasks WHERE phone = ? AND task_date = ?').bind(phone, today).first();
+            const earnedToday = todayRecord?.earned_today || 0;
+
+            // Yesterday
+            const yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+            const yesterdayStr = yesterday.toISOString().split('T')[0];
+            const yesterdayRecord = await db.prepare('SELECT earned_today FROM user_tasks WHERE phone = ? AND task_date = ?').bind(phone, yesterdayStr).first();
+            const yesterdayEarnings = yesterdayRecord?.earned_today || 0;
+
+            // Total revenue – sum of all earned_today across all dates (or just balance if you prefer)
+            // Let's sum all task earnings from user_tasks
+            const totalRevenueQuery = await db.prepare('SELECT SUM(earned_today) as total FROM user_tasks WHERE phone = ?').bind(phone).first();
+            const totalRevenue = totalRevenueQuery?.total || user.balance || 0;
+
+            // For now, we'll set referral_rebate and task_rebate to 0 – you can extend later
+            const referralRebate = 0;
+            const taskRebate = 0;
+
+            return new Response(JSON.stringify({
+                success: true,
+                data: {
+                    phone: user.phone,
+                    balance: user.balance || 0,
+                    vip_level: user.vip_level || 'Trial',
+                    real_name: user.real_name || '',
+                    total_revenue: totalRevenue,
+                    today_earnings: earnedToday,
+                    yesterday_earnings: yesterdayEarnings,
+                    task_commission: earnedToday, // same as today's earnings
+                    referral_rebate: referralRebate,
+                    task_rebate: taskRebate
+                }
+            }), { headers: { 'Content-Type': 'application/json' } });
+        }
+
         // ===== ADMIN: VIEW ALL USERS =====
         if (action === 'admin_view_users') {
             if (phone !== ADMIN_PHONE) {
@@ -60,7 +103,7 @@ export async function onRequest(context) {
             return new Response(JSON.stringify({ success: true, users: users.results || [] }), { headers: { 'Content-Type': 'application/json' } });
         }
 
-        // ===== ADMIN: UPGRADE VIP (FIXED - uses targetPhone) =====
+        // ===== ADMIN: UPGRADE VIP (FIXED – uses targetPhone) =====
         if (action === 'admin_upgrade_vip') {
             if (phone !== ADMIN_PHONE) {
                 return new Response(JSON.stringify({ success: false, message: 'Unauthorized' }), { status: 403, headers: { 'Content-Type': 'application/json' } });
@@ -73,7 +116,7 @@ export async function onRequest(context) {
             return new Response(JSON.stringify({ success: true, message: 'Upgraded' }), { headers: { 'Content-Type': 'application/json' } });
         }
 
-        // ===== ADMIN: ADD BALANCE (FIXED - uses targetPhone) =====
+        // ===== ADMIN: ADD BALANCE (FIXED – uses targetPhone) =====
         if (action === 'admin_add_balance') {
             if (phone !== ADMIN_PHONE) {
                 return new Response(JSON.stringify({ success: false, message: 'Unauthorized' }), { status: 403, headers: { 'Content-Type': 'application/json' } });
@@ -92,6 +135,11 @@ export async function onRequest(context) {
             const user = await db.prepare('SELECT * FROM users WHERE phone = ?').bind(phone).first();
             if (!user) {
                 return new Response(JSON.stringify({ success: false, message: 'User not found' }), { headers: { 'Content-Type': 'application/json' } });
+            }
+            // Check for existing pending request to avoid duplicates
+            const existing = await db.prepare('SELECT * FROM upgrade_requests WHERE phone = ? AND status = "pending"').bind(phone).first();
+            if (existing) {
+                return new Response(JSON.stringify({ success: false, message: 'You already have a pending upgrade request' }), { headers: { 'Content-Type': 'application/json' } });
             }
             await db.prepare(
                 'INSERT INTO upgrade_requests (phone, requested_vip, amount, status) VALUES (?, ?, ?, ?)'
