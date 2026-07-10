@@ -1013,6 +1013,26 @@
         .payment-popup .payment-details .row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 13px; }
         .payment-popup .payment-details .row .label { color: #64748b; }
         .payment-popup .payment-details .row .value { color: #0f172a; font-weight: 600; }
+
+        /* Bank details box */
+        .bank-details-box {
+            background: #f0fdf4;
+            border: 1px solid #86efac;
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 12px;
+        }
+        .bank-details-box .bank-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #065f46;
+        }
+        .bank-details-box p {
+            font-size: 13px;
+            color: #1e293b;
+            margin: 2px 0;
+        }
+
         .payment-popup .payment-btn {
             width: 100%; background: #065f46; color: #fff; border: none; border-radius: 30px;
             padding: 14px; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 8px;
@@ -1456,23 +1476,15 @@
         </div>
 
         <!-- Bank Transfer Details -->
-        <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:12px 14px;margin-bottom:12px;">
-            <p style="font-size:12px;font-weight:700;color:#065f46;">🏦 Transfer to this account:</p>
-            <p style="font-size:13px;color:#1e293b;"><strong>Bank:</strong> Nombank MFB</p>
-            <p style="font-size:13px;color:#1e293b;"><strong>Account:</strong> 2519487868</p>
-            <p style="font-size:13px;color:#1e293b;"><strong>Name:</strong> Tradehub Services</p>
+        <div class="bank-details-box">
+            <p class="bank-label">🏦 Transfer to this account:</p>
+            <p><strong>Bank:</strong> Nombank MFB</p>
+            <p><strong>Account:</strong> 2519487868</p>
+            <p><strong>Name:</strong> Tradehub Services</p>
             <p style="font-size:11px;color:#64748b;margin-top:4px;">💡 Copy the account details and make your transfer via your banking app.</p>
         </div>
 
-        <button class="payment-btn" onclick="processPayment()">📋 Copy Account Details</button>
-
-        <!-- Transaction Reference Input -->
-        <div style="margin-top:12px;">
-            <label style="font-size:13px;font-weight:600;color:#0f172a;display:block;margin-bottom:4px;">📋 Transaction Reference</label>
-            <input type="text" id="transactionRef" placeholder="Enter the reference from your bank transfer" style="width:100%;padding:10px 14px;border:1px solid #e2e8f0;border-radius:10px;font-size:14px;outline:none;background:#f8fafc;">
-            <p style="font-size:11px;color:#94a3b8;margin-top:4px;">e.g., NMB123456789</p>
-        </div>
-
+        <button class="payment-btn" onclick="processPayment()">💳 Pay Now</button>
         <button class="payment-verify-btn" onclick="verifyPayment()">✅ I Have Paid - Verify</button>
         <div class="payment-status" id="paymentStatus"></div>
         <button class="payment-close-btn" onclick="closePaymentPopup()">Cancel</button>
@@ -2577,34 +2589,32 @@
         var newWindow = window.open(paymentLink, '_blank');
         statusEl.className = 'payment-status pending';
         statusEl.style.display = 'block';
-        statusEl.textContent = '📋 Account details copied! Complete your transfer, then enter the reference and click "I Have Paid".';
+        statusEl.textContent = '📋 Account details copied! Complete your transfer, then click "I Have Paid".';
         if (!newWindow || newWindow.closed || typeof newWindow === 'undefined') {
-            statusEl.innerHTML = '📋 Account details copied! Complete your transfer, then enter the reference and click "I Have Paid".';
+            statusEl.innerHTML = '📋 Account details copied! Complete your transfer, then click "I Have Paid".';
         }
         resetInactivityTimer();
     }
 
+    // ===== VERIFY PAYMENT – Shows "Pending" status =====
     async function verifyPayment() {
         const statusEl = document.getElementById('paymentStatus');
         const phone = localStorage.getItem('nrc_phone');
-        const ref = document.getElementById('transactionRef').value.trim();
 
         if (!phone) {
             showToast('⚠️ Please login first');
             return;
         }
 
-        if (!ref) {
-            showToast('⚠️ Please enter your transaction reference');
-            statusEl.className = 'payment-status pending';
-            statusEl.style.display = 'block';
-            statusEl.textContent = '📋 Please enter the transaction reference from your bank transfer.';
-            return;
-        }
-
+        // Show "Pending" status immediately
         statusEl.className = 'payment-status pending';
         statusEl.style.display = 'block';
-        statusEl.textContent = '⏳ Submitting your upgrade request...';
+        statusEl.innerHTML = `
+            ⏳ <strong>Pending</strong><br>
+            <span style="font-size:13px;font-weight:400;">
+                Submitting your upgrade request...
+            </span>
+        `;
 
         try {
             const res = await fetch(API_BASE, {
@@ -2614,8 +2624,7 @@
                     action: 'request_upgrade',
                     phone: phone,
                     vipLevel: currentPayment.vipName,
-                    amount: currentPayment.amount,
-                    reference: ref
+                    amount: currentPayment.amount
                 })
             });
             const data = await res.json();
@@ -2623,13 +2632,11 @@
             if (data.success) {
                 statusEl.className = 'payment-status success';
                 statusEl.innerHTML = `
-                    ✅ Request submitted successfully!<br>
+                    ⏳ <strong>Pending</strong><br>
                     <span style="font-size:13px;font-weight:400;">
-                        Your payment reference <strong>${ref}</strong> has been recorded.<br>
-                        Admin will verify your payment and upgrade you shortly.
+                        Your request has been submitted. Admin will process it shortly.
                     </span>
                 `;
-                document.getElementById('transactionRef').value = '';
                 setTimeout(() => closePaymentPopup(), 5000);
             } else {
                 statusEl.className = 'payment-status failed';
@@ -2726,6 +2733,7 @@
         resetInactivityTimer();
     }
 
+    // ===== LOAD PENDING REQUESTS – Shows "Pending" badge =====
     async function loadPendingRequests() {
         const container = document.getElementById('pendingRequestsContainer');
         if (!container) return;
@@ -2743,10 +2751,13 @@
             if (data.success && data.requests.length > 0) {
                 let html = '';
                 data.requests.forEach(req => {
-                    const refDisplay = req.reference ? `Ref: ${req.reference}` : 'No reference';
                     html += `<div class="request-item" style="border-bottom:1px solid #f1f5f9; padding:6px 0;">
-                        <div class="req-info" style="flex:1;"><div class="req-user" style="font-weight:600;color:#0f172a;font-size:12px;">${req.phone}</div>
-                        <div class="req-detail" style="font-size:10px;color:#64748b;">${req.requested_vip} | ₦${req.amount} | ${refDisplay} | ${req.created_at ? new Date(req.created_at).toLocaleDateString() : ''}</div></div>
+                        <div class="req-info" style="flex:1;">
+                            <div class="req-user" style="font-weight:600;color:#0f172a;font-size:12px;">${req.phone}</div>
+                            <div class="req-detail" style="font-size:10px;color:#64748b;">
+                                ${req.requested_vip} | ₦${req.amount} | <span style="background:#fef3c7;color:#92400e;padding:1px 8px;border-radius:30px;font-size:9px;font-weight:600;">⏳ Pending</span> | ${req.created_at ? new Date(req.created_at).toLocaleDateString() : ''}
+                            </div>
+                        </div>
                         <div class="req-actions" style="display:flex;gap:4px;">
                             <button class="approve" onclick="approveUpgrade(${req.id}, '${req.phone}', '${req.requested_vip}')" style="padding:2px 12px;border-radius:30px;border:none;font-size:10px;font-weight:600;cursor:pointer;background:#10b981;color:#fff;">✅ Approve</button>
                             <button class="deny" onclick="denyUpgrade(${req.id})" style="padding:2px 12px;border-radius:30px;border:none;font-size:10px;font-weight:600;cursor:pointer;background:#ef4444;color:#fff;">❌ Deny</button>
