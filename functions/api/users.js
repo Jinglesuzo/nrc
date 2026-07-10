@@ -9,7 +9,7 @@ export async function onRequest(context) {
 
     try {
         const body = await request.json();
-        const { action, phone, password, amount, vipLevel, targetPhone, taskId, requestId } = body;
+        const { action, phone, password, amount, vipLevel, targetPhone, taskId, requestId, plan, dailyReturn, totalReturn, duration } = body;
         const today = new Date().toISOString().split('T')[0];
 
         // ===== REGISTER =====
@@ -264,6 +264,57 @@ export async function onRequest(context) {
                 completed_today: newCount,
                 remaining_tasks: Math.max(0, config.task_count - newCount)
             }), { headers: { 'Content-Type': 'application/json' } });
+        }
+
+        // ============================================================
+        // ===== WEALTH CENTER: INVEST =====
+        // ============================================================
+        if (action === 'invest') {
+            const user = await db.prepare('SELECT * FROM users WHERE phone = ?').bind(phone).first();
+            if (!user) {
+                return new Response(JSON.stringify({ success: false, message: 'User not found' }), { headers: { 'Content-Type': 'application/json' } });
+            }
+            if ((user.balance || 0) < amount) {
+                return new Response(JSON.stringify({ success: false, message: 'Insufficient balance' }), { headers: { 'Content-Type': 'application/json' } });
+            }
+            await db.prepare('UPDATE users SET balance = balance - ? WHERE phone = ?').bind(amount, phone).run();
+
+            const startDate = new Date().toISOString();
+            const endDate = new Date();
+            endDate.setDate(endDate.getDate() + duration);
+
+            await db.prepare(`
+                INSERT INTO investments (phone, plan, amount, daily_return, total_return, duration, days_passed, status, start_date, end_date)
+                VALUES (?, ?, ?, ?, ?, ?, 0, 'active', ?, ?)
+            `).bind(phone, plan, amount, dailyReturn, totalReturn, duration, startDate, endDate.toISOString()).run();
+
+            return new Response(JSON.stringify({ success: true, message: 'Investment created successfully' }), { headers: { 'Content-Type': 'application/json' } });
+        }
+
+        // ===== WEALTH CENTER: GET INVESTMENTS =====
+        if (action === 'get_investments') {
+            const investments = await db.prepare(`
+                SELECT * FROM investments WHERE phone = ? AND status = 'active' ORDER BY created_at DESC
+            `).bind(phone).all();
+            return new Response(JSON.stringify({ success: true, investments: investments.results || [] }), { headers: { 'Content-Type': 'application/json' } });
+        }
+
+        // ===== WEALTH CENTER: PROCESS DAILY RETURNS (Cron) =====
+        if (action === 'process_daily_returns') {
+            const investments = await db.prepare(`
+                SELECT * FROM investments WHERE status = 'active'
+            `).all();
+
+            for (const inv of investments.results || []) {
+                const newDays = (inv.days_passed || 0) + 1;
+                await db.prepare('UPDATE users SET balance = balance + ? WHERE phone = ?').bind(inv.daily_return, inv.phone).run();
+                if (newDays >= inv.duration) {
+                    await db.prepare('UPDATE investments SET status = "completed", days_passed = ? WHERE id = ?').bind(newDays, inv.id).run();
+                } else {
+                    await db.prepare('UPDATE investments SET days_passed = ? WHERE id = ?').bind(newDays, inv.id).run();
+                }
+            }
+            return new Response(JSON.stringify({ success: true, message: 'Daily returns processed' }), { headers: { 'Content-Type': 'application/json' } });
         }
 
         // ===== FALLBACK =====
