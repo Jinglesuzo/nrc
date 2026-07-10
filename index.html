@@ -1335,13 +1335,13 @@
         .install-btn i { font-size: 24px; }
         .install-btn .sub-text { font-size: 12px; font-weight: 400; opacity: 0.8; }
 
-        /* ===== FLOATING WHATSAPP BUTTON ===== */
-        .whatsapp-float {
+        /* ===== FLOATING TELEGRAM BUTTON ===== */
+        .telegram-float {
             position: fixed;
             bottom: 160px;
             right: 16px;
             z-index: 999;
-            background: #25D366;
+            background: #0088cc;
             color: #fff;
             width: 60px;
             height: 60px;
@@ -1350,24 +1350,24 @@
             align-items: center;
             justify-content: center;
             font-size: 32px;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 4px 20px rgba(0, 136, 204, 0.4);
             transition: all 0.3s ease;
             text-decoration: none;
             border: none;
             cursor: pointer;
-            animation: pulse-wa 2s infinite;
+            animation: pulse-tg 2s infinite;
         }
-        .whatsapp-float:hover {
+        .telegram-float:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
+            box-shadow: 0 6px 30px rgba(0, 136, 204, 0.5);
         }
-        .whatsapp-float:active { transform: scale(0.9); }
-        @keyframes pulse-wa {
-            0% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
-            50% { box-shadow: 0 4px 40px rgba(37, 211, 102, 0.7); }
-            100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+        .telegram-float:active { transform: scale(0.9); }
+        @keyframes pulse-tg {
+            0% { box-shadow: 0 4px 20px rgba(0, 136, 204, 0.4); }
+            50% { box-shadow: 0 4px 40px rgba(0, 136, 204, 0.7); }
+            100% { box-shadow: 0 4px 20px rgba(0, 136, 204, 0.4); }
         }
-        .whatsapp-float .tooltip {
+        .telegram-float .tooltip {
             position: absolute;
             right: 70px;
             background: #1e293b;
@@ -1380,7 +1380,7 @@
             transition: opacity 0.3s;
             pointer-events: none;
         }
-        .whatsapp-float:hover .tooltip { opacity: 1; }
+        .telegram-float:hover .tooltip { opacity: 1; }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 380px) {
@@ -1388,12 +1388,12 @@
             .tab-item .tab-icon { font-size: 18px; }
             .admin-panel { min-width: 240px; right: -10px; }
             .detail-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
-            .whatsapp-float { width: 50px; height: 50px; font-size: 26px; bottom: 150px; right: 12px; }
+            .telegram-float { width: 50px; height: 50px; font-size: 26px; bottom: 150px; right: 12px; }
         }
         @media (min-width: 500px) {
             body { max-width: 480px; margin: 0 auto; background: #e8ecf1; }
             .tab-bar { max-width: 480px; left: 50%; transform: translateX(-50%); }
-            .whatsapp-float { right: calc(50% - 224px); }
+            .telegram-float { right: calc(50% - 224px); }
         }
     </style>
 </head>
@@ -1424,10 +1424,10 @@
     </div>
 </div>
 
-<!-- ===== FLOATING WHATSAPP GROUP BUTTON ===== -->
-<a href="https://chat.whatsapp.com/CSxASJC9pSj7emtix8G0H9?mode=gi_t" target="_blank" class="whatsapp-float" id="whatsappFloat" aria-label="Join NRC WhatsApp Group">
-    <i class="fab fa-whatsapp"></i>
-    <span class="tooltip">Join WhatsApp Group</span>
+<!-- ===== FLOATING TELEGRAM GROUP BUTTON ===== -->
+<a href="https://t.me/nrcwealthzone" target="_blank" class="telegram-float" id="telegramFloat" aria-label="Join NRC Telegram Group">
+    <i class="fab fa-telegram-plane"></i>
+    <span class="tooltip">Join Telegram Group</span>
 </a>
 
 <!-- ===== LOGIN ===== -->
