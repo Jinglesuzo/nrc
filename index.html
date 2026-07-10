@@ -1999,7 +1999,7 @@
     </div>
 </div>
 
-<!-- ===== WEALTH CENTER ===== -->
+<!-- ===== WEALTH CENTER (10X PLANS) ===== -->
 <div id="page-wealthcenter" class="page">
     <div class="page-nav">
         <div class="page-nav-content">
@@ -2009,20 +2009,135 @@
         </div>
     </div>
     <div class="page-content">
-        <div class="page-card">
-            <h3><i class="fas fa-crown"></i> Your Wealth Summary</h3>
-            <div class="detail-grid">
-                <div class="detail-stat"><span class="label">Total Wealth</span><span class="value blue">₦9,250</span></div>
-                <div class="detail-stat"><span class="label">Active Investments</span><span class="value">3</span></div>
-                <div class="detail-stat"><span class="label">Daily Returns</span><span class="value green">₦630</span></div>
-                <div class="detail-stat"><span class="label">Monthly Growth</span><span class="value gold">+12.4%</span></div>
+        <!-- Stats Summary -->
+        <div class="page-card" style="background:linear-gradient(135deg,#065f46,#0a7a5a);color:#fff;border:none;">
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;">
+                <div>
+                    <div style="font-size:11px;opacity:0.7;">Total Invested</div>
+                    <div style="font-size:20px;font-weight:800;" id="wcTotalInvested">₦0</div>
+                </div>
+                <div>
+                    <div style="font-size:11px;opacity:0.7;">Active Plans</div>
+                    <div style="font-size:20px;font-weight:800;" id="wcActivePlans">0</div>
+                </div>
+                <div>
+                    <div style="font-size:11px;opacity:0.7;">Total Returns</div>
+                    <div style="font-size:20px;font-weight:800;color:#fbbf24;" id="wcTotalReturns">₦0</div>
+                </div>
             </div>
-            <div style="margin-top:6px;">
-                <div class="record-item"><div class="left"><span class="title">💎 VIP2 Investment</span><span class="sub">Started Jul 2026 • ₦64,900</span></div><div class="right green">₦3,600/day</div></div>
-                <div class="record-item"><div class="left"><span class="title">📊 Task Pool</span><span class="sub">Active • 24 tasks/day</span></div><div class="right green">₦3,600/day</div></div>
-                <div class="record-item"><div class="left"><span class="title">👥 Referral Network</span><span class="sub">12 members • 8 active</span></div><div class="right gold">₦150/day</div></div>
+        </div>
+
+        <!-- Investment Plans -->
+        <div style="margin-bottom:10px;">
+            <h3 style="font-size:18px;font-weight:700;color:#0f172a;margin-bottom:10px;">💎 Investment Plans (10x Return)</h3>
+            <p style="font-size:13px;color:#64748b;margin-bottom:12px;">Invest for 30 days and earn <strong>10× your investment</strong>. Daily payouts are automatic.</p>
+        </div>
+
+        <!-- Plan Cards -->
+        <div class="vip-list">
+            <!-- Plan 1: ₦5,000 → ₦50,000 -->
+            <div class="vip-card" style="background:linear-gradient(135deg,#fef3c7,#fde68a);border:2px solid #f59e0b;">
+                <div class="vip-card-content">
+                    <div class="vip-card-left">
+                        <div class="vip-level-name" style="color:#92400e;">🥉 Starter Plan</div>
+                        <div style="color:#78350f;font-size:20px;font-weight:800;">₦5,000</div>
+                        <div style="color:#78350f;font-size:12px;opacity:0.8;">📅 30 Days | 💰 Daily Returns</div>
+                        <div style="color:#78350f;font-size:14px;font-weight:700;margin-top:4px;">📈 Total Return: ₦50,000 <span style="font-size:11px;font-weight:400;">(10x)</span></div>
+                        <div style="color:#78350f;font-size:12px;">💵 Daily Payout: ₦1,667</div>
+                    </div>
+                    <div class="vip-card-right">
+                        <button class="vip-join-btn" onclick="investNow('Starter', 5000, 1667, 50000)" style="background:#92400e;color:#fff;">Invest Now</button>
+                    </div>
+                </div>
             </div>
-            <p style="font-size:12px;color:#94a3b8;text-align:center;margin-top:8px;">💡 Upgrade your VIP to unlock higher daily returns</p>
+
+            <!-- Plan 2: ₦10,000 → ₦100,000 -->
+            <div class="vip-card" style="background:linear-gradient(135deg,#dbeafe,#93c5fd);border:2px solid #3b82f6;">
+                <div class="vip-card-content">
+                    <div class="vip-card-left">
+                        <div class="vip-level-name" style="color:#1e3a5f;">🥈 Silver Plan</div>
+                        <div style="color:#1e3a5f;font-size:20px;font-weight:800;">₦10,000</div>
+                        <div style="color:#1e3a5f;font-size:12px;opacity:0.8;">📅 30 Days | 💰 Daily Returns</div>
+                        <div style="color:#1e3a5f;font-size:14px;font-weight:700;margin-top:4px;">📈 Total Return: ₦100,000 <span style="font-size:11px;font-weight:400;">(10x)</span></div>
+                        <div style="color:#1e3a5f;font-size:12px;">💵 Daily Payout: ₦3,333</div>
+                    </div>
+                    <div class="vip-card-right">
+                        <button class="vip-join-btn" onclick="investNow('Silver', 10000, 3333, 100000)" style="background:#1e3a5f;color:#fff;">Invest Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plan 3: ₦20,000 → ₦200,000 -->
+            <div class="vip-card" style="background:linear-gradient(135deg,#d1fae5,#6ee7b7);border:2px solid #10b981;">
+                <div class="vip-card-content">
+                    <div class="vip-card-left">
+                        <div class="vip-level-name" style="color:#064e3b;">🥇 Gold Plan</div>
+                        <div style="color:#064e3b;font-size:20px;font-weight:800;">₦20,000</div>
+                        <div style="color:#064e3b;font-size:12px;opacity:0.8;">📅 30 Days | 💰 Daily Returns</div>
+                        <div style="color:#064e3b;font-size:14px;font-weight:700;margin-top:4px;">📈 Total Return: ₦200,000 <span style="font-size:11px;font-weight:400;">(10x)</span></div>
+                        <div style="color:#064e3b;font-size:12px;">💵 Daily Payout: ₦6,667</div>
+                    </div>
+                    <div class="vip-card-right">
+                        <button class="vip-join-btn" onclick="investNow('Gold', 20000, 6667, 200000)" style="background:#064e3b;color:#fff;">Invest Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plan 4: ₦35,000 → ₦350,000 -->
+            <div class="vip-card" style="background:linear-gradient(135deg,#fce4ec,#f48fb1);border:2px solid #ec407a;">
+                <div class="vip-card-content">
+                    <div class="vip-card-left">
+                        <div class="vip-level-name" style="color:#880e4f;">💎 Platinum Plan</div>
+                        <div style="color:#880e4f;font-size:20px;font-weight:800;">₦35,000</div>
+                        <div style="color:#880e4f;font-size:12px;opacity:0.8;">📅 30 Days | 💰 Daily Returns</div>
+                        <div style="color:#880e4f;font-size:14px;font-weight:700;margin-top:4px;">📈 Total Return: ₦350,000 <span style="font-size:11px;font-weight:400;">(10x)</span></div>
+                        <div style="color:#880e4f;font-size:12px;">💵 Daily Payout: ₦11,667</div>
+                    </div>
+                    <div class="vip-card-right">
+                        <button class="vip-join-btn" onclick="investNow('Platinum', 35000, 11667, 350000)" style="background:#880e4f;color:#fff;">Invest Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plan 5: ₦50,000 → ₦500,000 -->
+            <div class="vip-card" style="background:linear-gradient(135deg,#ede7f6,#b39ddb);border:2px solid #7b1fa2;">
+                <div class="vip-card-content">
+                    <div class="vip-card-left">
+                        <div class="vip-level-name" style="color:#4a148c;">👑 Diamond Plan</div>
+                        <div style="color:#4a148c;font-size:20px;font-weight:800;">₦50,000</div>
+                        <div style="color:#4a148c;font-size:12px;opacity:0.8;">📅 30 Days | 💰 Daily Returns</div>
+                        <div style="color:#4a148c;font-size:14px;font-weight:700;margin-top:4px;">📈 Total Return: ₦500,000 <span style="font-size:11px;font-weight:400;">(10x)</span></div>
+                        <div style="color:#4a148c;font-size:12px;">💵 Daily Payout: ₦16,667</div>
+                    </div>
+                    <div class="vip-card-right">
+                        <button class="vip-join-btn" onclick="investNow('Diamond', 50000, 16667, 500000)" style="background:#4a148c;color:#fff;">Invest Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plan 6: ₦70,000 → ₦700,000 -->
+            <div class="vip-card" style="background:linear-gradient(135deg,#fefce8,#fde68a);border:2px solid #d97706;">
+                <div class="vip-card-content">
+                    <div class="vip-card-left">
+                        <div class="vip-level-name" style="color:#78350f;">🌟 Elite Plan</div>
+                        <div style="color:#78350f;font-size:20px;font-weight:800;">₦70,000</div>
+                        <div style="color:#78350f;font-size:12px;opacity:0.8;">📅 30 Days | 💰 Daily Returns</div>
+                        <div style="color:#78350f;font-size:14px;font-weight:700;margin-top:4px;">📈 Total Return: ₦700,000 <span style="font-size:11px;font-weight:400;">(10x)</span></div>
+                        <div style="color:#78350f;font-size:12px;">💵 Daily Payout: ₦23,333</div>
+                    </div>
+                    <div class="vip-card-right">
+                        <button class="vip-join-btn" onclick="investNow('Elite', 70000, 23333, 700000)" style="background:#78350f;color:#fff;">Invest Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Active Investments -->
+        <div style="margin-top:12px;">
+            <h3 style="font-size:18px;font-weight:700;color:#0f172a;margin-bottom:8px;">📊 My Active Investments</h3>
+            <div id="wcActiveInvestments" style="background:#fff;border-radius:12px;padding:12px 14px;border:1px solid #f1f5f9;">
+                <div style="text-align:center;color:#94a3b8;font-size:13px;padding:16px 0;">No active investments</div>
+            </div>
         </div>
     </div>
 </div>
@@ -2455,6 +2570,7 @@
             if (tab === 'home') showAnnouncement();
             if (tab === 'task') renderTasks();
             if (tab === 'my') refreshMyPage();
+            if (tab === 'wealthcenter') loadWealthCenterData();
             if (tab === 'vip' || tab === 'profile') { const phone = localStorage.getItem('nrc_phone'); if (phone) fetchAndUpdateUserData(phone); }
             resetInactivityTimer();
         }
@@ -2693,6 +2809,127 @@
             statusEl.textContent = '❌ Network error: ' + e.message;
         }
         resetInactivityTimer();
+    }
+
+    // ============================================================
+    // =================== WEALTH CENTER ===========================
+    // ============================================================
+
+    // Investment Plans – 10x Return
+    const wealthPlans = {
+        'Starter': { amount: 5000, dailyReturn: 1667, totalReturn: 50000, days: 30 },
+        'Silver': { amount: 10000, dailyReturn: 3333, totalReturn: 100000, days: 30 },
+        'Gold': { amount: 20000, dailyReturn: 6667, totalReturn: 200000, days: 30 },
+        'Platinum': { amount: 35000, dailyReturn: 11667, totalReturn: 350000, days: 30 },
+        'Diamond': { amount: 50000, dailyReturn: 16667, totalReturn: 500000, days: 30 },
+        'Elite': { amount: 70000, dailyReturn: 23333, totalReturn: 700000, days: 30 }
+    };
+
+    // Invest Now
+    async function investNow(planName, amount, dailyReturn, totalReturn) {
+        const phone = localStorage.getItem('nrc_phone');
+        if (!phone) {
+            showToast('⚠️ Please login first');
+            return;
+        }
+
+        // Check balance
+        const userData = JSON.parse(localStorage.getItem('nrc_user_data') || '{}');
+        const balance = userData.balance || 0;
+        
+        if (balance < amount) {
+            showToast(`❌ Insufficient balance! You need ₦${amount.toLocaleString()}`);
+            return;
+        }
+
+        if (!confirm(`Invest ₦${amount.toLocaleString()} in the ${planName} plan?\n\n📅 Duration: 30 days\n💰 Daily Return: ₦${dailyReturn.toLocaleString()}\n📈 Total Return: ₦${totalReturn.toLocaleString()} (10x)\n\nYour balance will be deducted immediately.`)) {
+            return;
+        }
+
+        try {
+            const res = await fetch(API_BASE, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    action: 'invest',
+                    phone: phone,
+                    plan: planName,
+                    amount: amount,
+                    dailyReturn: dailyReturn,
+                    totalReturn: totalReturn,
+                    duration: 30
+                })
+            });
+            const data = await res.json();
+            
+            if (data.success) {
+                showToast(`✅ Investment in ${planName} plan successful!`);
+                await fetchAndUpdateUserData(phone);
+                await refreshMyPage();
+                loadWealthCenterData();
+            } else {
+                showToast('❌ ' + data.message);
+            }
+        } catch (e) {
+            showToast('❌ Network error: ' + e.message);
+        }
+    }
+
+    // Load Wealth Center Data
+    async function loadWealthCenterData() {
+        const phone = localStorage.getItem('nrc_phone');
+        if (!phone) return;
+
+        try {
+            const res = await fetch(API_BASE, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'get_investments', phone })
+            });
+            const data = await res.json();
+            
+            if (data.success) {
+                const investments = data.investments || [];
+                const totalInvested = investments.reduce((sum, inv) => sum + inv.amount, 0);
+                const totalReturns = investments.reduce((sum, inv) => sum + inv.total_return, 0);
+                
+                document.getElementById('wcTotalInvested').textContent = '₦' + totalInvested.toLocaleString();
+                document.getElementById('wcActivePlans').textContent = investments.length;
+                document.getElementById('wcTotalReturns').textContent = '₦' + totalReturns.toLocaleString();
+
+                // Render active investments
+                const container = document.getElementById('wcActiveInvestments');
+                if (investments.length === 0) {
+                    container.innerHTML = '<div style="text-align:center;color:#94a3b8;font-size:13px;padding:16px 0;">No active investments</div>';
+                } else {
+                    let html = '';
+                    investments.forEach(inv => {
+                        const progress = Math.round((inv.days_passed / inv.duration) * 100);
+                        html += `
+                            <div style="border-bottom:1px solid #f1f5f9;padding:10px 0;">
+                                <div style="display:flex;justify-content:space-between;align-items:center;">
+                                    <div>
+                                        <span style="font-weight:700;color:#0f172a;">${inv.plan}</span>
+                                        <span style="font-size:12px;color:#64748b;margin-left:8px;">₦${inv.amount.toLocaleString()}</span>
+                                    </div>
+                                    <div style="font-size:13px;font-weight:700;color:#065f46;">₦${inv.daily_return}/day</div>
+                                </div>
+                                <div style="margin-top:4px;display:flex;justify-content:space-between;font-size:11px;color:#64748b;">
+                                    <span>Day ${inv.days_passed} of ${inv.duration}</span>
+                                    <span>${inv.status}</span>
+                                </div>
+                                <div style="margin-top:4px;background:#e2e8f0;border-radius:30px;height:4px;overflow:hidden;">
+                                    <div style="width:${progress}%;background:linear-gradient(90deg,#065f46,#0a7a5a);height:100%;border-radius:30px;"></div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    container.innerHTML = html;
+                }
+            }
+        } catch (e) {
+            console.error('Failed to load wealth center data:', e);
+        }
     }
 
     // ============================================================
