@@ -1475,7 +1475,7 @@
             <div class="row"><span class="label">New Balance</span><span class="value" id="paymentNewBalance">₦0</span></div>
         </div>
 
-        <!-- Bank Transfer Details -->
+        <!-- Bank Transfer Details (NO LINK, just account info) -->
         <div class="bank-details-box">
             <p class="bank-label">🏦 Transfer to this account:</p>
             <p><strong>Bank:</strong> Nombank MFB</p>
@@ -1484,7 +1484,9 @@
             <p style="font-size:11px;color:#64748b;margin-top:4px;">💡 Copy the account details and make your transfer via your banking app.</p>
         </div>
 
-        <button class="payment-btn" onclick="processPayment()">💳 Pay Now</button>
+        <!-- Only copy button – NO PAYMENT LINK -->
+        <button class="payment-btn" onclick="copyBankDetails()">📋 Copy Account Details</button>
+
         <button class="payment-verify-btn" onclick="verifyPayment()">✅ I Have Paid - Verify</button>
         <div class="payment-status" id="paymentStatus"></div>
         <button class="payment-close-btn" onclick="closePaymentPopup()">Cancel</button>
@@ -2211,7 +2213,7 @@
             <button class="btn-view" onclick="loadPendingRequests()" style="background:#f59e0b;color:#fff;">⏳ View Pending</button>
         </div>
 
-        <!-- Pending Requests -->
+        <!-- ===== PENDING REQUESTS SECTION ===== -->
         <div style="margin-top:12px; border-top:2px solid #065f46; padding-top:10px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                 <span style="font-weight:700; font-size:14px; color:#0f172a;">⏳ Pending Upgrades</span>
@@ -2222,7 +2224,7 @@
             </div>
         </div>
 
-        <!-- User List -->
+        <!-- ===== USER LIST ===== -->
         <div style="margin-top:12px; border-top:2px solid #065f46; padding-top:10px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                 <span style="font-weight:700; font-size:14px; color:#0f172a;">👥 All Users</span>
@@ -2625,24 +2627,18 @@
 
     function closePaymentPopup() { document.getElementById('paymentPopup').classList.remove('show'); }
 
-    function processPayment() {
-        var statusEl = document.getElementById('paymentStatus');
+    // ===== COPY BANK DETAILS (NO LINK) =====
+    function copyBankDetails() {
         var bankDetails = "🏦 Nombank MFB\n📋 2519487868\n👤 Tradehub Services";
-        var paymentLink = 'https://pay.nomba.com/pay/1607485047';
-
         navigator.clipboard?.writeText(bankDetails).then(() => {
             showToast('✅ Account details copied to clipboard!');
         }).catch(() => {
             showToast('📋 Bank: Nombank MFB | Account: 2519487868 | Name: Tradehub Services');
         });
-
-        var newWindow = window.open(paymentLink, '_blank');
+        var statusEl = document.getElementById('paymentStatus');
         statusEl.className = 'payment-status pending';
         statusEl.style.display = 'block';
-        statusEl.textContent = '📋 Account details copied! Complete your transfer, then click "I Have Paid".';
-        if (!newWindow || newWindow.closed || typeof newWindow === 'undefined') {
-            statusEl.innerHTML = '📋 Account details copied! Complete your transfer, then click "I Have Paid".';
-        }
+        statusEl.textContent = '📋 Account details copied! Make your transfer and click "I Have Paid".';
         resetInactivityTimer();
     }
 
@@ -2731,8 +2727,10 @@
         users.forEach((user) => {
             const phoneDisplay = user.phone.substring(0, 4) + '****' + user.phone.substring(user.phone.length - 4);
             html += `<div class="request-item" data-phone="${user.phone}" style="border-bottom:1px solid #f0f2f5; padding:8px 0;">
-                <div class="req-info" style="flex:1;"><div class="req-user" style="font-weight:600;color:#0f172a;">${phoneDisplay}</div>
-                <div class="req-detail" style="font-size:10px;color:#64748b;">VIP: ${user.vip_level || 'Trial'} | Balance: ₦${user.balance || 0}</div></div>
+                <div class="req-info" style="flex:1;">
+                    <div class="req-user" style="font-weight:600;color:#0f172a;">${phoneDisplay}</div>
+                    <div class="req-detail" style="font-size:10px;color:#64748b;">VIP: ${user.vip_level || 'Trial'} | Balance: ₦${user.balance || 0}</div>
+                </div>
                 <div class="req-actions" style="display:flex;gap:4px;flex-wrap:wrap;">
                     <button class="approve" onclick="upgradeVIP('${user.phone}', 'VIP1')" style="padding:2px 8px;border-radius:12px;border:none;font-size:9px;font-weight:600;cursor:pointer;background:#10b981;color:#fff;">VIP1</button>
                     <button class="approve" onclick="upgradeVIP('${user.phone}', 'VIP2')" style="padding:2px 8px;border-radius:12px;border:none;font-size:9px;font-weight:600;cursor:pointer;background:#10b981;color:#fff;">VIP2</button>
