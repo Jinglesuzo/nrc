@@ -38,7 +38,6 @@
         .page-content { padding: 16px 16px 10px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
 
-        /* Toggle Switch Styles */
         .toggle-slider {
             position: absolute;
             cursor: pointer;
@@ -61,12 +60,8 @@
             transition: .4s;
             border-radius: 50%;
         }
-        input:checked + .toggle-slider {
-            background: #065f46;
-        }
-        input:checked + .toggle-slider:before {
-            transform: translateX(24px);
-        }
+        input:checked + .toggle-slider { background: #065f46; }
+        input:checked + .toggle-slider:before { transform: translateX(24px); }
 
         .login-container { padding: 40px 20px 20px; background: linear-gradient(135deg, #065f46, #0a7a5a); min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
         .login-content { width: 100%; max-width: 400px; }
@@ -578,6 +573,49 @@
         .telegram-float .tooltip { position: absolute; right: 70px; background: #1e293b; color: #fff; font-size: 12px; padding: 6px 14px; border-radius: 30px; white-space: nowrap; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
         .telegram-float:hover .tooltip { opacity: 1; }
 
+        /* Home Task Progress Card */
+        .task-progress-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 16px 18px;
+            margin: 0 14px 12px;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .task-progress-card .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .task-progress-card .progress-label {
+            font-size: 12px;
+            color: #64748b;
+        }
+        .task-progress-card .progress-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+        .task-progress-card .progress-earnings {
+            font-size: 20px;
+            font-weight: 700;
+            color: #065f46;
+        }
+        .task-progress-card .progress-bar-track {
+            margin-top: 8px;
+            background: #e2e8f0;
+            border-radius: 30px;
+            height: 6px;
+            overflow: hidden;
+        }
+        .task-progress-card .progress-bar-fill {
+            width: 0%;
+            background: linear-gradient(90deg, #065f46, #10b981);
+            height: 100%;
+            border-radius: 30px;
+            transition: width 0.5s ease;
+        }
+
         @media (max-width: 380px) { .tab-item { width: 50px; height: 50px; font-size: 8px; } .tab-item .tab-icon { font-size: 18px; } .admin-panel { min-width: 240px; right: -10px; } .detail-grid { grid-template-columns: 1fr 1fr; gap: 6px; } .telegram-float { width: 50px; height: 50px; font-size: 26px; bottom: 150px; right: 12px; } }
         @media (min-width: 500px) { body { max-width: 480px; margin: 0 auto; background: #e8ecf1; } .tab-bar { max-width: 480px; left: 50%; transform: translateX(-50%); } .telegram-float { right: calc(50% - 224px); } }
     </style>
@@ -609,7 +647,7 @@
     </div>
 </div>
 
-<!-- ===== FLOATING TELEGRAM GROUP BUTTON - VISIBLE ON ALL PAGES ===== -->
+<!-- ===== FLOATING TELEGRAM GROUP BUTTON ===== -->
 <a href="https://t.me/nrcwealthzone" target="_blank" class="telegram-float" id="telegramFloat" aria-label="Join NRC Telegram Group">
     <i class="fab fa-telegram-plane"></i>
     <span class="tooltip">Join Telegram Group</span>
@@ -621,19 +659,9 @@
         <div class="login-content">
             <div class="login-logo"><span class="login-brand">NRC</span><span class="login-sub">Cooperative Wealth Zone</span></div>
             <div class="login-box">
-                <div class="login-field">
-                    <label class="login-label"><i class="fas fa-phone"></i> Phone Number</label>
-                    <input type="tel" class="login-input" id="loginPhone" placeholder="080 1234 5678">
-                </div>
-                <div class="login-field">
-                    <label class="login-label"><i class="fas fa-lock"></i> Password</label>
-                    <input type="password" class="login-input" id="loginPassword" placeholder="Enter your password">
-                </div>
-                <div class="login-field">
-                    <label class="login-label"><i class="fas fa-user-plus"></i> Referral Code (Optional)</label>
-                    <input type="text" class="login-input" id="loginReferral" placeholder="Enter 7-digit referral code">
-                    <p style="font-size:11px;color:#94a3b8;margin-top:4px;">If you were referred, enter their 7-digit code</p>
-                </div>
+                <div class="login-field"><label class="login-label"><i class="fas fa-phone"></i> Phone Number</label><input type="tel" class="login-input" id="loginPhone" placeholder="080 1234 5678"></div>
+                <div class="login-field"><label class="login-label"><i class="fas fa-lock"></i> Password</label><input type="password" class="login-input" id="loginPassword" placeholder="Enter your password"></div>
+                <div class="login-field"><label class="login-label"><i class="fas fa-user-plus"></i> Referral Code (Optional)</label><input type="text" class="login-input" id="loginReferral" placeholder="Enter 7-digit referral code"><p style="font-size:11px;color:#94a3b8;margin-top:4px;">If you were referred, enter their 7-digit code</p></div>
                 <button class="login-btn" onclick="loginUser()">Login</button>
                 <button class="login-btn-secondary" onclick="switchTab('register')">Register</button>
             </div>
@@ -648,23 +676,10 @@
         <div class="login-content">
             <div class="login-logo"><span class="login-brand">NRC</span><span class="login-sub">Create Your Account</span></div>
             <div class="login-box">
-                <div class="login-field">
-                    <label class="login-label"><i class="fas fa-phone"></i> Phone Number</label>
-                    <input type="tel" class="login-input" id="registerPhone" placeholder="080 1234 5678">
-                </div>
-                <div class="login-field">
-                    <label class="login-label"><i class="fas fa-lock"></i> Password</label>
-                    <input type="password" class="login-input" id="registerPassword" placeholder="Create a password">
-                </div>
-                <div class="login-field">
-                    <label class="login-label"><i class="fas fa-check-circle"></i> Confirm Password</label>
-                    <input type="password" class="login-input" id="registerConfirmPassword" placeholder="Confirm your password">
-                </div>
-                <div class="login-field">
-                    <label class="login-label"><i class="fas fa-user-plus"></i> Referral Code (Optional)</label>
-                    <input type="text" class="login-input" id="registerReferral" placeholder="Enter 7-digit referral code">
-                    <p style="font-size:11px;color:#94a3b8;margin-top:4px;">If someone referred you, enter their 7-digit code</p>
-                </div>
+                <div class="login-field"><label class="login-label"><i class="fas fa-phone"></i> Phone Number</label><input type="tel" class="login-input" id="registerPhone" placeholder="080 1234 5678"></div>
+                <div class="login-field"><label class="login-label"><i class="fas fa-lock"></i> Password</label><input type="password" class="login-input" id="registerPassword" placeholder="Create a password"></div>
+                <div class="login-field"><label class="login-label"><i class="fas fa-check-circle"></i> Confirm Password</label><input type="password" class="login-input" id="registerConfirmPassword" placeholder="Confirm your password"></div>
+                <div class="login-field"><label class="login-label"><i class="fas fa-user-plus"></i> Referral Code (Optional)</label><input type="text" class="login-input" id="registerReferral" placeholder="Enter 7-digit referral code"><p style="font-size:11px;color:#94a3b8;margin-top:4px;">If someone referred you, enter their 7-digit code</p></div>
                 <button class="login-btn" onclick="registerUser()">Register</button>
                 <button class="login-btn-secondary" onclick="switchTab('login')">Login</button>
             </div>
@@ -729,38 +744,20 @@
         <span class="broadcast-arrow"><i class="fas fa-chevron-right"></i></span>
     </div>
 
-    <!-- ===== ENVELOPE ADS ===== -->
-    <div class="ads-container" style="padding:8px 14px 12px;display:flex;flex-direction:column;gap:14px;">
-        <div class="ad-card" id="ad1" style="background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.06);border:1px solid #f1f5f9;overflow:hidden;cursor:pointer;">
-            <div class="ad-header" onclick="toggleAd('ad1')" style="display:flex;align-items:center;padding:16px 18px;background:linear-gradient(135deg,#f8fafc,#eef2f6);gap:12px;">
-                <span class="envelope-icon" style="font-size:28px;color:#065f46;transition:transform 0.3s;">✉️</span>
-                <span class="ad-title" style="font-size:15px;font-weight:700;color:#0f172a;flex:1;">📬 Important: Regain Your Old Balance</span>
-                <span class="badge-new" style="background:#ef4444;color:#fff;font-size:10px;font-weight:700;padding:2px 10px;border-radius:30px;">NEW</span>
+    <!-- Task Progress Card on Home -->
+    <div class="task-progress-card">
+        <div class="progress-header">
+            <div>
+                <div class="progress-label">Today's Tasks</div>
+                <div class="progress-value" id="todayTaskProgress">0/0</div>
             </div>
-            <div class="ad-body" style="max-height:0;overflow:hidden;transition:max-height 0.5s ease,padding 0.3s ease;padding:0 18px;background:#fff;">
-                <p><strong>Dear NRC Member,</strong></p>
-                <p>You can now <span style="color:#065f46;font-weight:700;">regain your full previous balance</span> by following these simple steps:</p>
-                <div style="display:flex;align-items:flex-start;gap:10px;margin:6px 0;font-size:13px;color:#1e293b;"><span style="background:#065f46;color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:2px;">1</span> Go to the <strong>VIP Page</strong> and select your level</div>
-                <div style="display:flex;align-items:flex-start;gap:10px;margin:6px 0;font-size:13px;color:#1e293b;"><span style="background:#065f46;color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:2px;">2</span> Pay the <span style="color:#065f46;font-weight:700;">top‑up fee</span> shown</div>
-                <div style="display:flex;align-items:flex-start;gap:10px;margin:6px 0;font-size:13px;color:#1e293b;"><span style="background:#065f46;color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:2px;">3</span> After verification, your <span style="color:#065f46;font-weight:700;">old balance will be restored</span></div>
-                <p style="margin-top:10px;font-weight:600;color:#065f46;">✅ Click the VIP tab now to get started!</p>
+            <div style="text-align:right;">
+                <div class="progress-label">Earned Today</div>
+                <div class="progress-earnings" id="todayEarnedHome">₦0</div>
             </div>
         </div>
-
-        <div class="ad-card" id="ad2" style="background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.06);border:1px solid #f1f5f9;overflow:hidden;cursor:pointer;">
-            <div class="ad-header" onclick="toggleAd('ad2')" style="display:flex;align-items:center;padding:16px 18px;background:linear-gradient(135deg,#f8fafc,#eef2f6);gap:12px;">
-                <span class="envelope-icon" style="font-size:28px;color:#065f46;transition:transform 0.3s;">🎉</span>
-                <span class="ad-title" style="font-size:15px;font-weight:700;color:#0f172a;flex:1;">🎊 Congratulations – You're on the Path to Wealth!</span>
-                <span class="badge-new" style="background:#ef4444;color:#fff;font-size:10px;font-weight:700;padding:2px 10px;border-radius:30px;">NEW</span>
-            </div>
-            <div class="ad-body" style="max-height:0;overflow:hidden;transition:max-height 0.5s ease,padding 0.3s ease;padding:0 18px;background:#fff;">
-                <div style="font-size:40px;text-align:center;display:block;margin:4px 0 8px;">🏆</div>
-                <div style="font-size:18px;font-weight:800;color:#065f46;text-align:center;margin:8px 0 4px;">🎉 Welcome to the NRC Family!</div>
-                <p style="text-align:center;font-size:14px;color:#475569;">You are now part of a community building wealth together.</p>
-                <p style="text-align:center;margin:8px 0;font-size:15px;color:#0f172a;">💪 <strong>You've taken the first step to financial freedom.</strong></p>
-                <p style="text-align:center;font-size:14px;color:#475569;">Keep completing tasks, upgrade your VIP, and watch your earnings grow.</p>
-                <p style="text-align:center;margin-top:8px;font-size:13px;color:#065f46;">🌟 <strong>Your journey to wealth starts now. Let's go!</strong></p>
-            </div>
+        <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="taskProgressBar"></div>
         </div>
     </div>
 
@@ -791,7 +788,7 @@
     </div>
 </div>
 
-<!-- ===== AI HELPER - TASK BOT ===== -->
+<!-- ===== AI HELPER TASK BOT ===== -->
 <div id="page-aihelper" class="page">
     <div class="page-nav">
         <div class="page-nav-content">
@@ -801,47 +798,23 @@
         </div>
     </div>
     <div class="page-content">
-        <!-- Bot Status Card -->
         <div class="page-card" style="background:linear-gradient(135deg,#065f46,#0a7a5a);color:#fff;border:none;">
             <div style="display:flex;justify-content:space-between;align-items:center;">
-                <div>
-                    <div style="font-size:14px;opacity:0.8;">🤖 AI Task Bot</div>
-                    <div style="font-size:24px;font-weight:800;">Auto Task Completer</div>
-                </div>
-                <div style="text-align:right;">
-                    <div style="font-size:12px;opacity:0.7;">Status</div>
-                    <div style="font-size:16px;font-weight:700;" id="botStatus">🟢 Online</div>
-                </div>
+                <div><div style="font-size:14px;opacity:0.8;">🤖 AI Task Bot</div><div style="font-size:24px;font-weight:800;">Auto Task Completer</div></div>
+                <div style="text-align:right;"><div style="font-size:12px;opacity:0.7;">Status</div><div style="font-size:16px;font-weight:700;" id="botStatus">🟢 Online</div></div>
             </div>
         </div>
-
-        <!-- Bot Controls -->
         <div class="page-card">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-                <button id="startBotBtn" onclick="startTaskBot()" style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;border:none;padding:14px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;transition:transform 0.15s;">
-                    ▶ START BOT
-                </button>
-                <button id="stopBotBtn" onclick="stopTaskBot()" style="background:#ef4444;color:#fff;border:none;padding:14px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;transition:transform 0.15s;opacity:0.5;pointer-events:none;">
-                    ⏹ STOP BOT
-                </button>
+                <button id="startBotBtn" onclick="startTaskBot()" style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;border:none;padding:14px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;">▶ START BOT</button>
+                <button id="stopBotBtn" onclick="stopTaskBot()" style="background:#ef4444;color:#fff;border:none;padding:14px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;opacity:0.5;pointer-events:none;">⏹ STOP BOT</button>
             </div>
         </div>
-
-        <!-- Bot Stats -->
         <div class="page-card">
             <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center;">
-                <div>
-                    <div style="font-size:10px;color:#64748b;">Tasks Found</div>
-                    <div style="font-size:24px;font-weight:800;color:#065f46;" id="botTotalTasks">0</div>
-                </div>
-                <div>
-                    <div style="font-size:10px;color:#64748b;">Completed</div>
-                    <div style="font-size:24px;font-weight:800;color:#10b981;" id="botCompletedTasks">0</div>
-                </div>
-                <div>
-                    <div style="font-size:10px;color:#64748b;">Earnings</div>
-                    <div style="font-size:24px;font-weight:800;color:#f59e0b;" id="botEarnings">₦0</div>
-                </div>
+                <div><div style="font-size:10px;color:#64748b;">Tasks Found</div><div style="font-size:24px;font-weight:800;color:#065f46;" id="botTotalTasks">0</div></div>
+                <div><div style="font-size:10px;color:#64748b;">Completed</div><div style="font-size:24px;font-weight:800;color:#10b981;" id="botCompletedTasks">0</div></div>
+                <div><div style="font-size:10px;color:#64748b;">Earnings</div><div style="font-size:24px;font-weight:800;color:#f59e0b;" id="botEarnings">₦0</div></div>
             </div>
             <div style="margin-top:10px;">
                 <div style="display:flex;justify-content:space-between;font-size:12px;color:#64748b;">
@@ -853,16 +826,12 @@
                 </div>
             </div>
         </div>
-
-        <!-- Task Log -->
         <div class="page-card">
             <h3><i class="fas fa-list"></i> Task Log</h3>
             <div id="botLog" style="max-height:300px;overflow-y:auto;font-size:13px;color:#475569;">
                 <div style="text-align:center;color:#94a3b8;padding:20px 0;">🤖 Bot is idle. Click START to begin.</div>
             </div>
         </div>
-
-        <!-- Settings -->
         <div class="page-card">
             <h3><i class="fas fa-sliders-h"></i> Bot Settings</h3>
             <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 0;">
@@ -971,30 +940,12 @@
             <div class="my-action-btn" onclick="switchTab('withdrawal')"><i class="fas fa-wallet"></i><span>Withdrawal</span></div>
             <div class="my-action-btn" onclick="showReferralShare()"><i class="fas fa-user-plus"></i><span>Invite newcomers</span></div>
         </div>
-        
-        <!-- ===== REFERRAL SECTION ===== -->
         <div class="referral-section" id="referralSection">
-            <div class="referral-title">
-                <i class="fas fa-link"></i> Referral Program 
-                <span class="vip-badge">7-Digit Code</span>
-            </div>
-            <div class="referral-code-display">
-                <span id="referralCode">Loading...</span>
-                <button onclick="copyReferralCode()"><i class="fas fa-copy"></i> Copy</button>
-            </div>
-            <div class="referral-stats">
-                <div class="referral-stat"><div class="number" id="refTotal">0</div><div class="label">Total</div></div>
-                <div class="referral-stat"><div class="number" id="refActive">0</div><div class="label">Active</div></div>
-                <div class="referral-stat"><div class="number" id="refEarnings">₦0</div><div class="label">Earnings</div></div>
-                <div class="referral-stat"><div class="number" id="refLevel">-</div><div class="label">Your Code</div></div>
-            </div>
-            <div class="referral-share">
-                <button class="copy-btn" onclick="copyReferralLink()"><i class="fas fa-link"></i> Copy Link</button>
-                <button class="telegram-share-btn" onclick="shareTelegram()"><i class="fab fa-telegram-plane"></i> Telegram</button>
-                <button class="share-btn" onclick="shareReferral()"><i class="fas fa-share-alt"></i> Share</button>
-            </div>
+            <div class="referral-title"><i class="fas fa-link"></i> Referral Program <span class="vip-badge">7-Digit Code</span></div>
+            <div class="referral-code-display"><span id="referralCode">Loading...</span><button onclick="copyReferralCode()"><i class="fas fa-copy"></i> Copy</button></div>
+            <div class="referral-stats"><div class="referral-stat"><div class="number" id="refTotal">0</div><div class="label">Total</div></div><div class="referral-stat"><div class="number" id="refActive">0</div><div class="label">Active</div></div><div class="referral-stat"><div class="number" id="refEarnings">₦0</div><div class="label">Earnings</div></div><div class="referral-stat"><div class="number" id="refLevel">-</div><div class="label">Your Code</div></div></div>
+            <div class="referral-share"><button class="copy-btn" onclick="copyReferralLink()"><i class="fas fa-link"></i> Copy Link</button><button class="telegram-share-btn" onclick="shareTelegram()"><i class="fab fa-telegram-plane"></i> Telegram</button><button class="share-btn" onclick="shareReferral()"><i class="fas fa-share-alt"></i> Share</button></div>
         </div>
-
         <div class="my-stats">
             <div class="my-stat-card" onclick="showToast('📊 Total revenue')"><span class="my-stat-label">Total revenue(₦)</span><span class="my-stat-value" id="myTotalRevenue">0</span></div>
             <div class="my-stat-card" onclick="showToast('📊 Yesterday\'s earnings')"><span class="my-stat-label">Yesterday's earnings(₦)</span><span class="my-stat-value" id="myYesterdayEarnings">0</span></div>
@@ -1028,14 +979,8 @@
     <div class="withdrawal-container">
         <div class="withdrawal-nav"><div class="withdrawal-nav-content"><div class="withdrawal-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="withdrawal-nav-title">My wallet</div><div class="withdrawal-nav-right"></div></div></div>
         <div class="withdrawal-content">
-            <div class="withdrawal-method-dropdown">
-                <span class="withdrawal-label">Withdrawal method</span>
-                <div id="withdrawalBankDisplay"></div>
-            </div>
-            <div class="withdrawal-password">
-                <span class="withdrawal-label">Fund password</span>
-                <input type="password" class="withdrawal-input" id="withdrawalFundPassword" placeholder="Please input fund password">
-            </div>
+            <div class="withdrawal-method-dropdown"><span class="withdrawal-label">Withdrawal method</span><div id="withdrawalBankDisplay"></div></div>
+            <div class="withdrawal-password"><span class="withdrawal-label">Fund password</span><input type="password" class="withdrawal-input" id="withdrawalFundPassword" placeholder="Please input fund password"></div>
             <div class="withdrawal-amount">
                 <span class="withdrawal-label">Withdrawal amount</span>
                 <div class="withdrawal-amount-buttons">
@@ -1052,10 +997,7 @@
                     <button class="withdrawal-amount-btn" onclick="selectAmount(this,100000000)">₦100,000,000</button>
                 </div>
             </div>
-            <div class="withdrawal-info">
-                <span class="withdrawal-balance" id="withdrawalBalance">Balance: ₦0</span>
-                <span class="withdrawal-tax" id="withdrawalTax">Taxation: ₦0</span>
-            </div>
+            <div class="withdrawal-info"><span class="withdrawal-balance" id="withdrawalBalance">Balance: ₦0</span><span class="withdrawal-tax" id="withdrawalTax">Taxation: ₦0</span></div>
             <button class="withdrawal-submit-btn" onclick="submitWithdrawal()">Submit</button>
         </div>
     </div>
@@ -1089,15 +1031,8 @@
                 </div>
                 <button class="recharge-pay-btn" onclick="processRecharge()">💳 Pay Now - ₦<span id="rechargeDisplayAmount">0</span></button>
             </div>
-            <div class="recharge-status" id="rechargeStatus">
-                <div class="status-title">⏳ Payment Page Opened</div>
-                <div class="status-text">Complete payment, then click below to verify</div>
-                <button class="verify-btn" onclick="verifyRecharge()">✅ I Have Paid - Verify</button>
-            </div>
-            <div class="recharge-success" id="rechargeSuccess">
-                <div class="success-title">✅ Payment Verified!</div>
-                <div class="success-text" id="rechargeSuccessAmount">₦0 added to your balance!</div>
-            </div>
+            <div class="recharge-status" id="rechargeStatus"><div class="status-title">⏳ Payment Page Opened</div><div class="status-text">Complete payment, then click below to verify</div><button class="verify-btn" onclick="verifyRecharge()">✅ I Have Paid - Verify</button></div>
+            <div class="recharge-success" id="rechargeSuccess"><div class="success-title">✅ Payment Verified!</div><div class="success-text" id="rechargeSuccessAmount">₦0 added to your balance!</div></div>
         </div>
     </div>
 </div>
@@ -1107,15 +1042,7 @@
     <div class="settings-container">
         <div class="settings-nav"><div class="settings-nav-content"><div class="settings-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="settings-nav-title">Settings</div><div class="settings-nav-right"></div></div></div>
         <div class="settings-content">
-            <div class="settings-profile">
-                <div class="settings-profile-left">
-                    <div class="settings-avatar"><i class="fas fa-user-circle"></i></div>
-                    <div class="settings-profile-info">
-                        <div class="settings-profile-number" id="settingsProfileNumber">Loading...</div>
-                    </div>
-                </div>
-                <div class="settings-profile-right"><span class="settings-bind-btn" onclick="switchTab('bindbank')">Bind bank card</span></div>
-            </div>
+            <div class="settings-profile"><div class="settings-profile-left"><div class="settings-avatar"><i class="fas fa-user-circle"></i></div><div class="settings-profile-info"><div class="settings-profile-number" id="settingsProfileNumber">Loading...</div></div></div><div class="settings-profile-right"><span class="settings-bind-btn" onclick="switchTab('bindbank')">Bind bank card</span></div></div>
             <div class="settings-items">
                 <div class="settings-item" onclick="switchTab('bindbank')"><span class="settings-item-label">Add a bank account</span><div class="settings-item-right"><span class="settings-item-value" id="bankDisplay">Click Settings</span><i class="fas fa-chevron-right settings-item-arrow"></i></div></div>
                 <div class="settings-item" onclick="switchTab('realname')"><span class="settings-item-label">Real name</span><div class="settings-item-right"><span class="settings-item-value" id="realNameDisplay">Click Settings</span><i class="fas fa-chevron-right settings-item-arrow"></i></div></div>
@@ -1196,387 +1123,76 @@
 </div>
 
 <!-- ===== DETAIL PAGES ===== -->
-<!-- Task Records -->
 <div id="page-taskrecords" class="page">
-    <div class="page-nav">
-        <div class="page-nav-content">
-            <div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div>
-            <div class="page-nav-title">Task Records</div>
-            <div class="page-nav-right"></div>
-        </div>
-    </div>
+    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Task Records</div><div class="page-nav-right"></div></div></div>
     <div class="page-content">
-        <div class="page-card">
-            <h3><i class="fas fa-list-check"></i> Your Task History</h3>
-            <div class="detail-grid">
-                <div class="detail-stat"><span class="label">Total Tasks</span><span class="value">24</span></div>
-                <div class="detail-stat"><span class="label">Completed</span><span class="value green">18</span></div>
-                <div class="detail-stat"><span class="label">Pending</span><span class="value gold">4</span></div>
-                <div class="detail-stat"><span class="label">Failed</span><span class="value red">2</span></div>
-            </div>
-            <div style="margin-top:6px;">
-                <div class="record-item"><div class="left"><span class="title">📖 Reading Task #12</span><span class="sub">Jul 09, 2026 • 14:30</span></div><div class="right green">+₦105 <span class="badge-status completed">Completed</span></div></div>
-                <div class="record-item"><div class="left"><span class="title">📖 Reading Task #11</span><span class="sub">Jul 09, 2026 • 12:15</span></div><div class="right green">+₦105 <span class="badge-status completed">Completed</span></div></div>
-                <div class="record-item"><div class="left"><span class="title">📖 Reading Task #10</span><span class="sub">Jul 08, 2026 • 16:45</span></div><div class="right green">+₦105 <span class="badge-status completed">Completed</span></div></div>
-                <div class="record-item"><div class="left"><span class="title">📖 Reading Task #9</span><span class="sub">Jul 08, 2026 • 10:20</span></div><div class="right gold">⏳ <span class="badge-status pending">Pending</span></div></div>
-                <div class="record-item"><div class="left"><span class="title">📖 Reading Task #8</span><span class="sub">Jul 07, 2026 • 09:00</span></div><div class="right green">+₦105 <span class="badge-status completed">Completed</span></div></div>
-                <div class="record-item"><div class="left"><span class="title">📖 Reading Task #7</span><span class="sub">Jul 07, 2026 • 08:30</span></div><div class="right red">❌ <span class="badge-status failed">Failed</span></div></div>
-            </div>
-        </div>
+        <div class="page-card"><h3><i class="fas fa-list-check"></i> Your Task History</h3><div class="detail-grid"><div class="detail-stat"><span class="label">Total Tasks</span><span class="value">24</span></div><div class="detail-stat"><span class="label">Completed</span><span class="value green">18</span></div><div class="detail-stat"><span class="label">Pending</span><span class="value gold">4</span></div><div class="detail-stat"><span class="label">Failed</span><span class="value red">2</span></div></div><div style="margin-top:6px;"><div class="record-item"><div class="left"><span class="title">📖 Reading Task #12</span><span class="sub">Jul 09, 2026 • 14:30</span></div><div class="right green">+₦105 <span class="badge-status completed">Completed</span></div></div><div class="record-item"><div class="left"><span class="title">📖 Reading Task #11</span><span class="sub">Jul 09, 2026 • 12:15</span></div><div class="right green">+₦105 <span class="badge-status completed">Completed</span></div></div><div class="record-item"><div class="left"><span class="title">📖 Reading Task #10</span><span class="sub">Jul 08, 2026 • 16:45</span></div><div class="right green">+₦105 <span class="badge-status completed">Completed</span></div></div></div></div>
     </div>
 </div>
 
-<!-- Team Reports -->
 <div id="page-teams" class="page">
-    <div class="page-nav">
-        <div class="page-nav-content">
-            <div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div>
-            <div class="page-nav-title">Team Reports</div>
-            <div class="page-nav-right"></div>
-        </div>
-    </div>
-    <div class="page-content">
-        <div class="page-card">
-            <h3><i class="fas fa-users"></i> Your Team</h3>
-            <div class="detail-grid">
-                <div class="detail-stat"><span class="label">Total Members</span><span class="value">12</span></div>
-                <div class="detail-stat"><span class="label">Active</span><span class="value green">8</span></div>
-                <div class="detail-stat"><span class="label">Inactive</span><span class="value gold">4</span></div>
-                <div class="detail-stat"><span class="label">Team Earnings</span><span class="value blue">₦284,500</span></div>
-            </div>
-            <div style="margin-top:6px;">
-                <div class="record-item"><div class="left"><span class="title">👤 080****1234</span><span class="sub">VIP2 • Joined Jul 2026</span></div><div class="right green">₦12,600</div></div>
-                <div class="record-item"><div class="left"><span class="title">👤 080****5678</span><span class="sub">VIP1 • Joined Jun 2026</span></div><div class="right green">₦8,400</div></div>
-                <div class="record-item"><div class="left"><span class="title">👤 080****9012</span><span class="sub">Trial • Joined Jul 2026</span></div><div class="right gold">₦2,100</div></div>
-                <div class="record-item"><div class="left"><span class="title">👤 080****3456</span><span class="sub">VIP3 • Joined May 2026</span></div><div class="right green">₦48,000</div></div>
-                <div class="record-item"><div class="left"><span class="title">👤 080****7890</span><span class="sub">VIP1 • Joined Jun 2026</span></div><div class="right green">₦6,300</div></div>
-            </div>
-        </div>
-    </div>
+    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Team Reports</div><div class="page-nav-right"></div></div></div>
+    <div class="page-content"><div class="page-card"><h3><i class="fas fa-users"></i> Your Team</h3><div class="detail-grid"><div class="detail-stat"><span class="label">Total Members</span><span class="value">12</span></div><div class="detail-stat"><span class="label">Active</span><span class="value green">8</span></div><div class="detail-stat"><span class="label">Inactive</span><span class="value gold">4</span></div><div class="detail-stat"><span class="label">Team Earnings</span><span class="value blue">₦284,500</span></div></div><div style="margin-top:6px;"><div class="record-item"><div class="left"><span class="title">👤 080****1234</span><span class="sub">VIP2 • Joined Jul 2026</span></div><div class="right green">₦12,600</div></div><div class="record-item"><div class="left"><span class="title">👤 080****5678</span><span class="sub">VIP1 • Joined Jun 2026</span></div><div class="right green">₦8,400</div></div></div></div></div>
 </div>
 
-<!-- Daily Statement -->
 <div id="page-dailystatement" class="page">
-    <div class="page-nav">
-        <div class="page-nav-content">
-            <div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div>
-            <div class="page-nav-title">Daily Statement</div>
-            <div class="page-nav-right"></div>
-        </div>
-    </div>
-    <div class="page-content">
-        <div class="page-card">
-            <h3><i class="fas fa-calendar-day"></i> Daily Breakdown</h3>
-            <div style="display:flex; gap:8px; margin-bottom:12px;">
-                <button onclick="showToast('📅 Today')" style="background:#065f46;color:#fff;border:none;padding:6px 16px;border-radius:30px;font-size:12px;cursor:pointer;">Today</button>
-                <button onclick="showToast('📅 Yesterday')" style="background:#f1f5f9;border:1px solid #e2e8f0;padding:6px 16px;border-radius:30px;font-size:12px;cursor:pointer;">Yesterday</button>
-                <button onclick="showToast('📅 This Week')" style="background:#f1f5f9;border:1px solid #e2e8f0;padding:6px 16px;border-radius:30px;font-size:12px;cursor:pointer;">This Week</button>
-            </div>
-            <div class="detail-grid">
-                <div class="detail-stat"><span class="label">Task Earnings</span><span class="value green">₦630</span></div>
-                <div class="detail-stat"><span class="label">Referral Bonus</span><span class="value gold">₦150</span></div>
-                <div class="detail-stat"><span class="label">VIP Bonus</span><span class="value blue">₦0</span></div>
-                <div class="detail-stat"><span class="label">Total Today</span><span class="value">₦780</span></div>
-            </div>
-            <div style="margin-top:6px;">
-                <div class="record-item"><div class="left"><span class="title">📖 Completed 6 tasks</span><span class="sub">Today • 14:30</span></div><div class="right green">+₦630</div></div>
-                <div class="record-item"><div class="left"><span class="title">👤 Referral bonus</span><span class="sub">Today • 12:15</span></div><div class="right gold">+₦150</div></div>
-                <div class="record-item"><div class="left"><span class="title">⭐ VIP daily bonus</span><span class="sub">Today • 00:05</span></div><div class="right blue">+₦0</div></div>
-            </div>
-        </div>
-    </div>
+    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Daily Statement</div><div class="page-nav-right"></div></div></div>
+    <div class="page-content"><div class="page-card"><h3><i class="fas fa-calendar-day"></i> Daily Breakdown</h3><div style="display:flex; gap:8px; margin-bottom:12px;"><button onclick="showToast('📅 Today')" style="background:#065f46;color:#fff;border:none;padding:6px 16px;border-radius:30px;font-size:12px;cursor:pointer;">Today</button><button onclick="showToast('📅 Yesterday')" style="background:#f1f5f9;border:1px solid #e2e8f0;padding:6px 16px;border-radius:30px;font-size:12px;cursor:pointer;">Yesterday</button><button onclick="showToast('📅 This Week')" style="background:#f1f5f9;border:1px solid #e2e8f0;padding:6px 16px;border-radius:30px;font-size:12px;cursor:pointer;">This Week</button></div><div class="detail-grid"><div class="detail-stat"><span class="label">Task Earnings</span><span class="value green">₦630</span></div><div class="detail-stat"><span class="label">Referral Bonus</span><span class="value gold">₦150</span></div><div class="detail-stat"><span class="label">VIP Bonus</span><span class="value blue">₦0</span></div><div class="detail-stat"><span class="label">Total Today</span><span class="value">₦780</span></div></div></div></div>
 </div>
 
-<!-- Accounting Record -->
 <div id="page-accounting" class="page">
-    <div class="page-nav">
-        <div class="page-nav-content">
-            <div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div>
-            <div class="page-nav-title">Accounting Record</div>
-            <div class="page-nav-right"></div>
-        </div>
-    </div>
-    <div class="page-content">
-        <div class="page-card">
-            <h3><i class="fas fa-book"></i> Transaction History</h3>
-            <div class="detail-grid">
-                <div class="detail-stat"><span class="label">Total Credits</span><span class="value green">₦12,450</span></div>
-                <div class="detail-stat"><span class="label">Total Debits</span><span class="value red">₦3,200</span></div>
-                <div class="detail-stat"><span class="label">Current Balance</span><span class="value blue">₦9,250</span></div>
-                <div class="detail-stat"><span class="label">Pending</span><span class="value gold">₦0</span></div>
-            </div>
-            <div style="margin-top:6px;">
-                <div class="record-item"><div class="left"><span class="title">📥 Task Reward</span><span class="sub">Jul 09, 2026 • 14:30</span></div><div class="right green">+₦105</div></div>
-                <div class="record-item"><div class="left"><span class="title">📥 Task Reward</span><span class="sub">Jul 09, 2026 • 12:15</span></div><div class="right green">+₦105</div></div>
-                <div class="record-item"><div class="left"><span class="title">📥 Referral Bonus</span><span class="sub">Jul 09, 2026 • 10:00</span></div><div class="right green">+₦150</div></div>
-                <div class="record-item"><div class="left"><span class="title">📤 Withdrawal</span><span class="sub">Jul 08, 2026 • 16:20</span></div><div class="right red">-₦3,200</div></div>
-                <div class="record-item"><div class="left"><span class="title">📥 Admin Added</span><span class="sub">Jul 08, 2026 • 09:00</span></div><div class="right green">+₦4,600</div></div>
-            </div>
-        </div>
-    </div>
+    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Accounting Record</div><div class="page-nav-right"></div></div></div>
+    <div class="page-content"><div class="page-card"><h3><i class="fas fa-book"></i> Transaction History</h3><div class="detail-grid"><div class="detail-stat"><span class="label">Total Credits</span><span class="value green">₦12,450</span></div><div class="detail-stat"><span class="label">Total Debits</span><span class="value red">₦3,200</span></div><div class="detail-stat"><span class="label">Current Balance</span><span class="value blue">₦9,250</span></div><div class="detail-stat"><span class="label">Pending</span><span class="value gold">₦0</span></div></div></div></div>
 </div>
 
-<!-- Wealth Center -->
 <div id="page-wealthcenter" class="page">
-    <div class="page-nav">
-        <div class="page-nav-content">
-            <div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div>
-            <div class="page-nav-title">Wealth Center</div>
-            <div class="page-nav-right"></div>
-        </div>
-    </div>
+    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Wealth Center</div><div class="page-nav-right"></div></div></div>
     <div class="page-content">
-        <div class="page-card" style="background:linear-gradient(135deg,#065f46,#0a7a5a);color:#fff;border:none;">
-            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;">
-                <div><div style="font-size:11px;opacity:0.7;">Total Invested</div><div style="font-size:20px;font-weight:800;" id="wcTotalInvested">₦0</div></div>
-                <div><div style="font-size:11px;opacity:0.7;">Active Plans</div><div style="font-size:20px;font-weight:800;" id="wcActivePlans">0</div></div>
-                <div><div style="font-size:11px;opacity:0.7;">Total Returns</div><div style="font-size:20px;font-weight:800;color:#fbbf24;" id="wcTotalReturns">₦0</div></div>
-            </div>
-        </div>
-        <div style="margin-bottom:10px;">
-            <h3 style="font-size:18px;font-weight:700;color:#0f172a;margin-bottom:10px;">💎 Investment Plans (10x Return)</h3>
-            <p style="font-size:13px;color:#64748b;margin-bottom:12px;">Invest for 30 days and earn <strong>10× your investment</strong>. Daily payouts are automatic.</p>
-        </div>
+        <div class="page-card" style="background:linear-gradient(135deg,#065f46,#0a7a5a);color:#fff;border:none;"><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;"><div><div style="font-size:11px;opacity:0.7;">Total Invested</div><div style="font-size:20px;font-weight:800;" id="wcTotalInvested">₦0</div></div><div><div style="font-size:11px;opacity:0.7;">Active Plans</div><div style="font-size:20px;font-weight:800;" id="wcActivePlans">0</div></div><div><div style="font-size:11px;opacity:0.7;">Total Returns</div><div style="font-size:20px;font-weight:800;color:#fbbf24;" id="wcTotalReturns">₦0</div></div></div></div>
+        <div style="margin-bottom:10px;"><h3 style="font-size:18px;font-weight:700;color:#0f172a;margin-bottom:10px;">💎 Investment Plans (10x Return)</h3><p style="font-size:13px;color:#64748b;margin-bottom:12px;">Invest for 30 days and earn <strong>10× your investment</strong>. Daily payouts are automatic.</p></div>
         <div class="vip-list">
-            <div class="vip-card" style="background:linear-gradient(135deg,#fef3c7,#fde68a);border:2px solid #f59e0b;">
-                <div class="vip-card-content">
-                    <div class="vip-card-left">
-                        <div class="vip-level-name" style="color:#92400e;">🥉 Starter Plan</div>
-                        <div style="color:#78350f;font-size:20px;font-weight:800;">₦5,000</div>
-                        <div style="color:#78350f;font-size:12px;opacity:0.8;">📅 30 Days | 💰 Daily Returns</div>
-                        <div style="color:#78350f;font-size:14px;font-weight:700;margin-top:4px;">📈 Total Return: ₦50,000 <span style="font-size:11px;font-weight:400;">(10x)</span></div>
-                        <div style="color:#78350f;font-size:12px;">💵 Daily Payout: ₦1,667</div>
-                    </div>
-                    <div class="vip-card-right">
-                        <button class="vip-join-btn" onclick="investNow('Starter', 5000, 1667, 50000)" style="background:#92400e;color:#fff;">Invest Now</button>
-                    </div>
-                </div>
-            </div>
-            <div class="vip-card" style="background:linear-gradient(135deg,#dbeafe,#93c5fd);border:2px solid #3b82f6;">
-                <div class="vip-card-content">
-                    <div class="vip-card-left">
-                        <div class="vip-level-name" style="color:#1e3a5f;">🥈 Silver Plan</div>
-                        <div style="color:#1e3a5f;font-size:20px;font-weight:800;">₦10,000</div>
-                        <div style="color:#1e3a5f;font-size:12px;opacity:0.8;">📅 30 Days | 💰 Daily Returns</div>
-                        <div style="color:#1e3a5f;font-size:14px;font-weight:700;margin-top:4px;">📈 Total Return: ₦100,000 <span style="font-size:11px;font-weight:400;">(10x)</span></div>
-                        <div style="color:#1e3a5f;font-size:12px;">💵 Daily Payout: ₦3,333</div>
-                    </div>
-                    <div class="vip-card-right">
-                        <button class="vip-join-btn" onclick="investNow('Silver', 10000, 3333, 100000)" style="background:#1e3a5f;color:#fff;">Invest Now</button>
-                    </div>
-                </div>
-            </div>
-            <div class="vip-card" style="background:linear-gradient(135deg,#d1fae5,#6ee7b7);border:2px solid #10b981;">
-                <div class="vip-card-content">
-                    <div class="vip-card-left">
-                        <div class="vip-level-name" style="color:#064e3b;">🥇 Gold Plan</div>
-                        <div style="color:#064e3b;font-size:20px;font-weight:800;">₦20,000</div>
-                        <div style="color:#064e3b;font-size:12px;opacity:0.8;">📅 30 Days | 💰 Daily Returns</div>
-                        <div style="color:#064e3b;font-size:14px;font-weight:700;margin-top:4px;">📈 Total Return: ₦200,000 <span style="font-size:11px;font-weight:400;">(10x)</span></div>
-                        <div style="color:#064e3b;font-size:12px;">💵 Daily Payout: ₦6,667</div>
-                    </div>
-                    <div class="vip-card-right">
-                        <button class="vip-join-btn" onclick="investNow('Gold', 20000, 6667, 200000)" style="background:#064e3b;color:#fff;">Invest Now</button>
-                    </div>
-                </div>
-            </div>
-            <div class="vip-card" style="background:linear-gradient(135deg,#fce4ec,#f48fb1);border:2px solid #ec407a;">
-                <div class="vip-card-content">
-                    <div class="vip-card-left">
-                        <div class="vip-level-name" style="color:#880e4f;">💎 Platinum Plan</div>
-                        <div style="color:#880e4f;font-size:20px;font-weight:800;">₦35,000</div>
-                        <div style="color:#880e4f;font-size:12px;opacity:0.8;">📅 30 Days | 💰 Daily Returns</div>
-                        <div style="color:#880e4f;font-size:14px;font-weight:700;margin-top:4px;">📈 Total Return: ₦350,000 <span style="font-size:11px;font-weight:400;">(10x)</span></div>
-                        <div style="color:#880e4f;font-size:12px;">💵 Daily Payout: ₦11,667</div>
-                    </div>
-                    <div class="vip-card-right">
-                        <button class="vip-join-btn" onclick="investNow('Platinum', 35000, 11667, 350000)" style="background:#880e4f;color:#fff;">Invest Now</button>
-                    </div>
-                </div>
-            </div>
-            <div class="vip-card" style="background:linear-gradient(135deg,#ede7f6,#b39ddb);border:2px solid #7b1fa2;">
-                <div class="vip-card-content">
-                    <div class="vip-card-left">
-                        <div class="vip-level-name" style="color:#4a148c;">👑 Diamond Plan</div>
-                        <div style="color:#4a148c;font-size:20px;font-weight:800;">₦50,000</div>
-                        <div style="color:#4a148c;font-size:12px;opacity:0.8;">📅 30 Days | 💰 Daily Returns</div>
-                        <div style="color:#4a148c;font-size:14px;font-weight:700;margin-top:4px;">📈 Total Return: ₦500,000 <span style="font-size:11px;font-weight:400;">(10x)</span></div>
-                        <div style="color:#4a148c;font-size:12px;">💵 Daily Payout: ₦16,667</div>
-                    </div>
-                    <div class="vip-card-right">
-                        <button class="vip-join-btn" onclick="investNow('Diamond', 50000, 16667, 500000)" style="background:#4a148c;color:#fff;">Invest Now</button>
-                    </div>
-                </div>
-            </div>
-            <div class="vip-card" style="background:linear-gradient(135deg,#fefce8,#fde68a);border:2px solid #d97706;">
-                <div class="vip-card-content">
-                    <div class="vip-card-left">
-                        <div class="vip-level-name" style="color:#78350f;">🌟 Elite Plan</div>
-                        <div style="color:#78350f;font-size:20px;font-weight:800;">₦70,000</div>
-                        <div style="color:#78350f;font-size:12px;opacity:0.8;">📅 30 Days | 💰 Daily Returns</div>
-                        <div style="color:#78350f;font-size:14px;font-weight:700;margin-top:4px;">📈 Total Return: ₦700,000 <span style="font-size:11px;font-weight:400;">(10x)</span></div>
-                        <div style="color:#78350f;font-size:12px;">💵 Daily Payout: ₦23,333</div>
-                    </div>
-                    <div class="vip-card-right">
-                        <button class="vip-join-btn" onclick="investNow('Elite', 70000, 23333, 700000)" style="background:#78350f;color:#fff;">Invest Now</button>
-                    </div>
-                </div>
-            </div>
+            <div class="vip-card" style="background:linear-gradient(135deg,#fef3c7,#fde68a);border:2px solid #f59e0b;"><div class="vip-card-content"><div class="vip-card-left"><div class="vip-level-name" style="color:#92400e;">🥉 Starter Plan</div><div style="color:#78350f;font-size:20px;font-weight:800;">₦5,000</div><div style="color:#78350f;font-size:12px;opacity:0.8;">📅 30 Days | 💰 Daily Returns</div><div style="color:#78350f;font-size:14px;font-weight:700;margin-top:4px;">📈 Total Return: ₦50,000 <span style="font-size:11px;font-weight:400;">(10x)</span></div><div style="color:#78350f;font-size:12px;">💵 Daily Payout: ₦1,667</div></div><div class="vip-card-right"><button class="vip-join-btn" onclick="investNow('Starter', 5000, 1667, 50000)" style="background:#92400e;color:#fff;">Invest Now</button></div></div></div>
+            <div class="vip-card" style="background:linear-gradient(135deg,#dbeafe,#93c5fd);border:2px solid #3b82f6;"><div class="vip-card-content"><div class="vip-card-left"><div class="vip-level-name" style="color:#1e3a5f;">🥈 Silver Plan</div><div style="color:#1e3a5f;font-size:20px;font-weight:800;">₦10,000</div><div style="color:#1e3a5f;font-size:12px;opacity:0.8;">📅 30 Days | 💰 Daily Returns</div><div style="color:#1e3a5f;font-size:14px;font-weight:700;margin-top:4px;">📈 Total Return: ₦100,000 <span style="font-size:11px;font-weight:400;">(10x)</span></div><div style="color:#1e3a5f;font-size:12px;">💵 Daily Payout: ₦3,333</div></div><div class="vip-card-right"><button class="vip-join-btn" onclick="investNow('Silver', 10000, 3333, 100000)" style="background:#1e3a5f;color:#fff;">Invest Now</button></div></div></div>
+            <div class="vip-card" style="background:linear-gradient(135deg,#d1fae5,#6ee7b7);border:2px solid #10b981;"><div class="vip-card-content"><div class="vip-card-left"><div class="vip-level-name" style="color:#064e3b;">🥇 Gold Plan</div><div style="color:#064e3b;font-size:20px;font-weight:800;">₦20,000</div><div style="color:#064e3b;font-size:12px;opacity:0.8;">📅 30 Days | 💰 Daily Returns</div><div style="color:#064e3b;font-size:14px;font-weight:700;margin-top:4px;">📈 Total Return: ₦200,000 <span style="font-size:11px;font-weight:400;">(10x)</span></div><div style="color:#064e3b;font-size:12px;">💵 Daily Payout: ₦6,667</div></div><div class="vip-card-right"><button class="vip-join-btn" onclick="investNow('Gold', 20000, 6667, 200000)" style="background:#064e3b;color:#fff;">Invest Now</button></div></div></div>
+            <div class="vip-card" style="background:linear-gradient(135deg,#fce4ec,#f48fb1);border:2px solid #ec407a;"><div class="vip-card-content"><div class="vip-card-left"><div class="vip-level-name" style="color:#880e4f;">💎 Platinum Plan</div><div style="color:#880e4f;font-size:20px;font-weight:800;">₦35,000</div><div style="color:#880e4f;font-size:12px;opacity:0.8;">📅 30 Days | 💰 Daily Returns</div><div style="color:#880e4f;font-size:14px;font-weight:700;margin-top:4px;">📈 Total Return: ₦350,000 <span style="font-size:11px;font-weight:400;">(10x)</span></div><div style="color:#880e4f;font-size:12px;">💵 Daily Payout: ₦11,667</div></div><div class="vip-card-right"><button class="vip-join-btn" onclick="investNow('Platinum', 35000, 11667, 350000)" style="background:#880e4f;color:#fff;">Invest Now</button></div></div></div>
+            <div class="vip-card" style="background:linear-gradient(135deg,#ede7f6,#b39ddb);border:2px solid #7b1fa2;"><div class="vip-card-content"><div class="vip-card-left"><div class="vip-level-name" style="color:#4a148c;">👑 Diamond Plan</div><div style="color:#4a148c;font-size:20px;font-weight:800;">₦50,000</div><div style="color:#4a148c;font-size:12px;opacity:0.8;">📅 30 Days | 💰 Daily Returns</div><div style="color:#4a148c;font-size:14px;font-weight:700;margin-top:4px;">📈 Total Return: ₦500,000 <span style="font-size:11px;font-weight:400;">(10x)</span></div><div style="color:#4a148c;font-size:12px;">💵 Daily Payout: ₦16,667</div></div><div class="vip-card-right"><button class="vip-join-btn" onclick="investNow('Diamond', 50000, 16667, 500000)" style="background:#4a148c;color:#fff;">Invest Now</button></div></div></div>
+            <div class="vip-card" style="background:linear-gradient(135deg,#fefce8,#fde68a);border:2px solid #d97706;"><div class="vip-card-content"><div class="vip-card-left"><div class="vip-level-name" style="color:#78350f;">🌟 Elite Plan</div><div style="color:#78350f;font-size:20px;font-weight:800;">₦70,000</div><div style="color:#78350f;font-size:12px;opacity:0.8;">📅 30 Days | 💰 Daily Returns</div><div style="color:#78350f;font-size:14px;font-weight:700;margin-top:4px;">📈 Total Return: ₦700,000 <span style="font-size:11px;font-weight:400;">(10x)</span></div><div style="color:#78350f;font-size:12px;">💵 Daily Payout: ₦23,333</div></div><div class="vip-card-right"><button class="vip-join-btn" onclick="investNow('Elite', 70000, 23333, 700000)" style="background:#78350f;color:#fff;">Invest Now</button></div></div></div>
         </div>
-        <div style="margin-top:12px;">
-            <h3 style="font-size:18px;font-weight:700;color:#0f172a;margin-bottom:8px;">📊 My Active Investments</h3>
-            <div id="wcActiveInvestments" style="background:#fff;border-radius:12px;padding:12px 14px;border:1px solid #f1f5f9;">
-                <div style="text-align:center;color:#94a3b8;font-size:13px;padding:16px 0;">No active investments</div>
-            </div>
-        </div>
+        <div style="margin-top:12px;"><h3 style="font-size:18px;font-weight:700;color:#0f172a;margin-bottom:8px;">📊 My Active Investments</h3><div id="wcActiveInvestments" style="background:#fff;border-radius:12px;padding:12px 14px;border:1px solid #f1f5f9;"><div style="text-align:center;color:#94a3b8;font-size:13px;padding:16px 0;">No active investments</div></div></div>
     </div>
 </div>
 
-<!-- Credit Score -->
 <div id="page-creditscore" class="page">
-    <div class="page-nav">
-        <div class="page-nav-content">
-            <div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div>
-            <div class="page-nav-title">Credit Score</div>
-            <div class="page-nav-right"></div>
-        </div>
-    </div>
-    <div class="page-content">
-        <div class="page-card">
-            <h3><i class="fas fa-chart-line"></i> Your Credit Score</h3>
-            <div style="text-align:center;">
-                <div class="score-circle" id="scoreCircle" style="--score-deg: 72%;">
-                    <div class="inner"><span class="number" id="creditScoreNumber">720</span><span class="label">Good</span></div>
-                </div>
-                <p style="font-size:13px;color:#64748b;margin-bottom:12px;">Your score is based on task completion, VIP level, and team activity.</p>
-                <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;">
-                    <span style="background:#d1fae5;color:#065f46;padding:2px 12px;border-radius:30px;font-size:11px;font-weight:600;">✅ 18 tasks completed</span>
-                    <span style="background:#fef3c7;color:#92400e;padding:2px 12px;border-radius:30px;font-size:11px;font-weight:600;">⭐ VIP2</span>
-                    <span style="background:#dbeafe;color:#1e40af;padding:2px 12px;border-radius:30px;font-size:11px;font-weight:600;">👥 8 active team</span>
-                </div>
-                <div style="margin-top:12px;background:#f8fafc;border-radius:10px;padding:12px;border:1px solid #f1f5f9;">
-                    <p style="font-size:13px;font-weight:600;color:#0f172a;">📈 Tips to improve your score:</p>
-                    <ul style="font-size:12px;color:#475569;list-style:none;padding:0;text-align:left;margin-top:4px;">
-                        <li>✓ Complete all daily tasks</li>
-                        <li>✓ Upgrade to higher VIP levels</li>
-                        <li>✓ Refer more active members</li>
-                        <li>✓ Maintain consistent activity</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Credit Score</div><div class="page-nav-right"></div></div></div>
+    <div class="page-content"><div class="page-card"><h3><i class="fas fa-chart-line"></i> Your Credit Score</h3><div style="text-align:center;"><div class="score-circle" id="scoreCircle" style="--score-deg: 72%;"><div class="inner"><span class="number" id="creditScoreNumber">720</span><span class="label">Good</span></div></div><p style="font-size:13px;color:#64748b;margin-bottom:12px;">Your score is based on task completion, VIP level, and team activity.</p><div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;"><span style="background:#d1fae5;color:#065f46;padding:2px 12px;border-radius:30px;font-size:11px;font-weight:600;">✅ 18 tasks completed</span><span style="background:#fef3c7;color:#92400e;padding:2px 12px;border-radius:30px;font-size:11px;font-weight:600;">⭐ VIP2</span><span style="background:#dbeafe;color:#1e40af;padding:2px 12px;border-radius:30px;font-size:11px;font-weight:600;">👥 8 active team</span></div></div></div></div>
 </div>
 
-<!-- Download App -->
 <div id="page-downloadapp" class="page">
-    <div class="page-nav">
-        <div class="page-nav-content">
-            <div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div>
-            <div class="page-nav-title">Download App</div>
-            <div class="page-nav-right"></div>
-        </div>
-    </div>
-    <div class="page-content">
-        <div class="page-card" style="text-align:center;">
-            <h3><i class="fas fa-download"></i> Install NRC App</h3>
-            <div style="font-size:60px;margin:12px 0;">📱</div>
-            <p style="font-size:16px;font-weight:700;color:#0f172a;">Get the NRC App</p>
-            <p style="font-size:14px;color:#64748b;margin:4px 0 12px;">Install our web app for the best experience – works offline, faster loading, and home screen access.</p>
-            <button class="install-btn" id="installAppBtn" onclick="installApp()">
-                <i class="fas fa-download"></i>
-                <div>Install NRC App<div class="sub-text">Available on all devices</div></div>
-            </button>
-            <p style="font-size:12px;color:#94a3b8;margin-top:10px;">✅ No app store needed • Works on any phone • One‑tap install</p>
-            <div style="margin-top:12px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-                <span style="background:#f1f5f9;padding:4px 16px;border-radius:30px;font-size:11px;">📱 Android</span>
-                <span style="background:#f1f5f9;padding:4px 16px;border-radius:30px;font-size:11px;">🍎 iOS</span>
-                <span style="background:#f1f5f9;padding:4px 16px;border-radius:30px;font-size:11px;">💻 Desktop</span>
-            </div>
-        </div>
-        <div class="page-card">
-            <h3><i class="fas fa-question-circle"></i> How to Install</h3>
-            <div style="font-size:13px;color:#475569;line-height:1.8;">
-                <p><strong>📱 On Android (Chrome):</strong> Tap the menu (⋮) → "Add to Home screen" → "Install"</p>
-                <p><strong>🍎 On iOS (Safari):</strong> Tap the share icon → "Add to Home Screen" → "Add"</p>
-                <p><strong>💻 On Desktop:</strong> Click the Install button above, or look for the install icon in the address bar.</p>
-            </div>
-        </div>
-    </div>
+    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Download App</div><div class="page-nav-right"></div></div></div>
+    <div class="page-content"><div class="page-card" style="text-align:center;"><h3><i class="fas fa-download"></i> Install NRC App</h3><div style="font-size:60px;margin:12px 0;">📱</div><p style="font-size:16px;font-weight:700;color:#0f172a;">Get the NRC App</p><p style="font-size:14px;color:#64748b;margin:4px 0 12px;">Install our web app for the best experience – works offline, faster loading, and home screen access.</p><button class="install-btn" id="installAppBtn" onclick="installApp()"><i class="fas fa-download"></i><div>Install NRC App<div class="sub-text">Available on all devices</div></div></button><p style="font-size:12px;color:#94a3b8;margin-top:10px;">✅ No app store needed • Works on any phone • One‑tap install</p></div></div>
 </div>
 
-<!-- Follow NRC -->
 <div id="page-follownrc" class="page">
-    <div class="page-nav">
-        <div class="page-nav-content">
-            <div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div>
-            <div class="page-nav-title">Follow NRC</div>
-            <div class="page-nav-right"></div>
-        </div>
-    </div>
-    <div class="page-content">
-        <div class="page-card" style="text-align:center;">
-            <h3><i class="fas fa-share-alt"></i> Stay Connected</h3>
-            <div style="font-size:36px;margin:8px 0;">🌐</div>
-            <p style="font-size:14px;color:#475569;margin-bottom:12px;">Follow us on social media for updates, tips, and community news.</p>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-                <div style="background:#f8fafc;padding:12px;border-radius:12px;border:1px solid #f1f5f9;cursor:pointer;" onclick="showToast('📘 Facebook')">
-                    <div style="font-size:28px;">📘</div><div style="font-size:13px;font-weight:600;">Facebook</div><div style="font-size:11px;color:#64748b;">@NRCWealth</div>
-                </div>
-                <div style="background:#f8fafc;padding:12px;border-radius:12px;border:1px solid #f1f5f9;cursor:pointer;" onclick="showToast('🐦 Twitter')">
-                    <div style="font-size:28px;">🐦</div><div style="font-size:13px;font-weight:600;">Twitter</div><div style="font-size:11px;color:#64748b;">@NRC_Wealth</div>
-                </div>
-                <div style="background:#f8fafc;padding:12px;border-radius:12px;border:1px solid #f1f5f9;cursor:pointer;" onclick="showToast('📸 Instagram')">
-                    <div style="font-size:28px;">📸</div><div style="font-size:13px;font-weight:600;">Instagram</div><div style="font-size:11px;color:#64748b;">@NRC_Wealth</div>
-                </div>
-                <div style="background:#f8fafc;padding:12px;border-radius:12px;border:1px solid #f1f5f9;cursor:pointer;" onclick="showToast('💬 Telegram')">
-                    <div style="font-size:28px;">💬</div><div style="font-size:13px;font-weight:600;">Telegram</div><div style="font-size:11px;color:#64748b;">t.me/NRC_Wealth</div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('my')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Follow NRC</div><div class="page-nav-right"></div></div></div>
+    <div class="page-content"><div class="page-card" style="text-align:center;"><h3><i class="fas fa-share-alt"></i> Stay Connected</h3><div style="font-size:36px;margin:8px 0;">🌐</div><p style="font-size:14px;color:#475569;margin-bottom:12px;">Follow us on social media for updates, tips, and community news.</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;"><div style="background:#f8fafc;padding:12px;border-radius:12px;border:1px solid #f1f5f9;cursor:pointer;" onclick="showToast('📘 Facebook')"><div style="font-size:28px;">📘</div><div style="font-size:13px;font-weight:600;">Facebook</div><div style="font-size:11px;color:#64748b;">@NRCWealth</div></div><div style="background:#f8fafc;padding:12px;border-radius:12px;border:1px solid #f1f5f9;cursor:pointer;" onclick="showToast('🐦 Twitter')"><div style="font-size:28px;">🐦</div><div style="font-size:13px;font-weight:600;">Twitter</div><div style="font-size:11px;color:#64748b;">@NRC_Wealth</div></div><div style="background:#f8fafc;padding:12px;border-radius:12px;border:1px solid #f1f5f9;cursor:pointer;" onclick="showToast('📸 Instagram')"><div style="font-size:28px;">📸</div><div style="font-size:13px;font-weight:600;">Instagram</div><div style="font-size:11px;color:#64748b;">@NRC_Wealth</div></div><div style="background:#f8fafc;padding:12px;border-radius:12px;border:1px solid #f1f5f9;cursor:pointer;" onclick="showToast('💬 Telegram')"><div style="font-size:28px;">💬</div><div style="font-size:13px;font-weight:600;">Telegram</div><div style="font-size:11px;color:#64748b;">t.me/NRC_Wealth</div></div></div></div></div>
 </div>
 
-<!-- Other Pages -->
-<div id="page-company" class="page">
-    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Company</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;"><div class="page-card"><h3>🏢 About NRC</h3><p>NRC Cooperative Wealth Zone is a premier investment platform dedicated to empowering individuals through collective wealth creation and smart investment opportunities.</p><p style="margin-top:8px;">Founded in 2024, we have helped thousands of members achieve financial freedom through our innovative investment programs and wealth-building strategies.</p></div><div class="page-card"><h3>📋 Our Mission</h3><p style="font-style:italic;">"To create a community of financially empowered individuals through transparent, secure, and profitable investment opportunities."</p></div><div class="page-card"><h3>✅ Why Choose NRC?</h3><div class="grid-2"><div>✓ Secure & Transparent</div><div>✓ Daily Returns</div><div>✓ Multiple VIP Levels</div><div>✓ Referral Rewards</div><div>✓ 24/7 Support</div><div>✓ Regulated Operations</div></div></div></div>
-</div>
+<!-- ===== OTHER PAGES ===== -->
+<div id="page-company" class="page"><div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Company</div><div class="page-nav-right"></div></div></div><div style="padding:16px 16px 10px;"><div class="page-card"><h3>🏢 About NRC</h3><p>NRC Cooperative Wealth Zone is a premier investment platform dedicated to empowering individuals through collective wealth creation and smart investment opportunities.</p><p style="margin-top:8px;">Founded in 2024, we have helped thousands of members achieve financial freedom through our innovative investment programs and wealth-building strategies.</p></div><div class="page-card"><h3>📋 Our Mission</h3><p style="font-style:italic;">"To create a community of financially empowered individuals through transparent, secure, and profitable investment opportunities."</p></div><div class="page-card"><h3>✅ Why Choose NRC?</h3><div class="grid-2"><div>✓ Secure & Transparent</div><div>✓ Daily Returns</div><div>✓ Multiple VIP Levels</div><div>✓ Referral Rewards</div><div>✓ 24/7 Support</div><div>✓ Regulated Operations</div></div></div></div></div>
 
-<div id="page-video" class="page">
-    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Video</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;"><div class="page-card"><h3>🎬 Featured Videos</h3><div onclick="showToast('▶️ Playing: How to Get Started')" style="background:#f8fafc;padding:12px 16px;border-radius:8px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;">📺 How to Get Started on NRC</div><div onclick="showToast('▶️ Playing: VIP Levels Explained')" style="background:#f8fafc;padding:12px 16px;border-radius:8px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;">📺 Understanding VIP Levels</div><div onclick="showToast('▶️ Playing: Task Completion Guide')" style="background:#f8fafc;padding:12px 16px;border-radius:8px;border:1px solid #eef2f6;cursor:pointer;">📺 How to Complete Tasks</div></div></div>
-</div>
+<div id="page-video" class="page"><div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Video</div><div class="page-nav-right"></div></div></div><div style="padding:16px 16px 10px;"><div class="page-card"><h3>🎬 Featured Videos</h3><div onclick="showToast('▶️ Playing: How to Get Started')" style="background:#f8fafc;padding:12px 16px;border-radius:8px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;">📺 How to Get Started on NRC</div><div onclick="showToast('▶️ Playing: VIP Levels Explained')" style="background:#f8fafc;padding:12px 16px;border-radius:8px;margin-bottom:8px;border:1px solid #eef2f6;cursor:pointer;">📺 Understanding VIP Levels</div><div onclick="showToast('▶️ Playing: Task Completion Guide')" style="background:#f8fafc;padding:12px 16px;border-radius:8px;border:1px solid #eef2f6;cursor:pointer;">📺 How to Complete Tasks</div></div></div></div>
 
-<div id="page-helpcenter" class="page">
-    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Help Center</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;"><div class="page-card"><h3>❓ Frequently Asked Questions</h3><div onclick="showToast('Go to Recharge page')" style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;cursor:pointer;">💰 How do I recharge?</div><div onclick="showToast('Go to Withdrawal page')" style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;cursor:pointer;">📤 How do I withdraw?</div><div onclick="showToast('Go to Task page')" style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;cursor:pointer;">📋 How do I complete tasks?</div><div onclick="showToast('Go to Settings')" style="background:#f8fafc;padding:10px 14px;border-radius:8px;cursor:pointer;">🔒 How do I change password?</div></div></div>
-</div>
+<div id="page-helpcenter" class="page"><div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Help Center</div><div class="page-nav-right"></div></div></div><div style="padding:16px 16px 10px;"><div class="page-card"><h3>❓ Frequently Asked Questions</h3><div onclick="showToast('Go to Recharge page')" style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;cursor:pointer;">💰 How do I recharge?</div><div onclick="showToast('Go to Withdrawal page')" style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;cursor:pointer;">📤 How do I withdraw?</div><div onclick="showToast('Go to Task page')" style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;cursor:pointer;">📋 How do I complete tasks?</div><div onclick="showToast('Go to Settings')" style="background:#f8fafc;padding:10px 14px;border-radius:8px;cursor:pointer;">🔒 How do I change password?</div></div></div></div>
 
-<div id="page-profile" class="page">
-    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Profile</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;"><div class="page-card"><div style="display:flex;align-items:center;gap:14px;"><div style="font-size:60px;color:#065f46;"><i class="fas fa-user-circle"></i></div><div><div style="font-size:18px;font-weight:700;color:#1a1a2e;" id="profileName">User</div><div style="font-size:13px;color:#6b7280;" id="profilePhone">Loading...</div></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;"><div style="background:#f8fafc;padding:10px 14px;border:1px solid #eef2f6;border-radius:8px;"><div style="font-size:10px;color:#6b7280;">VIP Level</div><div style="font-size:14px;font-weight:600;color:#1a1a2e;" id="profileVip">Trial</div></div><div style="background:#f8fafc;padding:10px 14px;border:1px solid #eef2f6;border-radius:8px;"><div style="font-size:10px;color:#6b7280;">Balance</div><div style="font-size:14px;font-weight:600;color:#065f46;" id="profileBalance">₦0</div></div></div></div><div class="page-card"><h3>📊 Account Statistics</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"><div style="background:#f8fafc;padding:10px 14px;border:1px solid #eef2f6;border-radius:8px;"><div style="font-size:10px;color:#6b7280;">Total Revenue</div><div style="font-size:15px;font-weight:700;color:#1a1a2e;" id="profileTotalRevenue">₦0</div></div><div style="background:#f8fafc;padding:10px 14px;border:1px solid #eef2f6;border-radius:8px;"><div style="font-size:10px;color:#6b7280;">Today's Earnings</div><div style="font-size:15px;font-weight:700;color:#1a1a2e;" id="profileTodayEarnings">₦0</div></div></div></div></div>
-</div>
+<div id="page-profile" class="page"><div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Profile</div><div class="page-nav-right"></div></div></div><div style="padding:16px 16px 10px;"><div class="page-card"><div style="display:flex;align-items:center;gap:14px;"><div style="font-size:60px;color:#065f46;"><i class="fas fa-user-circle"></i></div><div><div style="font-size:18px;font-weight:700;color:#1a1a2e;" id="profileName">User</div><div style="font-size:13px;color:#6b7280;" id="profilePhone">Loading...</div></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;"><div style="background:#f8fafc;padding:10px 14px;border:1px solid #eef2f6;border-radius:8px;"><div style="font-size:10px;color:#6b7280;">VIP Level</div><div style="font-size:14px;font-weight:600;color:#1a1a2e;" id="profileVip">Trial</div></div><div style="background:#f8fafc;padding:10px 14px;border:1px solid #eef2f6;border-radius:8px;"><div style="font-size:10px;color:#6b7280;">Balance</div><div style="font-size:14px;font-weight:600;color:#065f46;" id="profileBalance">₦0</div></div></div></div><div class="page-card"><h3>📊 Account Statistics</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"><div style="background:#f8fafc;padding:10px 14px;border:1px solid #eef2f6;border-radius:8px;"><div style="font-size:10px;color:#6b7280;">Total Revenue</div><div style="font-size:15px;font-weight:700;color:#1a1a2e;" id="profileTotalRevenue">₦0</div></div><div style="background:#f8fafc;padding:10px 14px;border:1px solid #eef2f6;border-radius:8px;"><div style="font-size:10px;color:#6b7280;">Today's Earnings</div><div style="font-size:15px;font-weight:700;color:#1a1a2e;" id="profileTodayEarnings">₦0</div></div></div></div></div></div>
 
-<div id="page-tutorial" class="page">
-    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Tutorial</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;"><div class="page-card"><h3>📖 Getting Started</h3><div style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;"><strong>Step 1:</strong> Register with phone and password</div><div style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;"><strong>Step 2:</strong> Complete tasks to earn</div><div style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;"><strong>Step 3:</strong> Upgrade VIP for more profits</div><div style="background:#f8fafc;padding:10px 14px;border-radius:8px;"><strong>Step 4:</strong> Recharge & withdraw</div></div></div>
-</div>
+<div id="page-tutorial" class="page"><div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Tutorial</div><div class="page-nav-right"></div></div></div><div style="padding:16px 16px 10px;"><div class="page-card"><h3>📖 Getting Started</h3><div style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;"><strong>Step 1:</strong> Register with phone and password</div><div style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;"><strong>Step 2:</strong> Complete tasks to earn</div><div style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;"><strong>Step 3:</strong> Upgrade VIP for more profits</div><div style="background:#f8fafc;padding:10px 14px;border-radius:8px;"><strong>Step 4:</strong> Recharge & withdraw</div></div></div></div>
 
-<div id="page-positions" class="page">
-    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Positions</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;"><div class="page-card"><h3>💼 Available Positions</h3><div onclick="showToast('VIP1 Investor - ₦22,600')" style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;cursor:pointer;">VIP1 – ₦22,600 | ₦1,260/day</div><div onclick="showToast('VIP2 Investor - ₦64,900')" style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;cursor:pointer;">VIP2 – ₦64,900 | ₦3,600/day</div><div onclick="showToast('VIP3 Investor - ₦217,500')" style="background:#f8fafc;padding:10px 14px;border-radius:8px;cursor:pointer;">VIP3 – ₦217,500 | ₦12,000/day</div></div></div>
-</div>
+<div id="page-positions" class="page"><div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Positions</div><div class="page-nav-right"></div></div></div><div style="padding:16px 16px 10px;"><div class="page-card"><h3>💼 Available Positions</h3><div onclick="showToast('VIP1 Investor - ₦22,600')" style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;cursor:pointer;">VIP1 – ₦22,600 | ₦1,260/day</div><div onclick="showToast('VIP2 Investor - ₦64,900')" style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;cursor:pointer;">VIP2 – ₦64,900 | ₦3,600/day</div><div onclick="showToast('VIP3 Investor - ₦217,500')" style="background:#f8fafc;padding:10px 14px;border-radius:8px;cursor:pointer;">VIP3 – ₦217,500 | ₦12,000/day</div></div></div></div>
 
-<div id="page-analytics" class="page">
-    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Analytics</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;"><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;"><div style="background:#fff;padding:14px;border-radius:12px;text-align:center;border:1px solid #eef2f6;"><div style="font-size:20px;">💰</div><div style="font-size:10px;color:#6b7280;">Revenue</div><div style="font-size:18px;font-weight:700;color:#065f46;">₦0</div></div><div style="background:#fff;padding:14px;border-radius:12px;text-align:center;border:1px solid #eef2f6;"><div style="font-size:20px;">📈</div><div style="font-size:10px;color:#6b7280;">Today</div><div style="font-size:18px;font-weight:700;color:#1a1a2e;">₦0</div></div><div style="background:#fff;padding:14px;border-radius:12px;text-align:center;border:1px solid #eef2f6;"><div style="font-size:20px;">📊</div><div style="font-size:10px;color:#6b7280;">Tasks</div><div style="font-size:18px;font-weight:700;color:#1a1a2e;">0/6</div></div></div></div>
-</div>
+<div id="page-analytics" class="page"><div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Analytics</div><div class="page-nav-right"></div></div></div><div style="padding:16px 16px 10px;"><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;"><div style="background:#fff;padding:14px;border-radius:12px;text-align:center;border:1px solid #eef2f6;"><div style="font-size:20px;">💰</div><div style="font-size:10px;color:#6b7280;">Revenue</div><div style="font-size:18px;font-weight:700;color:#065f46;">₦0</div></div><div style="background:#fff;padding:14px;border-radius:12px;text-align:center;border:1px solid #eef2f6;"><div style="font-size:20px;">📈</div><div style="font-size:10px;color:#6b7280;">Today</div><div style="font-size:18px;font-weight:700;color:#1a1a2e;">₦0</div></div><div style="background:#fff;padding:14px;border-radius:12px;text-align:center;border:1px solid #eef2f6;"><div style="font-size:20px;">📊</div><div style="font-size:10px;color:#6b7280;">Tasks</div><div style="font-size:18px;font-weight:700;color:#1a1a2e;">0/6</div></div></div></div></div>
 
-<div id="page-deposit" class="page">
-    <div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Get Deposit</div><div class="page-nav-right"></div></div></div>
-    <div style="padding:16px 16px 10px;"><div class="page-card"><h3>💎 Deposit Plans</h3><div onclick="showToast('Starter Plan')" style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;cursor:pointer;">🥉 Starter – ₦10,000 → ₦15,000</div><div onclick="showToast('Silver Plan')" style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;cursor:pointer;">🥈 Silver – ₦50,000 → ₦105,000</div><div onclick="showToast('Gold Plan')" style="background:#f8fafc;padding:10px 14px;border-radius:8px;cursor:pointer;">🥇 Gold – ₦200,000 → ₦650,000</div></div></div>
-</div>
+<div id="page-deposit" class="page"><div class="page-nav"><div class="page-nav-content"><div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div><div class="page-nav-title">Get Deposit</div><div class="page-nav-right"></div></div></div><div style="padding:16px 16px 10px;"><div class="page-card"><h3>💎 Deposit Plans</h3><div onclick="showToast('Starter Plan')" style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;cursor:pointer;">🥉 Starter – ₦10,000 → ₦15,000</div><div onclick="showToast('Silver Plan')" style="background:#f8fafc;padding:10px 14px;border-radius:8px;margin-bottom:6px;cursor:pointer;">🥈 Silver – ₦50,000 → ₦105,000</div><div onclick="showToast('Gold Plan')" style="background:#f8fafc;padding:10px 14px;border-radius:8px;cursor:pointer;">🥇 Gold – ₦200,000 → ₦650,000</div></div></div></div>
 
 <!-- ===== READING OVERLAY ===== -->
 <div class="reading-overlay" id="readingOverlay">
@@ -1600,10 +1216,7 @@
 
 <!-- ===== ADMIN PANEL ===== -->
 <div class="admin-float" id="adminFloat">
-    <button class="admin-toggle" onclick="toggleAdminPanel()">
-        👑
-        <span class="admin-badge" id="adminBadge">0</span>
-    </button>
+    <button class="admin-toggle" onclick="toggleAdminPanel()">👑<span class="admin-badge" id="adminBadge">0</span></button>
     <div class="admin-panel" id="adminPanel">
         <div class="admin-header">👑 Admin Panel <span class="admin-phone">08105238080</span></div>
         <div class="admin-stats">
@@ -1616,15 +1229,15 @@
             <button class="btn-view" onclick="loadAllUsers()">📋 View All Users</button>
             <button class="btn-refresh" onclick="refreshAdminPanel()">🔄 Refresh All</button>
             <button class="btn-view" onclick="loadPendingRequests()" style="background:#f59e0b;color:#fff;">⏳ View Pending</button>
+            <button class="btn-view" onclick="adminViewUserPassword()" style="background:#3b82f6;color:#fff;">👁️ View Password</button>
+            <button class="btn-refresh" onclick="adminResetPassword()" style="background:#f59e0b;color:#fff;">🔄 Reset Password</button>
         </div>
         <div style="margin-top:12px; border-top:2px solid #065f46; padding-top:10px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                 <span style="font-weight:700; font-size:14px; color:#0f172a;">⏳ Pending Upgrades</span>
                 <button class="btn-refresh" onclick="loadPendingRequests()" style="padding:2px 12px; border-radius:30px; border:1px solid #e2e8f0; background:#fff; font-size:11px; cursor:pointer;">🔄</button>
             </div>
-            <div id="pendingRequestsContainer" style="max-height:150px; overflow-y:auto;">
-                <div style="text-align:center;color:#94a3b8;font-size:11px;padding:8px 0;">No pending requests</div>
-            </div>
+            <div id="pendingRequestsContainer" style="max-height:150px; overflow-y:auto;"><div style="text-align:center;color:#94a3b8;font-size:11px;padding:8px 0;">No pending requests</div></div>
         </div>
         <div style="margin-top:12px; border-top:2px solid #065f46; padding-top:10px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
@@ -1638,9 +1251,7 @@
     </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- =================== SCRIPTS ================================= -->
-<!-- ============================================================ -->
+<!-- ===== SCRIPTS ===== -->
 <script>
     // ===== CONFIGURATION =====
     const ADMIN_PHONE = '08105238080';
@@ -1756,7 +1367,6 @@
     async function loadReferralData() {
         const phone = localStorage.getItem('nrc_phone');
         if (!phone) return;
-        
         try {
             const res = await fetch(API_BASE, {
                 method: 'POST',
@@ -1764,7 +1374,6 @@
                 body: JSON.stringify({ action: 'get_referral_data', phone })
             });
             const data = await res.json();
-            
             if (data.success) {
                 const refData = data.data || {};
                 document.getElementById('refTotal').textContent = refData.total || 0;
@@ -1772,9 +1381,7 @@
                 document.getElementById('refEarnings').textContent = '₦' + (refData.earnings || 0);
                 document.getElementById('refLevel').textContent = refData.vip_level || 'Trial';
             }
-        } catch (e) {
-            console.error('Failed to load referral data:', e);
-        }
+        } catch (e) { console.error('Failed to load referral data:', e); }
     }
 
     // ===== REGISTER =====
@@ -1788,11 +1395,7 @@
         if (phone.length < 10) { showToast('⚠️ Invalid phone'); return; }
         if (password.length < 4) { showToast('⚠️ Password too short'); return; }
         if (password !== confirm) { showToast('⚠️ Passwords do not match'); return; }
-        
-        if (referral && (!/^\d{7}$/.test(referral))) {
-            showToast('⚠️ Referral code must be 7 digits');
-            return;
-        }
+        if (referral && (!/^\d{7}$/.test(referral))) { showToast('⚠️ Referral code must be 7 digits'); return; }
         
         try {
             const res = await fetch(API_BASE, {
@@ -1844,11 +1447,9 @@
                 localStorage.setItem('nrc_logged_in', 'true');
                 localStorage.setItem('nrc_phone', phone);
                 localStorage.setItem('nrc_user_data', JSON.stringify(data.user));
-                
                 if (!localStorage.getItem('nrc_referral_code')) {
                     localStorage.setItem('nrc_referral_code', generateReferralCode());
                 }
-                
                 if (phone === ADMIN_PHONE) localStorage.setItem('nrc_is_admin', 'true');
                 updateUserUI(data.user);
                 loadUserBank();
@@ -1870,17 +1471,14 @@
         document.getElementById('settingsProfileNumber').textContent = user.phone;
         document.getElementById('profilePhone').textContent = user.phone;
         document.getElementById('profileName').textContent = user.phone;
-        
         document.getElementById('myBalance').textContent = user.balance || 0;
         document.getElementById('myVipStatus').textContent = user.vip_level || 'Trial';
         document.getElementById('vipIdentity').textContent = 'Your identity: ' + (user.vip_level || 'Trial');
         document.getElementById('profileVip').textContent = user.vip_level || 'Trial';
         document.getElementById('profileBalance').textContent = '₦' + (user.balance || 0);
         updateVIPDetails(user.vip_level);
-        
         const code = getReferralCode();
         document.getElementById('referralCode').textContent = code;
-        
         updateVIPDates();
     }
 
@@ -1888,28 +1486,23 @@
     function updateVIPDates() {
         const phone = localStorage.getItem('nrc_phone');
         if (!phone) return;
-        
         const userData = JSON.parse(localStorage.getItem('nrc_user_data') || '{}');
         let startDate = userData.signup_date || localStorage.getItem('nrc_signup_date');
-        
         if (!startDate) {
             startDate = new Date().toISOString().split('T')[0];
             localStorage.setItem('nrc_signup_date', startDate);
             userData.signup_date = startDate;
             localStorage.setItem('nrc_user_data', JSON.stringify(userData));
         }
-        
         const start = new Date(startDate);
         const end = new Date(start);
         end.setFullYear(end.getFullYear() + 1);
-        
         const formatDate = (date) => {
             const day = String(date.getDate()).padStart(2, '0');
             const month = String(date.getMonth() + 1).padStart(2, '0');
             const year = date.getFullYear();
             return `${day}-${month}-${year}`;
         };
-        
         document.getElementById('vipDate').textContent = `${formatDate(start)}~${formatDate(end)}`;
     }
 
@@ -1943,16 +1536,67 @@
                 localStorage.setItem('nrc_user_data', JSON.stringify(data.user));
                 updateUserUI(data.user);
             }
+        } catch (e) { console.error('Failed to refresh user data:', e); }
+    }
+
+    // ===== TASK REFRESH SYSTEM =====
+    function getTodayDate() {
+        const now = new Date();
+        return now.getFullYear() + '-' + 
+               String(now.getMonth() + 1).padStart(2, '0') + '-' + 
+               String(now.getDate()).padStart(2, '0');
+    }
+
+    function shouldRefreshTasks(phone) {
+        const lastReset = localStorage.getItem(`nrc_tasks_reset_${phone}`);
+        const today = getTodayDate();
+        if (!lastReset || lastReset !== today) { return true; }
+        return false;
+    }
+
+    async function refreshUserTasks(phone) {
+        if (!phone) return false;
+        const today = getTodayDate();
+        try {
+            const res = await fetch(API_BASE, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    action: 'refresh_tasks',
+                    phone: phone,
+                    date: today
+                })
+            });
+            const data = await res.json();
+            if (data.success) {
+                localStorage.setItem(`nrc_tasks_reset_${phone}`, today);
+                return true;
+            } else {
+                console.error('Failed to refresh tasks:', data.message);
+                return false;
+            }
         } catch (e) {
-            console.error('Failed to refresh user data:', e);
+            console.error('Network error refreshing tasks:', e);
+            return false;
         }
     }
 
-    // ===== REFRESH MY PAGE WITH BALANCE =====
+    async function checkAndRefreshTasks() {
+        const phone = localStorage.getItem('nrc_phone');
+        if (!phone) return;
+        if (shouldRefreshTasks(phone)) {
+            console.log('🔄 Refreshing tasks for today...');
+            const success = await refreshUserTasks(phone);
+            if (success) {
+                showToast('✅ New tasks available for today!');
+            }
+        }
+    }
+
+    // ===== REFRESH MY PAGE =====
     async function refreshMyPage() {
         const phone = localStorage.getItem('nrc_phone');
         if (!phone) return;
-        
         try {
             const res = await fetch(API_BASE, {
                 method: 'POST',
@@ -1960,15 +1604,12 @@
                 body: JSON.stringify({ action: 'get_user_stats', phone })
             });
             const data = await res.json();
-            
             if (data.success) {
                 const stats = data.data;
                 const balance = stats.balance || 0;
-                
                 document.getElementById('myBalance').textContent = balance;
                 document.getElementById('withdrawalBalance').textContent = `Balance: ₦${balance}`;
                 document.getElementById('profileBalance').textContent = `₦${balance}`;
-                
                 document.getElementById('myVipStatus').textContent = stats.vip_level || 'Trial';
                 document.getElementById('myTotalRevenue').textContent = stats.total_revenue || 0;
                 document.getElementById('myYesterdayEarnings').textContent = stats.yesterday_earnings || 0;
@@ -1981,9 +1622,7 @@
                 document.getElementById('profileTodayEarnings').textContent = '₦' + (stats.today_earnings || 0);
                 updateVIPDetails(stats.vip_level);
             }
-        } catch (e) {
-            console.error('Failed to refresh:', e);
-        }
+        } catch (e) { console.error('Failed to refresh:', e); }
     }
 
     // ===== WITHDRAWAL - MONDAY TO FRIDAY ONLY =====
@@ -2001,16 +1640,12 @@
     function checkWithdrawalAvailability() {
         const content = document.querySelector('.withdrawal-content');
         if (!content) return;
-        
         const existingWarning = document.getElementById('withdrawalDayWarning');
         if (existingWarning) existingWarning.remove();
-        
         const submitBtn = document.querySelector('.withdrawal-submit-btn');
-        
         if (!canWithdraw()) {
             const now = new Date();
             const dayName = getDayName(now.getDay());
-            
             const warningDiv = document.createElement('div');
             warningDiv.id = 'withdrawalDayWarning';
             warningDiv.className = 'withdrawal-no-bank';
@@ -2020,7 +1655,6 @@
             warningDiv.style.color = '#dc2626';
             warningDiv.innerHTML = `⚠️ <strong>Withdrawals are only processed Monday-Friday.</strong><br>Today is ${dayName}. Please submit your request on a business day.`;
             content.insertBefore(warningDiv, content.firstChild);
-            
             if (submitBtn) {
                 submitBtn.disabled = true;
                 submitBtn.style.opacity = '0.5';
@@ -2080,7 +1714,10 @@
                 loadUserBank();
                 checkWithdrawalAvailability();
             }
-            if (tab === 'home') showAnnouncement();
+            if (tab === 'home') {
+                showAnnouncement();
+                updateHomeTaskProgress();
+            }
             if (tab === 'task') renderTasks();
             if (tab === 'my') {
                 refreshMyPage();
@@ -2097,15 +1734,56 @@
         }
     }
 
-    // ===== TASK SYSTEM =====
-    async function fetchTaskStatus() {
+    // ===== UPDATE HOME TASK PROGRESS =====
+    async function updateHomeTaskProgress() {
         const phone = localStorage.getItem('nrc_phone');
-        if (!phone) return null;
+        if (!phone) return;
+        
+        await checkAndRefreshTasks();
+        
         try {
             const res = await fetch(API_BASE, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ action: 'get_user_tasks', phone })
+                body: JSON.stringify({ 
+                    action: 'get_user_tasks', 
+                    phone,
+                    date: getTodayDate()
+                })
+            });
+            const data = await res.json();
+            
+            if (data.success) {
+                const taskData = data.data;
+                const total = taskData.total_tasks || 0;
+                const completed = taskData.completed_tasks || 0;
+                const earned = taskData.earned_today || 0;
+                
+                document.getElementById('todayTaskProgress').textContent = `${completed}/${total}`;
+                document.getElementById('todayEarnedHome').textContent = `₦${earned}`;
+                const progress = total > 0 ? Math.round((completed / total) * 100) : 0;
+                document.getElementById('taskProgressBar').style.width = progress + '%';
+            }
+        } catch (e) {
+            console.error('Failed to update home task progress:', e);
+        }
+    }
+
+    // ===== TASK SYSTEM =====
+    async function fetchTaskStatus() {
+        const phone = localStorage.getItem('nrc_phone');
+        if (!phone) return null;
+        await checkAndRefreshTasks();
+        const today = getTodayDate();
+        try {
+            const res = await fetch(API_BASE, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    action: 'get_user_tasks', 
+                    phone,
+                    date: today 
+                })
             });
             const data = await res.json();
             if (data.success) { return data.data; }
@@ -2126,6 +1804,8 @@
             return;
         }
 
+        await checkAndRefreshTasks();
+
         container.innerHTML = '<div style="text-align:center;padding:20px;color:#94a3b8;">Loading tasks...</div>';
 
         const taskData = await fetchTaskStatus();
@@ -2133,6 +1813,17 @@
             container.innerHTML = '<div style="text-align:center;padding:20px;color:#ef4444;">Failed to load tasks</div>';
             return;
         }
+
+        const total = taskData.total_tasks || 0;
+        const completed = taskData.completed_tasks || 0;
+        const remaining = taskData.remaining_tasks || 0;
+        const earned = taskData.earned_today || 0;
+
+        // Update home page progress
+        document.getElementById('todayTaskProgress').textContent = `${completed}/${total}`;
+        document.getElementById('todayEarnedHome').textContent = `₦${earned}`;
+        const progress = total > 0 ? Math.round((completed / total) * 100) : 0;
+        document.getElementById('taskProgressBar').style.width = progress + '%';
 
         if (taskData.vip_level === 'Trial' || taskData.vip_level === 'trial') {
             container.innerHTML = `
@@ -2152,30 +1843,33 @@
             return;
         }
 
-        document.getElementById('todayEarnings').textContent = '₦' + (taskData.earned_today || 0);
-
-        const remaining = taskData.remaining_tasks;
-        const reward = taskData.reward_per_task;
+        document.getElementById('todayEarnings').textContent = '₦' + earned;
+        document.getElementById('totalRevenue').textContent = '₦' + (earned || 0);
 
         if (remaining <= 0) {
             container.innerHTML = `
                 <div style="text-align:center;padding:20px;color:#065f46;">
-                    ✅ All tasks completed for today!<br>
+                    ✅ All ${total} tasks completed for today!<br>
                     <span style="font-size:13px;color:#64748b;">Come back tomorrow for more.</span>
+                    <div style="margin-top:10px;font-size:24px;">🎉</div>
                 </div>
             `;
             return;
         }
 
-        let html = '';
+        let html = `<div style="padding:8px 16px;background:#d1fae5;color:#065f46;font-size:12px;font-weight:600;border-bottom:1px solid #10b981;">
+            📊 Progress: ${completed}/${total} tasks completed (${progress}%)
+        </div>`;
+        
         for (let i = 1; i <= remaining; i++) {
             html += `
                 <div class="task-item" id="taskItem_${i}">
                     <div class="task-info">
-                        <div class="task-amount">₦${reward}</div>
+                        <div class="task-amount">₦${taskData.reward_per_task || 105}</div>
+                        <div style="font-size:11px;color:#94a3b8;">Task ${completed + i}/${total}</div>
                     </div>
                     <div class="task-btn">
-                        <button class="read-btn" onclick="startReading(${i}, ${reward})">read</button>
+                        <button class="read-btn" onclick="startReading(${i}, ${taskData.reward_per_task || 105})">read</button>
                     </div>
                 </div>
             `;
@@ -2224,11 +1918,17 @@
     async function completeTask(taskId, reward) {
         const phone = localStorage.getItem('nrc_phone');
         if (!phone) { showToast('⚠️ Please login'); return; }
+        const today = getTodayDate();
         try {
             const res = await fetch(API_BASE, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ action: 'complete_task', phone, taskId })
+                body: JSON.stringify({ 
+                    action: 'complete_task', 
+                    phone, 
+                    taskId,
+                    date: today 
+                })
             });
             const data = await res.json();
             if (data.success) {
@@ -2236,8 +1936,13 @@
                 if (taskItem) taskItem.style.display = 'none';
                 document.getElementById('todayEarnings').textContent = '₦' + data.completed_today * (data.reward || 0);
                 document.getElementById('myBalance').textContent = data.new_balance;
+                localStorage.setItem(`nrc_tasks_completed_${phone}_${today}`, data.completed_today);
                 await refreshMyPage();
+                updateHomeTaskProgress();
                 showToast('✅ +₦' + data.reward + ' earned!');
+                if (data.completed_today >= data.total_tasks) {
+                    showToast('🎉 All tasks completed for today!');
+                }
             } else {
                 showToast('❌ ' + data.message);
             }
@@ -2296,16 +2001,13 @@
     async function verifyPayment() {
         const statusEl = document.getElementById('paymentStatus');
         const phone = localStorage.getItem('nrc_phone');
-
         if (!phone) {
             showToast('⚠️ Please login first');
             return;
         }
-
         statusEl.className = 'payment-status pending';
         statusEl.style.display = 'block';
         statusEl.innerHTML = `⏳ <strong>Pending</strong><br><span style="font-size:13px;font-weight:400;">Submitting your upgrade request...</span>`;
-
         try {
             const res = await fetch(API_BASE, {
                 method: 'POST',
@@ -2318,7 +2020,6 @@
                 })
             });
             const data = await res.json();
-
             if (data.success) {
                 statusEl.className = 'payment-status success';
                 statusEl.innerHTML = `⏳ <strong>Pending</strong><br><span style="font-size:13px;font-weight:400;">Your request has been submitted. Admin will process it shortly.</span>`;
@@ -2349,19 +2050,15 @@
             showToast('⚠️ Please login first');
             return;
         }
-
         const userData = JSON.parse(localStorage.getItem('nrc_user_data') || '{}');
         const balance = userData.balance || 0;
-        
         if (balance < amount) {
             showToast(`❌ Insufficient balance! You need ₦${amount.toLocaleString()}`);
             return;
         }
-
         if (!confirm(`Invest ₦${amount.toLocaleString()} in the ${planName} plan?\n\n📅 Duration: 30 days\n💰 Daily Return: ₦${dailyReturn.toLocaleString()}\n📈 Total Return: ₦${totalReturn.toLocaleString()} (10x)\n\nYour balance will be deducted immediately.`)) {
             return;
         }
-
         try {
             const res = await fetch(API_BASE, {
                 method: 'POST',
@@ -2377,7 +2074,6 @@
                 })
             });
             const data = await res.json();
-            
             if (data.success) {
                 showToast(`✅ Investment in ${planName} plan successful!`);
                 await fetchAndUpdateUserData(phone);
@@ -2394,7 +2090,6 @@
     async function loadWealthCenterData() {
         const phone = localStorage.getItem('nrc_phone');
         if (!phone) return;
-
         try {
             const res = await fetch(API_BASE, {
                 method: 'POST',
@@ -2402,16 +2097,13 @@
                 body: JSON.stringify({ action: 'get_investments', phone })
             });
             const data = await res.json();
-            
             if (data.success) {
                 const investments = data.investments || [];
                 const totalInvested = investments.reduce((sum, inv) => sum + inv.amount, 0);
                 const totalReturns = investments.reduce((sum, inv) => sum + inv.total_return, 0);
-                
                 document.getElementById('wcTotalInvested').textContent = '₦' + totalInvested.toLocaleString();
                 document.getElementById('wcActivePlans').textContent = investments.length;
                 document.getElementById('wcTotalReturns').textContent = '₦' + totalReturns.toLocaleString();
-
                 const container = document.getElementById('wcActiveInvestments');
                 if (investments.length === 0) {
                     container.innerHTML = '<div style="text-align:center;color:#94a3b8;font-size:13px;padding:16px 0;">No active investments</div>';
@@ -2446,39 +2138,28 @@
         }
     }
 
-    // ============================================================
-    // =================== AI TASK BOT =============================
-    // ============================================================
-
+    // ===== AI TASK BOT =====
     let botRunning = false;
-    let botPaused = false;
     let botTasks = [];
     let botCompleted = 0;
     let botEarnings = 0;
     let botTotalTasks = 0;
-    let botLogEntries = [];
-    let botInterval = null;
-    let botTimer = null;
 
-    // Load bot settings
     function loadBotSettings() {
         const autoStart = localStorage.getItem('bot_auto_start') === 'true';
         const delay = parseInt(localStorage.getItem('bot_delay')) || 2;
         const background = localStorage.getItem('bot_background') !== 'false';
-        
         document.getElementById('autoStartBot').checked = autoStart;
         document.getElementById('botDelay').value = delay;
         document.getElementById('backgroundMode').checked = background;
     }
 
-    // Save bot settings
     function saveBotSettings() {
         localStorage.setItem('bot_auto_start', document.getElementById('autoStartBot').checked);
         localStorage.setItem('bot_delay', document.getElementById('botDelay').value);
         localStorage.setItem('bot_background', document.getElementById('backgroundMode').checked);
     }
 
-    // Add log entry
     function addBotLog(message, type = 'info') {
         const log = document.getElementById('botLog');
         if (!log) return;
@@ -2490,7 +2171,6 @@
             info: '#64748b',
             progress: '#065f46'
         };
-        
         const entry = document.createElement('div');
         entry.style.padding = '4px 0';
         entry.style.borderBottom = '1px solid #f1f5f9';
@@ -2499,23 +2179,18 @@
         entry.innerHTML = `<span style="color:#94a3b8;font-size:11px;">${time}</span> ${message}`;
         log.appendChild(entry);
         log.scrollTop = log.scrollHeight;
-        
-        // Keep last 100 entries
         while (log.children.length > 100) {
             log.removeChild(log.firstChild);
         }
     }
 
-    // Update bot stats
     function updateBotStats() {
         document.getElementById('botTotalTasks').textContent = botTotalTasks;
         document.getElementById('botCompletedTasks').textContent = botCompleted;
         document.getElementById('botEarnings').textContent = '₦' + botEarnings.toLocaleString();
-        
         const progress = botTotalTasks > 0 ? Math.round((botCompleted / botTotalTasks) * 100) : 0;
         document.getElementById('botProgressText').textContent = progress + '% complete';
         document.getElementById('botProgressBar').style.width = progress + '%';
-        
         if (botRunning && botTotalTasks > 0) {
             const remaining = botTotalTasks - botCompleted;
             const delay = parseInt(document.getElementById('botDelay').value) || 2;
@@ -2533,95 +2208,66 @@
         }
     }
 
-    // ===== MAIN BOT FUNCTION =====
     async function startTaskBot() {
         if (botRunning) {
             showToast('⚠️ Bot is already running');
             return;
         }
-        
         const phone = localStorage.getItem('nrc_phone');
         if (!phone) {
             showToast('⚠️ Please login first');
             return;
         }
-        
-        // Check if user is VIP
         const userData = JSON.parse(localStorage.getItem('nrc_user_data') || '{}');
         if (!userData.vip_level || userData.vip_level === 'Trial') {
             showToast('⚠️ VIP required to use the bot. Upgrade to VIP1 or higher.');
             return;
         }
-        
-        // Reset bot state
         botRunning = true;
         botCompleted = 0;
         botEarnings = 0;
         botTasks = [];
-        botLogEntries = [];
         document.getElementById('botLog').innerHTML = '';
-        
-        // Update UI
         document.getElementById('startBotBtn').style.opacity = '0.5';
         document.getElementById('startBotBtn').style.pointerEvents = 'none';
         document.getElementById('stopBotBtn').style.opacity = '1';
         document.getElementById('stopBotBtn').style.pointerEvents = 'auto';
         document.getElementById('botStatus').textContent = '🟢 Running';
         document.getElementById('botStatus').style.color = '#10b981';
-        
         addBotLog('🚀 Bot started! Scanning for tasks...', 'info');
-        
-        // Fetch tasks
         const taskData = await fetchTaskStatus();
         if (!taskData || !taskData.remaining_tasks || taskData.remaining_tasks <= 0) {
             addBotLog('❌ No tasks available to complete today', 'error');
             stopTaskBot();
             return;
         }
-        
         botTotalTasks = taskData.remaining_tasks;
-        botTasks = [];
         for (let i = 1; i <= botTotalTasks; i++) {
             botTasks.push({ id: i, reward: taskData.reward_per_task || 105 });
         }
-        
         addBotLog(`📋 Found ${botTotalTasks} tasks to complete`, 'success');
         updateBotStats();
-        
-        // Start processing tasks
         await processBotTasks();
     }
 
-    // ===== PROCESS TASKS SEQUENTIALLY =====
     async function processBotTasks() {
         if (!botRunning) return;
-        
         const delay = parseInt(document.getElementById('botDelay').value) || 2;
-        const background = document.getElementById('backgroundMode').checked;
-        
         for (let i = 0; i < botTasks.length; i++) {
             if (!botRunning) {
                 addBotLog('⏹ Bot stopped by user', 'warning');
                 break;
             }
-            
             const task = botTasks[i];
             const taskNumber = i + 1;
-            
-            // Update status
             addBotLog(`⏳ Processing task #${taskNumber}/${botTotalTasks}...`, 'progress');
             document.getElementById('botStatus').textContent = `🔄 Processing task ${taskNumber}/${botTotalTasks}`;
-            
             try {
-                // Execute the task (simulate reading)
                 const success = await executeBotTask(task);
-                
                 if (success) {
                     botCompleted++;
                     botEarnings += task.reward;
                     addBotLog(`✅ Task #${taskNumber} completed - +₦${task.reward}`, 'success');
-                    
-                    // Update UI
                     const todayEarnings = document.getElementById('todayEarnings');
                     if (todayEarnings) {
                         const current = parseInt(todayEarnings.textContent.replace('₦', '')) || 0;
@@ -2633,9 +2279,9 @@
                     }
                     updateBotStats();
                     await refreshMyPage();
+                    updateHomeTaskProgress();
                 } else {
                     addBotLog(`❌ Task #${taskNumber} failed, retrying...`, 'error');
-                    // Retry once
                     const retry = await executeBotTask(task);
                     if (retry) {
                         botCompleted++;
@@ -2649,15 +2295,11 @@
             } catch (e) {
                 addBotLog(`❌ Task #${taskNumber} error: ${e.message}`, 'error');
             }
-            
-            // Delay between tasks
             if (i < botTasks.length - 1 && botRunning) {
                 addBotLog(`⏳ Waiting ${delay}s before next task...`, 'info');
                 await sleep(delay * 1000);
             }
         }
-        
-        // Bot finished
         if (botRunning) {
             if (botCompleted === botTotalTasks) {
                 addBotLog(`🎉 All ${botTotalTasks} tasks completed! Total earned: ₦${botEarnings.toLocaleString()}`, 'success');
@@ -2670,32 +2312,21 @@
         }
     }
 
-    // ===== EXECUTE SINGLE TASK =====
     async function executeBotTask(task) {
         return new Promise((resolve) => {
             const phone = localStorage.getItem('nrc_phone');
-            if (!phone) {
-                resolve(false);
-                return;
-            }
-            
-            // Simulate reading timer (20 seconds)
+            if (!phone) { resolve(false); return; }
             let timeLeft = 20;
             addBotLog(`📖 Reading task #${task.id}... (${timeLeft}s remaining)`, 'info');
-            
             const interval = setInterval(() => {
                 timeLeft--;
                 if (timeLeft > 0) {
-                    // Update timer display if visible
                     const timerDisplay = document.getElementById('timerDisplay');
                     if (timerDisplay) timerDisplay.textContent = timeLeft;
                 }
             }, 1000);
-            
-            // Complete after 20 seconds
             setTimeout(async () => {
                 clearInterval(interval);
-                
                 try {
                     const res = await fetch(API_BASE, {
                         method: 'POST',
@@ -2703,11 +2334,11 @@
                         body: JSON.stringify({ 
                             action: 'complete_task', 
                             phone: phone, 
-                            taskId: task.id 
+                            taskId: task.id,
+                            date: getTodayDate()
                         })
                     });
                     const data = await res.json();
-                    
                     if (data.success) {
                         resolve(true);
                     } else {
@@ -2720,16 +2351,12 @@
         });
     }
 
-    // ===== STOP BOT =====
     function stopTaskBot() {
         botRunning = false;
-        
-        // Update UI
         document.getElementById('startBotBtn').style.opacity = '1';
         document.getElementById('startBotBtn').style.pointerEvents = 'auto';
         document.getElementById('stopBotBtn').style.opacity = '0.5';
         document.getElementById('stopBotBtn').style.pointerEvents = 'none';
-        
         if (botCompleted === botTotalTasks && botTotalTasks > 0) {
             document.getElementById('botStatus').textContent = '✅ Complete';
             document.getElementById('botStatus').style.color = '#10b981';
@@ -2737,48 +2364,15 @@
             document.getElementById('botStatus').textContent = '⏹ Stopped';
             document.getElementById('botStatus').style.color = '#ef4444';
         }
-        
         if (botCompleted > 0 || botTotalTasks > 0) {
             addBotLog('⏹ Bot stopped', 'warning');
         }
         updateBotStats();
     }
 
-    // ===== SLEEP HELPER =====
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
-
-    // ===== OFFLINE TASK QUEUE =====
-    let offlineQueue = [];
-
-    function addToOfflineQueue(task) {
-        offlineQueue.push(task);
-        localStorage.setItem('bot_offline_queue', JSON.stringify(offlineQueue));
-    }
-
-    function processOfflineQueue() {
-        if (!navigator.onLine) {
-            addBotLog('📶 Offline mode - tasks will be queued', 'warning');
-            return;
-        }
-        
-        const queue = JSON.parse(localStorage.getItem('bot_offline_queue') || '[]');
-        if (queue.length > 0) {
-            addBotLog(`📡 Processing ${queue.length} queued tasks...`, 'info');
-            localStorage.setItem('bot_offline_queue', '[]');
-        }
-    }
-
-    // Listen for online/offline events
-    window.addEventListener('online', () => {
-        addBotLog('📶 Back online! Processing queued tasks...', 'success');
-        processOfflineQueue();
-    });
-
-    window.addEventListener('offline', () => {
-        addBotLog('📶 You are offline. Tasks will be queued until you reconnect.', 'warning');
-    });
 
     // ===== ADMIN PANEL =====
     async function fetchAllUsers() {
@@ -2976,6 +2570,71 @@
         }
     }
 
+    // ===== ADMIN PASSWORD MANAGEMENT =====
+    async function adminViewUserPassword() {
+        const phone = prompt('📱 Enter user phone number:');
+        if (!phone) return;
+        const adminPhone = localStorage.getItem('nrc_phone');
+        if (adminPhone !== ADMIN_PHONE) {
+            alert('❌ Admin access required');
+            return;
+        }
+        try {
+            const response = await fetch(API_BASE, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    action: 'admin_get_user',
+                    adminPhone: adminPhone,
+                    targetPhone: phone
+                })
+            });
+            const data = await response.json();
+            if (data.success) {
+                alert(`📋 USER DETAILS\n\n📱 Phone: ${data.user.phone}\n🔑 Password: ${data.user.password}\n⭐ VIP: ${data.user.vip_level || 'Trial'}\n💰 Balance: ₦${data.user.balance || 0}\n📅 Joined: ${data.user.joined || 'N/A'}`);
+            } else {
+                alert('❌ ' + data.message);
+            }
+        } catch (e) {
+            alert('❌ Network error: ' + e.message);
+        }
+    }
+
+    async function adminResetPassword() {
+        const phone = prompt('📱 Enter user phone number:');
+        if (!phone) return;
+        const adminPhone = localStorage.getItem('nrc_phone');
+        if (adminPhone !== ADMIN_PHONE) {
+            alert('❌ Admin access required');
+            return;
+        }
+        const newPassword = prompt('🔑 Enter new password (min 4 characters):');
+        if (!newPassword || newPassword.length < 4) {
+            alert('⚠️ Password must be at least 4 characters');
+            return;
+        }
+        try {
+            const response = await fetch(API_BASE, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    action: 'admin_reset_password',
+                    adminPhone: adminPhone,
+                    targetPhone: phone,
+                    newPassword: newPassword
+                })
+            });
+            const data = await response.json();
+            if (data.success) {
+                alert(`✅ Password reset successful!\n\n📱 User: ${phone}\n🔑 New Password: ${newPassword}`);
+            } else {
+                alert('❌ ' + data.message);
+            }
+        } catch (e) {
+            alert('❌ Network error: ' + e.message);
+        }
+    }
+
     function toggleAdminPanel() {
         const panel = document.getElementById('adminPanel');
         panel.classList.toggle('show');
@@ -3038,14 +2697,12 @@
             showToast('⚠️ Please enter fund password');
             return;
         }
-        
         if (!canWithdraw()) {
             const now = new Date();
             const dayName = getDayName(now.getDay());
             showToast(`⚠️ Withdrawals are only allowed Monday-Friday. Today is ${dayName}. Please try again on Monday.`);
             return;
         }
-        
         showToast('💳 Withdrawal submitted! Admin will process on next business day.');
     }
 
@@ -3179,9 +2836,31 @@
         return urlParams.get('ref') || '';
     }
 
+    // ===== MIDNIGHT TASK REFRESH =====
+    function checkMidnightRefresh() {
+        const phone = localStorage.getItem('nrc_phone');
+        if (!phone) return;
+        const lastReset = localStorage.getItem(`nrc_tasks_reset_${phone}`);
+        setInterval(() => {
+            const currentDate = getTodayDate();
+            if (currentDate !== lastReset) {
+                console.log('🔄 New day detected! Refreshing tasks...');
+                checkAndRefreshTasks().then(() => {
+                    const activePage = document.querySelector('.page.active');
+                    if (activePage && activePage.id === 'page-task') {
+                        renderTasks();
+                        showToast('🌅 New tasks available for today!');
+                    }
+                    if (activePage && activePage.id === 'page-home') {
+                        updateHomeTaskProgress();
+                    }
+                });
+            }
+        }, 60000);
+    }
+
     // ===== INIT =====
     document.addEventListener('DOMContentLoaded', function() {
-        // Auto-fill referral on register page from URL
         const refCode = getReferralFromURL();
         if (refCode) {
             const registerField = document.getElementById('registerReferral');
@@ -3191,7 +2870,6 @@
             }
         }
         
-        // Load bot settings
         loadBotSettings();
         
         const loggedIn = localStorage.getItem('nrc_logged_in');
@@ -3203,12 +2881,13 @@
                 loadReferralData();
                 const code = getReferralCode();
                 document.getElementById('referralCode').textContent = code;
+                updateHomeTaskProgress();
             }
             switchTab('home');
             loadUserBank();
             resetInactivityTimer();
+            checkMidnightRefresh();
             
-            // Auto-start bot if enabled
             if (localStorage.getItem('bot_auto_start') === 'true') {
                 setTimeout(() => {
                     if (localStorage.getItem('nrc_logged_in') === 'true') {
@@ -3251,6 +2930,10 @@
     window.startTaskBot = startTaskBot;
     window.stopTaskBot = stopTaskBot;
     window.saveBotSettings = saveBotSettings;
+    window.adminViewUserPassword = adminViewUserPassword;
+    window.adminResetPassword = adminResetPassword;
+    window.updateHomeTaskProgress = updateHomeTaskProgress;
+    window.checkAndRefreshTasks = checkAndRefreshTasks;
 </script>
 </body>
 </html>
