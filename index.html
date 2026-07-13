@@ -38,6 +38,36 @@
         .page-content { padding: 16px 16px 10px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
 
+        /* Toggle Switch Styles */
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #ccc;
+            transition: .4s;
+            border-radius: 26px;
+        }
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background: #fff;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .toggle-slider {
+            background: #065f46;
+        }
+        input:checked + .toggle-slider:before {
+            transform: translateX(24px);
+        }
+
         .login-container { padding: 40px 20px 20px; background: linear-gradient(135deg, #065f46, #0a7a5a); min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
         .login-content { width: 100%; max-width: 400px; }
         .login-logo { text-align: center; margin-bottom: 30px; }
@@ -521,7 +551,6 @@
         .install-btn i { font-size: 24px; }
         .install-btn .sub-text { font-size: 12px; font-weight: 400; opacity: 0.8; }
 
-        /* TELEGRAM FLOATING BUTTON - VISIBLE ON ALL PAGES */
         .telegram-float {
             position: fixed;
             bottom: 160px;
@@ -738,7 +767,7 @@
     <div class="action-grid">
         <div class="action-card action-recharge" onclick="switchTab('recharge')"><div class="icon-wrap"><i class="fas fa-arrow-down"></i></div><div class="label">Recharge</div></div>
         <div class="action-card action-withdraw" onclick="switchTab('withdrawal')"><div class="icon-wrap"><i class="fas fa-arrow-up"></i></div><div class="label">Withdrawal</div></div>
-        <div class="action-card action-ai" onclick="showToast('🤖 AI Helper - Coming Soon')"><div class="icon-wrap"><i class="fas fa-robot"></i></div><div class="label">AI Helper</div></div>
+        <div class="action-card action-ai" onclick="switchTab('aihelper')"><div class="icon-wrap"><i class="fas fa-robot"></i></div><div class="label">AI Helper</div></div>
         <div class="action-card action-deposit" onclick="switchTab('deposit')"><div class="icon-wrap"><i class="fas fa-wallet"></i></div><div class="label">Get Deposit</div></div>
     </div>
     <div class="quick-links">
@@ -758,6 +787,102 @@
             <div class="wealth-item"><span class="emoji-bg">💎</span><div class="info"><div class="text">****3498, get wealth center income</div><div class="amount"><span class="currency">₦</span> 58,145</div></div><span class="arrow"><i class="fas fa-chevron-right"></i></span></div>
             <div class="wealth-item"><span class="emoji-bg">⭐</span><div class="info"><div class="text">****5762, get wealth center income</div><div class="amount"><span class="currency">₦</span> 132,679</div></div><span class="arrow"><i class="fas fa-chevron-right"></i></span></div>
             <div class="wealth-item"><span class="emoji-bg">🚀</span><div class="info"><div class="text">****9795, get wealth center income</div><div class="amount"><span class="currency">₦</span> 216,703</div></div><span class="arrow"><i class="fas fa-chevron-right"></i></span></div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== AI HELPER - TASK BOT ===== -->
+<div id="page-aihelper" class="page">
+    <div class="page-nav">
+        <div class="page-nav-content">
+            <div class="page-nav-left" onclick="switchTab('home')"><i class="fas fa-arrow-left"></i></div>
+            <div class="page-nav-title">🤖 AI Task Bot</div>
+            <div class="page-nav-right"></div>
+        </div>
+    </div>
+    <div class="page-content">
+        <!-- Bot Status Card -->
+        <div class="page-card" style="background:linear-gradient(135deg,#065f46,#0a7a5a);color:#fff;border:none;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                    <div style="font-size:14px;opacity:0.8;">🤖 AI Task Bot</div>
+                    <div style="font-size:24px;font-weight:800;">Auto Task Completer</div>
+                </div>
+                <div style="text-align:right;">
+                    <div style="font-size:12px;opacity:0.7;">Status</div>
+                    <div style="font-size:16px;font-weight:700;" id="botStatus">🟢 Online</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bot Controls -->
+        <div class="page-card">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                <button id="startBotBtn" onclick="startTaskBot()" style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;border:none;padding:14px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;transition:transform 0.15s;">
+                    ▶ START BOT
+                </button>
+                <button id="stopBotBtn" onclick="stopTaskBot()" style="background:#ef4444;color:#fff;border:none;padding:14px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;transition:transform 0.15s;opacity:0.5;pointer-events:none;">
+                    ⏹ STOP BOT
+                </button>
+            </div>
+        </div>
+
+        <!-- Bot Stats -->
+        <div class="page-card">
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center;">
+                <div>
+                    <div style="font-size:10px;color:#64748b;">Tasks Found</div>
+                    <div style="font-size:24px;font-weight:800;color:#065f46;" id="botTotalTasks">0</div>
+                </div>
+                <div>
+                    <div style="font-size:10px;color:#64748b;">Completed</div>
+                    <div style="font-size:24px;font-weight:800;color:#10b981;" id="botCompletedTasks">0</div>
+                </div>
+                <div>
+                    <div style="font-size:10px;color:#64748b;">Earnings</div>
+                    <div style="font-size:24px;font-weight:800;color:#f59e0b;" id="botEarnings">₦0</div>
+                </div>
+            </div>
+            <div style="margin-top:10px;">
+                <div style="display:flex;justify-content:space-between;font-size:12px;color:#64748b;">
+                    <span id="botProgressText">0% complete</span>
+                    <span id="botTimeRemaining">⏳ Waiting to start...</span>
+                </div>
+                <div style="margin-top:4px;background:#e2e8f0;border-radius:30px;height:8px;overflow:hidden;">
+                    <div id="botProgressBar" style="width:0%;background:linear-gradient(90deg,#065f46,#10b981);height:100%;border-radius:30px;transition:width 0.5s ease;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Log -->
+        <div class="page-card">
+            <h3><i class="fas fa-list"></i> Task Log</h3>
+            <div id="botLog" style="max-height:300px;overflow-y:auto;font-size:13px;color:#475569;">
+                <div style="text-align:center;color:#94a3b8;padding:20px 0;">🤖 Bot is idle. Click START to begin.</div>
+            </div>
+        </div>
+
+        <!-- Settings -->
+        <div class="page-card">
+            <h3><i class="fas fa-sliders-h"></i> Bot Settings</h3>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 0;">
+                <span style="font-size:13px;">Auto-start on page load</span>
+                <label style="position:relative;display:inline-block;width:50px;height:26px;">
+                    <input type="checkbox" id="autoStartBot" onchange="saveBotSettings()" style="opacity:0;width:0;height:0;">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 0;">
+                <span style="font-size:13px;">Delay between tasks (seconds)</span>
+                <input type="number" id="botDelay" value="2" min="1" max="10" style="width:60px;padding:4px 8px;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;text-align:center;">
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 0;">
+                <span style="font-size:13px;">Run in background</span>
+                <label style="position:relative;display:inline-block;width:50px;height:26px;">
+                    <input type="checkbox" id="backgroundMode" checked onchange="saveBotSettings()" style="opacity:0;width:0;height:0;">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
         </div>
     </div>
 </div>
@@ -1877,7 +2002,6 @@
         const content = document.querySelector('.withdrawal-content');
         if (!content) return;
         
-        // Remove existing warning
         const existingWarning = document.getElementById('withdrawalDayWarning');
         if (existingWarning) existingWarning.remove();
         
@@ -1900,7 +2024,7 @@
             if (submitBtn) {
                 submitBtn.disabled = true;
                 submitBtn.style.opacity = '0.5';
-                submitBtn.textContent = `❌ Withdrawals Mon-Fri Only`;
+                submitBtn.textContent = '❌ Withdrawals Mon-Fri Only';
                 submitBtn.style.cursor = 'not-allowed';
             }
         } else {
@@ -1936,6 +2060,7 @@
                 home: 'page-home', task: 'page-task', vip: 'page-vip',
                 profit: 'page-profit', my: 'page-my', withdrawal: 'page-withdrawal',
                 recharge: 'page-recharge', settings: 'page-settings',
+                aihelper: 'page-aihelper',
                 company: 'page-company', video: 'page-video', helpcenter: 'page-helpcenter',
                 profile: 'page-profile', tutorial: 'page-tutorial', positions: 'page-positions',
                 analytics: 'page-analytics', deposit: 'page-deposit',
@@ -2320,6 +2445,340 @@
             console.error('Failed to load wealth center data:', e);
         }
     }
+
+    // ============================================================
+    // =================== AI TASK BOT =============================
+    // ============================================================
+
+    let botRunning = false;
+    let botPaused = false;
+    let botTasks = [];
+    let botCompleted = 0;
+    let botEarnings = 0;
+    let botTotalTasks = 0;
+    let botLogEntries = [];
+    let botInterval = null;
+    let botTimer = null;
+
+    // Load bot settings
+    function loadBotSettings() {
+        const autoStart = localStorage.getItem('bot_auto_start') === 'true';
+        const delay = parseInt(localStorage.getItem('bot_delay')) || 2;
+        const background = localStorage.getItem('bot_background') !== 'false';
+        
+        document.getElementById('autoStartBot').checked = autoStart;
+        document.getElementById('botDelay').value = delay;
+        document.getElementById('backgroundMode').checked = background;
+    }
+
+    // Save bot settings
+    function saveBotSettings() {
+        localStorage.setItem('bot_auto_start', document.getElementById('autoStartBot').checked);
+        localStorage.setItem('bot_delay', document.getElementById('botDelay').value);
+        localStorage.setItem('bot_background', document.getElementById('backgroundMode').checked);
+    }
+
+    // Add log entry
+    function addBotLog(message, type = 'info') {
+        const log = document.getElementById('botLog');
+        if (!log) return;
+        const time = new Date().toLocaleTimeString();
+        const colors = {
+            success: '#10b981',
+            error: '#ef4444',
+            warning: '#f59e0b',
+            info: '#64748b',
+            progress: '#065f46'
+        };
+        
+        const entry = document.createElement('div');
+        entry.style.padding = '4px 0';
+        entry.style.borderBottom = '1px solid #f1f5f9';
+        entry.style.color = colors[type] || colors.info;
+        entry.style.fontSize = '13px';
+        entry.innerHTML = `<span style="color:#94a3b8;font-size:11px;">${time}</span> ${message}`;
+        log.appendChild(entry);
+        log.scrollTop = log.scrollHeight;
+        
+        // Keep last 100 entries
+        while (log.children.length > 100) {
+            log.removeChild(log.firstChild);
+        }
+    }
+
+    // Update bot stats
+    function updateBotStats() {
+        document.getElementById('botTotalTasks').textContent = botTotalTasks;
+        document.getElementById('botCompletedTasks').textContent = botCompleted;
+        document.getElementById('botEarnings').textContent = '₦' + botEarnings.toLocaleString();
+        
+        const progress = botTotalTasks > 0 ? Math.round((botCompleted / botTotalTasks) * 100) : 0;
+        document.getElementById('botProgressText').textContent = progress + '% complete';
+        document.getElementById('botProgressBar').style.width = progress + '%';
+        
+        if (botRunning && botTotalTasks > 0) {
+            const remaining = botTotalTasks - botCompleted;
+            const delay = parseInt(document.getElementById('botDelay').value) || 2;
+            const timePerTask = 20 + delay;
+            const totalSeconds = remaining * timePerTask;
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            document.getElementById('botTimeRemaining').textContent = `⏳ ~${minutes}m ${seconds}s remaining`;
+        } else if (botRunning && botTotalTasks === 0) {
+            document.getElementById('botTimeRemaining').textContent = '🔍 Scanning for tasks...';
+        } else if (botCompleted > 0 && botCompleted === botTotalTasks) {
+            document.getElementById('botTimeRemaining').textContent = '✅ All tasks completed!';
+        } else {
+            document.getElementById('botTimeRemaining').textContent = '⏳ Waiting to start...';
+        }
+    }
+
+    // ===== MAIN BOT FUNCTION =====
+    async function startTaskBot() {
+        if (botRunning) {
+            showToast('⚠️ Bot is already running');
+            return;
+        }
+        
+        const phone = localStorage.getItem('nrc_phone');
+        if (!phone) {
+            showToast('⚠️ Please login first');
+            return;
+        }
+        
+        // Check if user is VIP
+        const userData = JSON.parse(localStorage.getItem('nrc_user_data') || '{}');
+        if (!userData.vip_level || userData.vip_level === 'Trial') {
+            showToast('⚠️ VIP required to use the bot. Upgrade to VIP1 or higher.');
+            return;
+        }
+        
+        // Reset bot state
+        botRunning = true;
+        botCompleted = 0;
+        botEarnings = 0;
+        botTasks = [];
+        botLogEntries = [];
+        document.getElementById('botLog').innerHTML = '';
+        
+        // Update UI
+        document.getElementById('startBotBtn').style.opacity = '0.5';
+        document.getElementById('startBotBtn').style.pointerEvents = 'none';
+        document.getElementById('stopBotBtn').style.opacity = '1';
+        document.getElementById('stopBotBtn').style.pointerEvents = 'auto';
+        document.getElementById('botStatus').textContent = '🟢 Running';
+        document.getElementById('botStatus').style.color = '#10b981';
+        
+        addBotLog('🚀 Bot started! Scanning for tasks...', 'info');
+        
+        // Fetch tasks
+        const taskData = await fetchTaskStatus();
+        if (!taskData || !taskData.remaining_tasks || taskData.remaining_tasks <= 0) {
+            addBotLog('❌ No tasks available to complete today', 'error');
+            stopTaskBot();
+            return;
+        }
+        
+        botTotalTasks = taskData.remaining_tasks;
+        botTasks = [];
+        for (let i = 1; i <= botTotalTasks; i++) {
+            botTasks.push({ id: i, reward: taskData.reward_per_task || 105 });
+        }
+        
+        addBotLog(`📋 Found ${botTotalTasks} tasks to complete`, 'success');
+        updateBotStats();
+        
+        // Start processing tasks
+        await processBotTasks();
+    }
+
+    // ===== PROCESS TASKS SEQUENTIALLY =====
+    async function processBotTasks() {
+        if (!botRunning) return;
+        
+        const delay = parseInt(document.getElementById('botDelay').value) || 2;
+        const background = document.getElementById('backgroundMode').checked;
+        
+        for (let i = 0; i < botTasks.length; i++) {
+            if (!botRunning) {
+                addBotLog('⏹ Bot stopped by user', 'warning');
+                break;
+            }
+            
+            const task = botTasks[i];
+            const taskNumber = i + 1;
+            
+            // Update status
+            addBotLog(`⏳ Processing task #${taskNumber}/${botTotalTasks}...`, 'progress');
+            document.getElementById('botStatus').textContent = `🔄 Processing task ${taskNumber}/${botTotalTasks}`;
+            
+            try {
+                // Execute the task (simulate reading)
+                const success = await executeBotTask(task);
+                
+                if (success) {
+                    botCompleted++;
+                    botEarnings += task.reward;
+                    addBotLog(`✅ Task #${taskNumber} completed - +₦${task.reward}`, 'success');
+                    
+                    // Update UI
+                    const todayEarnings = document.getElementById('todayEarnings');
+                    if (todayEarnings) {
+                        const current = parseInt(todayEarnings.textContent.replace('₦', '')) || 0;
+                        todayEarnings.textContent = '₦' + (current + task.reward);
+                    }
+                    const balanceEl = document.getElementById('myBalance');
+                    if (balanceEl) {
+                        balanceEl.textContent = parseInt(balanceEl.textContent) + task.reward;
+                    }
+                    updateBotStats();
+                    await refreshMyPage();
+                } else {
+                    addBotLog(`❌ Task #${taskNumber} failed, retrying...`, 'error');
+                    // Retry once
+                    const retry = await executeBotTask(task);
+                    if (retry) {
+                        botCompleted++;
+                        botEarnings += task.reward;
+                        addBotLog(`✅ Task #${taskNumber} completed on retry - +₦${task.reward}`, 'success');
+                        updateBotStats();
+                    } else {
+                        addBotLog(`❌ Task #${taskNumber} failed permanently`, 'error');
+                    }
+                }
+            } catch (e) {
+                addBotLog(`❌ Task #${taskNumber} error: ${e.message}`, 'error');
+            }
+            
+            // Delay between tasks
+            if (i < botTasks.length - 1 && botRunning) {
+                addBotLog(`⏳ Waiting ${delay}s before next task...`, 'info');
+                await sleep(delay * 1000);
+            }
+        }
+        
+        // Bot finished
+        if (botRunning) {
+            if (botCompleted === botTotalTasks) {
+                addBotLog(`🎉 All ${botTotalTasks} tasks completed! Total earned: ₦${botEarnings.toLocaleString()}`, 'success');
+                document.getElementById('botStatus').textContent = '✅ Complete';
+                document.getElementById('botStatus').style.color = '#10b981';
+            } else {
+                addBotLog(`⏹ Bot finished. ${botCompleted}/${botTotalTasks} tasks completed.`, 'warning');
+            }
+            stopTaskBot();
+        }
+    }
+
+    // ===== EXECUTE SINGLE TASK =====
+    async function executeBotTask(task) {
+        return new Promise((resolve) => {
+            const phone = localStorage.getItem('nrc_phone');
+            if (!phone) {
+                resolve(false);
+                return;
+            }
+            
+            // Simulate reading timer (20 seconds)
+            let timeLeft = 20;
+            addBotLog(`📖 Reading task #${task.id}... (${timeLeft}s remaining)`, 'info');
+            
+            const interval = setInterval(() => {
+                timeLeft--;
+                if (timeLeft > 0) {
+                    // Update timer display if visible
+                    const timerDisplay = document.getElementById('timerDisplay');
+                    if (timerDisplay) timerDisplay.textContent = timeLeft;
+                }
+            }, 1000);
+            
+            // Complete after 20 seconds
+            setTimeout(async () => {
+                clearInterval(interval);
+                
+                try {
+                    const res = await fetch(API_BASE, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ 
+                            action: 'complete_task', 
+                            phone: phone, 
+                            taskId: task.id 
+                        })
+                    });
+                    const data = await res.json();
+                    
+                    if (data.success) {
+                        resolve(true);
+                    } else {
+                        resolve(false);
+                    }
+                } catch (e) {
+                    resolve(false);
+                }
+            }, 20000);
+        });
+    }
+
+    // ===== STOP BOT =====
+    function stopTaskBot() {
+        botRunning = false;
+        
+        // Update UI
+        document.getElementById('startBotBtn').style.opacity = '1';
+        document.getElementById('startBotBtn').style.pointerEvents = 'auto';
+        document.getElementById('stopBotBtn').style.opacity = '0.5';
+        document.getElementById('stopBotBtn').style.pointerEvents = 'none';
+        
+        if (botCompleted === botTotalTasks && botTotalTasks > 0) {
+            document.getElementById('botStatus').textContent = '✅ Complete';
+            document.getElementById('botStatus').style.color = '#10b981';
+        } else {
+            document.getElementById('botStatus').textContent = '⏹ Stopped';
+            document.getElementById('botStatus').style.color = '#ef4444';
+        }
+        
+        if (botCompleted > 0 || botTotalTasks > 0) {
+            addBotLog('⏹ Bot stopped', 'warning');
+        }
+        updateBotStats();
+    }
+
+    // ===== SLEEP HELPER =====
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    // ===== OFFLINE TASK QUEUE =====
+    let offlineQueue = [];
+
+    function addToOfflineQueue(task) {
+        offlineQueue.push(task);
+        localStorage.setItem('bot_offline_queue', JSON.stringify(offlineQueue));
+    }
+
+    function processOfflineQueue() {
+        if (!navigator.onLine) {
+            addBotLog('📶 Offline mode - tasks will be queued', 'warning');
+            return;
+        }
+        
+        const queue = JSON.parse(localStorage.getItem('bot_offline_queue') || '[]');
+        if (queue.length > 0) {
+            addBotLog(`📡 Processing ${queue.length} queued tasks...`, 'info');
+            localStorage.setItem('bot_offline_queue', '[]');
+        }
+    }
+
+    // Listen for online/offline events
+    window.addEventListener('online', () => {
+        addBotLog('📶 Back online! Processing queued tasks...', 'success');
+        processOfflineQueue();
+    });
+
+    window.addEventListener('offline', () => {
+        addBotLog('📶 You are offline. Tasks will be queued until you reconnect.', 'warning');
+    });
 
     // ===== ADMIN PANEL =====
     async function fetchAllUsers() {
@@ -2732,6 +3191,9 @@
             }
         }
         
+        // Load bot settings
+        loadBotSettings();
+        
         const loggedIn = localStorage.getItem('nrc_logged_in');
         if (loggedIn === 'true') {
             const phone = localStorage.getItem('nrc_phone');
@@ -2745,6 +3207,15 @@
             switchTab('home');
             loadUserBank();
             resetInactivityTimer();
+            
+            // Auto-start bot if enabled
+            if (localStorage.getItem('bot_auto_start') === 'true') {
+                setTimeout(() => {
+                    if (localStorage.getItem('nrc_logged_in') === 'true') {
+                        startTaskBot();
+                    }
+                }, 3000);
+            }
         } else {
             document.querySelector('.tab-bar').style.display = 'none';
             switchTab('login');
@@ -2777,6 +3248,9 @@
     window.getReferralCode = getReferralCode;
     window.getReferralLink = getReferralLink;
     window.installApp = installApp;
+    window.startTaskBot = startTaskBot;
+    window.stopTaskBot = stopTaskBot;
+    window.saveBotSettings = saveBotSettings;
 </script>
 </body>
 </html>
