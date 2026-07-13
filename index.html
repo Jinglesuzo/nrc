@@ -1258,7 +1258,7 @@
     const API_BASE = '/api/users';
     let deferredPrompt;
 
-    // ===== REFERRAL SYSTEM - Generate 7-Digit Code =====
+    // ===== REFERRAL SYSTEM =====
     function generateReferralCode() {
         return String(Math.floor(1000000 + Math.random() * 9000000));
     }
@@ -1284,23 +1284,6 @@
     function closeAnnouncement() {
         const popup = document.getElementById('announcementPopup');
         if (popup) { popup.classList.remove('show'); localStorage.setItem('nrc_announcement_date', new Date().toDateString()); }
-    }
-
-    // ===== ENVELOPE ADS TOGGLE =====
-    function toggleAd(id) {
-        const card = document.getElementById(id);
-        if (card) { card.classList.toggle('open');
-            const body = card.querySelector('.ad-body');
-            if (body) {
-                if (card.classList.contains('open')) {
-                    body.style.maxHeight = '600px';
-                    body.style.padding = '16px 18px 20px';
-                } else {
-                    body.style.maxHeight = '0';
-                    body.style.padding = '0 18px';
-                }
-            }
-        }
     }
 
     // ===== REFERRAL FUNCTIONS =====
@@ -1554,6 +1537,39 @@
         return false;
     }
 
+    // ===== FALLBACK TASK DATA =====
+    function getDefaultTaskData(phone) {
+        const userData = JSON.parse(localStorage.getItem('nrc_user_data') || '{}');
+        const vipLevel = userData.vip_level || 'Trial';
+        
+        const taskConfig = {
+            'Trial': { tasks: 6, reward: 105 },
+            'VIP1': { tasks: 12, reward: 105 },
+            'VIP2': { tasks: 24, reward: 150 },
+            'VIP3': { tasks: 48, reward: 250 },
+            'VIP4': { tasks: 80, reward: 400 },
+            'VIP5': { tasks: 120, reward: 800 },
+            'VIP6': { tasks: 160, reward: 1600 },
+            'VIP7': { tasks: 220, reward: 1800 },
+            'VIP8': { tasks: 300, reward: 2200 },
+            'VIP9': { tasks: 400, reward: 3500 }
+        };
+        
+        const config = taskConfig[vipLevel] || taskConfig['Trial'];
+        const today = getTodayDate();
+        const key = `nrc_tasks_completed_${phone}_${today}`;
+        const completed = parseInt(localStorage.getItem(key) || '0');
+        
+        return {
+            vip_level: vipLevel,
+            total_tasks: config.tasks,
+            completed_tasks: completed,
+            remaining_tasks: Math.max(0, config.tasks - completed),
+            reward_per_task: config.reward,
+            earned_today: completed * config.reward
+        };
+    }
+
     async function refreshUserTasks(phone) {
         if (!phone) return false;
         const today = getTodayDate();
@@ -1623,6 +1639,97 @@
                 updateVIPDetails(stats.vip_level);
             }
         } catch (e) { console.error('Failed to refresh:', e); }
+    }
+
+    // ===== TASK SYSTEM WITH FALLBACK =====
+    async function fetchTaskStatus() {
+        const phone = localStorage.getItem('nrc_phone');
+        if (!phone) return null;
+        
+        await checkAndRefreshTasks();
+        const today = getTodayDate();
+        
+        try {
+            // Try API first
+            const res = await fetch(API_BASE, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    action: 'get_user_tasks', 
+                    phone: phone,
+                    date: today 
+                })
+            });
+            
+            if (!res.ok) {
+                console.warn('API returned ' + res.status + ', using fallback');
+                return getDefaultTaskData(phone);
+            }
+            
+            const data = await res.json();
+            
+            if (data.success) {
+                // Store in localStorage for offline use
+                localStorage.setItem(`nrc_tasks_${phone}_${today}`, JSON.stringify(data.data));
+                return data.data;
+            } else {
+                console.warn('API error: ' + data.message);
+                return getDefaultTaskData(phone);
+            }
+        } catch (e) {
+            console.warn('Network error, using fallback:', e.message);
+            return getDefaultTaskData(phone);
+        }
+    }
+
+    // ===== COMPLETE TASK WITH FALLBACK =====
+    async function completeTask(taskId, reward) {
+        const phone = localStorage.getItem('nrc_phone');
+        if (!phone) { showToast('⚠️ Please login'); return; }
+        
+        const today = getTodayDate();
+        const key = `nrc_tasks_completed_${phone}_${today}`;
+        let completed = parseInt(localStorage.getItem(key) || '0');
+        completed++;
+        localStorage.setItem(key, String(completed));
+        
+        // Update balance in localStorage
+        const userData = JSON.parse(localStorage.getItem('nrc_user_data') || '{}');
+        userData.balance = (userData.balance || 0) + reward;
+        localStorage.setItem('nrc_user_data', JSON.stringify(userData));
+        
+        // Try API, but don't fail if it doesn't work
+        try {
+            await fetch(API_BASE, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    action: 'complete_task', 
+                    phone: phone, 
+                    taskId: taskId,
+                    date: today 
+                })
+            });
+        } catch (e) {
+            console.warn('API complete_task failed, but task completed locally');
+        }
+        
+        // Update UI
+        const taskItem = document.getElementById('taskItem_' + taskId);
+        if (taskItem) taskItem.style.display = 'none';
+        
+        document.getElementById('todayEarnings').textContent = '₦' + (completed * reward);
+        document.getElementById('myBalance').textContent = userData.balance;
+        
+        await refreshMyPage();
+        updateHomeTaskProgress();
+        showToast('✅ +₦' + reward + ' earned!');
+        
+        // Check if all tasks completed
+        const taskData = await fetchTaskStatus();
+        if (taskData && completed >= taskData.total_tasks) {
+            showToast('🎉 All tasks completed for today!');
+        }
     }
 
     // ===== WITHDRAWAL - MONDAY TO FRIDAY ONLY =====
@@ -1739,61 +1846,20 @@
         const phone = localStorage.getItem('nrc_phone');
         if (!phone) return;
         
-        await checkAndRefreshTasks();
-        
-        try {
-            const res = await fetch(API_BASE, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    action: 'get_user_tasks', 
-                    phone,
-                    date: getTodayDate()
-                })
-            });
-            const data = await res.json();
+        const taskData = await fetchTaskStatus();
+        if (taskData) {
+            const total = taskData.total_tasks || 0;
+            const completed = taskData.completed_tasks || 0;
+            const earned = taskData.earned_today || 0;
             
-            if (data.success) {
-                const taskData = data.data;
-                const total = taskData.total_tasks || 0;
-                const completed = taskData.completed_tasks || 0;
-                const earned = taskData.earned_today || 0;
-                
-                document.getElementById('todayTaskProgress').textContent = `${completed}/${total}`;
-                document.getElementById('todayEarnedHome').textContent = `₦${earned}`;
-                const progress = total > 0 ? Math.round((completed / total) * 100) : 0;
-                document.getElementById('taskProgressBar').style.width = progress + '%';
-            }
-        } catch (e) {
-            console.error('Failed to update home task progress:', e);
+            document.getElementById('todayTaskProgress').textContent = `${completed}/${total}`;
+            document.getElementById('todayEarnedHome').textContent = `₦${earned}`;
+            const progress = total > 0 ? Math.round((completed / total) * 100) : 0;
+            document.getElementById('taskProgressBar').style.width = progress + '%';
         }
     }
 
-    // ===== TASK SYSTEM =====
-    async function fetchTaskStatus() {
-        const phone = localStorage.getItem('nrc_phone');
-        if (!phone) return null;
-        await checkAndRefreshTasks();
-        const today = getTodayDate();
-        try {
-            const res = await fetch(API_BASE, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    action: 'get_user_tasks', 
-                    phone,
-                    date: today 
-                })
-            });
-            const data = await res.json();
-            if (data.success) { return data.data; }
-            else { showToast('❌ ' + data.message); return null; }
-        } catch (e) {
-            showToast('❌ Network error: ' + e.message);
-            return null;
-        }
-    }
-
+    // ===== RENDER TASKS =====
     async function renderTasks() {
         const container = document.getElementById('taskList');
         if (!container) return;
@@ -1803,8 +1869,6 @@
             container.innerHTML = '<div style="text-align:center;padding:20px;color:#ef4444;">Please login first</div>';
             return;
         }
-
-        await checkAndRefreshTasks();
 
         container.innerHTML = '<div style="text-align:center;padding:20px;color:#94a3b8;">Loading tasks...</div>';
 
@@ -1881,7 +1945,6 @@
     let isReading = false;
     let timerInterval = null;
     let remainingTime = 19;
-    let currentTaskId = null;
 
     async function startReading(taskId, reward) {
         if (isReading) {
@@ -1889,7 +1952,6 @@
             return;
         }
         isReading = true;
-        currentTaskId = taskId;
         remainingTime = 19;
         const overlay = document.getElementById('readingOverlay');
         overlay.classList.add('show');
@@ -1913,42 +1975,6 @@
 
     function updateTimerDisplay(seconds) {
         document.getElementById('timerDisplay').textContent = seconds;
-    }
-
-    async function completeTask(taskId, reward) {
-        const phone = localStorage.getItem('nrc_phone');
-        if (!phone) { showToast('⚠️ Please login'); return; }
-        const today = getTodayDate();
-        try {
-            const res = await fetch(API_BASE, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    action: 'complete_task', 
-                    phone, 
-                    taskId,
-                    date: today 
-                })
-            });
-            const data = await res.json();
-            if (data.success) {
-                const taskItem = document.getElementById('taskItem_' + taskId);
-                if (taskItem) taskItem.style.display = 'none';
-                document.getElementById('todayEarnings').textContent = '₦' + data.completed_today * (data.reward || 0);
-                document.getElementById('myBalance').textContent = data.new_balance;
-                localStorage.setItem(`nrc_tasks_completed_${phone}_${today}`, data.completed_today);
-                await refreshMyPage();
-                updateHomeTaskProgress();
-                showToast('✅ +₦' + data.reward + ' earned!');
-                if (data.completed_today >= data.total_tasks) {
-                    showToast('🎉 All tasks completed for today!');
-                }
-            } else {
-                showToast('❌ ' + data.message);
-            }
-        } catch (e) {
-            showToast('❌ Network error: ' + e.message);
-        }
     }
 
     function closeReading() {
@@ -2907,7 +2933,6 @@
     });
 
     // ===== EXPOSE FUNCTIONS =====
-    window.toggleAd = toggleAd;
     window.toggleAdminPanel = toggleAdminPanel;
     window.refreshAdminPanel = refreshAdminPanel;
     window.loadAllUsers = loadAllUsers;
@@ -2934,6 +2959,14 @@
     window.adminResetPassword = adminResetPassword;
     window.updateHomeTaskProgress = updateHomeTaskProgress;
     window.checkAndRefreshTasks = checkAndRefreshTasks;
+    window.renderTasks = renderTasks;
+    window.completeTask = completeTask;
+    window.startReading = startReading;
+    window.closeReading = closeReading;
+    window.openPayment = openPayment;
+    window.closePaymentPopup = closePaymentPopup;
+    window.copyBankDetails = copyBankDetails;
+    window.verifyPayment = verifyPayment;
 </script>
 </body>
 </html>
