@@ -573,21 +573,31 @@
         .my-action-btn i { font-size: 20px; color: #065f46; display: block; margin-bottom: 4px; }
         .my-action-btn span { font-size: 11px; color: #475569; font-weight: 500; }
         .referral-section {
-            background: #fff; border-radius: 14px; padding: 16px 18px;
-            margin: 10px 16px 12px; border: 1px solid #f1f5f9;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02); display: none;
+            background: #fff;
+            border-radius: 14px;
+            padding: 16px 18px;
+            margin: 10px 16px 12px;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            display: block;
         }
-        .referral-section.visible { display: block; }
         .referral-title {
             font-size: 16px; font-weight: 700; color: #0f172a; margin-bottom: 8px;
             display: flex; align-items: center; gap: 8px;
         }
         .referral-title i { color: #065f46; }
+        .referral-vip-badge {
+            display: inline-block; background: #fbbf24; color: #0f172a;
+            font-size: 9px; font-weight: 700; padding: 1px 10px; border-radius: 12px; margin-left: 6px;
+        }
         .referral-code {
             display: flex; align-items: center; justify-content: space-between;
             background: #f1f5f9; border-radius: 10px; padding: 10px 14px; margin-top: 6px;
         }
-        .referral-code span { font-size: 18px; font-weight: 700; color: #065f46; letter-spacing: 2px; }
+        .referral-code span { 
+            font-size: 18px; font-weight: 700; color: #065f46; letter-spacing: 2px;
+            font-family: monospace;
+        }
         .referral-code button {
             background: #065f46; color: #fff; border: none; border-radius: 30px;
             padding: 6px 16px; font-size: 12px; font-weight: 600; cursor: pointer;
@@ -603,10 +613,7 @@
         }
         .referral-stat .number { font-size: 18px; font-weight: 700; color: #065f46; }
         .referral-stat .label { font-size: 9px; color: #64748b; margin-top: 2px; }
-        .referral-vip-badge {
-            display: inline-block; background: #fbbf24; color: #0f172a;
-            font-size: 9px; font-weight: 700; padding: 1px 10px; border-radius: 12px; margin-left: 6px;
-        }
+
         .my-stats {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 16px 8px;
         }
@@ -1438,23 +1445,7 @@
             <div class="login-box">
                 <div class="login-field"><label class="login-label"><i class="fas fa-phone"></i> Phone Number</label><input type="tel" class="login-input" id="loginPhone" placeholder="080 1234 5678"></div>
                 <div class="login-field"><label class="login-label"><i class="fas fa-lock"></i> Password</label><input type="password" class="login-input" id="loginPassword" placeholder="Enter your password"></div>
-                <button class="login-btn" onclick="loginUser()">Login</button>
-                <button class="login-btn-secondary" onclick="switchTab('register')">Register</button>
-            </div>
-        </div>
-        <div class="login-footer">NRC Cooperative Wealth Zone</div>
-    </div>
-</div>
-
-<!-- ===== REGISTER ===== -->
-<div id="page-register" class="page">
-    <div class="login-container">
-        <div class="login-content">
-            <div class="login-logo"><span class="login-brand">NRC</span><span class="login-sub">Create Your Account</span></div>
-            <div class="login-box">
-                <div class="login-field"><label class="login-label"><i class="fas fa-phone"></i> Phone Number</label><input type="tel" class="login-input" id="registerPhone" placeholder="080 1234 5678"></div>
-                <div class="login-field"><label class="login-label"><i class="fas fa-lock"></i> Password</label><input type="password" class="login-input" id="registerPassword" placeholder="Create a password"></div>
-                <div class="login-field"><label class="login-label"><i class="fas fa-check-circle"></i> Confirm Password</label><input type="password" class="login-input" id="registerConfirmPassword" placeholder="Confirm your password"></div>
+                <div class="login-field"><label class="login-label"><i class="fas fa-gift"></i> Referral Code (Optional)</label><input type="text" class="login-input" id="registerReferral" placeholder="Enter referral code if you have one"></div>
                 <button class="login-btn" onclick="registerUser()">Register</button>
                 <button class="login-btn-secondary" onclick="switchTab('login')">Login</button>
             </div>
@@ -1618,6 +1609,19 @@
         <div class="task-list" id="taskList">
             <div style="text-align:center;padding:20px;color:#94a3b8;">Loading tasks...</div>
         </div>
+        
+        <!-- Bot Toggle -->
+        <div style="margin-top:12px;background:#fff;border-radius:12px;padding:14px 16px;border:1px solid #f1f5f9;margin:12px 10px 0;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                    <span style="font-weight:700;color:#0f172a;">🤖 Auto-Task Bot</span>
+                    <span style="font-size:11px;color:#64748b;display:block;">Automatically completes all your tasks daily</span>
+                </div>
+                <button id="botToggleBtn" onclick="toggleBot()" style="padding:6px 20px;border-radius:30px;border:none;font-weight:600;font-size:13px;cursor:pointer;background:#e2e8f0;color:#0f172a;">
+                    ⏳ Loading...
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -1670,11 +1674,30 @@
             <div class="my-action-btn" onclick="switchTab('withdrawal')"><i class="fas fa-wallet"></i><span>Withdrawal</span></div>
             <div class="my-action-btn" onclick="showToast('👥 Invite newcomers - Coming Soon')"><i class="fas fa-user-plus"></i><span>Invite newcomers</span></div>
         </div>
+        
+        <!-- Referral Section -->
         <div class="referral-section" id="referralSection">
-            <div class="referral-title"><i class="fas fa-link"></i> Referral Program <span class="referral-vip-badge">VIP Only</span></div>
-            <div class="referral-code"><span id="referralCode">NRC-8X7K-9M2L</span><button onclick="copyReferralCode()">Copy</button></div>
-            <div class="referral-stats"><div class="referral-stat"><div class="number" id="refTotal">0</div><div class="label">Total Referrals</div></div><div class="referral-stat"><div class="number" id="refActive">0</div><div class="label">Active</div></div><div class="referral-stat"><div class="number" id="refEarnings">₦0</div><div class="label">Earnings</div></div></div>
+            <div class="referral-title">
+                <i class="fas fa-link"></i> Referral Program
+                <span class="referral-vip-badge">VIP Only</span>
+            </div>
+            <p style="font-size:13px;color:#64748b;margin-bottom:8px;">Invite friends and earn ₦500 for each referral!</p>
+            <div class="referral-code">
+                <span id="myReferralCode">NRC-8X7K-9M2L</span>
+                <button onclick="copyReferralCode()">Copy</button>
+            </div>
+            <div class="referral-stats">
+                <div class="referral-stat">
+                    <div class="number" id="refTotal">0</div>
+                    <div class="label">Total Referrals</div>
+                </div>
+                <div class="referral-stat">
+                    <div class="number" id="refEarnings">₦0</div>
+                    <div class="label">Earnings</div>
+                </div>
+            </div>
         </div>
+        
         <div class="my-stats">
             <div class="my-stat-card" onclick="showToast('📊 Total revenue')"><span class="my-stat-label">Total revenue(₦)</span><span class="my-stat-value" id="myTotalRevenue">0</span></div>
             <div class="my-stat-card" onclick="showToast('📊 Yesterday\'s earnings')"><span class="my-stat-label">Yesterday's earnings(₦)</span><span class="my-stat-value" id="myYesterdayEarnings">0</span></div>
@@ -2462,14 +2485,27 @@
         const phone = document.getElementById('registerPhone').value.trim();
         const password = document.getElementById('registerPassword').value.trim();
         const confirm = document.getElementById('registerConfirmPassword').value.trim();
+        const referral = document.getElementById('registerReferral').value.trim();
+        
         if (!phone || !password || !confirm) { showToast('⚠️ Fill all fields'); return; }
         if (phone.length < 10) { showToast('⚠️ Invalid phone'); return; }
         if (password.length < 4) { showToast('⚠️ Password too short'); return; }
         if (password !== confirm) { showToast('⚠️ Passwords do not match'); return; }
+        
         try {
-            const res = await fetch(API_BASE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'register', phone, password }) });
+            const res = await fetch(API_BASE, { 
+                method: 'POST', 
+                headers: { 'Content-Type': 'application/json' }, 
+                body: JSON.stringify({ action: 'register', phone, password, referredBy: referral }) 
+            });
             const data = await res.json();
-            if (data.success) { showToast('✅ Registered! Please login.'); document.getElementById('loginPhone').value = phone; setTimeout(() => switchTab('login'), 1000); } else { showToast('❌ ' + data.message); }
+            if (data.success) { 
+                showToast('✅ Registered! Please login.'); 
+                document.getElementById('loginPhone').value = phone; 
+                setTimeout(() => switchTab('login'), 1000); 
+            } else { 
+                showToast('❌ ' + data.message); 
+            }
         } catch (e) { showToast('❌ Network error: ' + e.message); }
     }
 
@@ -2507,6 +2543,11 @@
         document.getElementById('profileVip').textContent = user.vip_level || 'Trial';
         document.getElementById('profileBalance').textContent = '₦' + (user.balance || 0);
         updateVIPDetails(user.vip_level);
+        
+        // Update referral code
+        if (user.referral_code) {
+            document.getElementById('myReferralCode').textContent = user.referral_code;
+        }
     }
 
     function updateVIPDetails(vipLevel) {
@@ -2520,7 +2561,15 @@
         try {
             const res = await fetch(API_BASE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'get_user', phone }) });
             const data = await res.json();
-            if (data.success) { localStorage.setItem('nrc_user_data', JSON.stringify(data.user)); updateUserUI(data.user); }
+            if (data.success) { 
+                localStorage.setItem('nrc_user_data', JSON.stringify(data.user)); 
+                updateUserUI(data.user);
+                
+                // Update bot button if on task page
+                if (data.user.bot_enabled !== undefined) {
+                    updateBotButton(data.user.bot_enabled);
+                }
+            }
         } catch (e) { console.error('Failed to refresh user data:', e); }
     }
 
@@ -2540,6 +2589,16 @@
                 document.getElementById('myTaskCommission').textContent = stats.task_commission;
                 document.getElementById('myReferralRebate').textContent = stats.referral_rebate;
                 document.getElementById('myTaskRebate').textContent = stats.task_rebate;
+                
+                // Update referral stats
+                document.getElementById('refTotal').textContent = stats.referral_count || 0;
+                document.getElementById('refEarnings').textContent = '₦' + (stats.referral_rebate || 0);
+                
+                // Update referral code
+                if (stats.referral_code) {
+                    document.getElementById('myReferralCode').textContent = stats.referral_code;
+                }
+                
                 document.getElementById('profileVip').textContent = stats.vip_level || 'Trial';
                 document.getElementById('profileBalance').textContent = '₦' + stats.balance;
                 document.getElementById('profileTotalRevenue').textContent = '₦' + stats.total_revenue;
@@ -2608,6 +2667,9 @@
             container.innerHTML = '<div style="text-align:center;padding:20px;color:#ef4444;">Failed to load tasks</div>';
             return;
         }
+
+        // Update bot button
+        updateBotButton(taskData.bot_enabled || 0);
 
         // ===== CHECK IF USER IS TRIAL =====
         if (taskData.vip_level === 'Trial' || taskData.vip_level === 'trial') {
@@ -2719,6 +2781,58 @@
     }
 
     // ============================================================
+    // =================== BOT TOGGLE =============================
+    // ============================================================
+
+    function updateBotButton(enabled) {
+        const btn = document.getElementById('botToggleBtn');
+        if (!btn) return;
+        if (enabled) {
+            btn.textContent = '✅ Deactivate Bot';
+            btn.style.background = '#d1fae5';
+            btn.style.color = '#065f46';
+        } else {
+            btn.textContent = '🤖 Activate Bot';
+            btn.style.background = '#e2e8f0';
+            btn.style.color = '#0f172a';
+        }
+    }
+
+    async function toggleBot() {
+        const phone = localStorage.getItem('nrc_phone');
+        if (!phone) {
+            showToast('⚠️ Please login first');
+            return;
+        }
+
+        const btn = document.getElementById('botToggleBtn');
+        const isCurrentlyEnabled = btn.textContent.includes('Deactivate');
+        const newStatus = !isCurrentlyEnabled;
+
+        btn.textContent = '⏳ Processing...';
+        btn.disabled = true;
+
+        try {
+            const res = await fetch(API_BASE, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'toggle_bot', phone, botEnabled: newStatus })
+            });
+            const data = await res.json();
+            if (data.success) {
+                showToast(data.message);
+                updateBotButton(data.bot_enabled);
+            } else {
+                showToast('❌ ' + data.message);
+            }
+        } catch (e) {
+            showToast('❌ Network error: ' + e.message);
+        }
+
+        btn.disabled = false;
+    }
+
+    // ============================================================
     // =================== VIP PAYMENT =============================
     // ============================================================
 
@@ -2809,6 +2923,18 @@
             statusEl.textContent = '❌ Network error: ' + e.message;
         }
         resetInactivityTimer();
+    }
+
+    // ============================================================
+    // =================== REFERRAL ===============================
+    // ============================================================
+
+    function copyReferralCode() {
+        const code = document.getElementById('myReferralCode');
+        if (code) {
+            const text = code.textContent;
+            navigator.clipboard?.writeText(text).then(() => showToast('✅ Copied!')).catch(() => showToast('📋 ' + text));
+        }
     }
 
     // ============================================================
@@ -2933,6 +3059,19 @@
     }
 
     // ============================================================
+    // =================== WITHDRAWAL =============================
+    // ============================================================
+
+    function submitWithdrawal() {
+        const day = new Date().getDay(); // 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
+        if (day === 0 || day === 1 || day === 6) {
+            showToast('⚠️ Withdrawals are only available Tuesday - Friday');
+            return;
+        }
+        showToast('💳 Withdrawal submitted!');
+    }
+
+    // ============================================================
     // =================== ADMIN PANEL =============================
     // ============================================================
 
@@ -2963,10 +3102,11 @@
         let html = '';
         users.forEach((user) => {
             const phoneDisplay = user.phone.substring(0, 4) + '****' + user.phone.substring(user.phone.length - 4);
+            const botStatus = user.bot_enabled ? '🤖 Bot ON' : '';
             html += `<div class="request-item" data-phone="${user.phone}" style="border-bottom:1px solid #f0f2f5; padding:8px 0;">
                 <div class="req-info" style="flex:1;">
                     <div class="req-user" style="font-weight:600;color:#0f172a;">${phoneDisplay}</div>
-                    <div class="req-detail" style="font-size:10px;color:#64748b;">VIP: ${user.vip_level || 'Trial'} | Balance: ₦${user.balance || 0}</div>
+                    <div class="req-detail" style="font-size:10px;color:#64748b;">VIP: ${user.vip_level || 'Trial'} | Balance: ₦${user.balance || 0} ${botStatus}</div>
                 </div>
                 <div class="req-actions" style="display:flex;gap:4px;flex-wrap:wrap;">
                     <button class="approve" onclick="upgradeVIP('${user.phone}', 'VIP1')" style="padding:2px 8px;border-radius:12px;border:none;font-size:9px;font-weight:600;cursor:pointer;background:#10b981;color:#fff;">VIP1</button>
@@ -3110,7 +3250,6 @@
     function processRecharge() { showToast('💳 Payment page coming soon'); }
     function verifyRecharge() { showToast('✅ Verification coming soon'); }
     function selectAmount(el, amt) { document.querySelectorAll('.withdrawal-amount-btn').forEach(b=>b.classList.remove('selected')); el.classList.add('selected'); }
-    function submitWithdrawal() { showToast('💳 Withdrawal submitted!'); }
     function clearCache() { showToast('🗑️ Cache cleared'); }
     function signOut() {
         const phone = localStorage.getItem('nrc_phone');
@@ -3119,10 +3258,6 @@
         switchTab('login');
         if (phone) document.getElementById('loginPhone').value = phone;
         showToast('👋 Signed out');
-    }
-    function copyReferralCode() {
-        const code = document.getElementById('referralCode');
-        if (code) { const text = code.textContent; navigator.clipboard?.writeText(text).then(() => showToast('✅ Copied!')).catch(() => showToast('📋 ' + text)); }
     }
     function switchProfitTab(el, type) { document.querySelectorAll('.profit-tab').forEach(t=>t.classList.remove('active')); el.classList.add('active'); }
     function changeLoginPassword() { showToast('🔒 Login password changed'); }
