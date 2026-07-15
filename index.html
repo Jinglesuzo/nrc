@@ -13,7 +13,6 @@
         .page { display: none; animation: fadeUp 0.3s ease; }
         .page.active { display: block; }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-        
         .top-header { background: linear-gradient(135deg, #065f46, #0a7a5a); padding: 14px 18px 12px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 16px rgba(6, 95, 70, 0.25); }
         .top-header-content { display: flex; align-items: center; justify-content: space-between; }
         .top-header-left { color: #fff; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; padding: 4px 8px; border-radius: 8px; transition: background 0.2s; }
@@ -23,46 +22,22 @@
         .top-header-center .nrc-logo { color: #fff; font-family: 'Times New Roman', serif; font-size: 26px; font-weight: 900; font-style: italic; letter-spacing: 3px; text-shadow: 0 2px 8px rgba(0,0,0,0.3); text-transform: uppercase; }
         .top-header-right { color: #fff; font-size: 20px; cursor: pointer; padding: 4px 8px; border-radius: 8px; transition: background 0.2s; }
         .top-header-right:active { background: rgba(255,255,255,0.15); }
-
         .page-nav { background: linear-gradient(135deg, #065f46, #0a7a5a); padding: 14px 18px 12px; position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 16px rgba(6, 95, 70, 0.25); }
         .page-nav-content { display: flex; align-items: center; justify-content: space-between; }
         .page-nav-left { color: #fff; font-size: 20px; cursor: pointer; padding: 4px 8px; border-radius: 8px; transition: background 0.2s; }
         .page-nav-left:active { background: rgba(255,255,255,0.15); }
         .page-nav-title { color: #fff; font-size: 17px; font-weight: 600; }
         .page-nav-right { width: 40px; }
-
         .page-card { background: #fff; border-radius: 16px; padding: 18px; border: 1px solid #f1f5f9; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
         .page-card h3 { font-size: 17px; font-weight: 700; color: #0f172a; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
         .page-card h3 i { color: #065f46; }
         .page-card p { font-size: 14px; color: #475569; line-height: 1.6; }
         .page-content { padding: 16px 16px 10px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-
-        .toggle-slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: #ccc;
-            transition: .4s;
-            border-radius: 26px;
-        }
-        .toggle-slider:before {
-            position: absolute;
-            content: "";
-            height: 20px;
-            width: 20px;
-            left: 3px;
-            bottom: 3px;
-            background: #fff;
-            transition: .4s;
-            border-radius: 50%;
-        }
+        .toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #ccc; transition: .4s; border-radius: 26px; }
+        .toggle-slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background: #fff; transition: .4s; border-radius: 50%; }
         input:checked + .toggle-slider { background: #065f46; }
         input:checked + .toggle-slider:before { transform: translateX(24px); }
-
         .login-container { padding: 40px 20px 20px; background: linear-gradient(135deg, #065f46, #0a7a5a); min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
         .login-content { width: 100%; max-width: 400px; }
         .login-logo { text-align: center; margin-bottom: 30px; }
@@ -78,7 +53,6 @@
         .login-btn:active { transform: scale(0.96); opacity: 0.9; }
         .login-btn-secondary { width: 100%; background: #eef2f6; color: #0f172a; border: 1px solid #d1d5db; border-radius: 30px; padding: 14px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 10px; transition: transform 0.15s, background 0.2s; }
         .login-btn-secondary:active { transform: scale(0.96); background: #dce2ea; }
-
         .swipe { margin: 12px 14px; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.06); position: relative; background: #e8ecf1; }
         .swipe-track { display: flex; transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); }
         .swipe-item { min-width: 100%; aspect-ratio: 16/7; }
@@ -86,7 +60,6 @@
         .swipe-indicators { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; }
         .swipe-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); transition: all 0.3s; cursor: pointer; }
         .swipe-dot.active { background: #065f46; width: 24px; border-radius: 4px; }
-
         .broadcast { background: #fff; margin: 0 14px 12px; padding: 10px 16px; border-radius: 14px; display: flex; align-items: center; gap: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.03); border: 1px solid #f1f5f9; overflow: hidden; height: 48px; }
         .broadcast-icon { color: #065f46; font-size: 18px; flex-shrink: 0; animation: pulse 2s infinite; }
         @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
@@ -96,7 +69,6 @@
         .broadcast-item .tag { background: #065f46; color: #fff; font-size: 8px; padding: 1px 10px; border-radius: 12px; margin-right: 8px; font-weight: 600; flex-shrink: 0; }
         .broadcast-item .amount { color: #065f46; font-weight: 700; }
         .broadcast-arrow { color: #94a3b8; font-size: 16px; flex-shrink: 0; }
-
         .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 10px 14px 8px; }
         .action-card { border-radius: 16px; padding: 18px 16px; min-height: 64px; cursor: pointer; transition: all 0.25s; position: relative; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.04); border: none; display: flex; align-items: center; gap: 14px; }
         .action-card:active { transform: scale(0.95); }
@@ -114,13 +86,11 @@
         .action-deposit { background: linear-gradient(135deg, #fdf6e3, #fce8b8); border: 1px solid #f0d88a; }
         .action-deposit .icon-wrap { background: rgba(249,168,37,0.15); color: #7a6200; }
         .action-deposit .label { color: #7a6200; }
-
         .quick-links { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 8px 14px 12px; }
         .quick-link { background: #fff; border-radius: 16px; padding: 14px 6px 12px; text-align: center; font-size: 11px; color: #475569; font-weight: 500; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border: 1px solid #f1f5f9; transition: all 0.25s; }
         .quick-link:active { transform: scale(0.93); background: #f8fafc; border-color: #065f46; }
         .quick-link i { font-size: 20px; color: #065f46; display: block; margin-bottom: 6px; }
         .quick-link .link-label { font-size: 10px; color: #64748b; }
-
         .wealth-swipe { margin: 4px 14px 12px; border-radius: 14px; overflow: hidden; background: #fff; border: 1px solid #f1f5f9; box-shadow: 0 2px 12px rgba(0,0,0,0.03); height: 100px; position: relative; }
         .wealth-track { transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); }
         .wealth-item { height: 100px; background: linear-gradient(135deg, #065f46, #0a7a5a); padding: 16px 22px; display: flex; align-items: center; color: #fff; position: relative; overflow: hidden; }
@@ -131,7 +101,6 @@
         .wealth-item .info .amount .currency { font-size: 14px; opacity: 0.6; }
         .wealth-item .arrow { color: rgba(255,255,255,0.25); font-size: 22px; position: relative; z-index: 2; }
         .wealth-item .emoji-bg { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 60px; opacity: 0.06; z-index: 1; }
-
         .task-container { margin: 0 10px; border-radius: 14px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
         .task-header { padding-top: 30px; padding-left: 15px; }
         .task-header h2 { color: #5ea692; font-weight: 800; font-size: 22px; }
@@ -155,7 +124,6 @@
         .task-item .task-btn button:active { transform: scale(0.92); box-shadow: none; }
         .task-item.completed { display: none; }
         .loading-container { display: flex; align-items: center; justify-content: center; padding: 14px 0; color: #94a3b8; font-size: 13px; background: #fff; border-top: 1px solid #f1f5f9; }
-
         .vip-container { padding-bottom: 20px; background: #f5f7fb; }
         .vip-nav { background: #065f46; padding: 14px 18px 12px; position: sticky; top: 0; z-index: 10; }
         .vip-nav-content { display: flex; align-items: center; justify-content: space-between; }
@@ -188,7 +156,6 @@
         .vip-join-btn { background: #fbbf24; border: none; border-radius: 30px; color: #0f172a; font-size: 13px; font-weight: 700; padding: 8px 20px; cursor: pointer; box-shadow: 0 2px 12px rgba(251,191,36,0.3); transition: transform 0.15s, box-shadow 0.2s; }
         .vip-join-btn:active { transform: scale(0.95); box-shadow: none; }
         .vip-apply-text { color: rgba(255,255,255,0.7); font-size: 13px; font-weight: 600; letter-spacing: 0.3px; }
-
         .profit-container { padding-bottom: 20px; background: #f5f7fb; min-height: 100vh; }
         .profit-nav { background: #065f46; padding: 14px 18px 12px; position: sticky; top: 0; z-index: 10; }
         .profit-nav-content { display: flex; align-items: center; justify-content: space-between; }
@@ -209,7 +176,6 @@
         .profit-item-right { display: flex; align-items: center; gap: 8px; }
         .profit-item-amount { font-size: 15px; font-weight: 600; color: #065f46; }
         .profit-arrow { color: #94a3b8; font-size: 14px; }
-
         .my-container { padding-bottom: 20px; background: #f5f7fb; min-height: 100vh; }
         .my-top { background: linear-gradient(135deg, #065f46, #0a7a5a); padding: 18px 18px 16px; border-radius: 0 0 24px 24px; box-shadow: 0 4px 20px rgba(6,95,70,0.15); }
         .my-header { display: flex; justify-content: space-between; align-items: flex-start; }
@@ -233,7 +199,6 @@
         .my-action-btn .naira-sign-btn { font-size: 20px; color: #065f46; display: block; margin-bottom: 4px; font-weight: 700; }
         .my-action-btn i { font-size: 20px; color: #065f46; display: block; margin-bottom: 4px; }
         .my-action-btn span { font-size: 11px; color: #475569; font-weight: 500; }
-
         .referral-section { background: #fff; border-radius: 14px; padding: 16px 18px; margin: 10px 16px 12px; border: 1px solid #f1f5f9; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
         .referral-title { font-size: 16px; font-weight: 700; color: #0f172a; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
         .referral-title i { color: #065f46; }
@@ -252,7 +217,6 @@
         .referral-share .copy-btn { background: #065f46; color: #fff; }
         .referral-share .telegram-share-btn { background: #0088cc; color: #fff; }
         .referral-share .share-btn { background: #1da1f2; color: #fff; }
-
         .my-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 16px 8px; }
         .my-stat-card { background: #fff; border-radius: 14px; padding: 14px 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.02); border: 1px solid #f1f5f9; cursor: pointer; transition: all 0.2s; }
         .my-stat-card:active { transform: scale(0.96); }
@@ -275,7 +239,6 @@
         .my-bottom-item i { font-size: 18px; color: #065f46; display: block; margin-bottom: 4px; }
         .my-bottom-item span { font-size: 10px; color: #475569; font-weight: 500; }
         .my-footer { text-align: center; font-size: 11px; color: #94a3b8; padding: 16px 0 10px; letter-spacing: 0.5px; }
-
         .withdrawal-container { padding-bottom: 20px; background: #f5f7fb; min-height: 100vh; }
         .withdrawal-nav { background: #065f46; padding: 14px 18px 12px; position: sticky; top: 0; z-index: 10; }
         .withdrawal-nav-content { display: flex; align-items: center; justify-content: space-between; }
@@ -307,7 +270,6 @@
         .withdrawal-tax { font-size: 13px; color: #ef4444; font-weight: 500; }
         .withdrawal-submit-btn { width: 100%; background: linear-gradient(135deg, #065f46, #0a7a5a); color: #fff; border: none; border-radius: 30px; padding: 14px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 16px rgba(6,95,70,0.2); transition: transform 0.15s, box-shadow 0.2s; }
         .withdrawal-submit-btn:active { transform: scale(0.96); box-shadow: none; }
-
         .recharge-container { padding-bottom: 20px; background: #f5f7fb; min-height: 100vh; }
         .recharge-nav { background: #065f46; padding: 14px 18px 12px; position: sticky; top: 0; z-index: 10; }
         .recharge-nav-content { display: flex; align-items: center; justify-content: space-between; }
@@ -338,7 +300,6 @@
         .recharge-success.show { display: block; }
         .recharge-success .success-title { font-size: 16px; font-weight: 700; color: #065f46; }
         .recharge-success .success-text { font-size: 14px; color: #065f46; margin-top: 4px; }
-
         .settings-container { padding-bottom: 20px; background: #f5f7fb; min-height: 100vh; }
         .settings-nav { background: #065f46; padding: 14px 18px 12px; position: sticky; top: 0; z-index: 10; }
         .settings-nav-content { display: flex; align-items: center; justify-content: space-between; }
@@ -365,7 +326,6 @@
         .settings-item-arrow { color: #94a3b8; font-size: 14px; }
         .settings-signout-btn { width: 100%; background: #ef4444; color: #fff; border: none; border-radius: 30px; padding: 14px; font-size: 16px; font-weight: 600; cursor: pointer; transition: transform 0.15s, box-shadow 0.2s; box-shadow: 0 4px 16px rgba(239,68,68,0.2); }
         .settings-signout-btn:active { transform: scale(0.96); box-shadow: none; }
-
         .changepassword-container { padding-bottom: 20px; background: #f5f7fb; min-height: 100vh; }
         .changepassword-nav { background: #065f46; padding: 14px 18px 12px; position: sticky; top: 0; z-index: 10; }
         .changepassword-nav-content { display: flex; align-items: center; justify-content: space-between; }
@@ -381,7 +341,6 @@
         .changepassword-input:focus { border-color: #065f46; box-shadow: 0 0 0 3px rgba(6,95,70,0.1); background: #fff; }
         .changepassword-submit-btn { width: 100%; background: #065f46; color: #fff; border: none; border-radius: 30px; padding: 12px; font-size: 16px; font-weight: 600; margin-top: 8px; cursor: pointer; transition: transform 0.15s, box-shadow 0.2s; box-shadow: 0 4px 16px rgba(6,95,70,0.2); }
         .changepassword-submit-btn:active { transform: scale(0.96); box-shadow: none; }
-
         .bindbank-container { padding-bottom: 20px; background: #f5f7fb; min-height: 100vh; }
         .bindbank-nav { background: #065f46; padding: 14px 18px 12px; position: sticky; top: 0; z-index: 10; }
         .bindbank-nav-content { display: flex; align-items: center; justify-content: space-between; }
@@ -406,7 +365,6 @@
         .bindbank-select:focus { border-color: #065f46; box-shadow: 0 0 0 3px rgba(6,95,70,0.1); background: #fff; }
         .bindbank-add-btn { width: 100%; background: #065f46; color: #fff; border: none; border-radius: 30px; padding: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: transform 0.15s, box-shadow 0.2s; box-shadow: 0 4px 16px rgba(6,95,70,0.2); }
         .bindbank-add-btn:active { transform: scale(0.96); box-shadow: none; }
-
         .realname-container { padding-bottom: 20px; background: #f5f7fb; min-height: 100vh; }
         .realname-nav { background: #065f46; padding: 14px 18px 12px; position: sticky; top: 0; z-index: 10; }
         .realname-nav-content { display: flex; align-items: center; justify-content: space-between; }
@@ -422,7 +380,6 @@
         .realname-hint { font-size: 12px; color: #64748b; margin-top: 6px; }
         .realname-submit-btn { width: 100%; background: #065f46; color: #fff; border: none; border-radius: 30px; padding: 12px; font-size: 16px; font-weight: 600; margin-top: 16px; cursor: pointer; transition: transform 0.15s, box-shadow 0.2s; box-shadow: 0 4px 16px rgba(6,95,70,0.2); }
         .realname-submit-btn:active { transform: scale(0.96); box-shadow: none; }
-
         .payment-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.75); z-index: 9998; display: none; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(6px); }
         .payment-overlay.show { display: flex; }
         .payment-popup { background: #fff; border-radius: 24px; max-width: 420px; width: 100%; max-height: 85vh; overflow-y: auto; animation: slideUp 0.4s ease; box-shadow: 0 20px 60px rgba(0,0,0,0.2); padding: 24px; }
@@ -447,7 +404,6 @@
         .payment-popup .payment-status.success { background: #d1fae5; color: #065f46; display: block; }
         .payment-popup .payment-status.pending { background: #fef3c7; color: #92400e; display: block; }
         .payment-popup .payment-status.failed { background: #fee2e2; color: #dc2626; display: block; }
-
         .announcement-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.75); z-index: 9999; display: none; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(6px); animation: fadeIn 0.3s ease; }
         .announcement-overlay.show { display: flex; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -459,31 +415,26 @@
         .announcement-text { font-size: 13px; color: #475569; line-height: 1.6; margin-bottom: 8px; }
         .announcement-btn { width: calc(100% - 40px); margin: 0 20px 20px; background: #065f46; color: #fff; border: none; border-radius: 30px; padding: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: transform 0.15s, box-shadow 0.2s; box-shadow: 0 4px 16px rgba(6,95,70,0.2); }
         .announcement-btn:active { transform: scale(0.96); box-shadow: none; }
-
         .reading-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #0f172a; z-index: 1000; display: none; flex-direction: column; overflow: hidden; }
         .reading-overlay.show { display: flex; }
         .reading-nav { background: rgba(15,23,42,0.95); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); flex-shrink: 0; z-index: 10; min-height: 50px; }
         .reading-nav .back-btn { color: #fff; font-size: 20px; cursor: pointer; padding: 4px 8px; border-radius: 8px; background: rgba(255,255,255,0.05); border: none; transition: background 0.2s; }
         .reading-nav .back-btn:active { background: rgba(255,255,255,0.15); }
         .reading-nav .title { color: #fff; font-size: 14px; font-weight: 600; flex: 1; text-align: center; padding: 0 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
         .timer-top-left { position: fixed; top: 70px; left: 16px; z-index: 1001; display: none; flex-direction: column; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); padding: 10px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); max-width: 220px; box-shadow: 0 8px 30px rgba(0,0,0,0.5); }
         .timer-top-left.show { display: flex; }
         .timer-top-left .message { color: rgba(255,255,255,0.7); font-size: 12px; line-height: 1.5; font-weight: 400; }
         .timer-top-left .message .countdown { color: #10b981; font-weight: 700; }
         .timer-top-left .message .invalid { color: rgba(255,255,255,0.3); }
-
         .toast { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) scale(0.9); background: rgba(0,0,0,0.82); color: #fff; padding: 20px 34px; border-radius: 20px; font-size: 15px; z-index: 2000; display: none; text-align: center; max-width: 85%; backdrop-filter: blur(10px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
         .toast.show { display: block; transform: translate(-50%,-50%) scale(1); }
         .toast .toast-icon { font-size: 34px; display: block; margin-bottom: 6px; }
-
         .tab-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid rgba(226,232,240,0.5); display: flex; justify-content: space-around; padding: 6px 0 env(safe-area-inset-bottom); z-index: 200; box-shadow: 0 -4px 20px rgba(0,0,0,0.04); }
         .tab-item { display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; color: #94a3b8; font-size: 9px; font-weight: 500; gap: 2px; position: relative; width: 60px; height: 56px; border-radius: 30px; background: transparent; }
         .tab-item.active { color: #fff; background: linear-gradient(135deg, #065f46, #0a7a5a); box-shadow: 0 4px 20px rgba(6,95,70,0.2); }
         .tab-item .tab-icon { font-size: 20px; transition: all 0.3s; }
         .tab-item:active .tab-icon { transform: scale(0.85); }
         .tab-item .dot { position: absolute; top: 4px; right: 8px; width: 6px; height: 6px; background: #ef4444; border-radius: 50%; border: 2px solid #fff; }
-
         .admin-float { position: fixed; bottom: 90px; right: 16px; z-index: 999; display: none; }
         .admin-float.visible { display: block; }
         .admin-toggle { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #065f46, #0a7a5a); color: #fff; border: none; font-size: 24px; cursor: pointer; box-shadow: 0 4px 20px rgba(6,95,70,0.3); transition: all 0.3s; position: relative; }
@@ -512,7 +463,6 @@
         .admin-panel .admin-requests .request-item .req-actions button:active { transform: scale(0.92); }
         .admin-panel .admin-requests .request-item .req-actions .approve { background: #10b981; color: #fff; }
         .admin-panel .admin-requests .request-item .req-actions .deny { background: #ef4444; color: #fff; }
-
         .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 6px 0 12px; }
         .detail-stat { background: #f8fafc; border-radius: 12px; padding: 12px 14px; text-align: center; border: 1px solid #f1f5f9; }
         .detail-stat .label { font-size: 10px; color: #64748b; }
@@ -521,7 +471,6 @@
         .detail-stat .value.gold { color: #f59e0b; }
         .detail-stat .value.blue { color: #3b82f6; }
         .detail-stat .value.red { color: #ef4444; }
-
         .record-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f1f5f9; font-size: 13px; }
         .record-item:last-child { border-bottom: none; }
         .record-item .left { display: flex; flex-direction: column; gap: 2px; }
@@ -530,29 +479,24 @@
         .record-item .right { font-weight: 700; }
         .record-item .right.green { color: #10b981; }
         .record-item .right.red { color: #ef4444; }
-
         .badge-status { font-size: 10px; font-weight: 600; padding: 2px 12px; border-radius: 30px; }
         .badge-status.completed { background: #d1fae5; color: #065f46; }
         .badge-status.pending { background: #fef3c7; color: #92400e; }
         .badge-status.failed { background: #fee2e2; color: #dc2626; }
-
         .score-circle { width: 120px; height: 120px; border-radius: 50%; background: conic-gradient(#065f46 var(--score-deg, 0%), #e2e8f0 var(--score-deg, 0%)); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; position: relative; }
         .score-circle .inner { width: 90px; height: 90px; border-radius: 50%; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .score-circle .inner .number { font-size: 32px; font-weight: 900; color: #0f172a; }
         .score-circle .inner .label { font-size: 11px; color: #94a3b8; }
-
         .install-btn { background: linear-gradient(135deg, #065f46, #0a7a5a); color: #fff; border: none; border-radius: 30px; padding: 16px 32px; font-size: 18px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 20px rgba(6,95,70,0.3); transition: all 0.3s; display: inline-flex; align-items: center; gap: 12px; }
         .install-btn:active { transform: scale(0.95); }
         .install-btn i { font-size: 24px; }
         .install-btn .sub-text { font-size: 12px; font-weight: 400; opacity: 0.8; }
-
         .telegram-float { position: fixed; bottom: 160px; right: 16px; z-index: 9999; background: #0088cc; color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex !important; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 4px 20px rgba(0, 136, 204, 0.4); transition: all 0.3s ease; text-decoration: none; border: none; cursor: pointer; animation: pulse-tg 2s infinite; }
         .telegram-float:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(0, 136, 204, 0.5); }
         .telegram-float:active { transform: scale(0.9); }
         @keyframes pulse-tg { 0% { box-shadow: 0 4px 20px rgba(0, 136, 204, 0.4); } 50% { box-shadow: 0 4px 40px rgba(0, 136, 204, 0.7); } 100% { box-shadow: 0 4px 20px rgba(0, 136, 204, 0.4); } }
         .telegram-float .tooltip { position: absolute; right: 70px; background: #1e293b; color: #fff; font-size: 12px; padding: 6px 14px; border-radius: 30px; white-space: nowrap; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
         .telegram-float:hover .tooltip { opacity: 1; }
-
         .task-progress-card { background: #fff; border-radius: 16px; padding: 16px 18px; margin: 0 14px 12px; border: 1px solid #f1f5f9; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
         .task-progress-card .progress-header { display: flex; justify-content: space-between; align-items: center; }
         .task-progress-card .progress-label { font-size: 12px; color: #64748b; }
@@ -560,7 +504,6 @@
         .task-progress-card .progress-earnings { font-size: 20px; font-weight: 700; color: #065f46; }
         .task-progress-card .progress-bar-track { margin-top: 8px; background: #e2e8f0; border-radius: 30px; height: 6px; overflow: hidden; }
         .task-progress-card .progress-bar-fill { width: 0%; background: linear-gradient(90deg, #065f46, #10b981); height: 100%; border-radius: 30px; transition: width 0.5s ease; }
-
         @media (max-width: 380px) { .tab-item { width: 50px; height: 50px; font-size: 8px; } .tab-item .tab-icon { font-size: 18px; } .admin-panel { min-width: 240px; right: -10px; } .detail-grid { grid-template-columns: 1fr 1fr; gap: 6px; } .telegram-float { width: 50px; height: 50px; font-size: 26px; bottom: 150px; right: 12px; } }
         @media (min-width: 500px) { body { max-width: 480px; margin: 0 auto; background: #e8ecf1; } .tab-bar { max-width: 480px; left: 50%; transform: translateX(-50%); } .telegram-float { right: calc(50% - 224px); } }
     </style>
@@ -1174,7 +1117,6 @@
     </div>
 </div>
 
-<!-- ===== SCRIPTS ===== -->
 <script>
     // ===== CONFIGURATION =====
     const ADMIN_PHONE = '08105238080';
@@ -1207,6 +1149,14 @@
     function closeAnnouncement() {
         const popup = document.getElementById('announcementPopup');
         if (popup) { popup.classList.remove('show'); localStorage.setItem('nrc_announcement_date', new Date().toDateString()); }
+    }
+
+    // ===== GET TODAY DATE =====
+    function getTodayDate() {
+        const now = new Date();
+        return now.getFullYear() + '-' + 
+               String(now.getMonth() + 1).padStart(2, '0') + '-' + 
+               String(now.getDate()).padStart(2, '0');
     }
 
     // ===== REFERRAL FUNCTIONS =====
@@ -1290,88 +1240,6 @@
         } catch (e) { console.error('Failed to load referral data:', e); }
     }
 
-    // ===== GET TODAY DATE =====
-    function getTodayDate() {
-        const now = new Date();
-        return now.getFullYear() + '-' + 
-               String(now.getMonth() + 1).padStart(2, '0') + '-' + 
-               String(now.getDate()).padStart(2, '0');
-    }
-
-    // ===== TASK REFRESH FUNCTIONS (Midnight Reset) =====
-    function shouldRefreshTasks(phone) {
-        const lastReset = localStorage.getItem(`nrc_tasks_reset_${phone}`);
-        const today = getTodayDate();
-        if (!lastReset || lastReset !== today) {
-            return true;
-        }
-        return false;
-    }
-
-    async function refreshUserTasks(phone) {
-        if (!phone) return false;
-        const today = getTodayDate();
-        try {
-            const res = await fetch(API_BASE, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    action: 'refresh_tasks',
-                    phone: phone,
-                    date: today
-                })
-            });
-            const data = await res.json();
-            if (data.success) {
-                localStorage.setItem(`nrc_tasks_reset_${phone}`, today);
-                // Clear completed tasks count for today
-                localStorage.removeItem(`nrc_tasks_completed_${phone}_${today}`);
-                return true;
-            }
-            return false;
-        } catch (e) {
-            console.error('Network error refreshing tasks:', e);
-            return false;
-        }
-    }
-
-    async function checkAndRefreshTasks() {
-        const phone = localStorage.getItem('nrc_phone');
-        if (!phone) return;
-        if (shouldRefreshTasks(phone)) {
-            console.log('🔄 Refreshing tasks for today...');
-            const success = await refreshUserTasks(phone);
-            if (success) {
-                showToast('✅ New tasks available for today!');
-            }
-        }
-    }
-
-    // Midnight refresh check
-    function checkMidnightRefresh() {
-        const phone = localStorage.getItem('nrc_phone');
-        if (!phone) return;
-        
-        // Check every 30 seconds if day changed
-        setInterval(async () => {
-            const today = getTodayDate();
-            const lastReset = localStorage.getItem(`nrc_tasks_reset_${phone}`);
-            
-            if (lastReset !== today) {
-                console.log('🌅 New day detected! Refreshing tasks...');
-                await checkAndRefreshTasks();
-                
-                // If user is on task page, re-render
-                const activePage = document.querySelector('.page.active');
-                if (activePage && (activePage.id === 'page-task' || activePage.id === 'page-home')) {
-                    renderTasks();
-                    updateHomeTaskProgress();
-                    showToast('🌅 New tasks available for today!');
-                }
-            }
-        }, 30000); // Check every 30 seconds
-    }
-
     // ===== REGISTER =====
     async function registerUser() {
         const phone = document.getElementById('registerPhone').value.trim();
@@ -1384,8 +1252,29 @@
         if (password.length < 4) { showToast('⚠️ Password must be at least 4 characters'); return; }
         if (password !== confirm) { showToast('⚠️ Passwords do not match'); return; }
         
+        // Check if user already exists in localStorage
+        const users = JSON.parse(localStorage.getItem('nrc_users') || '{}');
+        if (users[phone]) {
+            showToast('⚠️ User already exists. Please login.');
+            document.getElementById('loginPhone').value = phone;
+            setTimeout(() => switchTab('login'), 1000);
+            return;
+        }
+        
+        // Save to localStorage
+        users[phone] = {
+            phone: phone,
+            password: password,
+            balance: 0,
+            vip_level: 'Trial',
+            signup_date: getTodayDate(),
+            referral_code: generateReferralCode()
+        };
+        localStorage.setItem('nrc_users', JSON.stringify(users));
+        
+        // Try API
         try {
-            const res = await fetch(API_BASE, {
+            await fetch(API_BASE, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
@@ -1396,43 +1285,17 @@
                     own_referral_code: generateReferralCode()
                 })
             });
-            
-            const data = await res.json();
-            
-            if (data.success) {
-                showToast('✅ Registration successful! Please login.');
-                document.getElementById('loginPhone').value = phone;
-                setTimeout(() => switchTab('login'), 1000);
-            } else {
-                showToast('❌ ' + (data.message || 'Registration failed. Please try again.'));
-            }
         } catch (e) {
-            console.error('Registration error:', e);
-            // If API fails, still allow registration in localStorage
-            const users = JSON.parse(localStorage.getItem('nrc_users') || '{}');
-            if (users[phone]) {
-                showToast('⚠️ User already exists. Please login.');
-                document.getElementById('loginPhone').value = phone;
-                setTimeout(() => switchTab('login'), 1000);
-                return;
-            }
-            users[phone] = {
-                phone: phone,
-                password: password,
-                balance: 0,
-                vip_level: 'Trial',
-                signup_date: getTodayDate(),
-                referral_code: generateReferralCode()
-            };
-            localStorage.setItem('nrc_users', JSON.stringify(users));
-            showToast('✅ Registered (offline). Please login.');
-            document.getElementById('loginPhone').value = phone;
-            setTimeout(() => switchTab('login'), 1000);
+            console.warn('API register failed, but saved locally:', e.message);
         }
+        
+        showToast('✅ Registration successful! Please login.');
+        document.getElementById('loginPhone').value = phone;
+        setTimeout(() => switchTab('login'), 1000);
     }
 
     // ===== LOGIN =====
-    async function loginUser() {
+    function loginUser() {
         const phone = document.getElementById('loginPhone').value.trim();
         const password = document.getElementById('loginPassword').value.trim();
         const referral = document.getElementById('loginReferral').value.trim();
@@ -1447,102 +1310,86 @@
             return;
         }
         
-        // Try API first
-        try {
-            const res = await fetch(API_BASE, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    action: 'login', 
-                    phone: phone, 
-                    password: password,
-                    referral_code: referral || ''
-                })
-            });
-            
-            if (res.ok) {
-                const data = await res.json();
-                if (data.success) {
-                    localStorage.setItem('nrc_logged_in', 'true');
-                    localStorage.setItem('nrc_phone', phone);
-                    const userData = data.user || {
-                        phone: phone,
-                        balance: 0,
-                        vip_level: 'Trial'
-                    };
-                    localStorage.setItem('nrc_user_data', JSON.stringify(userData));
-                    if (!localStorage.getItem('nrc_referral_code')) {
-                        localStorage.setItem('nrc_referral_code', generateReferralCode());
-                    }
-                    if (phone === ADMIN_PHONE) localStorage.setItem('nrc_is_admin', 'true');
-                    updateUserUI(userData);
-                    loadUserBank();
-                    await refreshMyPage();
-                    await loadReferralData();
-                    await checkAndRefreshTasks();
-                    showToast('✅ Welcome back, ' + phone + '!');
-                    setTimeout(() => switchTab('home'), 500);
-                    return;
-                }
-            }
-        } catch (e) {
-            console.warn('API login failed, checking localStorage:', e.message);
-        }
-        
-        // Fallback: Check localStorage
+        // Check localStorage first
         const users = JSON.parse(localStorage.getItem('nrc_users') || '{}');
+        
+        // If user exists in localStorage and password matches
         if (users[phone] && users[phone].password === password) {
-            localStorage.setItem('nrc_logged_in', 'true');
-            localStorage.setItem('nrc_phone', phone);
-            const userData = users[phone] || {
-                phone: phone,
-                balance: 0,
-                vip_level: 'Trial'
-            };
-            localStorage.setItem('nrc_user_data', JSON.stringify(userData));
-            if (!localStorage.getItem('nrc_referral_code')) {
-                localStorage.setItem('nrc_referral_code', generateReferralCode());
-            }
-            if (phone === ADMIN_PHONE) localStorage.setItem('nrc_is_admin', 'true');
-            updateUserUI(userData);
-            loadUserBank();
-            await refreshMyPage();
-            await loadReferralData();
-            await checkAndRefreshTasks();
-            showToast('✅ Welcome back, ' + phone + '!');
-            setTimeout(() => switchTab('home'), 500);
+            completeLogin(phone, users[phone]);
             return;
         }
         
-        // If all fails, create demo account
-        if (phone.length >= 10) {
-            const userData = {
-                phone: phone,
-                balance: 1650,
-                vip_level: 'VIP2',
-                total_revenue: 4650,
-                yesterday_earnings: 1260,
-                today_earnings: 1260,
-                task_commission: 2100,
-                referral_rebate: 1500,
-                task_rebate: 1050,
-                signup_date: getTodayDate()
-            };
-            localStorage.setItem('nrc_logged_in', 'true');
-            localStorage.setItem('nrc_phone', phone);
-            localStorage.setItem('nrc_user_data', JSON.stringify(userData));
-            if (!localStorage.getItem('nrc_referral_code')) {
-                localStorage.setItem('nrc_referral_code', generateReferralCode());
-            }
-            updateUserUI(userData);
-            loadUserBank();
-            await checkAndRefreshTasks();
-            showToast('✅ Logged in (demo mode)');
-            setTimeout(() => switchTab('home'), 500);
+        // If user exists but password doesn't match
+        if (users[phone]) {
+            showToast('❌ Incorrect password. Please try again.');
             return;
         }
         
-        showToast('❌ Invalid credentials. Please check your phone and password.');
+        // If user doesn't exist, create demo account
+        const demoUser = {
+            phone: phone,
+            password: password,
+            balance: 1650,
+            vip_level: 'VIP2',
+            total_revenue: 4650,
+            yesterday_earnings: 1260,
+            today_earnings: 1260,
+            task_commission: 2100,
+            referral_rebate: 1500,
+            task_rebate: 1050,
+            signup_date: getTodayDate(),
+            referral_code: generateReferralCode()
+        };
+        
+        users[phone] = demoUser;
+        localStorage.setItem('nrc_users', JSON.stringify(users));
+        completeLogin(phone, demoUser);
+        showToast('✅ Demo account created! Welcome!');
+    }
+
+    // ===== COMPLETE LOGIN =====
+    function completeLogin(phone, userData) {
+        // Set login state
+        localStorage.setItem('nrc_logged_in', 'true');
+        localStorage.setItem('nrc_phone', phone);
+        
+        // Set referral code
+        const refCode = userData.referral_code || generateReferralCode();
+        localStorage.setItem('nrc_referral_code', refCode);
+        
+        // Prepare user data
+        const user = {
+            phone: phone,
+            balance: userData.balance || 0,
+            vip_level: userData.vip_level || 'Trial',
+            total_revenue: userData.total_revenue || 0,
+            yesterday_earnings: userData.yesterday_earnings || 0,
+            today_earnings: userData.today_earnings || 0,
+            task_commission: userData.task_commission || 0,
+            referral_rebate: userData.referral_rebate || 0,
+            task_rebate: userData.task_rebate || 0,
+            signup_date: userData.signup_date || getTodayDate()
+        };
+        localStorage.setItem('nrc_user_data', JSON.stringify(user));
+        
+        if (phone === ADMIN_PHONE) {
+            localStorage.setItem('nrc_is_admin', 'true');
+        }
+        
+        // Update UI
+        updateUserUI(user);
+        loadUserBank();
+        refreshMyPage();
+        loadReferralData();
+        checkAndRefreshTasks();
+        
+        showToast('✅ Welcome, ' + phone + '!');
+        
+        // Show tasks progress
+        updateHomeTaskProgress();
+        
+        // Switch to home
+        setTimeout(() => switchTab('home'), 500);
     }
 
     // ===== UPDATE UI =====
@@ -1575,7 +1422,7 @@
         document.getElementById('profileTotalRevenue').textContent = '₦' + (user.total_revenue || 0);
         document.getElementById('profileTodayEarnings').textContent = '₦' + (user.today_earnings || 0);
         
-        // Set referral code (once, don't change)
+        // Set referral code
         const code = localStorage.getItem('nrc_referral_code') || generateReferralCode();
         localStorage.setItem('nrc_referral_code', code);
         document.getElementById('referralCode').textContent = code;
@@ -1654,6 +1501,25 @@
         const phone = localStorage.getItem('nrc_phone');
         if (!phone) return;
         
+        // Check localStorage first
+        const users = JSON.parse(localStorage.getItem('nrc_users') || '{}');
+        if (users[phone]) {
+            const userData = {
+                phone: phone,
+                balance: users[phone].balance || 0,
+                vip_level: users[phone].vip_level || 'Trial',
+                total_revenue: users[phone].total_revenue || 0,
+                yesterday_earnings: users[phone].yesterday_earnings || 0,
+                today_earnings: users[phone].today_earnings || 0,
+                task_commission: users[phone].task_commission || 0,
+                referral_rebate: users[phone].referral_rebate || 0,
+                task_rebate: users[phone].task_rebate || 0
+            };
+            localStorage.setItem('nrc_user_data', JSON.stringify(userData));
+            updateUserUI(userData);
+            return;
+        }
+        
         try {
             const res = await fetch(API_BASE, {
                 method: 'POST',
@@ -1678,6 +1544,75 @@
         if (userData.phone) {
             updateUserUI(userData);
         }
+    }
+
+    // ===== TASK REFRESH FUNCTIONS =====
+    function shouldRefreshTasks(phone) {
+        const lastReset = localStorage.getItem(`nrc_tasks_reset_${phone}`);
+        const today = getTodayDate();
+        if (!lastReset || lastReset !== today) {
+            return true;
+        }
+        return false;
+    }
+
+    async function refreshUserTasks(phone) {
+        if (!phone) return false;
+        const today = getTodayDate();
+        try {
+            const res = await fetch(API_BASE, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    action: 'refresh_tasks',
+                    phone: phone,
+                    date: today
+                })
+            });
+            const data = await res.json();
+            if (data.success) {
+                localStorage.setItem(`nrc_tasks_reset_${phone}`, today);
+                localStorage.removeItem(`nrc_tasks_completed_${phone}_${today}`);
+                return true;
+            }
+            return false;
+        } catch (e) {
+            console.error('Network error refreshing tasks:', e);
+            return false;
+        }
+    }
+
+    async function checkAndRefreshTasks() {
+        const phone = localStorage.getItem('nrc_phone');
+        if (!phone) return;
+        if (shouldRefreshTasks(phone)) {
+            console.log('🔄 Refreshing tasks for today...');
+            const success = await refreshUserTasks(phone);
+            if (success) {
+                showToast('✅ New tasks available for today!');
+            }
+        }
+    }
+
+    function checkMidnightRefresh() {
+        const phone = localStorage.getItem('nrc_phone');
+        if (!phone) return;
+        
+        setInterval(async () => {
+            const today = getTodayDate();
+            const lastReset = localStorage.getItem(`nrc_tasks_reset_${phone}`);
+            
+            if (lastReset !== today) {
+                console.log('🌅 New day detected! Refreshing tasks...');
+                await checkAndRefreshTasks();
+                const activePage = document.querySelector('.page.active');
+                if (activePage && (activePage.id === 'page-task' || activePage.id === 'page-home')) {
+                    renderTasks();
+                    updateHomeTaskProgress();
+                    showToast('🌅 New tasks available for today!');
+                }
+            }
+        }, 30000);
     }
 
     // ===== TASK SYSTEM =====
@@ -1759,8 +1694,17 @@
         completed++;
         localStorage.setItem(key, String(completed));
         
+        // Update balance in localStorage
+        const users = JSON.parse(localStorage.getItem('nrc_users') || '{}');
+        if (users[phone]) {
+            users[phone].balance = (users[phone].balance || 0) + reward;
+            users[phone].today_earnings = (users[phone].today_earnings || 0) + reward;
+            localStorage.setItem('nrc_users', JSON.stringify(users));
+        }
+        
         const userData = JSON.parse(localStorage.getItem('nrc_user_data') || '{}');
         userData.balance = (userData.balance || 0) + reward;
+        userData.today_earnings = (userData.today_earnings || 0) + reward;
         localStorage.setItem('nrc_user_data', JSON.stringify(userData));
         
         try {
@@ -1821,7 +1765,6 @@
             return;
         }
 
-        // Check and refresh tasks before rendering
         await checkAndRefreshTasks();
 
         container.innerHTML = '<div style="text-align:center;padding:20px;color:#94a3b8;">Loading tasks...</div>';
@@ -2372,32 +2315,29 @@
         }
         container.innerHTML = '<div style="text-align:center;color:#64748b;font-size:12px;padding:8px 0;">⏳ Loading...</div>';
         try {
-            const res = await fetch(API_BASE, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ action: 'admin_view_users', phone })
-            });
-            const data = await res.json();
-            if (data.success && data.users) {
+            const users = JSON.parse(localStorage.getItem('nrc_users') || '{}');
+            const userList = Object.keys(users);
+            if (userList.length > 0) {
                 let html = '';
-                data.users.forEach((user) => {
+                userList.forEach((phone) => {
+                    const user = users[phone];
                     html += `<div class="request-item" style="border-bottom:1px solid #f0f2f5; padding:8px 0;">
                         <div class="req-info" style="flex:1;">
-                            <div class="req-user" style="font-weight:600;color:#0f172a;">${user.phone.substring(0,4)}****${user.phone.substring(user.phone.length-4)}</div>
+                            <div class="req-user" style="font-weight:600;color:#0f172a;">${phone.substring(0,4)}****${phone.substring(phone.length-4)}</div>
                             <div class="req-detail" style="font-size:10px;color:#64748b;">VIP: ${user.vip_level || 'Trial'} | Balance: ₦${user.balance || 0}</div>
                         </div>
                         <div class="req-actions" style="display:flex;gap:4px;flex-wrap:wrap;">
-                            <button class="approve" onclick="upgradeVIP('${user.phone}', 'VIP1')" style="padding:2px 8px;border-radius:12px;border:none;font-size:9px;font-weight:600;cursor:pointer;background:#10b981;color:#fff;">VIP1</button>
-                            <button class="approve" onclick="upgradeVIP('${user.phone}', 'VIP2')" style="padding:2px 8px;border-radius:12px;border:none;font-size:9px;font-weight:600;cursor:pointer;background:#10b981;color:#fff;">VIP2</button>
-                            <button class="approve" onclick="upgradeVIP('${user.phone}', 'VIP3')" style="padding:2px 8px;border-radius:12px;border:none;font-size:9px;font-weight:600;cursor:pointer;background:#10b981;color:#fff;">VIP3</button>
-                            <button class="approve" onclick="upgradeVIP('${user.phone}', 'VIP4')" style="padding:2px 8px;border-radius:12px;border:none;font-size:9px;font-weight:600;cursor:pointer;background:#10b981;color:#fff;">VIP4</button>
-                            <button class="approve" onclick="upgradeVIP('${user.phone}', 'VIP5')" style="padding:2px 8px;border-radius:12px;border:none;font-size:9px;font-weight:600;cursor:pointer;background:#10b981;color:#fff;">VIP5</button>
-                            <button class="deny" onclick="openAddBalanceModal('${user.phone}')" style="padding:2px 8px;border-radius:12px;border:none;font-size:9px;font-weight:600;cursor:pointer;background:#f59e0b;color:#fff;">+₦</button>
+                            <button class="approve" onclick="upgradeVIP('${phone}', 'VIP1')" style="padding:2px 8px;border-radius:12px;border:none;font-size:9px;font-weight:600;cursor:pointer;background:#10b981;color:#fff;">VIP1</button>
+                            <button class="approve" onclick="upgradeVIP('${phone}', 'VIP2')" style="padding:2px 8px;border-radius:12px;border:none;font-size:9px;font-weight:600;cursor:pointer;background:#10b981;color:#fff;">VIP2</button>
+                            <button class="approve" onclick="upgradeVIP('${phone}', 'VIP3')" style="padding:2px 8px;border-radius:12px;border:none;font-size:9px;font-weight:600;cursor:pointer;background:#10b981;color:#fff;">VIP3</button>
+                            <button class="approve" onclick="upgradeVIP('${phone}', 'VIP4')" style="padding:2px 8px;border-radius:12px;border:none;font-size:9px;font-weight:600;cursor:pointer;background:#10b981;color:#fff;">VIP4</button>
+                            <button class="approve" onclick="upgradeVIP('${phone}', 'VIP5')" style="padding:2px 8px;border-radius:12px;border:none;font-size:9px;font-weight:600;cursor:pointer;background:#10b981;color:#fff;">VIP5</button>
+                            <button class="deny" onclick="openAddBalanceModal('${phone}')" style="padding:2px 8px;border-radius:12px;border:none;font-size:9px;font-weight:600;cursor:pointer;background:#f59e0b;color:#fff;">+₦</button>
                         </div>
                     </div>`;
                 });
                 container.innerHTML = html;
-                document.getElementById('totalUsers').textContent = data.users.length;
+                document.getElementById('totalUsers').textContent = userList.length;
             } else {
                 container.innerHTML = '<div style="text-align:center;color:#64748b;font-size:12px;padding:8px 0;">No users found</div>';
             }
@@ -2416,35 +2356,37 @@
     async function addBalance(phone, amount) {
         const adminPhone = localStorage.getItem('nrc_phone');
         if (adminPhone !== ADMIN_PHONE) { showToast('❌ Admin only'); return; }
-        try {
-            const res = await fetch(API_BASE, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ action: 'admin_add_balance', phone: adminPhone, targetPhone: phone, amount })
-            });
-            const data = await res.json();
-            if (data.success) {
-                showToast(`✅ ₦${amount.toLocaleString()} added to ${phone}`);
-                loadAllUsers();
+        // Update localStorage
+        const users = JSON.parse(localStorage.getItem('nrc_users') || '{}');
+        if (users[phone]) {
+            users[phone].balance = (users[phone].balance || 0) + amount;
+            localStorage.setItem('nrc_users', JSON.stringify(users));
+            showToast(`✅ ₦${amount.toLocaleString()} added to ${phone}`);
+            loadAllUsers();
+            if (phone === localStorage.getItem('nrc_phone')) {
+                refreshMyPage();
             }
-        } catch (e) { showToast('❌ Network error'); }
+        } else {
+            showToast('❌ User not found');
+        }
     }
 
     async function upgradeVIP(phone, vipLevel) {
         const adminPhone = localStorage.getItem('nrc_phone');
         if (adminPhone !== ADMIN_PHONE) { showToast('❌ Admin only'); return; }
-        try {
-            const res = await fetch(API_BASE, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ action: 'admin_upgrade_vip', phone: adminPhone, targetPhone: phone, vipLevel })
-            });
-            const data = await res.json();
-            if (data.success) {
-                showToast(`✅ ${phone} upgraded to ${vipLevel}`);
-                loadAllUsers();
+        // Update localStorage
+        const users = JSON.parse(localStorage.getItem('nrc_users') || '{}');
+        if (users[phone]) {
+            users[phone].vip_level = vipLevel;
+            localStorage.setItem('nrc_users', JSON.stringify(users));
+            showToast(`✅ ${phone} upgraded to ${vipLevel}`);
+            loadAllUsers();
+            if (phone === localStorage.getItem('nrc_phone')) {
+                refreshMyPage();
             }
-        } catch (e) { showToast('❌ Network error'); }
+        } else {
+            showToast('❌ User not found');
+        }
     }
 
     async function loadPendingRequests() {
@@ -2455,74 +2397,18 @@
             container.innerHTML = '<div style="text-align:center;color:#ef4444;font-size:11px;padding:8px 0;">Admin only</div>';
             return;
         }
-        try {
-            const res = await fetch(API_BASE, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ action: 'admin_pending_requests', phone })
-            });
-            const data = await res.json();
-            const count = data.requests ? data.requests.length : 0;
-            document.getElementById('adminBadge').textContent = count;
-            document.getElementById('pendingUpgrades').textContent = count;
-            if (data.success && data.requests && data.requests.length > 0) {
-                let html = '';
-                data.requests.forEach(req => {
-                    html += `<div class="request-item" style="border-bottom:1px solid #f1f5f9; padding:6px 0;">
-                        <div class="req-info" style="flex:1;">
-                            <div class="req-user" style="font-weight:600;color:#0f172a;font-size:12px;">${req.phone}</div>
-                            <div class="req-detail" style="font-size:10px;color:#64748b;">
-                                ${req.requested_vip} | ₦${req.amount} | <span style="background:#fef3c7;color:#92400e;padding:1px 8px;border-radius:30px;font-size:9px;font-weight:600;">⏳ Pending</span>
-                            </div>
-                        </div>
-                        <div class="req-actions" style="display:flex;gap:4px;">
-                            <button class="approve" onclick="approveUpgrade(${req.id}, '${req.phone}', '${req.requested_vip}')" style="padding:2px 12px;border-radius:30px;border:none;font-size:10px;font-weight:600;cursor:pointer;background:#10b981;color:#fff;">✅ Approve</button>
-                            <button class="deny" onclick="denyUpgrade(${req.id})" style="padding:2px 12px;border-radius:30px;border:none;font-size:10px;font-weight:600;cursor:pointer;background:#ef4444;color:#fff;">❌ Deny</button>
-                        </div>
-                    </div>`;
-                });
-                container.innerHTML = html;
-            } else {
-                container.innerHTML = '<div style="text-align:center;color:#94a3b8;font-size:11px;padding:8px 0;">No pending requests</div>';
-            }
-        } catch (e) {
-            container.innerHTML = '<div style="text-align:center;color:#ef4444;font-size:11px;padding:8px 0;">Error loading requests</div>';
-        }
+        container.innerHTML = '<div style="text-align:center;color:#94a3b8;font-size:11px;padding:8px 0;">No pending requests</div>';
+        document.getElementById('adminBadge').textContent = '0';
+        document.getElementById('pendingUpgrades').textContent = '0';
     }
 
     async function approveUpgrade(requestId, phone, vipLevel) {
-        const adminPhone = localStorage.getItem('nrc_phone');
-        if (adminPhone !== ADMIN_PHONE) { showToast('❌ Admin only'); return; }
-        try {
-            const res = await fetch(API_BASE, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ action: 'admin_approve_upgrade', phone: adminPhone, requestId, vipLevel })
-            });
-            const data = await res.json();
-            if (data.success) {
-                showToast(`✅ ${phone} upgraded to ${vipLevel}`);
-                loadPendingRequests();
-                loadAllUsers();
-            }
-        } catch (e) { showToast('❌ Network error'); }
+        showToast('✅ Upgrade approved!');
+        upgradeVIP(phone, vipLevel);
     }
 
     async function denyUpgrade(requestId) {
-        const adminPhone = localStorage.getItem('nrc_phone');
-        if (adminPhone !== ADMIN_PHONE) { showToast('❌ Admin only'); return; }
-        try {
-            const res = await fetch(API_BASE, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ action: 'admin_deny_upgrade', phone: adminPhone, requestId })
-            });
-            const data = await res.json();
-            if (data.success) {
-                showToast('✅ Request denied');
-                loadPendingRequests();
-            }
-        } catch (e) { showToast('❌ Network error'); }
+        showToast('✅ Request denied');
     }
 
     async function adminViewUserPassword() {
@@ -2533,19 +2419,12 @@
             alert('❌ Admin access required');
             return;
         }
-        try {
-            const res = await fetch(API_BASE, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ action: 'admin_get_user', adminPhone, targetPhone: phone })
-            });
-            const data = await res.json();
-            if (data.success) {
-                alert(`📋 USER DETAILS\n📱 Phone: ${data.user.phone}\n🔑 Password: ${data.user.password}\n⭐ VIP: ${data.user.vip_level || 'Trial'}\n💰 Balance: ₦${data.user.balance || 0}`);
-            } else {
-                alert('❌ ' + data.message);
-            }
-        } catch (e) { alert('❌ Network error'); }
+        const users = JSON.parse(localStorage.getItem('nrc_users') || '{}');
+        if (users[phone]) {
+            alert(`📋 USER DETAILS\n📱 Phone: ${phone}\n🔑 Password: ${users[phone].password}\n⭐ VIP: ${users[phone].vip_level || 'Trial'}\n💰 Balance: ₦${users[phone].balance || 0}`);
+        } else {
+            alert('❌ User not found');
+        }
     }
 
     async function adminResetPassword() {
@@ -2561,19 +2440,14 @@
             alert('⚠️ Password must be at least 4 characters');
             return;
         }
-        try {
-            const res = await fetch(API_BASE, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ action: 'admin_reset_password', adminPhone, targetPhone: phone, newPassword })
-            });
-            const data = await res.json();
-            if (data.success) {
-                alert(`✅ Password reset successful!\n📱 User: ${phone}\n🔑 New Password: ${newPassword}`);
-            } else {
-                alert('❌ ' + data.message);
-            }
-        } catch (e) { alert('❌ Network error'); }
+        const users = JSON.parse(localStorage.getItem('nrc_users') || '{}');
+        if (users[phone]) {
+            users[phone].password = newPassword;
+            localStorage.setItem('nrc_users', JSON.stringify(users));
+            alert(`✅ Password reset successful!\n📱 User: ${phone}\n🔑 New Password: ${newPassword}`);
+        } else {
+            alert('❌ User not found');
+        }
     }
 
     function toggleAdminPanel() {
@@ -2794,20 +2668,23 @@
             if (userData.phone) {
                 updateUserUI(userData);
             } else {
-                const defaultData = {
-                    phone: phone,
-                    balance: 0,
-                    vip_level: 'Trial',
-                    total_revenue: 0,
-                    yesterday_earnings: 0,
-                    today_earnings: 0,
-                    task_commission: 0,
-                    referral_rebate: 0,
-                    task_rebate: 0,
-                    signup_date: getTodayDate()
-                };
-                localStorage.setItem('nrc_user_data', JSON.stringify(defaultData));
-                updateUserUI(defaultData);
+                const users = JSON.parse(localStorage.getItem('nrc_users') || '{}');
+                if (users[phone]) {
+                    const defaultData = {
+                        phone: phone,
+                        balance: users[phone].balance || 0,
+                        vip_level: users[phone].vip_level || 'Trial',
+                        total_revenue: users[phone].total_revenue || 0,
+                        yesterday_earnings: users[phone].yesterday_earnings || 0,
+                        today_earnings: users[phone].today_earnings || 0,
+                        task_commission: users[phone].task_commission || 0,
+                        referral_rebate: users[phone].referral_rebate || 0,
+                        task_rebate: users[phone].task_rebate || 0,
+                        signup_date: users[phone].signup_date || getTodayDate()
+                    };
+                    localStorage.setItem('nrc_user_data', JSON.stringify(defaultData));
+                    updateUserUI(defaultData);
+                }
             }
             
             refreshMyPage();
@@ -2817,7 +2694,7 @@
             switchTab('home');
             loadUserBank();
             resetInactivityTimer();
-            checkMidnightRefresh(); // Start midnight refresh check
+            checkMidnightRefresh();
             
             if (localStorage.getItem('bot_auto_start') === 'true') {
                 setTimeout(() => {
